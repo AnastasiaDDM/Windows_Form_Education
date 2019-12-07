@@ -1,0 +1,9 @@
+C:\Users\79016\Desktop\Add_Type\Add_Type\bin\Debug\Add_Type.exe.config
+C:\Users\79016\Desktop\Add_Type\Add_Type\bin\Debug\Add_Type.exe
+C:\Users\79016\Desktop\Add_Type\Add_Type\bin\Debug\Add_Type.pdb
+C:\Users\79016\Desktop\Add_Type\Add_Type\obj\Debug\Add_Type.csprojResolveAssemblyReference.cache
+C:\Users\79016\Desktop\Add_Type\Add_Type\obj\Debug\Add_Type.Form1.resources
+C:\Users\79016\Desktop\Add_Type\Add_Type\obj\Debug\Add_Type.Properties.Resources.resources
+C:\Users\79016\Desktop\Add_Type\Add_Type\obj\Debug\Add_Type.csproj.GenerateResource.Cache
+C:\Users\79016\Desktop\Add_Type\Add_Type\obj\Debug\Add_Type.exe
+C:\Users\79016\Desktop\Add_Type\Add_Type\obj\Debug\Add_Type.pdb

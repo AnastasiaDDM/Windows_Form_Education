@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A03EF31D-C28D-47FF-B8A0-6D0BB81AD08E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Add_Type</RootNamespace>
+    <AssemblyName>Add_Type</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Branch_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Branch_find.Designer.cs">
+      <DependentUpon>Branch_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Branch_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Branch_view.Designer.cs">
+      <DependentUpon>Branch_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cabinet_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cabinet_edit.Designer.cs">
+      <DependentUpon>Cabinet_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Branch_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Branch_edit.Designer.cs">
+      <DependentUpon>Branch_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cabinet_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cabinet_find.Designer.cs">
+      <DependentUpon>Cabinet_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cabinet_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cabinet_view.Designer.cs">
+      <DependentUpon>Cabinet_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract_edit.Designer.cs">
+      <DependentUpon>Contract_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract_find.Designer.cs">
+      <DependentUpon>Contract_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract_view.Designer.cs">
+      <DependentUpon>Contract_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Course_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Course_edit.Designer.cs">
+      <DependentUpon>Course_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Course_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Course_find.Designer.cs">
+      <DependentUpon>Course_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Course_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Course_view.Designer.cs">
+      <DependentUpon>Course_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Grade_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grade_edit.Designer.cs">
+      <DependentUpon>Grade_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Grade_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grade_find.Designer.cs">
+      <DependentUpon>Grade_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Grade_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grade_view.Designer.cs">
+      <DependentUpon>Grade_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parent_edit.Designer.cs">
+      <DependentUpon>Parent_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parent_find.Designer.cs">
+      <DependentUpon>Parent_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_possible.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parent_possible.Designer.cs">
+      <DependentUpon>Parent_possible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parent_view.Designer.cs">
+      <DependentUpon>Parent_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pay_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pay_edit.Designer.cs">
+      <DependentUpon>Pay_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pay_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pay_find.Designer.cs">
+      <DependentUpon>Pay_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pay_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pay_view.Designer.cs">
+      <DependentUpon>Pay_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Statistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistic.Designer.cs">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student_edit.Designer.cs">
+      <DependentUpon>Student_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student_find.Designer.cs">
+      <DependentUpon>Student_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student_view.Designer.cs">
+      <DependentUpon>Student_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme_edit.Designer.cs">
+      <DependentUpon>Theme_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme_find.Designer.cs">
+      <DependentUpon>Theme_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme_view.Designer.cs">
+      <DependentUpon>Theme_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timetable.Designer.cs">
+      <DependentUpon>Timetable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timetable_edit.Designer.cs">
+      <DependentUpon>Timetable_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timetable_view.Designer.cs">
+      <DependentUpon>Timetable_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Type_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Type_edit.Designer.cs">
+      <DependentUpon>Type_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Type_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Type_find.Designer.cs">
+      <DependentUpon>Type_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Type_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Type_view.Designer.cs">
+      <DependentUpon>Type_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visit_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visit_edit.Designer.cs">
+      <DependentUpon>Visit_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visit_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visit_find.Designer.cs">
+      <DependentUpon>Visit_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visit_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visit_view.Designer.cs">
+      <DependentUpon>Visit_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Worker_edit.Designer.cs">
+      <DependentUpon>Worker_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Input.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input.Designer.cs">
+      <DependentUpon>Input.cs</DependentUpon>
+    </Compile>
+    <Compile Include="List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Worker_find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Worker_find.Designer.cs">
+      <DependentUpon>Worker_find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Worker_view.Designer.cs">
+      <DependentUpon>Worker_view.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Branch_find.resx">
+      <DependentUpon>Branch_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Branch_view.resx">
+      <DependentUpon>Branch_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cabinet_edit.resx">
+      <DependentUpon>Cabinet_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Branch_edit.resx">
+      <DependentUpon>Branch_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cabinet_find.resx">
+      <DependentUpon>Cabinet_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cabinet_view.resx">
+      <DependentUpon>Cabinet_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract_edit.resx">
+      <DependentUpon>Contract_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract_find.resx">
+      <DependentUpon>Contract_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract_view.resx">
+      <DependentUpon>Contract_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Course_edit.resx">
+      <DependentUpon>Course_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Course_find.resx">
+      <DependentUpon>Course_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Course_view.resx">
+      <DependentUpon>Course_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grade_edit.resx">
+      <DependentUpon>Grade_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grade_find.resx">
+      <DependentUpon>Grade_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grade_view.resx">
+      <DependentUpon>Grade_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parent_edit.resx">
+      <DependentUpon>Parent_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parent_find.resx">
+      <DependentUpon>Parent_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parent_possible.resx">
+      <DependentUpon>Parent_possible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parent_view.resx">
+      <DependentUpon>Parent_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pay_edit.resx">
+      <DependentUpon>Pay_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pay_find.resx">
+      <DependentUpon>Pay_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pay_view.resx">
+      <DependentUpon>Pay_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistic.resx">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student_edit.resx">
+      <DependentUpon>Student_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student_find.resx">
+      <DependentUpon>Student_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student_view.resx">
+      <DependentUpon>Student_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme_edit.resx">
+      <DependentUpon>Theme_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme_find.resx">
+      <DependentUpon>Theme_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme_view.resx">
+      <DependentUpon>Theme_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timetable.resx">
+      <DependentUpon>Timetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timetable_edit.resx">
+      <DependentUpon>Timetable_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timetable_view.resx">
+      <DependentUpon>Timetable_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Type_edit.resx">
+      <DependentUpon>Type_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Type_find.resx">
+      <DependentUpon>Type_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Type_view.resx">
+      <DependentUpon>Type_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visit_edit.resx">
+      <DependentUpon>Visit_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visit_find.resx">
+      <DependentUpon>Visit_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visit_view.resx">
+      <DependentUpon>Visit_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Worker_edit.resx">
+      <DependentUpon>Worker_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input.resx">
+      <DependentUpon>Input.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Worker_find.resx">
+      <DependentUpon>Worker_find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Worker_view.resx">
+      <DependentUpon>Worker_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
