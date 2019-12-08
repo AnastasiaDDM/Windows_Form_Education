@@ -40,7 +40,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -177,14 +177,15 @@
             this.button3.Text = "Добавить ответственного";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // close
             // 
-            this.button2.Location = new System.Drawing.Point(340, 520);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 42);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Закрыть";
-            this.button2.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(340, 520);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(126, 42);
+            this.close.TabIndex = 19;
+            this.close.Text = "Закрыть";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // label2
             // 
@@ -261,7 +262,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Student_view";
@@ -292,7 +293,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
