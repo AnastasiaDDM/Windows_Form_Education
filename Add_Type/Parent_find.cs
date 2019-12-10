@@ -21,7 +21,7 @@ namespace Add_Type
         int pageindex;
         int pages;
         string purpose;
-   //     public Parent choosePar;
+        public Parent choosePar;
 
         public Parent_find()
         {
@@ -209,18 +209,26 @@ namespace Add_Type
                             //if (result == DialogResult.OK)
                             //{
                             //    // Форма не закрывается
-                            int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
-                            //    D.Rows.Remove(D.Rows[l]);
-                            Student_find.chooseParent = Parents.ParentID(k);
 
-       //                     Program.ParentStudent_find.setParent(choosePar);
-                            //    String ans = o.Del();
-                            //}
+
+
+                            //int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                            ////    D.Rows.Remove(D.Rows[l]);
+                            //Student_find.chooseParent = Parents.ParentID(k);
+
+                            ////                     Program.ParentStudent_find.setParent(choosePar);
+                            ////    String ans = o.Del();
+                            ////}
+
+
+
+                            int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                            // D.Rows.Remove(D.Rows[l]);
+                            //Student_find.chooseParent = Parents.ParentID(k);
+                            choosePar = Parents.ParentID(k);
+
+
                             this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                         }
                     }
                 }
@@ -264,6 +272,7 @@ namespace Add_Type
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
                 int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
@@ -297,7 +306,7 @@ namespace Add_Type
             }
         }
 
-        private void reset_Click(object sender, EventArgs e)
+        private void reset_Click(object sender, EventArgs e) // Сбрасываются все установленные значения поиска
         {
             fiof.Clear();
             phonef.Clear();

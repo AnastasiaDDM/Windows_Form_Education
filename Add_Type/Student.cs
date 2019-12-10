@@ -13,7 +13,7 @@ using System.Data.Entity;
 //+ edit(): String DONE
 //+ getParents(): List<Parent> DONE
 //+ getContracts(): List<Contract> DONE
-//+ getCourses(Finished: Bolean): List<Course> DONE
+//+ getCourses(): List<Course> DONE
 //+ getTimetable(Start: Datetime, End: Datetime): List<Timetable>  DONE
 //+ getDebt(Contract: Contract): Double DONE ( можно улучшить процесс, но работает корректно )
 //+ addParent() DONE - и возможных нужно тоже тут искать (пока не сделано)
@@ -164,12 +164,13 @@ namespace Add_Type
             }
         }
 
-        public string addParent(Parent par)
+        public List<Parent> addParent(Parent par, out string answer)
         {
             StudentsParents stpar = new StudentsParents();
             stpar.StudentID = this.ID;
             stpar.ParentID = par.ID;
-            string answer = СheckPar(stpar);
+            List<Parent> possibleparents = new List<Parent>();
+            answer = СheckPar(stpar);
             if (answer == "Данные корректны!")
             {
                 using (SampleContext context = new SampleContext())
@@ -177,14 +178,14 @@ namespace Add_Type
                     context.StudentsParents.Add(stpar);
                     context.SaveChanges();
                     int IDInsert = stpar.ParentID;
-                    answer = "Добавление отв.лица к ученику прошло успешно";
+                    //answer = "Добавление отв.лица к ученику прошло успешно";
 
                     //  Вызов метода поиска возможных родителей
-                    //                   List<Parent> possibleparents = Students.StudentID(stpar.StudentID).GetPossibleparents();
+                    possibleparents = Students.StudentID(stpar.StudentID).GetPossibleparents();
                 }
-                return answer;
+                return possibleparents;
             }
-            return answer;
+            return possibleparents;
         }
 
         public string delParent(Parent par)
@@ -233,9 +234,16 @@ namespace Add_Type
                 foreach (var p in selectedParents)
                 {
                     listparents.Add(new Parent { ID = p.IDpar, Phone = p.Phone, Deldate = p.Deldate, Editdate = p.Editdate, FIO = p.FIO });
+
+                    StudentsParents stpar = new StudentsParents();
+                    stpar.StudentID = this.ID;
+                    stpar.ParentID = p.IDpar;
+
+                    db.StudentsParents.Add(stpar);
+                    db.SaveChanges();
                 }
+                return listparents;
             }
-            return listparents;
         }
 
         public List<Timetable> getTimetables(DateTime date, bool deldate, int count, int page, string sort, string ascdesc, ref int countrecord)
@@ -282,6 +290,42 @@ namespace Add_Type
                 {
                     double sumPays = (paysst/*.Where(p => p.ContractID == contract.ID)*/.Sum(p => p.Payment));
                     return contract.Cost - sumPays;
+                }
+            }
+        }
+
+        public double getDebt()
+        {
+            using (SampleContext db = new SampleContext())
+            {
+                var pays = db.Pays.Join(db.Contracts, // второй набор
+        p => p.ContractID, // свойство-селектор объекта из первого набора
+        c => c.ID, // свойство-селектор объекта из второго набора
+        (p, c) => new // результат
+        {
+            ID = p.ID,
+            ContractID = p.ContractID,
+            Cost = c.Cost,
+            Date = p.Date,
+            BranchID = p.BranchID,
+            Payment = p.Payment,
+            Purpose = p.Purpose,
+            Type = p.Type,
+            Deldate = p.Deldate,
+            StudentID = c.StudentID
+        });
+                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
+
+                var paysst = pays.Where(p => p.StudentID == this.ID )/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                if (paysst.Count() == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    double costsAll = (paysst.Sum(p => p.Cost));
+                    double sumPays = (paysst.Sum(p => p.Payment));
+                    return costsAll - sumPays;
                 }
             }
         }
@@ -373,7 +417,7 @@ namespace Add_Type
                             join sp in db.StudentsParents on s.ID equals sp.StudentID
                             into std_prnt_temp
                             from std_prnt in std_prnt_temp.DefaultIfEmpty()
-                            join p in db.Parents on std_prnt.StudentID equals p.ID
+                            join p in db.Parents on std_prnt.ParentID equals p.ID
                             into prnt_temp
                             from prnt in prnt_temp.DefaultIfEmpty()
                             join c in db.Contracts on s.ID equals c.StudentID

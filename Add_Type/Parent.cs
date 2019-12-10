@@ -77,11 +77,15 @@ namespace Add_Type
             List<Student> liststudents = new List<Student>();
             using (SampleContext db = new SampleContext())
             {
+                //var students = from p in db.Parents
+                //               join sp in db.StudentsParents on p.ID equals sp.ParentID
+                //               join s in db.Students on sp.StudentID equals s.ID
+                //               select new { SID = s.ID, SPhone = s.Phone, SFIO = s.FIO, SDelDate = s.Deldate, PID = p.ID, ParID = sp.ParentID, StID = sp.StudentID };
+
                 var students = from p in db.Parents
                                join sp in db.StudentsParents on p.ID equals sp.ParentID
                                join s in db.Students on sp.StudentID equals s.ID
                                select new { SID = s.ID, SPhone = s.Phone, SFIO = s.FIO, SDelDate = s.Deldate, PID = p.ID, ParID = sp.ParentID, StID = sp.StudentID };
-
 
                 students = students.Where(x => x.ParID == this.ID);
                 students = students.Where(x => x.SID == x.StID);
@@ -181,10 +185,22 @@ namespace Add_Type
             using (SampleContext db = new SampleContext())
             {
                 // Соединение необходимых таблиц
+                //var parents = from p in db.Parents
+                //              join sp in db.StudentsParents on p.ID equals sp.ParentID
+                //              join s in db.Students on sp.StudentID equals s.ID
+                //              select new { ID = p.ID, Phone = p.Phone, FIO = p.FIO, Deldate = p.Deldate, Editdate = p.Editdate, SPhone = s.Phone, SFIO = s.FIO, SID = s.ID };
+
+
+
                 var parents = from p in db.Parents
-                              join sp in db.StudentsParents on p.ID equals sp.ParentID
-                              join s in db.Students on sp.StudentID equals s.ID
-                              select new { ID = p.ID, Phone = p.Phone, FIO = p.FIO, Deldate = p.Deldate, Editdate = p.Editdate, SPhone = s.Phone, SFIO = s.FIO, SID = s.ID };
+                            join sp in db.StudentsParents on p.ID equals sp.ParentID
+                            into std_prnt_temp
+                            from std_prnt in std_prnt_temp.DefaultIfEmpty()
+                            join s in db.Students on std_prnt.StudentID equals s.ID
+                            into stud_temp
+                            from stud in stud_temp.DefaultIfEmpty()
+                            select new { ID = p.ID, Phone = p.Phone, FIO = p.FIO, Deldate = p.Deldate, Editdate = p.Editdate, SID = (stud == null ? 0 : stud.ID), SFIO = (stud == null ? "" : stud.FIO), SPhone = (stud == null ? "" : stud.Phone) };
+
 
 
                 // Последовательно просеиваем наш список

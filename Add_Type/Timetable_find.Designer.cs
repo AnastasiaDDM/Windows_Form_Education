@@ -30,11 +30,13 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.D = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button9 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -42,19 +44,24 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.satyrday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,14 +83,27 @@
             this.button2.Text = "Следующая неделя";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 179);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1009, 516);
-            this.dataGridView1.TabIndex = 4;
+            this.D.AllowUserToAddRows = false;
+            this.D.AllowUserToDeleteRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.monday,
+            this.tuesday,
+            this.wednesday,
+            this.thursday,
+            this.friday,
+            this.satyrday,
+            this.sunday});
+            this.D.Location = new System.Drawing.Point(11, 179);
+            this.D.Name = "D";
+            this.D.ReadOnly = true;
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(1009, 516);
+            this.D.TabIndex = 4;
             // 
             // label3
             // 
@@ -135,7 +155,22 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(64, 37);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(161, 24);
+            this.comboBox1.TabIndex = 13;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(64, 10);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(161, 24);
+            this.comboBox2.TabIndex = 14;
             // 
             // button9
             // 
@@ -199,31 +234,13 @@
             this.button6.Text = "🔍";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // textBox1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(4, 14);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 17);
-            this.label8.TabIndex = 43;
-            this.label8.Text = "Филиал";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(361, 16);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(161, 20);
-            this.textBox2.TabIndex = 39;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(789, 13);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
-            this.button5.TabIndex = 40;
-            this.button5.Text = "🔍";
-            this.button5.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(627, 14);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 20);
+            this.textBox1.TabIndex = 37;
             // 
             // label1
             // 
@@ -234,13 +251,31 @@
             this.label1.TabIndex = 36;
             this.label1.Text = "Ученик";
             // 
-            // textBox1
+            // label8
             // 
-            this.textBox1.Location = new System.Drawing.Point(627, 14);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 37;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 17);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "Филиал";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(789, 13);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(23, 23);
+            this.button5.TabIndex = 40;
+            this.button5.Text = "🔍";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(361, 16);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(161, 20);
+            this.textBox2.TabIndex = 39;
             // 
             // label2
             // 
@@ -285,23 +320,50 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "Количестов занятий в неделю: ";
             // 
-            // comboBox1
+            // monday
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(64, 37);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 24);
-            this.comboBox1.TabIndex = 13;
+            this.monday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.monday.HeaderText = "Понедельник";
+            this.monday.Name = "monday";
+            this.monday.Width = 125;
             // 
-            // comboBox2
+            // tuesday
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(64, 10);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(161, 24);
-            this.comboBox2.TabIndex = 14;
+            this.tuesday.HeaderText = "Вторник";
+            this.tuesday.Name = "tuesday";
+            this.tuesday.Width = 92;
             // 
-            // Timetable
+            // wednesday
+            // 
+            this.wednesday.HeaderText = "Среда";
+            this.wednesday.Name = "wednesday";
+            this.wednesday.Width = 78;
+            // 
+            // thursday
+            // 
+            this.thursday.HeaderText = "Четверг";
+            this.thursday.Name = "thursday";
+            this.thursday.Width = 90;
+            // 
+            // friday
+            // 
+            this.friday.HeaderText = "Пятница";
+            this.friday.Name = "friday";
+            this.friday.Width = 94;
+            // 
+            // satyrday
+            // 
+            this.satyrday.HeaderText = "Суббота";
+            this.satyrday.Name = "satyrday";
+            this.satyrday.Width = 92;
+            // 
+            // sunday
+            // 
+            this.sunday.HeaderText = "Воскресенье";
+            this.sunday.Name = "sunday";
+            this.sunday.Width = 122;
+            // 
+            // Timetable_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -314,12 +376,13 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.D);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Timetable";
+            this.Name = "Timetable_find";
             this.Text = "Расписание занятий ";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Timetable_find_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -331,7 +394,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView D;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -355,5 +418,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tuesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wednesday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thursday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn friday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn satyrday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sunday;
     }
 }

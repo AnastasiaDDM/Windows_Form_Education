@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.fiot = new System.Windows.Forms.Label();
+            this.phonet = new System.Windows.Forms.Label();
+            this.D = new System.Windows.Forms.DataGridView();
+            this.choosestudent = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // close
             // 
-            this.button2.Location = new System.Drawing.Point(185, 407);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 42);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Закрыть";
-            this.button2.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(185, 407);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(126, 42);
+            this.close.TabIndex = 21;
+            this.close.Text = "Закрыть";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // label4
             // 
@@ -65,57 +66,60 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "ФИО ";
             // 
-            // label1
+            // fiot
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "label1";
+            this.fiot.AutoSize = true;
+            this.fiot.Location = new System.Drawing.Point(147, 18);
+            this.fiot.Name = "fiot";
+            this.fiot.Size = new System.Drawing.Size(46, 17);
+            this.fiot.TabIndex = 22;
+            this.fiot.Text = "label1";
             // 
-            // label2
+            // phonet
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(147, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "label2";
+            this.phonet.AutoSize = true;
+            this.phonet.Location = new System.Drawing.Point(147, 76);
+            this.phonet.Name = "phonet";
+            this.phonet.Size = new System.Drawing.Size(46, 17);
+            this.phonet.TabIndex = 23;
+            this.phonet.Text = "label2";
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 119);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(503, 203);
-            this.dataGridView1.TabIndex = 24;
+            this.D.AllowUserToAddRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(15, 119);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(503, 203);
+            this.D.TabIndex = 24;
             // 
-            // button1
+            // choosestudent
             // 
-            this.button1.Location = new System.Drawing.Point(15, 328);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 26);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Добавить ученика";
-            this.button1.UseVisualStyleBackColor = true;
+            this.choosestudent.Location = new System.Drawing.Point(15, 328);
+            this.choosestudent.Name = "choosestudent";
+            this.choosestudent.Size = new System.Drawing.Size(149, 26);
+            this.choosestudent.TabIndex = 25;
+            this.choosestudent.Text = "Добавить ученика";
+            this.choosestudent.UseVisualStyleBackColor = true;
+            this.choosestudent.Click += new System.EventHandler(this.choosestudent_Click);
             // 
             // Parent_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 461);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.choosestudent);
+            this.Controls.Add(this.D);
+            this.Controls.Add(this.phonet);
+            this.Controls.Add(this.fiot);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Name = "Parent_view";
             this.Text = "Ответственное лицо№";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,12 +127,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label fiot;
+        private System.Windows.Forms.Label phonet;
+        private System.Windows.Forms.DataGridView D;
+        private System.Windows.Forms.Button choosestudent;
     }
 }

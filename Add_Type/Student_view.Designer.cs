@@ -28,43 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button4 = new System.Windows.Forms.Button();
+            this.timetable = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridcontract = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.gridcourse = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
+            this.chooseparent = new System.Windows.Forms.Button();
+            this.gridparent = new System.Windows.Forms.DataGridView();
+            this.addparent = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.fiot = new System.Windows.Forms.Label();
+            this.phonet = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.debtt = new System.Windows.Forms.Label();
+            this.payAll = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridcontract)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridcourse)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridparent)).BeginInit();
             this.SuspendLayout();
             // 
-            // button4
+            // timetable
             // 
-            this.button4.Location = new System.Drawing.Point(608, 66);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(197, 51);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "Посмотреть расписание";
-            this.button4.UseVisualStyleBackColor = true;
+            this.timetable.Location = new System.Drawing.Point(608, 66);
+            this.timetable.Name = "timetable";
+            this.timetable.Size = new System.Drawing.Size(197, 51);
+            this.timetable.TabIndex = 21;
+            this.timetable.Text = "Посмотреть расписание";
+            this.timetable.UseVisualStyleBackColor = true;
+            this.timetable.Click += new System.EventHandler(this.timetable_Click);
             // 
             // tabControl1
             // 
@@ -80,7 +81,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.gridcontract);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -98,19 +99,22 @@
             this.button5.Text = "Создать договор";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // gridcontract
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 56);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(772, 289);
-            this.dataGridView1.TabIndex = 0;
+            this.gridcontract.AllowUserToAddRows = false;
+            this.gridcontract.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridcontract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridcontract.Location = new System.Drawing.Point(6, 56);
+            this.gridcontract.Name = "gridcontract";
+            this.gridcontract.RowTemplate.Height = 24;
+            this.gridcontract.Size = new System.Drawing.Size(772, 289);
+            this.gridcontract.TabIndex = 0;
+            this.gridcontract.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridcontract_CellContentClick);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.gridcourse);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -129,20 +133,23 @@
             this.checkBox1.Text = "Завершенные";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // gridcourse
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 39);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(772, 306);
-            this.dataGridView2.TabIndex = 0;
+            this.gridcourse.AllowUserToAddRows = false;
+            this.gridcourse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridcourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridcourse.Location = new System.Drawing.Point(6, 39);
+            this.gridcourse.Name = "gridcourse";
+            this.gridcourse.RowTemplate.Height = 24;
+            this.gridcourse.Size = new System.Drawing.Size(772, 306);
+            this.gridcourse.TabIndex = 0;
+            this.gridcourse.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridcourse_CellContentClick);
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.dataGridView3);
-            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.chooseparent);
+            this.tabPage3.Controls.Add(this.gridparent);
+            this.tabPage3.Controls.Add(this.addparent);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(784, 351);
@@ -150,32 +157,38 @@
             this.tabPage3.Text = "Ответственные лица";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // chooseparent
             // 
-            this.button1.Location = new System.Drawing.Point(223, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 26);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Выбрать ответственного";
-            this.button1.UseVisualStyleBackColor = true;
+            this.chooseparent.Location = new System.Drawing.Point(223, 3);
+            this.chooseparent.Name = "chooseparent";
+            this.chooseparent.Size = new System.Drawing.Size(195, 26);
+            this.chooseparent.TabIndex = 24;
+            this.chooseparent.Text = "Выбрать ответственного";
+            this.chooseparent.UseVisualStyleBackColor = true;
+            this.chooseparent.Click += new System.EventHandler(this.chooseparent_Click);
             // 
-            // dataGridView3
+            // gridparent
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(4, 35);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(776, 313);
-            this.dataGridView3.TabIndex = 1;
+            this.gridparent.AllowUserToAddRows = false;
+            this.gridparent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridparent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridparent.Location = new System.Drawing.Point(4, 35);
+            this.gridparent.Name = "gridparent";
+            this.gridparent.RowTemplate.Height = 24;
+            this.gridparent.Size = new System.Drawing.Size(776, 313);
+            this.gridparent.TabIndex = 1;
+            this.gridparent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridparent_CellContentClick);
+            this.gridparent.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridparent_CellDoubleClick);
             // 
-            // button3
+            // addparent
             // 
-            this.button3.Location = new System.Drawing.Point(4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(195, 26);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "Добавить ответственного";
-            this.button3.UseVisualStyleBackColor = true;
+            this.addparent.Location = new System.Drawing.Point(4, 3);
+            this.addparent.Name = "addparent";
+            this.addparent.Size = new System.Drawing.Size(195, 26);
+            this.addparent.TabIndex = 12;
+            this.addparent.Text = "Добавить ответственного";
+            this.addparent.UseVisualStyleBackColor = true;
+            this.addparent.Click += new System.EventHandler(this.addparent_Click);
             // 
             // close
             // 
@@ -205,23 +218,23 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "ФИО ученика";
             // 
-            // label3
+            // fiot
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(145, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 17);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "label3";
+            this.fiot.AutoSize = true;
+            this.fiot.Location = new System.Drawing.Point(145, 24);
+            this.fiot.Name = "fiot";
+            this.fiot.Size = new System.Drawing.Size(46, 17);
+            this.fiot.TabIndex = 22;
+            this.fiot.Text = "label3";
             // 
-            // label4
+            // phonet
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(639, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "label4";
+            this.phonet.AutoSize = true;
+            this.phonet.Location = new System.Drawing.Point(639, 24);
+            this.phonet.Name = "phonet";
+            this.phonet.Size = new System.Drawing.Size(46, 17);
+            this.phonet.TabIndex = 23;
+            this.phonet.Text = "label4";
             // 
             // label5
             // 
@@ -232,35 +245,35 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Задолженность";
             // 
-            // label6
+            // debtt
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(148, 65);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "label6";
+            this.debtt.AutoSize = true;
+            this.debtt.Location = new System.Drawing.Point(148, 65);
+            this.debtt.Name = "debtt";
+            this.debtt.Size = new System.Drawing.Size(46, 17);
+            this.debtt.TabIndex = 25;
+            this.debtt.Text = "label6";
             // 
-            // button6
+            // payAll
             // 
-            this.button6.Location = new System.Drawing.Point(278, 60);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(114, 29);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "Оплатить все";
-            this.button6.UseVisualStyleBackColor = true;
+            this.payAll.Location = new System.Drawing.Point(278, 60);
+            this.payAll.Name = "payAll";
+            this.payAll.Size = new System.Drawing.Size(114, 29);
+            this.payAll.TabIndex = 26;
+            this.payAll.Text = "Оплатить все";
+            this.payAll.UseVisualStyleBackColor = true;
             // 
             // Student_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 573);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.payAll);
+            this.Controls.Add(this.debtt);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.phonet);
+            this.Controls.Add(this.fiot);
+            this.Controls.Add(this.timetable);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.close);
             this.Controls.Add(this.label2);
@@ -269,12 +282,12 @@
             this.Text = "Ученик №";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridcontract)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridcourse)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridparent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,25 +295,25 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button timetable;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridcontract;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView gridcourse;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView gridparent;
+        private System.Windows.Forms.Button addparent;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label fiot;
+        private System.Windows.Forms.Label phonet;
+        private System.Windows.Forms.Button chooseparent;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label debtt;
+        private System.Windows.Forms.Button payAll;
     }
 }

@@ -14,6 +14,7 @@ namespace Add_Type
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit;
+        public Parent newparent = new Parent();
         public Parent_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();
@@ -45,22 +46,25 @@ namespace Add_Type
 
             if (indicator == true) // Значит, что происходит добавление нового
             {
-                Parent st = new Parent();
-                st.FIO = fiof.Text;
-                st.Phone = phonef.Text;
-                Answer = st.Add();
+                newparent.FIO = fiof.Text;
+                newparent.Phone = phonef.Text;
+                Answer = newparent.Add();
             }
 
             if (indicator == false) // Значит, что происходит редактирование
             {
-                Parent st = Parents.ParentID(idforEdit);
+                newparent = Parents.ParentID(idforEdit);
 
-                st.FIO = fiof.Text;
-                st.Phone = phonef.Text;
-                Answer = st.Edit();
+                newparent.FIO = fiof.Text;
+                newparent.Phone = phonef.Text;
+                Answer = newparent.Edit();
             }
 
             label1.Text = Answer;
+            if (Answer == "Данные корректны!")
+            {
+                this.Close();
+            }
         }
 
         private void cancel_Click(object sender, EventArgs e)

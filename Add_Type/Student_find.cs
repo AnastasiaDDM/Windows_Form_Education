@@ -20,12 +20,20 @@ namespace Add_Type
         bool ascflag = true;
         int pageindex;
         int pages;
-        public static Parent chooseParent;
+        public static Parent chooseParent; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public Student chooseSt; // Эта переменная для пересылке своего значения в вызывающую форму
+        string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
 
 
         public Student_find()
         {
             InitializeComponent();
+        }
+        public Student_find(String answer)
+        {
+            InitializeComponent();
+            purpose = answer;
+            LoadAll();
         }
 
         private void Student_find_Load(object sender, EventArgs e)
@@ -55,6 +63,8 @@ namespace Add_Type
             //nom.Aut
             //nom.AutoIncrementSeed = 1;
             //nom.AutoIncrementStep = 1;
+            DataGridViewButtonColumn see = new DataGridViewButtonColumn();
+            //see.HeaderText = "Изменить";
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ученика";
             sortf.Items.Add("№ ученика");
@@ -64,13 +74,26 @@ namespace Add_Type
             DataGridViewTextBoxColumn ph = new DataGridViewTextBoxColumn();
             ph.HeaderText = "Телефон";
             sortf.Items.Add("Телефон");
-            DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
-            remove.HeaderText = "Удалить?";
+
             //D.Columns.Add(nom);
+            D.Columns.Add(see);
             D.Columns.Add(id);
             D.Columns.Add(st);
             D.Columns.Add(ph);
-            D.Columns.Add(remove);
+
+            if (purpose == "choose")
+            {
+                DataGridViewButtonColumn choose = new DataGridViewButtonColumn();
+                choose.HeaderText = "Выбрать";
+                D.Columns.Add(choose);
+            }
+            else
+            {
+                DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
+                remove.HeaderText = "Удалить?";
+                D.Columns.Add(remove);
+            }
+
             D.ReadOnly = true;
 
             this.countf.SelectedItem = "10";
@@ -150,20 +173,29 @@ namespace Add_Type
                 pagef.Items.Add(p);
             }
 
-                for (int i = 0; i < c.Count; i++)
+            for (int i = 0; i < c.Count; i++)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+
+                D.Rows.Add(row);
+
+                D.Rows[i].Cells[0].Value = "✎";
+
+                D.Rows[i].Cells[1].Value = c[i].ID;
+
+                D.Rows[i].Cells[2].Value = c[i].FIO;
+
+                D.Rows[i].Cells[3].Value = c[i].Phone;
+
+                if (purpose == "choose")
                 {
-                    DataGridViewRow row = new DataGridViewRow();
-
-                    D.Rows.Add(row);
-
-                    D.Rows[i].Cells[0].Value = c[i].ID;
-
-                    D.Rows[i].Cells[1].Value = c[i].FIO;
-
-                    D.Rows[i].Cells[2].Value = c[i].Phone;
-
-                    D.Rows[i].Cells[3].Value = "Удалить";
+                    D.Rows[i].Cells[4].Value = "Выбрать";
                 }
+                else
+                {
+                    D.Rows[i].Cells[4].Value = "Удалить";
+                }
+            }
         }
 
         private void find_Click(object sender, EventArgs e)
@@ -185,18 +217,29 @@ namespace Add_Type
             }
         }
 
-        public void setParent(Parent o)
-        {
-            chooseParent = o;
-        }
+        //public void setParent(Parent o)
+        //{
+        //    chooseParent = o;
+        //}
 
 
         private void bpar_Click(object sender, EventArgs e)
         {
+            Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
 
-            Parent_find f = new Parent_find("choose");  // Передем choose - это означает, что нужно добавить кнопку выбора родителя 
-            //f.choosePar = this.chooseParent; // Передаем ссылку форме родителей на переменную в этой форме
-            f.Show();
+
+
+
+
+            //Parent_find f = new Parent_find("choose");  // Передем choose - это означает, что нужно добавить кнопку выбора родителя 
+            ////f.choosePar = this.chooseParent; // Передаем ссылку форме родителей на переменную в этой форме
+            //f.Show();
+            ////Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            ////DialogResult result = f.ShowDialog();
+            ////this.chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
         }
 
         private void next_Click(object sender, EventArgs e)
@@ -261,29 +304,63 @@ namespace Add_Type
 
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)  // Удаление
         {
-            if (e.ColumnIndex == 3)
+            if (purpose == "choose")
             {
-                if (e.RowIndex > -1)
+                if (e.ColumnIndex == 4)
                 {
-                    if (D.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить ученика?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.OK)
+                        if (D.RowCount - 1 >= e.RowIndex)
                         {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
-                            D.Rows.Remove(D.Rows[l]);
-                            Student o = Students.StudentID(k);
-                            String ans = o.Del();
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                            chooseSt = Students.StudentID(k);
+
+                            this.Close();
                         }
                     }
-                    else
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex == 4)
+                {
+                    if (e.RowIndex > -1)
                     {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        if (D.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить ученика?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Student o = Students.StudentID(k);
+                                String ans = o.Del();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        }
+                    }
+                }
+
+                if (e.ColumnIndex == 0)  // Редактирование
+                {
+                    if (e.RowIndex > -1)
+                    {
+                        if (D.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                            Student_edit f = new Student_edit(Students.StudentID(k), false);
+                            f.Show();
+                        }
                     }
                 }
             }
@@ -295,23 +372,23 @@ namespace Add_Type
             f.Show();
         }
 
-        private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e) // Редактирование
+        private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e) 
         {
-            //if (e.RowIndex < orders.getOrd().Count)
+            if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
-                int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
-                Student_edit f = new Student_edit(Students.StudentID(k), false);
+                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                Student_view f = new Student_view(Students.StudentID(k));
                 f.Show();
             }
         }
 
         private void Student_find_Activated(object sender, EventArgs e)
         {
-            FillGrid();
+            //FillGrid();
         }
 
-        private void reset_Click(object sender, EventArgs e)
+        private void reset_Click(object sender, EventArgs e) // Сбрасываются все установленные значения поиска
         {
             fiof.Clear();
             phonef.Clear();
@@ -322,6 +399,7 @@ namespace Add_Type
             this.pagef.SelectedItem = 1;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
+            parentf.Clear();
             FillGrid();
         }
 
