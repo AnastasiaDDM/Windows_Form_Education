@@ -48,7 +48,7 @@ namespace Add_Type
                 {
                     context.Students.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление ученика прошло успешно";
+  //                  answer = "Добавление ученика прошло успешно";
                 }
                 return answer;
             }
@@ -78,7 +78,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование ученика прошло успешно";
+ //                   answer = "Редактирование ученика прошло успешно";
                 }
                 return answer;
             }

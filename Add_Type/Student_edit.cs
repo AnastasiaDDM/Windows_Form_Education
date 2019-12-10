@@ -12,32 +12,60 @@ namespace Add_Type
 {
     public partial class Student_edit : Form
     {
-        bool ind; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
+        bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
+        int idforEdit;
         public Student_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();
-            ind = true;
-            //see = q;
-            //LoadAll(see);
-            //addik();
+            indicator = true;
         }
+        public Student_edit(Student  student, bool deldate) // Конструктор для редактирования объекта
+        {
+            InitializeComponent();
+            indicator = false;
+
+            FillForm(student);
+        }
+
         public Student_edit()
         {
             InitializeComponent();
         }
 
+        private void FillForm(Student s)
+        {
+            this.Text = this.Text + s.ID;
+            idforEdit = s.ID;
+            fiof.Text = s.FIO;
+            phonef.Text = s.Phone;
+        }
+
         private void save_Click(object sender, EventArgs e)
         {
             string Answer = "";
-            Student st = new Student();
-            st.FIO = fio.Text;
-            st.Phone = phone.Text;
-            if (ind == true)
+
+            if (indicator == true) // Значит, что происходит добавление нового
             {
+                Student st = new Student();
+                st.FIO = fiof.Text;
+                st.Phone = phonef.Text;
                 Answer = st.Add();
             }
 
+            if (indicator == false) // Значит, что происходит редактирование
+            {
+                Student st = Students.StudentID(idforEdit);
+
+                st.FIO = fiof.Text;
+                st.Phone = phonef.Text;
+                Answer = st.Edit();
+            }
+
             label3.Text = Answer;
+            if(Answer == "Данные корректны!")
+            {
+                this.Close();
+            }
         }
 
         private void cancel_Click(object sender, EventArgs e)
