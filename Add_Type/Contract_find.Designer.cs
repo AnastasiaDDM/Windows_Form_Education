@@ -28,79 +28,87 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.prev = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
+            this.pagef = new System.Windows.Forms.ComboBox();
+            this.D = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.countf = new System.Windows.Forms.ComboBox();
+            this.reset = new System.Windows.Forms.Button();
+            this.sortf = new System.Windows.Forms.ComboBox();
+            this.find = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.deldatef = new System.Windows.Forms.CheckBox();
+            this.studentf = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.costto = new System.Windows.Forms.MaskedTextBox();
+            this.costfrom = new System.Windows.Forms.MaskedTextBox();
+            this.branchf = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.ascf = new System.Windows.Forms.Button();
+            this.dateto = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.datefrom = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.bcour = new System.Windows.Forms.Button();
+            this.coursef = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.bman = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.managerf = new System.Windows.Forms.TextBox();
+            this.bstud = new System.Windows.Forms.Button();
+            this.add = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // prev
             // 
-            this.button2.Location = new System.Drawing.Point(289, 680);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 32);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "◀ Назад";
-            this.button2.UseVisualStyleBackColor = true;
+            this.prev.Location = new System.Drawing.Point(289, 680);
+            this.prev.Name = "prev";
+            this.prev.Size = new System.Drawing.Size(106, 32);
+            this.prev.TabIndex = 9;
+            this.prev.Text = "◀ Назад";
+            this.prev.UseVisualStyleBackColor = true;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
             // 
-            // button1
+            // next
             // 
-            this.button1.Location = new System.Drawing.Point(503, 680);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 32);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Вперед ▶";
-            this.button1.UseVisualStyleBackColor = true;
+            this.next.Location = new System.Drawing.Point(503, 680);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(106, 32);
+            this.next.TabIndex = 8;
+            this.next.Text = "Вперед ▶";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
-            // comboBox1
+            // pagef
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(410, 679);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(77, 24);
-            this.comboBox1.TabIndex = 7;
+            this.pagef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pagef.FormattingEnabled = true;
+            this.pagef.Location = new System.Drawing.Point(410, 679);
+            this.pagef.Name = "pagef";
+            this.pagef.Size = new System.Drawing.Size(77, 24);
+            this.pagef.TabIndex = 7;
+            this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 107);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1005, 529);
-            this.dataGridView1.TabIndex = 6;
+            this.D.AllowUserToAddRows = false;
+            this.D.AllowUserToDeleteRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(6, 107);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(1005, 529);
+            this.D.TabIndex = 6;
+            this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
             // 
             // label2
             // 
@@ -120,39 +128,48 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Показывать";
             // 
-            // comboBox2
+            // countf
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(731, 682);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(106, 24);
-            this.comboBox2.TabIndex = 10;
+            this.countf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.countf.FormattingEnabled = true;
+            this.countf.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "30"});
+            this.countf.Location = new System.Drawing.Point(731, 682);
+            this.countf.Name = "countf";
+            this.countf.Size = new System.Drawing.Size(106, 24);
+            this.countf.TabIndex = 10;
             // 
-            // button4
+            // reset
             // 
-            this.button4.Location = new System.Drawing.Point(754, 60);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 24);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "Сбросить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.reset.Location = new System.Drawing.Point(754, 60);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(86, 24);
+            this.reset.TabIndex = 23;
+            this.reset.Text = "Сбросить";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
-            // comboBox4
+            // sortf
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(487, 69);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(180, 24);
-            this.comboBox4.TabIndex = 24;
+            this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sortf.FormattingEnabled = true;
+            this.sortf.Location = new System.Drawing.Point(487, 69);
+            this.sortf.Name = "sortf";
+            this.sortf.Size = new System.Drawing.Size(180, 24);
+            this.sortf.TabIndex = 24;
             // 
-            // button3
+            // find
             // 
-            this.button3.Location = new System.Drawing.Point(876, 49);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(138, 50);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Поиск";
-            this.button3.UseVisualStyleBackColor = true;
+            this.find.Location = new System.Drawing.Point(876, 49);
+            this.find.Name = "find";
+            this.find.Size = new System.Drawing.Size(138, 50);
+            this.find.TabIndex = 20;
+            this.find.Text = "Поиск";
+            this.find.UseVisualStyleBackColor = true;
+            this.find.Click += new System.EventHandler(this.find_Click);
             // 
             // label7
             // 
@@ -172,24 +189,24 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Менеджер";
             // 
-            // checkBox1
+            // deldatef
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(697, 0);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(251, 21);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Показывать только неудаленные";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.deldatef.AutoSize = true;
+            this.deldatef.Location = new System.Drawing.Point(697, 0);
+            this.deldatef.Name = "deldatef";
+            this.deldatef.Size = new System.Drawing.Size(251, 21);
+            this.deldatef.TabIndex = 19;
+            this.deldatef.Text = "Показывать только неудаленные";
+            this.deldatef.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // studentf
             // 
-            this.textBox1.Location = new System.Drawing.Point(65, 16);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 18;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.studentf.Location = new System.Drawing.Point(65, 16);
+            this.studentf.Multiline = true;
+            this.studentf.Name = "studentf";
+            this.studentf.ReadOnly = true;
+            this.studentf.Size = new System.Drawing.Size(161, 20);
+            this.studentf.TabIndex = 18;
             // 
             // label3
             // 
@@ -202,31 +219,31 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.costto);
+            this.groupBox1.Controls.Add(this.costfrom);
+            this.groupBox1.Controls.Add(this.branchf);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.maskedTextBox2);
-            this.groupBox1.Controls.Add(this.maskedTextBox1);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.ascf);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.dateto);
+            this.groupBox1.Controls.Add(this.reset);
+            this.groupBox1.Controls.Add(this.sortf);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.find);
+            this.groupBox1.Controls.Add(this.datefrom);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.bcour);
+            this.groupBox1.Controls.Add(this.coursef);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.bman);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.managerf);
+            this.groupBox1.Controls.Add(this.bstud);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.studentf);
+            this.groupBox1.Controls.Add(this.deldatef);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(-3, -1);
             this.groupBox1.Name = "groupBox1";
@@ -235,30 +252,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
             // 
+            // costto
+            // 
+            this.costto.Location = new System.Drawing.Point(192, 73);
+            this.costto.Mask = "000000";
+            this.costto.Name = "costto";
+            this.costto.Size = new System.Drawing.Size(74, 22);
+            this.costto.TabIndex = 48;
+            // 
+            // costfrom
+            // 
+            this.costfrom.Location = new System.Drawing.Point(81, 73);
+            this.costfrom.Mask = "000000";
+            this.costfrom.Name = "costfrom";
+            this.costfrom.Size = new System.Drawing.Size(74, 22);
+            this.costfrom.TabIndex = 47;
+            // 
+            // branchf
+            // 
+            this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.branchf.FormattingEnabled = true;
+            this.branchf.Location = new System.Drawing.Point(65, 43);
+            this.branchf.Name = "branchf";
+            this.branchf.Size = new System.Drawing.Size(185, 24);
+            this.branchf.TabIndex = 44;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(265, 77);
+            this.label5.Location = new System.Drawing.Point(274, 77);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 17);
             this.label5.TabIndex = 41;
             this.label5.Text = "руб.";
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(192, 74);
-            this.maskedTextBox2.Mask = "000000.00 ";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(71, 22);
-            this.maskedTextBox2.TabIndex = 43;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(77, 74);
-            this.maskedTextBox1.Mask = "000000.00 ";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(71, 22);
-            this.maskedTextBox1.TabIndex = 42;
             // 
             // label11
             // 
@@ -278,21 +304,22 @@
             this.label10.TabIndex = 39;
             this.label10.Text = "Цена от:";
             // 
-            // button9
+            // ascf
             // 
-            this.button9.Location = new System.Drawing.Point(670, 69);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(42, 23);
-            this.button9.TabIndex = 38;
-            this.button9.Text = "А-Я";
-            this.button9.UseVisualStyleBackColor = true;
+            this.ascf.Location = new System.Drawing.Point(670, 69);
+            this.ascf.Name = "ascf";
+            this.ascf.Size = new System.Drawing.Size(42, 23);
+            this.ascf.TabIndex = 38;
+            this.ascf.Text = "А-Я";
+            this.ascf.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
+            // dateto
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(849, 21);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(165, 22);
-            this.dateTimePicker2.TabIndex = 37;
+            this.dateto.Location = new System.Drawing.Point(849, 21);
+            this.dateto.Name = "dateto";
+            this.dateto.Size = new System.Drawing.Size(165, 22);
+            this.dateto.TabIndex = 37;
+            this.dateto.Value = new System.DateTime(2019, 12, 31, 0, 0, 0, 0);
             // 
             // label13
             // 
@@ -303,12 +330,14 @@
             this.label13.TabIndex = 34;
             this.label13.Text = "Дата до:";
             // 
-            // dateTimePicker1
+            // datefrom
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(599, 21);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(172, 22);
-            this.dateTimePicker1.TabIndex = 36;
+            this.datefrom.Location = new System.Drawing.Point(599, 21);
+            this.datefrom.Name = "datefrom";
+            this.datefrom.Size = new System.Drawing.Size(172, 22);
+            this.datefrom.TabIndex = 36;
+            this.datefrom.TabStop = false;
+            this.datefrom.Value = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
             // 
             // label12
             // 
@@ -319,22 +348,23 @@
             this.label12.TabIndex = 33;
             this.label12.Text = "Дата от:";
             // 
-            // button8
+            // bcour
             // 
-            this.button8.Location = new System.Drawing.Point(505, 43);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(23, 23);
-            this.button8.TabIndex = 35;
-            this.button8.Text = "🔍";
-            this.button8.UseVisualStyleBackColor = true;
+            this.bcour.Location = new System.Drawing.Point(505, 43);
+            this.bcour.Name = "bcour";
+            this.bcour.Size = new System.Drawing.Size(23, 23);
+            this.bcour.TabIndex = 35;
+            this.bcour.Text = "🔍";
+            this.bcour.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // coursef
             // 
-            this.textBox4.Location = new System.Drawing.Point(343, 44);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(161, 20);
-            this.textBox4.TabIndex = 34;
+            this.coursef.Location = new System.Drawing.Point(343, 44);
+            this.coursef.Multiline = true;
+            this.coursef.Name = "coursef";
+            this.coursef.ReadOnly = true;
+            this.coursef.Size = new System.Drawing.Size(161, 20);
+            this.coursef.TabIndex = 34;
             // 
             // label9
             // 
@@ -345,14 +375,14 @@
             this.label9.TabIndex = 33;
             this.label9.Text = "Курс";
             // 
-            // button6
+            // bman
             // 
-            this.button6.Location = new System.Drawing.Point(505, 17);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(23, 23);
-            this.button6.TabIndex = 32;
-            this.button6.Text = "🔍";
-            this.button6.UseVisualStyleBackColor = true;
+            this.bman.Location = new System.Drawing.Point(505, 17);
+            this.bman.Name = "bman";
+            this.bman.Size = new System.Drawing.Size(23, 23);
+            this.bman.TabIndex = 32;
+            this.bman.Text = "🔍";
+            this.bman.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -363,57 +393,51 @@
             this.label8.TabIndex = 33;
             this.label8.Text = "Филиал";
             // 
-            // textBox2
+            // managerf
             // 
-            this.textBox2.Location = new System.Drawing.Point(343, 18);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(161, 20);
-            this.textBox2.TabIndex = 31;
+            this.managerf.Location = new System.Drawing.Point(343, 18);
+            this.managerf.Multiline = true;
+            this.managerf.Name = "managerf";
+            this.managerf.ReadOnly = true;
+            this.managerf.Size = new System.Drawing.Size(161, 20);
+            this.managerf.TabIndex = 31;
             // 
-            // button5
+            // bstud
             // 
-            this.button5.Location = new System.Drawing.Point(227, 15);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
-            this.button5.TabIndex = 31;
-            this.button5.Text = "🔍";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bstud.Location = new System.Drawing.Point(227, 15);
+            this.bstud.Name = "bstud";
+            this.bstud.Size = new System.Drawing.Size(23, 23);
+            this.bstud.TabIndex = 31;
+            this.bstud.Text = "🔍";
+            this.bstud.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // add
             // 
-            this.button10.Location = new System.Drawing.Point(6, 642);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(147, 27);
-            this.button10.TabIndex = 52;
-            this.button10.Text = "Добавить договор";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(65, 43);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(185, 24);
-            this.comboBox3.TabIndex = 44;
+            this.add.Location = new System.Drawing.Point(6, 642);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(147, 27);
+            this.add.TabIndex = 52;
+            this.add.Text = "Добавить договор";
+            this.add.UseVisualStyleBackColor = true;
             // 
             // Contract_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 715);
-            this.Controls.Add(this.button10);
+            this.Controls.Add(this.add);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.countf);
+            this.Controls.Add(this.prev);
+            this.Controls.Add(this.next);
+            this.Controls.Add(this.pagef);
+            this.Controls.Add(this.D);
             this.Name = "Contract_find";
             this.Text = "Список договоров";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Contract_find_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -423,40 +447,40 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button prev;
+        private System.Windows.Forms.Button next;
+        private System.Windows.Forms.ComboBox pagef;
+        private System.Windows.Forms.DataGridView D;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox countf;
+        private System.Windows.Forms.Button reset;
+        private System.Windows.Forms.ComboBox sortf;
+        private System.Windows.Forms.Button find;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox deldatef;
+        private System.Windows.Forms.TextBox studentf;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateto;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datefrom;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button bcour;
+        private System.Windows.Forms.TextBox coursef;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button bman;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox managerf;
+        private System.Windows.Forms.Button bstud;
+        private System.Windows.Forms.Button ascf;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button add;
+        private System.Windows.Forms.ComboBox branchf;
+        private System.Windows.Forms.MaskedTextBox costfrom;
+        private System.Windows.Forms.MaskedTextBox costto;
     }
 }

@@ -17,8 +17,10 @@ namespace Add_Type
         int page = 1;
         String sort = "ID";
         String asсdesс = "asc";
-        public Student student; // Объект "ученик" для построения расписания для ученика
         int pages;
+        string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
+        public Student student; // Объект "ученик" для построения расписания для ученика
+        DateTime date = DateTime.Now; // Неделя показала расписания ( при загрузке подставляется дата сейчас)
         public Timetable_find()
         {
             InitializeComponent();
@@ -45,34 +47,40 @@ namespace Add_Type
             Worker teach = new Worker();
             Student stud = new Student();
             stud = student;
+            Parent parent = new Parent();
+            if (stud != null)
+            {
+                studentf.Text = stud.ID + ". " + stud.FIO;
+                //parent = Parents.ParentID(chooseParent.ID);
+            }
             Course cour = new Course();
             Cabinet cab = new Cabinet();
-            DateTime date = DateTime.Now;
 
             int countrecord = 0;
 
             List<Timetable> timetables = new List<Timetable>();
             timetables = Timetables.FindAll(deldate, bran, cab, teach, cour, stud, date, sort, asсdesс, page, count, ref countrecord);
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
-            //for (int p = 1; p <= pages; p++)
-            //{
-            //    // добавляем один элемент
-            //    pagef.Items.Add(p);
-            //}
 
-            foreach (var s in timetables)
-            {
-                Console.WriteLine("ID: {0} \t Deldate: {1}  \t CourseID: {2} \t  CabinetID: {3} \t Startlesson: {4} \t Endlesson: {5} ", s.ID, s.Deldate, s.CourseID, s.CabinetID, s.Startlesson, s.Endlesson);
-            }
+            var firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;           // Самая правильная функция!
+ //           DateTime firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;
+            DateTime lastdate = firstdate.AddDays(+6);
+
+            //string format = "yyyy-MM-dd";
+
+
+            mondayt.Text = firstdate.ToString(formattotext);
+            sundayt.Text = lastdate.ToString(formattotext);
+            countimetables.Text = "Количестов занятий в неделю: " + countrecord;
 
             for (int i = 0; i < timetables.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
                 D.Rows.Add(row);
-
+                //D.Rows[i].Height = 50;
                 // Понедельник
-                if(timetables[i].Startlesson.DayOfWeek == DayOfWeek.Monday)
+                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Monday)
                 {
                     D.Rows[i].Cells[0].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + timetables[i].Startlesson + " - "
                         + timetables[i].Endlesson + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
@@ -83,12 +91,13 @@ namespace Add_Type
                 {
                     D.Rows[i].Cells[1].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "  " + timetables[i].Startlesson + " - "
                         + timetables[i].Endlesson + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
+                   
                 }
 
                 // Среда
                 if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Wednesday)
                 {
-                    D.Rows[i].Cells[2].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r\n  " + timetables[i].Startlesson + " - "
+                    D.Rows[i].Cells[2].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r" +" \n  " + timetables[i].Startlesson + " - "
                         + timetables[i].Endlesson + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
                 }
 
@@ -124,6 +133,19 @@ namespace Add_Type
 
         private void Timetable_find_Load(object sender, EventArgs e)
         {
+            date = DateTime.Now;
+            LoadAll();
+        }
+
+        private void prev_Click(object sender, EventArgs e)
+        {
+            date = date.AddDays(-7);
+            LoadAll();
+        }
+
+        private void next_Click(object sender, EventArgs e)
+        {
+            date = date.AddDays(+7);
             LoadAll();
         }
     }

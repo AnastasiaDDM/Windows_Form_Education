@@ -219,22 +219,34 @@ namespace Add_Type
                     if (gridcontract.RowCount - 1 >= e.RowIndex)
                     {
                         int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить договор?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[0].Value);
+                        Contract contract = Contracts.ContractID(k);
 
-                        if (result == DialogResult.OK)
-                        {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(gridcontract.Rows[l].Cells[0].Value);
-                            gridcontract.Rows.Remove(gridcontract.Rows[l]);
-                            Contract o = Contracts.ContractID(k);
-                            String ans = o.Del();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        Pay_edit f = new Pay_edit(contract);
+                        f.Show();
+
+
+
+
+
+
+                        //    const string message = "Вы уверены, что хотите удалить договор?";
+                        //    const string caption = "Удаление";
+                        //    var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                        //    if (result == DialogResult.OK)
+                        //    {
+                        //        // Форма не закрывается
+                        //        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[0].Value);
+                        //        gridcontract.Rows.Remove(gridcontract.Rows[l]);
+                        //        Contract o = Contracts.ContractID(k);
+                        //        String ans = o.Del();
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        //}
                     }
                 }
             }

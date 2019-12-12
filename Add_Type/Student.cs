@@ -226,21 +226,35 @@ namespace Add_Type
 
                 // Этот запрос выбирает всех родителей, кроме предыдущего(тот, который уже есть) - как раз таки это возможные родители, от всех учеников предыдущего запроса
                 // То есть, этот запрос формируется на основе query и запроса selectedStudent, который как бы выполняет роль фильтра - выбирая тех родителей, у которых есть студенты из selectedStudent
-                var selectedParents = query.SelectMany(u => selectedStudent,
+                var query2 = query.SelectMany(u => selectedStudent,
                     (u, q1) => new { IDpar = u.PID, FIO = u.PFIO, Phone = u.PPhone, Deldate = u.PDelDate, Editdate = u.PEditDate, IDst = u.StID, Lang = q1.IDst, idPar = q1.IDpar })
                     .Where(u => u.IDst == u.Lang & u.IDst != this.ID & u.IDpar != u.idPar);
+
+                var selectedParents = query2.GroupBy(s => new { s.IDpar, s.Phone, s.FIO, s.Deldate, s.Editdate }, (key, group) => new
+                {
+                    ID = key.IDpar,
+                    Phone = key.Phone,
+                    FIO = key.FIO,
+                    Deldate = key.Deldate,
+                    Editdate = key.Editdate
+                });
 
                 // Заполнение листа родителями
                 foreach (var p in selectedParents)
                 {
-                    listparents.Add(new Parent { ID = p.IDpar, Phone = p.Phone, Deldate = p.Deldate, Editdate = p.Editdate, FIO = p.FIO });
+                    if (this.GetParents().Find(x => x.ID == p.ID) == null)
+                        //if (listparents.Find(x => x.ID == p.ID) == null)
+                    {
 
-                    StudentsParents stpar = new StudentsParents();
-                    stpar.StudentID = this.ID;
-                    stpar.ParentID = p.IDpar;
+                        listparents.Add(new Parent { ID = p.ID, Phone = p.Phone, Deldate = p.Deldate, Editdate = p.Editdate, FIO = p.FIO });
 
-                    db.StudentsParents.Add(stpar);
-                    db.SaveChanges();
+                        StudentsParents stpar = new StudentsParents();
+                        stpar.StudentID = this.ID;
+                        stpar.ParentID = p.ID;
+
+                        db.StudentsParents.Add(stpar);
+                        db.SaveChanges();
+                    }
                 }
                 return listparents;
             }
@@ -323,7 +337,12 @@ namespace Add_Type
                 }
                 else
                 {
-                    double costsAll = (paysst.Sum(p => p.Cost));
+                    var query2 = paysst.GroupBy(s => new { s.ContractID, s.Cost }, (key, group) => new
+                    {
+                        ContractID = key.ContractID,
+                        Cost = key.Cost
+                    });
+                    double costsAll = (query2.Sum(p => p.Cost));   // Не работает! 
                     double sumPays = (paysst.Sum(p => p.Payment));
                     return costsAll - sumPays;
                 }

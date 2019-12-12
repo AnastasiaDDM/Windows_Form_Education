@@ -45,7 +45,7 @@ namespace Add_Type
                 {
                     context.Pays.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление оплаты прошло успешно";
+    //                answer = "Добавление оплаты прошло успешно";
                 }
                 return answer;
             }
@@ -75,7 +75,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование оплаты прошло успешно";
+  //                  answer = "Редактирование оплаты прошло успешно";
                 }
                 return answer;
             }
@@ -84,8 +84,8 @@ namespace Add_Type
 
         public string Сheck(Pay st)
         {
-            //if (st.FIO == "")
-            //{ return "Введите ФИО ученика. Это поле не может быть пустым"; }
+            if (st.Payment <=0)
+            { return "Введите неотрицательную оплату"; }
             //if (st.Phone == "")
             //{ return "Введите номер телефона ученика. Это поле не может быть пустым"; }
             //using (SampleContext context = new SampleContext())

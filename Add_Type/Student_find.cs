@@ -20,7 +20,11 @@ namespace Add_Type
         bool ascflag = true;
         int pageindex;
         int pages;
+        string format = "yyyy-MM-dd HH:mm:ss";
+        string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public static Parent chooseParent; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Contract chooseContract; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Student chooseSt; // Эта переменная для пересылке своего значения в вызывающую форму
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
 
@@ -63,10 +67,10 @@ namespace Add_Type
             //nom.Aut
             //nom.AutoIncrementSeed = 1;
             //nom.AutoIncrementStep = 1;
-            DataGridViewButtonColumn see = new DataGridViewButtonColumn();
+            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
             //see.HeaderText = "Изменить";
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
-            id.HeaderText = "№ ученика";
+            id.HeaderText = "№";
             sortf.Items.Add("№ ученика");
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
             st.HeaderText = "ФИО ученика";
@@ -76,7 +80,7 @@ namespace Add_Type
             sortf.Items.Add("Телефон");
 
             //D.Columns.Add(nom);
-            D.Columns.Add(see);
+            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(st);
             D.Columns.Add(ph);
@@ -84,7 +88,7 @@ namespace Add_Type
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();
-                choose.HeaderText = "Выбрать";
+                choose.HeaderText = "Изменить";
                 D.Columns.Add(choose);
             }
             else
@@ -96,18 +100,22 @@ namespace Add_Type
 
             D.ReadOnly = true;
 
+            // Установление начальных значений на элементах формы
             this.countf.SelectedItem = "10";
             pagef.Items.Add(1);
             this.pagef.SelectedItem = 1;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
-
-
+            this.sortf.SelectedIndex = 0;
         }
 
         private void FillGrid() // Заполняем гриды
         {
             D.Rows.Clear();
+
+            // Служебные переменные, связанные с выбором страниц, количества, сортировки
+
+            int countrecord = 0;
             //            this.pagef.SelectedText = "1";
 
             //this.countf.SelectedItem = "10";
@@ -122,7 +130,6 @@ namespace Add_Type
                                               //page = Convert.ToInt32(this.pagef.SelectedItem);
                                               //sort = Convert.ToString(this.sortf.SelectedItem);
             asсdesс = ascflag == true ? "asc" : "desc";
-
 
             count = this.countf.SelectedItem == null ? 10 : Convert.ToInt32(this.countf.SelectedItem);
             page = this.pagef.SelectedItem == null ? 1 : Convert.ToInt32(this.pagef.SelectedItem);
@@ -143,7 +150,7 @@ namespace Add_Type
                 }
             }
 
-
+            // Смысловые переменные, отражающие основные параметры поиска
             Student student = new Student();
             student.FIO = this.fiof.Text == "" ? null : this.fiof.Text;
             student.Phone = this.phonef.Text == "+7(   )    -" ? null : this.phonef.Text;
@@ -155,16 +162,22 @@ namespace Add_Type
                 parentf.Text = chooseParent.ID + ". " + chooseParent.FIO;
                 parent = Parents.ParentID(chooseParent.ID);
             }
-     //       parent.ID = 0 /*this.parentf.Text*/;
-
+            //       parent.ID = 0 /*this.parentf.Text*/;
 
             Contract contract = new Contract();
+            if (chooseContract != null)
+            {
+                contractf.Text = chooseContract.ID + ". " + chooseContract.Date.ToString(formattotext);
+                contract = Contracts.ContractID(chooseContract.ID);
+            }
+
             Course course = new Course();
        //                                  course.ID = 1;
-            int countrecord = 0;
 
             List<Student> c = new List<Student>();
             c = Students.FindAll(deldate, parent, student, contract, course, sort, asсdesс, page, count, ref countrecord);
+
+            // Формирование количества страниц
             pagef.Items.Clear();
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
             for(int p=1; p<=pages; p++)
@@ -172,14 +185,18 @@ namespace Add_Type
                 // добавляем один элемент
                 pagef.Items.Add(p);
             }
+            this.pagef.SelectedItem = page; // Выбираем текущую страницу поиска
+                                            //           this.pagef.SelectedItem = 1; // Выбираем текущую страницу поиска
 
+
+            // Заполнение грида данными
             for (int i = 0; i < c.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = "✎";
+                D.Rows[i].Cells[0].Value = (page - 1) * count +i+1 + "✎";   // Отображение счетчика записей и значок редактирования
 
                 D.Rows[i].Cells[1].Value = c[i].ID;
 
@@ -217,52 +234,28 @@ namespace Add_Type
             }
         }
 
-        //public void setParent(Parent o)
-        //{
-        //    chooseParent = o;
-        //}
-
-
-        private void bpar_Click(object sender, EventArgs e)
-        {
-            Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
-            DialogResult result = f.ShowDialog();
-            chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
-            FillGrid();
-
-
-
-
-
-            //Parent_find f = new Parent_find("choose");  // Передем choose - это означает, что нужно добавить кнопку выбора родителя 
-            ////f.choosePar = this.chooseParent; // Передаем ссылку форме родителей на переменную в этой форме
-            //f.Show();
-            ////Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
-            ////DialogResult result = f.ShowDialog();
-            ////this.chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
-        }
-
-        private void next_Click(object sender, EventArgs e)
-        {
-            if (pageindex + 1 < pages)
-            {
- //               pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(pageindex + 1));
-                //this.pagef.SelectedItem = pagef.SelectedItem+1;
-                pagef.SelectedIndex = (pageindex + 1);
-                pageindex = pagef.SelectedIndex;
-                //page = this.pagef.SelectedItem == null ? 1 : Convert.ToInt32(this.pagef.SelectedItem);
-                FillGrid();
-            }
-        }
-
         private void prev_Click(object sender, EventArgs e)
         {
-            if(pageindex +1 > 1)
+            // Переключение страниц на предыдущую по средствам кнопки
+            if (pageindex +1 > 1)
             {
   //              pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(pageindex - 1));
                 pagef.SelectedIndex = (pageindex - 1);
                 pageindex = pagef.SelectedIndex;
                 //           this.pagef.SelectedItem =
+                FillGrid();
+            }
+        }
+        private void next_Click(object sender, EventArgs e)
+        {
+            // Переключение страниц на следующую по средствам кнопки
+            if (pageindex + 1 < pages)
+            {
+                //               pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(pageindex + 1));
+                //this.pagef.SelectedItem = pagef.SelectedItem+1;
+                pagef.SelectedIndex = (pageindex + 1);
+                pageindex = pagef.SelectedIndex;
+                //page = this.pagef.SelectedItem == null ? 1 : Convert.ToInt32(this.pagef.SelectedItem);
                 FillGrid();
             }
         }
@@ -279,8 +272,10 @@ namespace Add_Type
 
         private void pagef_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //pageindex =pagef.SelectedIndex;
-            //pagef.SelectedIndex = pagef.FindStringExact(pagef.Text);
+            // Переключение страниц по средствам комбобокса
+            pageindex = pagef.SelectedIndex;
+            pagef.SelectedIndex = pagef.FindStringExact(pagef.Text);
+            page = Convert.ToInt32(pagef.SelectedItem);
 
 
       //      pagef.SelectedItem = pagef.Text;
@@ -288,7 +283,7 @@ namespace Add_Type
             ////      pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(e));
      //       pagef.SelectedIndex = pageindex;
             ////pageindex = pagef.SelectedIndex;
-//            FillGrid() ;
+            FillGrid() ;
         }
 
         private void pagef_TextChanged(object sender, EventArgs e)
@@ -304,6 +299,7 @@ namespace Add_Type
 
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)  // Удаление
         {
+            // Обрабатывается событие нажатия на кнопку "Выбрать"
             if (purpose == "choose")
             {
                 if (e.ColumnIndex == 4)
@@ -321,6 +317,7 @@ namespace Add_Type
                     }
                 }
             }
+            // Обрабатывается событие нажатия на кнопку "Удалить"
             else
             {
                 if (e.ColumnIndex == 4)
@@ -383,13 +380,9 @@ namespace Add_Type
             }
         }
 
-        private void Student_find_Activated(object sender, EventArgs e)
-        {
-            //FillGrid();
-        }
-
         private void reset_Click(object sender, EventArgs e) // Сбрасываются все установленные значения поиска
         {
+            // Сброс всех выбранных знаений в значения по умолчанию
             fiof.Clear();
             phonef.Clear();
             sortf.SelectedIndex = 0;
@@ -400,11 +393,37 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
             parentf.Clear();
+            chooseParent = null;
+            contractf.Clear();
+            chooseContract = null;
             FillGrid();
         }
 
         private void countf_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            FillGrid();
+        }
+
+        private void bpar_Click(object sender, EventArgs e)
+        {
+            Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+
+
+            //Parent_find f = new Parent_find("choose");  // Передем choose - это означает, что нужно добавить кнопку выбора родителя 
+            ////f.choosePar = this.chooseParent; // Передаем ссылку форме родителей на переменную в этой форме
+            //f.Show();
+            ////Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            ////DialogResult result = f.ShowDialog();
+            ////this.chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
+        }
+        private void bcon_Click(object sender, EventArgs e)
+        {
+            Contract_find f = new Contract_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
     }

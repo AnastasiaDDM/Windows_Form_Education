@@ -147,6 +147,7 @@
             // 
             // sortf
             // 
+            this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
             this.sortf.Location = new System.Drawing.Point(401, 39);
             this.sortf.Name = "sortf";
@@ -222,6 +223,7 @@
             this.studentf.Location = new System.Drawing.Point(285, 14);
             this.studentf.Multiline = true;
             this.studentf.Name = "studentf";
+            this.studentf.ReadOnly = true;
             this.studentf.Size = new System.Drawing.Size(161, 20);
             this.studentf.TabIndex = 39;
             // 
@@ -303,6 +305,7 @@
             // 
             // pagef
             // 
+            this.pagef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pagef.FormattingEnabled = true;
             this.pagef.Location = new System.Drawing.Point(326, 604);
             this.pagef.Name = "pagef";

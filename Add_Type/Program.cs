@@ -56,7 +56,7 @@ namespace Add_Type
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Parent_find());
+//            Application.Run(new Parent_find());
             Application.Run(new Student_find());
         }
     }

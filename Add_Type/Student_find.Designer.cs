@@ -93,8 +93,10 @@
             this.parentf.Location = new System.Drawing.Point(627, 12);
             this.parentf.Multiline = true;
             this.parentf.Name = "parentf";
+            this.parentf.ReadOnly = true;
             this.parentf.Size = new System.Drawing.Size(161, 20);
             this.parentf.TabIndex = 52;
+            this.parentf.WordWrap = false;
             // 
             // deldatef
             // 
@@ -130,6 +132,7 @@
             this.coursef.Location = new System.Drawing.Point(316, 39);
             this.coursef.Multiline = true;
             this.coursef.Name = "coursef";
+            this.coursef.ReadOnly = true;
             this.coursef.Size = new System.Drawing.Size(161, 20);
             this.coursef.TabIndex = 49;
             // 
@@ -147,6 +150,7 @@
             this.contractf.Location = new System.Drawing.Point(75, 40);
             this.contractf.Multiline = true;
             this.contractf.Name = "contractf";
+            this.contractf.ReadOnly = true;
             this.contractf.Size = new System.Drawing.Size(161, 20);
             this.contractf.TabIndex = 47;
             // 
@@ -158,6 +162,7 @@
             this.bcon.TabIndex = 48;
             this.bcon.Text = "🔍";
             this.bcon.UseVisualStyleBackColor = true;
+            this.bcon.Click += new System.EventHandler(this.bcon_Click);
             // 
             // phonef
             // 
@@ -169,6 +174,7 @@
             // 
             // sortf
             // 
+            this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
             this.sortf.Location = new System.Drawing.Point(627, 38);
             this.sortf.Name = "sortf";
@@ -363,7 +369,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Student_find";
             this.Text = "Список учеников";
-            this.Activated += new System.EventHandler(this.Student_find_Activated);
             this.Load += new System.EventHandler(this.Student_find_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

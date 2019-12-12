@@ -28,32 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.prev = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
             this.D = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label10 = new System.Windows.Forms.Label();
             this.monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,33 +38,57 @@
             this.friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.satyrday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sunday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mondayt = new System.Windows.Forms.Label();
+            this.sundayt = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cabinetf = new System.Windows.Forms.ComboBox();
+            this.branchf = new System.Windows.Forms.ComboBox();
+            this.find = new System.Windows.Forms.Button();
+            this.reset = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.coursef = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.studentf = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.teacherf = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.add = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.countimetables = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // prev
             // 
-            this.button1.Location = new System.Drawing.Point(373, 101);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 31);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Предыдущая неделя";
-            this.button1.UseVisualStyleBackColor = true;
+            this.prev.Location = new System.Drawing.Point(373, 101);
+            this.prev.Name = "prev";
+            this.prev.Size = new System.Drawing.Size(160, 31);
+            this.prev.TabIndex = 0;
+            this.prev.Text = "Предыдущая неделя";
+            this.prev.UseVisualStyleBackColor = true;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
             // 
-            // button2
+            // next
             // 
-            this.button2.Location = new System.Drawing.Point(595, 101);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 31);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Следующая неделя";
-            this.button2.UseVisualStyleBackColor = true;
+            this.next.Location = new System.Drawing.Point(595, 101);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(160, 31);
+            this.next.TabIndex = 1;
+            this.next.Text = "Следующая неделя";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // D
             // 
             this.D.AllowUserToAddRows = false;
             this.D.AllowUserToDeleteRows = false;
-            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.D.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -105,23 +106,73 @@
             this.D.Size = new System.Drawing.Size(1009, 516);
             this.D.TabIndex = 4;
             // 
-            // label3
+            // monday
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(386, 152);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Дата понедельника";
+            this.monday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.monday.HeaderText = "Понедельник";
+            this.monday.Name = "monday";
+            this.monday.ReadOnly = true;
+            this.monday.Width = 125;
             // 
-            // label4
+            // tuesday
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(556, 152);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 17);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Дата воскресенья";
+            this.tuesday.HeaderText = "Вторник";
+            this.tuesday.Name = "tuesday";
+            this.tuesday.ReadOnly = true;
+            this.tuesday.Width = 92;
+            // 
+            // wednesday
+            // 
+            this.wednesday.HeaderText = "Среда";
+            this.wednesday.Name = "wednesday";
+            this.wednesday.ReadOnly = true;
+            this.wednesday.Width = 78;
+            // 
+            // thursday
+            // 
+            this.thursday.HeaderText = "Четверг";
+            this.thursday.Name = "thursday";
+            this.thursday.ReadOnly = true;
+            this.thursday.Width = 90;
+            // 
+            // friday
+            // 
+            this.friday.HeaderText = "Пятница";
+            this.friday.Name = "friday";
+            this.friday.ReadOnly = true;
+            this.friday.Width = 94;
+            // 
+            // satyrday
+            // 
+            this.satyrday.HeaderText = "Суббота";
+            this.satyrday.Name = "satyrday";
+            this.satyrday.ReadOnly = true;
+            this.satyrday.Width = 92;
+            // 
+            // sunday
+            // 
+            this.sunday.HeaderText = "Воскресенье";
+            this.sunday.Name = "sunday";
+            this.sunday.ReadOnly = true;
+            this.sunday.Width = 122;
+            // 
+            // mondayt
+            // 
+            this.mondayt.AutoSize = true;
+            this.mondayt.Location = new System.Drawing.Point(386, 152);
+            this.mondayt.Name = "mondayt";
+            this.mondayt.Size = new System.Drawing.Size(140, 17);
+            this.mondayt.TabIndex = 5;
+            this.mondayt.Text = "Дата понедельника";
+            // 
+            // sundayt
+            // 
+            this.sundayt.AutoSize = true;
+            this.sundayt.Location = new System.Drawing.Point(556, 152);
+            this.sundayt.Name = "sundayt";
+            this.sundayt.Size = new System.Drawing.Size(129, 17);
+            this.sundayt.TabIndex = 6;
+            this.sundayt.Text = "Дата воскресенья";
             // 
             // label5
             // 
@@ -134,20 +185,20 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.cabinetf);
+            this.groupBox1.Controls.Add(this.branchf);
+            this.groupBox1.Controls.Add(this.find);
+            this.groupBox1.Controls.Add(this.reset);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.coursef);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.studentf);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.teacherf);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(4, -1);
             this.groupBox1.Name = "groupBox1";
@@ -156,39 +207,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
             // 
-            // comboBox1
+            // cabinetf
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(64, 37);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 24);
-            this.comboBox1.TabIndex = 13;
+            this.cabinetf.FormattingEnabled = true;
+            this.cabinetf.Location = new System.Drawing.Point(64, 37);
+            this.cabinetf.Name = "cabinetf";
+            this.cabinetf.Size = new System.Drawing.Size(161, 24);
+            this.cabinetf.TabIndex = 13;
             // 
-            // comboBox2
+            // branchf
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(64, 10);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(161, 24);
-            this.comboBox2.TabIndex = 14;
+            this.branchf.FormattingEnabled = true;
+            this.branchf.Location = new System.Drawing.Point(64, 10);
+            this.branchf.Name = "branchf";
+            this.branchf.Size = new System.Drawing.Size(161, 24);
+            this.branchf.TabIndex = 14;
             // 
-            // button9
+            // find
             // 
-            this.button9.Location = new System.Drawing.Point(891, 22);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(122, 37);
-            this.button9.TabIndex = 52;
-            this.button9.Text = "Поиск";
-            this.button9.UseVisualStyleBackColor = true;
+            this.find.Location = new System.Drawing.Point(891, 22);
+            this.find.Name = "find";
+            this.find.Size = new System.Drawing.Size(122, 37);
+            this.find.TabIndex = 52;
+            this.find.Text = "Поиск";
+            this.find.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // reset
             // 
-            this.button4.Location = new System.Drawing.Point(771, 43);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(83, 27);
-            this.button4.TabIndex = 51;
-            this.button4.Text = "Отменить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.reset.Location = new System.Drawing.Point(771, 43);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(89, 27);
+            this.reset.TabIndex = 51;
+            this.reset.Text = "Сбросить";
+            this.reset.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -208,13 +259,13 @@
             this.button8.Text = "🔍";
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // coursef
             // 
-            this.textBox4.Location = new System.Drawing.Point(361, 43);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(161, 20);
-            this.textBox4.TabIndex = 44;
+            this.coursef.Location = new System.Drawing.Point(361, 43);
+            this.coursef.Multiline = true;
+            this.coursef.Name = "coursef";
+            this.coursef.Size = new System.Drawing.Size(161, 20);
+            this.coursef.TabIndex = 44;
             // 
             // label9
             // 
@@ -234,13 +285,13 @@
             this.button6.Text = "🔍";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // studentf
             // 
-            this.textBox1.Location = new System.Drawing.Point(627, 14);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 37;
+            this.studentf.Location = new System.Drawing.Point(627, 14);
+            this.studentf.Multiline = true;
+            this.studentf.Name = "studentf";
+            this.studentf.Size = new System.Drawing.Size(161, 20);
+            this.studentf.TabIndex = 37;
             // 
             // label1
             // 
@@ -269,13 +320,13 @@
             this.button5.Text = "🔍";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // teacherf
             // 
-            this.textBox2.Location = new System.Drawing.Point(361, 16);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(161, 20);
-            this.textBox2.TabIndex = 39;
+            this.teacherf.Location = new System.Drawing.Point(361, 16);
+            this.teacherf.Multiline = true;
+            this.teacherf.Name = "teacherf";
+            this.teacherf.Size = new System.Drawing.Size(161, 20);
+            this.teacherf.TabIndex = 39;
             // 
             // label2
             // 
@@ -286,14 +337,14 @@
             this.label2.TabIndex = 38;
             this.label2.Text = "Преподаватель";
             // 
-            // button10
+            // add
             // 
-            this.button10.Location = new System.Drawing.Point(870, 78);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(147, 54);
-            this.button10.TabIndex = 9;
-            this.button10.Text = "Добавить элемент\r\nрасписания";
-            this.button10.UseVisualStyleBackColor = true;
+            this.add.Location = new System.Drawing.Point(870, 78);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(147, 54);
+            this.add.TabIndex = 9;
+            this.add.Text = "Добавить элемент\r\nрасписания";
+            this.add.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -311,74 +362,31 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 11;
             // 
-            // label10
+            // countimetables
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 698);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(217, 17);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Количестов занятий в неделю: ";
-            // 
-            // monday
-            // 
-            this.monday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.monday.HeaderText = "Понедельник";
-            this.monday.Name = "monday";
-            this.monday.Width = 125;
-            // 
-            // tuesday
-            // 
-            this.tuesday.HeaderText = "Вторник";
-            this.tuesday.Name = "tuesday";
-            this.tuesday.Width = 92;
-            // 
-            // wednesday
-            // 
-            this.wednesday.HeaderText = "Среда";
-            this.wednesday.Name = "wednesday";
-            this.wednesday.Width = 78;
-            // 
-            // thursday
-            // 
-            this.thursday.HeaderText = "Четверг";
-            this.thursday.Name = "thursday";
-            this.thursday.Width = 90;
-            // 
-            // friday
-            // 
-            this.friday.HeaderText = "Пятница";
-            this.friday.Name = "friday";
-            this.friday.Width = 94;
-            // 
-            // satyrday
-            // 
-            this.satyrday.HeaderText = "Суббота";
-            this.satyrday.Name = "satyrday";
-            this.satyrday.Width = 92;
-            // 
-            // sunday
-            // 
-            this.sunday.HeaderText = "Воскресенье";
-            this.sunday.Name = "sunday";
-            this.sunday.Width = 122;
+            this.countimetables.AutoSize = true;
+            this.countimetables.Location = new System.Drawing.Point(12, 698);
+            this.countimetables.Name = "countimetables";
+            this.countimetables.Size = new System.Drawing.Size(217, 17);
+            this.countimetables.TabIndex = 12;
+            this.countimetables.Text = "Количестов занятий в неделю: ";
             // 
             // Timetable_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 724);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.countimetables);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.button10);
+            this.Controls.Add(this.add);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.sundayt);
+            this.Controls.Add(this.mondayt);
             this.Controls.Add(this.D);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.next);
+            this.Controls.Add(this.prev);
             this.Name = "Timetable_find";
             this.Text = "Расписание занятий ";
             this.Load += new System.EventHandler(this.Timetable_find_Load);
@@ -392,32 +400,32 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button prev;
+        private System.Windows.Forms.Button next;
         private System.Windows.Forms.DataGridView D;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label mondayt;
+        private System.Windows.Forms.Label sundayt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox coursef;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox studentf;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button find;
+        private System.Windows.Forms.Button reset;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button add;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label countimetables;
+        private System.Windows.Forms.ComboBox cabinetf;
+        private System.Windows.Forms.ComboBox branchf;
         private System.Windows.Forms.DataGridViewTextBoxColumn monday;
         private System.Windows.Forms.DataGridViewTextBoxColumn tuesday;
         private System.Windows.Forms.DataGridViewTextBoxColumn wednesday;

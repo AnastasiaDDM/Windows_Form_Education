@@ -151,7 +151,7 @@ namespace Add_Type
             c = Parents.FindAll(deldate, parent, student, sort, asсdesс, page, count, ref countrecord);
             pagef.Items.Clear();
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
-            for (int p = 1; p <= pages; p++)
+            for (int p = 1; p <= pages; p++) // Формирование количества страниц
             {
                 // добавляем один элемент
                 pagef.Items.Add(p);
