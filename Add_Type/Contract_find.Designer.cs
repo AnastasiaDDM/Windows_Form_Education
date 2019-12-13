@@ -109,6 +109,7 @@
             this.D.Size = new System.Drawing.Size(1005, 529);
             this.D.TabIndex = 6;
             this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // label2
             // 
@@ -141,6 +142,7 @@
             this.countf.Name = "countf";
             this.countf.Size = new System.Drawing.Size(106, 24);
             this.countf.TabIndex = 10;
+            this.countf.SelectionChangeCommitted += new System.EventHandler(this.countf_SelectionChangeCommitted);
             // 
             // reset
             // 
@@ -337,7 +339,7 @@
             this.datefrom.Size = new System.Drawing.Size(172, 22);
             this.datefrom.TabIndex = 36;
             this.datefrom.TabStop = false;
-            this.datefrom.Value = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+            this.datefrom.Value = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
             // 
             // label12
             // 
@@ -356,6 +358,7 @@
             this.bcour.TabIndex = 35;
             this.bcour.Text = "🔍";
             this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // coursef
             // 
@@ -410,6 +413,7 @@
             this.bstud.TabIndex = 31;
             this.bstud.Text = "🔍";
             this.bstud.UseVisualStyleBackColor = true;
+            this.bstud.Click += new System.EventHandler(this.bstud_Click);
             // 
             // add
             // 
@@ -419,6 +423,7 @@
             this.add.TabIndex = 52;
             this.add.Text = "Добавить договор";
             this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // Contract_find
             // 

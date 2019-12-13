@@ -54,15 +54,10 @@ namespace Add_Type
         {
             D.Columns.Clear();
             D.Rows.Clear();
-            //nom = D.Columns.Add("ID", typeof(Int32));
-            //DataGridViewTextBoxColumn nom = new DataGridViewTextBoxColumn();
-            //DataGridViewColumn nom = D.Columns.Add("ID", typeof(Int32));
-            //nom.HeaderText = "№";
-            //nom.Aut
-            //nom.AutoIncrementSeed = 1;
-            //nom.AutoIncrementStep = 1;
+
+            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
-            id.HeaderText = "№ ответственного лица";
+            id.HeaderText = "№";
             sortf.Items.Add("№ отв. лица");
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
             st.HeaderText = "ФИО";
@@ -71,7 +66,7 @@ namespace Add_Type
             ph.HeaderText = "Телефон";
             sortf.Items.Add("Телефон");
 
-            //D.Columns.Add(nom);
+            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(st);
             D.Columns.Add(ph);
@@ -91,6 +86,7 @@ namespace Add_Type
            
             D.ReadOnly = true;
 
+            // Установление начальных значений на элементах формы
             this.countf.SelectedItem = "10";
             pagef.Items.Add(1);
             this.pagef.SelectedItem = 1;
@@ -101,32 +97,20 @@ namespace Add_Type
         private void FillGrid() // Заполняем гриды
         {
             D.Rows.Clear();
-            //            this.pagef.SelectedText = "1";
 
-            //this.countf.SelectedItem = "10";
-            //this.sortf.SelectedItem = "ID";
-            //asсdesс = "asc";
-            //sort = "ID";
-            //count = 10;
-            //page = 1;
+            // Служебные переменные, связанные с выбором страниц, количества, сортировки
             deldate = this.deldatef.Checked;
-            // true - неудален false - все!!!
-            //count = Convert.ToInt32(this.countf.SelectedItem);
-            //page = Convert.ToInt32(this.pagef.SelectedItem);
-            //sort = Convert.ToString(this.sortf.SelectedItem);
             asсdesс = ascflag == true ? "asc" : "desc";
-
-
             count = this.countf.SelectedItem == null ? 10 : Convert.ToInt32(this.countf.SelectedItem);
             page = this.pagef.SelectedItem == null ? 1 : Convert.ToInt32(this.pagef.SelectedItem);
             sort = this.sortf.SelectedItem == null ? "ID" : Convert.ToString(this.sortf.SelectedItem);
             if (this.sortf.SelectedItem != null)
             {
-                if (this.sortf.SelectedText == "№ отв. лица")
+                if (this.sortf.SelectedItem.ToString() == "№ отв. лица")
                 {
                     sort = "ID";
                 }
-                if (this.sortf.SelectedText == "ФИО")
+                if (this.sortf.SelectedItem.ToString() == "ФИО")
                 {
                     sort = "FIO";
                 }
@@ -136,7 +120,7 @@ namespace Add_Type
                 }
             }
 
-
+            // Смысловые переменные, отражающие основные параметры поиска
             Parent parent = new Parent();
             parent.FIO = this.fiof.Text == "" ? null : this.fiof.Text;
             parent.Phone = this.phonef.Text == "+7(   )    -" ? null : this.phonef.Text;
@@ -149,33 +133,39 @@ namespace Add_Type
 
             List<Parent> c = new List<Parent>();
             c = Parents.FindAll(deldate, parent, student, sort, asсdesс, page, count, ref countrecord);
+
+            // Формирование количества страниц
             pagef.Items.Clear();
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
-            for (int p = 1; p <= pages; p++) // Формирование количества страниц
+            for (int p = 1; p <= pages; p++) 
             {
                 // добавляем один элемент
                 pagef.Items.Add(p);
             }
+            this.pagef.SelectedItem = page; // Выбираем текущую страницу поиска
 
+            // Заполнение грида данными
             for (int i = 0; i < c.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = c[i].ID;
+                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                D.Rows[i].Cells[1].Value = c[i].FIO;
+                D.Rows[i].Cells[1].Value = c[i].ID;
 
-                D.Rows[i].Cells[2].Value = c[i].Phone;
+                D.Rows[i].Cells[2].Value = c[i].FIO;
+
+                D.Rows[i].Cells[3].Value = c[i].Phone;
 
                 if(purpose == "choose")
                 {
-                    D.Rows[i].Cells[3].Value = "Выбрать";
+                    D.Rows[i].Cells[4].Value = "Выбрать";
                 }
                 else
                 {
-                    D.Rows[i].Cells[3].Value = "Удалить";
+                    D.Rows[i].Cells[4].Value = "Удалить";
                 }
             }
         }
@@ -192,50 +182,30 @@ namespace Add_Type
 
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(purpose == "choose")
+            // Обрабатывается событие нажатия на кнопку "Выбрать"
+            if (purpose == "choose")
             {
-                if (e.ColumnIndex == 3)
+                if (e.ColumnIndex == 4)
                 {
                     if (e.RowIndex > -1)
                     {
                         if (D.RowCount - 1 >= e.RowIndex)
                         {
-
                             int l = e.RowIndex;
-                            //const string message = "Вы уверены, что хотите удалить отв. лицо?";
-                            //const string caption = "Удаление";
-                            //var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                            //if (result == DialogResult.OK)
-                            //{
-                            //    // Форма не закрывается
-
-
-
-                            //int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
-                            ////    D.Rows.Remove(D.Rows[l]);
-                            //Student_find.chooseParent = Parents.ParentID(k);
-
-                            ////                     Program.ParentStudent_find.setParent(choosePar);
-                            ////    String ans = o.Del();
-                            ////}
-
-
-
-                            int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                             // D.Rows.Remove(D.Rows[l]);
                             //Student_find.chooseParent = Parents.ParentID(k);
                             choosePar = Parents.ParentID(k);
-
 
                             this.Close();
                         }
                     }
                 }
             }
+            // Обрабатывается событие нажатия на кнопку "Удалить"
             else
             {
-                if (e.ColumnIndex == 3)
+                if (e.ColumnIndex == 4)
                 {
                     if (e.RowIndex > -1)
                     {
@@ -249,7 +219,7 @@ namespace Add_Type
                             if (result == DialogResult.OK)
                             {
                                 // Форма не закрывается
-                                int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                                 D.Rows.Remove(D.Rows[l]);
                                 Student o = Students.StudentID(k);
                                 String ans = o.Del();
@@ -261,28 +231,57 @@ namespace Add_Type
                         }
                     }
                 }
+                // Редактирование
+                if (e.ColumnIndex == 0)
+                {
+                    if (e.RowIndex > -1)
+                    {
+                        if (D.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                            Parent_edit f = new Parent_edit(Parents.ParentID(k), false);
+                            f.Show();
+                        }
+                    }
+                }
             }
         }
 
         private void add_Click(object sender, EventArgs e)
         {
+            // Добавление
             Parent_edit f = new Parent_edit(true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
             f.Show();
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Открытие формы для редактирования данных
             if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
-                int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                 Parent_edit f = new Parent_edit(Parents.ParentID(k), false);
                 f.Show();
             }
         }
 
+        private void prev_Click(object sender, EventArgs e)
+        {
+            // Переключение страниц на предыдущую по средствам кнопки
+            if (pageindex + 1 > 1)
+            {
+                //              pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(pageindex - 1));
+                pagef.SelectedIndex = (pageindex - 1);
+                pageindex = pagef.SelectedIndex;
+                //           this.pagef.SelectedItem =
+                FillGrid();
+            }
+        }
         private void next_Click(object sender, EventArgs e)
         {
+            // Переключение страниц на следующую по средствам кнопки
             if (pageindex + 1 < pages)
             {
                 //               pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(pageindex + 1));
@@ -294,20 +293,9 @@ namespace Add_Type
             }
         }
 
-        private void prev_Click(object sender, EventArgs e)
-        {
-            if (pageindex + 1 > 1)
-            {
-                //              pagef.SelectedIndex = pagef.FindStringExact(Convert.ToString(pageindex - 1));
-                pagef.SelectedIndex = (pageindex - 1);
-                pageindex = pagef.SelectedIndex;
-                //           this.pagef.SelectedItem =
-                FillGrid();
-            }
-        }
-
         private void reset_Click(object sender, EventArgs e) // Сбрасываются все установленные значения поиска
         {
+            // Сброс всех выбранных значений в значения по умолчанию
             fiof.Clear();
             phonef.Clear();
             sortf.SelectedIndex = 0;
@@ -322,6 +310,19 @@ namespace Add_Type
 
         private void countf_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            // Переключение количества записей на странице по средствам комбобокса
+            this.pagef.SelectedItem = 1;
+            pageindex = pagef.SelectedIndex;
+            page = Convert.ToInt32(pagef.SelectedItem);
+            FillGrid();
+        }
+
+        private void pagef_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Переключение страниц по средствам комбобокса
+            pageindex = pagef.SelectedIndex;
+            pagef.SelectedIndex = pagef.FindStringExact(pagef.Text);
+            page = Convert.ToInt32(pagef.SelectedItem);
             FillGrid();
         }
     }

@@ -34,14 +34,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.namet = new System.Windows.Forms.TextBox();
+            this.typef = new System.Windows.Forms.ComboBox();
+            this.costt = new System.Windows.Forms.MaskedTextBox();
+            this.branchf = new System.Windows.Forms.ComboBox();
+            this.datefrom = new System.Windows.Forms.DateTimePicker();
+            this.dateto = new System.Windows.Forms.DateTimePicker();
+            this.save = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -98,83 +100,105 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Дата конца ";
             // 
-            // textBox1
+            // namet
             // 
-            this.textBox1.Location = new System.Drawing.Point(176, 23);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(455, 49);
-            this.textBox1.TabIndex = 6;
+            this.namet.Location = new System.Drawing.Point(176, 23);
+            this.namet.Multiline = true;
+            this.namet.Name = "namet";
+            this.namet.Size = new System.Drawing.Size(455, 49);
+            this.namet.TabIndex = 6;
             // 
-            // comboBox1
+            // typef
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(176, 101);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(455, 24);
-            this.comboBox1.TabIndex = 7;
+            this.typef.FormattingEnabled = true;
+            this.typef.Location = new System.Drawing.Point(176, 101);
+            this.typef.Name = "typef";
+            this.typef.Size = new System.Drawing.Size(455, 24);
+            this.typef.TabIndex = 7;
             // 
-            // maskedTextBox1
+            // costt
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(176, 156);
-            this.maskedTextBox1.Mask = "000000.00 руб";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(108, 22);
-            this.maskedTextBox1.TabIndex = 8;
+            this.costt.Location = new System.Drawing.Point(176, 156);
+            this.costt.Mask = "00000";
+            this.costt.Name = "costt";
+            this.costt.Size = new System.Drawing.Size(57, 22);
+            this.costt.TabIndex = 8;
+            this.costt.ValidatingType = typeof(int);
             // 
-            // comboBox2
+            // branchf
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(380, 156);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(251, 24);
-            this.comboBox2.TabIndex = 9;
+            this.branchf.FormattingEnabled = true;
+            this.branchf.Location = new System.Drawing.Point(380, 156);
+            this.branchf.Name = "branchf";
+            this.branchf.Size = new System.Drawing.Size(251, 24);
+            this.branchf.TabIndex = 9;
             // 
-            // dateTimePicker1
+            // datefrom
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(176, 211);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(168, 22);
-            this.dateTimePicker1.TabIndex = 11;
+            this.datefrom.Location = new System.Drawing.Point(176, 211);
+            this.datefrom.Name = "datefrom";
+            this.datefrom.Size = new System.Drawing.Size(168, 22);
+            this.datefrom.TabIndex = 11;
             // 
-            // dateTimePicker2
+            // dateto
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(457, 211);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(174, 22);
-            this.dateTimePicker2.TabIndex = 12;
+            this.dateto.Location = new System.Drawing.Point(457, 211);
+            this.dateto.Name = "dateto";
+            this.dateto.Size = new System.Drawing.Size(174, 22);
+            this.dateto.TabIndex = 12;
             // 
-            // button1
+            // save
             // 
-            this.button1.Location = new System.Drawing.Point(545, 266);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 38);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.save.Location = new System.Drawing.Point(549, 292);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(126, 38);
+            this.save.TabIndex = 13;
+            this.save.Text = "Сохранить";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
-            // button2
+            // cancel
             // 
-            this.button2.Location = new System.Drawing.Point(16, 266);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 38);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Отменить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancel.Location = new System.Drawing.Point(12, 292);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(126, 38);
+            this.cancel.TabIndex = 14;
+            this.cancel.Text = "Отменить";
+            this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(239, 159);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 17);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "руб.";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 257);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 17);
+            this.label8.TabIndex = 16;
             // 
             // Course_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 323);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(687, 342);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.save);
+            this.Controls.Add(this.dateto);
+            this.Controls.Add(this.datefrom);
+            this.Controls.Add(this.branchf);
+            this.Controls.Add(this.costt);
+            this.Controls.Add(this.typef);
+            this.Controls.Add(this.namet);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -196,13 +220,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox namet;
+        private System.Windows.Forms.ComboBox typef;
+        private System.Windows.Forms.MaskedTextBox costt;
+        private System.Windows.Forms.ComboBox branchf;
+        private System.Windows.Forms.DateTimePicker datefrom;
+        private System.Windows.Forms.DateTimePicker dateto;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }

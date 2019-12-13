@@ -52,7 +52,7 @@ namespace Add_Type
                 {
                     context.Courses.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление курса прошло успешно";
+  //                  answer = "Добавление курса прошло успешно";
                 }
                 return answer;
             }
@@ -82,7 +82,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование курса прошло успешно";
+  //                  answer = "Редактирование курса прошло успешно";
                 }
                 return answer;
             }

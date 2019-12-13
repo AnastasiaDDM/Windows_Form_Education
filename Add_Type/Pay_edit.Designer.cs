@@ -33,7 +33,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.datef = new System.Windows.Forms.DateTimePicker();
             this.typef = new System.Windows.Forms.ComboBox();
             this.purposef = new System.Windows.Forms.TextBox();
             this.save = new System.Windows.Forms.Button();
@@ -102,12 +102,12 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Назначение";
             // 
-            // dateTimePicker1
+            // datef
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(402, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(166, 22);
-            this.dateTimePicker1.TabIndex = 7;
+            this.datef.Location = new System.Drawing.Point(402, 4);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(166, 22);
+            this.datef.TabIndex = 7;
             // 
             // typef
             // 
@@ -321,7 +321,7 @@
             this.Controls.Add(this.save);
             this.Controls.Add(this.purposef);
             this.Controls.Add(this.typef);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.datef);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -342,7 +342,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datef;
         private System.Windows.Forms.ComboBox typef;
         private System.Windows.Forms.TextBox purposef;
         private System.Windows.Forms.Button save;

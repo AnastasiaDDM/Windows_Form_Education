@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.addpay = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
+            this.datef = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -38,41 +38,44 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.D = new System.Windows.Forms.DataGridView();
+            this.costt = new System.Windows.Forms.Label();
+            this.paymentt = new System.Windows.Forms.Label();
+            this.studentt = new System.Windows.Forms.LinkLabel();
+            this.courset = new System.Windows.Forms.LinkLabel();
+            this.managert = new System.Windows.Forms.LinkLabel();
+            this.brancht = new System.Windows.Forms.LinkLabel();
+            this.bcancel = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
-            // button5
+            // addpay
             // 
-            this.button5.Location = new System.Drawing.Point(469, 214);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(142, 52);
-            this.button5.TabIndex = 38;
-            this.button5.Text = "Добавить оплату";
-            this.button5.UseVisualStyleBackColor = true;
+            this.addpay.Location = new System.Drawing.Point(469, 214);
+            this.addpay.Name = "addpay";
+            this.addpay.Size = new System.Drawing.Size(142, 52);
+            this.addpay.TabIndex = 38;
+            this.addpay.Text = "Добавить оплату";
+            this.addpay.UseVisualStyleBackColor = true;
+            this.addpay.Click += new System.EventHandler(this.addpay_Click);
             // 
-            // button4
+            // close
             // 
-            this.button4.Location = new System.Drawing.Point(227, 592);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(142, 41);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "Закрыть";
-            this.button4.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(227, 592);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(142, 41);
+            this.close.TabIndex = 37;
+            this.close.Text = "Закрыть";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
-            // dateTimePicker1
+            // datef
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(154, 17);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(172, 22);
-            this.dateTimePicker1.TabIndex = 32;
+            this.datef.Location = new System.Drawing.Point(154, 17);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(172, 22);
+            this.datef.TabIndex = 32;
             // 
             // label7
             // 
@@ -95,7 +98,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 129);
+            this.label5.Location = new System.Drawing.Point(356, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(147, 17);
             this.label5.TabIndex = 29;
@@ -113,11 +116,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(356, 68);
+            this.label3.Location = new System.Drawing.Point(13, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 17);
+            this.label3.Size = new System.Drawing.Size(61, 17);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Филиал заключения";
+            this.label3.Text = "Филиал";
             // 
             // label2
             // 
@@ -126,7 +129,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 26;
-            this.label2.Text = "Клиент";
+            this.label2.Text = "Ученик";
             // 
             // label1
             // 
@@ -137,97 +140,110 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "Дата заключения\r\nдоговра";
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 272);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(599, 266);
-            this.dataGridView1.TabIndex = 39;
+            this.D.AllowUserToAddRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(12, 272);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(599, 266);
+            this.D.TabIndex = 39;
+            this.D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
-            // label13
+            // costt
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(187, 170);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 17);
-            this.label13.TabIndex = 44;
-            this.label13.Text = "label13";
+            this.costt.AutoSize = true;
+            this.costt.Location = new System.Drawing.Point(187, 170);
+            this.costt.Name = "costt";
+            this.costt.Size = new System.Drawing.Size(54, 17);
+            this.costt.TabIndex = 44;
+            this.costt.Text = "label13";
             // 
-            // label14
+            // paymentt
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(507, 170);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 17);
-            this.label14.TabIndex = 45;
-            this.label14.Text = "label14";
+            this.paymentt.AutoSize = true;
+            this.paymentt.Location = new System.Drawing.Point(507, 170);
+            this.paymentt.Name = "paymentt";
+            this.paymentt.Size = new System.Drawing.Size(54, 17);
+            this.paymentt.TabIndex = 45;
+            this.paymentt.Text = "label14";
             // 
-            // linkLabel1
+            // studentt
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(154, 67);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel1.TabIndex = 46;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.studentt.AutoSize = true;
+            this.studentt.Location = new System.Drawing.Point(95, 67);
+            this.studentt.Name = "studentt";
+            this.studentt.Size = new System.Drawing.Size(0, 17);
+            this.studentt.TabIndex = 46;
+            this.studentt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.studentt_LinkClicked);
             // 
-            // linkLabel2
+            // courset
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(169, 129);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel2.TabIndex = 47;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
+            this.courset.AutoSize = true;
+            this.courset.Location = new System.Drawing.Point(512, 67);
+            this.courset.Name = "courset";
+            this.courset.Size = new System.Drawing.Size(72, 17);
+            this.courset.TabIndex = 47;
+            this.courset.TabStop = true;
+            this.courset.Text = "linkLabel2";
             // 
-            // linkLabel3
+            // managert
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(438, 15);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel3.TabIndex = 48;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "linkLabel3";
+            this.managert.AutoSize = true;
+            this.managert.Location = new System.Drawing.Point(438, 15);
+            this.managert.Name = "managert";
+            this.managert.Size = new System.Drawing.Size(72, 17);
+            this.managert.TabIndex = 48;
+            this.managert.TabStop = true;
+            this.managert.Text = "linkLabel3";
             // 
-            // linkLabel4
+            // brancht
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(507, 68);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel4.TabIndex = 49;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "linkLabel4";
+            this.brancht.AutoSize = true;
+            this.brancht.Location = new System.Drawing.Point(95, 122);
+            this.brancht.Name = "brancht";
+            this.brancht.Size = new System.Drawing.Size(72, 17);
+            this.brancht.TabIndex = 49;
+            this.brancht.TabStop = true;
+            this.brancht.Text = "linkLabel4";
             // 
-            // button1
+            // bcancel
             // 
-            this.button1.Location = new System.Drawing.Point(12, 544);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 52);
-            this.button1.TabIndex = 50;
-            this.button1.Text = "Расторгнуть договор";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bcancel.Location = new System.Drawing.Point(12, 544);
+            this.bcancel.Name = "bcancel";
+            this.bcancel.Size = new System.Drawing.Size(142, 52);
+            this.bcancel.TabIndex = 50;
+            this.bcancel.Text = "Расторгнуть договор";
+            this.bcancel.UseVisualStyleBackColor = true;
+            this.bcancel.Click += new System.EventHandler(this.bcancel_Click);
+            // 
+            // cancel
+            // 
+            this.cancel.AutoSize = true;
+            this.cancel.Location = new System.Drawing.Point(15, 249);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(0, 17);
+            this.cancel.TabIndex = 51;
             // 
             // Contract_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 645);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.linkLabel4);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.bcancel);
+            this.Controls.Add(this.brancht);
+            this.Controls.Add(this.managert);
+            this.Controls.Add(this.courset);
+            this.Controls.Add(this.studentt);
+            this.Controls.Add(this.paymentt);
+            this.Controls.Add(this.costt);
+            this.Controls.Add(this.addpay);
+            this.Controls.Add(this.close);
+            this.Controls.Add(this.datef);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -235,19 +251,19 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.D);
             this.Name = "Contract_view";
             this.Text = "Договор №";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button addpay;
+        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.DateTimePicker datef;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -255,13 +271,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
-        private System.Windows.Forms.LinkLabel linkLabel4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView D;
+        private System.Windows.Forms.Label costt;
+        private System.Windows.Forms.Label paymentt;
+        private System.Windows.Forms.LinkLabel studentt;
+        private System.Windows.Forms.LinkLabel courset;
+        private System.Windows.Forms.LinkLabel managert;
+        private System.Windows.Forms.LinkLabel brancht;
+        private System.Windows.Forms.Button bcancel;
+        private System.Windows.Forms.Label cancel;
     }
 }

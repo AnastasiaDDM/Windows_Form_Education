@@ -13,7 +13,7 @@ namespace Add_Type
     public partial class Parent_edit : Form
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
-        int idforEdit;
+        int idforEdit; // ID для редактируемого объекта
         public Parent newparent = new Parent();
         public Parent_edit(bool deldate) // Конструктор для добавление нового объекта
         {

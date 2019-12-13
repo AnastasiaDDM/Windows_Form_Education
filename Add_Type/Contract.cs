@@ -17,6 +17,7 @@ using System.ComponentModel.DataAnnotations;
 //+ edit(): String DONE
 //+ Cancellation(): String DONE
 //+ addPay(Payment: Double): String DONE
+//+ getPays() DONE
 
 
 namespace Add_Type
@@ -62,7 +63,7 @@ namespace Add_Type
                     context.StudentsCourses.Add(stpar);
                     context.SaveChanges();
 
-                    answer = "Добавление договора прошло успешно";
+ //                   answer = "Добавление договора прошло успешно";
                 }
                 return answer;
             }
@@ -92,7 +93,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование договора прошло успешно";
+//                    answer = "Редактирование договора прошло успешно";
                 }
                 return answer;
             }
@@ -107,7 +108,7 @@ namespace Add_Type
                 this.Canceldate = DateTime.Now;
                 context.Entry(this).State = EntityState.Modified;
                 context.SaveChanges();
-                o = " Расторжение договора прошло успешно";
+                o = "Договор расторжен ";
             }
             return o;
         }
@@ -134,6 +135,14 @@ namespace Add_Type
             return ans;
         }
 
+        public List<Pay> GetPays()
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                var v = context.Pays.Where(x => x.ContractID == this.ID).OrderBy(u => u.ID).ToList<Pay>();
+                return v;
+            }
+        }
     }
 
     public static class Contracts

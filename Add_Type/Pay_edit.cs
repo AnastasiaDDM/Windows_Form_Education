@@ -33,6 +33,15 @@ namespace Add_Type
             FillForm();
   //          FillGrid();
         }
+        public Pay_edit(Pay p) // Конструктор для редактирования объекта
+        {
+            InitializeComponent();
+            indicator = false;
+            pay = p;
+
+            FillForm();
+            //          FillGrid();
+        }
         private void FillForm()
         {
             Branch branch = new Branch();
@@ -49,19 +58,26 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
 
-            branchf.SelectedItem = contract.BranchID + ". " + Branches.BranchID(contract.BranchID).Name;
+            // Установление общих данных для добавления и редактирования
             indicatorf.SelectedIndex = 0;
             pay.Indicator = 1;
-            pay.ContractID = contract.ID;
 
-
-
-            contractt.Text = "№" + contract.ID;
-
-            
-            //fiot.Text = student.FIO;
-            //debtt.Text = student.getDebt().ToString();
-            //phonet.Text = student.Phone;
+            if (indicator == true) // Для добавления
+            {
+                branchf.SelectedItem = contract.BranchID + ". " + Branches.BranchID(contract.BranchID).Name;
+                pay.ContractID = contract.ID;
+                contractt.Text = "№" + contract.ID;
+            }
+            else // Для редактирования
+            {
+                branchf.SelectedItem = pay.BranchID + ". " + Branches.BranchID(pay.BranchID).Name;
+                datef.Value = pay.Date;
+                paymentf.Text = pay.Payment.ToString();
+                typef.SelectedItem = pay.Type;
+                purposef.Text = pay.Purpose;
+                pay.ContractID = pay.ContractID;
+                contractt.Text = "№" + pay.ContractID;
+            }
         }
 
         private void cancel_Click(object sender, EventArgs e)

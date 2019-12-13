@@ -29,15 +29,6 @@ namespace Add_Type
             buildDG();
             FillGrid();
         }
-
-        private void FillForm()
-        {
-            this.Text = this.Text + student.ID;
-            fiot.Text = student.FIO;
-            debtt.Text = student.getDebt().ToString();
-            phonet.Text = student.Phone;
-        }
-
         private void buildDG() //Построение грида 
         {
             gridparent.Columns.Clear();
@@ -129,6 +120,14 @@ namespace Add_Type
             pay.HeaderText = "Оплатить?";
             gridcontract.Columns.Add(pay);
             gridcontract.ReadOnly = true;
+        }
+
+        private void FillForm()
+        {
+            this.Text = this.Text + student.ID;
+            fiot.Text = student.FIO;
+            debtt.Text = student.getDebt().ToString();
+            phonet.Text = student.Phone;
         }
 
         private void FillGrid() // Заполняем гриды

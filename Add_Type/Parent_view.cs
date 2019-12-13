@@ -80,7 +80,7 @@ namespace Add_Type
 
         private void choosestudent_Click(object sender, EventArgs e)
         {
-            Student_find f = new Student_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора ученика
+            Student_find f = new Student_find("choose", "b"); // Передем choose - это означает, что нужно добавить кнопку выбора ученика
             DialogResult result = f.ShowDialog();
             chooseStudent = f.chooseSt; // Передаем ссылку форме родителя на переменную из формы поиска учеников
             String answ = parent.addStudent(chooseStudent);

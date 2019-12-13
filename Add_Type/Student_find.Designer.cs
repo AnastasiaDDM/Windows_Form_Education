@@ -144,6 +144,7 @@
             this.bcour.TabIndex = 50;
             this.bcour.Text = "🔍";
             this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // contractf
             // 

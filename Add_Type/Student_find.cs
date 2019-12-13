@@ -13,19 +13,20 @@ namespace Add_Type
     public partial class Student_find : Form
     {
         Boolean deldate ; // true - неудален false - все!!!
-        int count;
-        int page;
-        String sort;
+        int page = 1;
+        int count = 100;
+        String sort = "ID";
         String asсdesс = "asc";
         bool ascflag = true;
         int pageindex;
         int pages;
-        string format = "yyyy-MM-dd HH:mm:ss";
+ //       string format = "yyyy-MM-dd HH:mm:ss";
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public static Parent chooseParent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Contract chooseContract; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Student chooseSt; // Эта переменная для пересылке своего значения в вызывающую форму
+        public Contract chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
 
 
@@ -33,10 +34,14 @@ namespace Add_Type
         {
             InitializeComponent();
         }
-        public Student_find(String answer)
+        public Student_find(String answer, string button)
         {
             InitializeComponent();
             purpose = answer;
+            if(button == "bcon")
+            {
+                bcon.Enabled = false;
+            }
             LoadAll();
         }
 
@@ -136,11 +141,11 @@ namespace Add_Type
             sort = this.sortf.SelectedItem == null ? "ID" : Convert.ToString(this.sortf.SelectedItem);
              if(this.sortf.SelectedItem != null)
             {
-                if(this.sortf.SelectedText == "№ ученика")
+                if(this.sortf.SelectedItem.ToString() == "№ ученика")
                 {
                     sort = "ID";
                 }
-                if(this.sortf.SelectedText == "ФИО ученика")
+                if(this.sortf.SelectedItem.ToString() == "ФИО ученика")
                 {
                     sort = "FIO";
                 }
@@ -172,7 +177,11 @@ namespace Add_Type
             }
 
             Course course = new Course();
-       //                                  course.ID = 1;
+            if (chooseCourse != null)
+            {
+                coursef.Text = chooseCourse.ID + ". " + chooseCourse.nameGroup;
+                course = Courses.CourseID(chooseCourse.ID);
+            }
 
             List<Student> c = new List<Student>();
             c = Students.FindAll(deldate, parent, student, contract, course, sort, asсdesс, page, count, ref countrecord);
@@ -346,8 +355,8 @@ namespace Add_Type
                         }
                     }
                 }
-
-                if (e.ColumnIndex == 0)  // Редактирование
+                // Редактирование
+                if (e.ColumnIndex == 0)  
                 {
                     if (e.RowIndex > -1)
                     {
@@ -363,14 +372,16 @@ namespace Add_Type
             }
         }
 
-        private void add_Click(object sender, EventArgs e)  // Добавление
+        private void add_Click(object sender, EventArgs e) 
         {
+            // Добавление
             Student_edit f = new Student_edit(true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
             f.Show();
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e) 
         {
+            // Открытие формы для просмотра данных
             if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
@@ -382,7 +393,7 @@ namespace Add_Type
 
         private void reset_Click(object sender, EventArgs e) // Сбрасываются все установленные значения поиска
         {
-            // Сброс всех выбранных знаений в значения по умолчанию
+            // Сброс всех выбранных значений в значения по умолчанию
             fiof.Clear();
             phonef.Clear();
             sortf.SelectedIndex = 0;
@@ -401,6 +412,10 @@ namespace Add_Type
 
         private void countf_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            // Переключение количества записей на странице по средствам комбобокса
+            this.pagef.SelectedItem = 1;
+            pageindex = pagef.SelectedIndex;
+            page = Convert.ToInt32(pagef.SelectedItem);
             FillGrid();
         }
 
@@ -424,6 +439,14 @@ namespace Add_Type
             Contract_find f = new Contract_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void bcour_Click(object sender, EventArgs e)
+        {
+            Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
     }

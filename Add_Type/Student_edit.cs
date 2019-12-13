@@ -13,7 +13,7 @@ namespace Add_Type
     public partial class Student_edit : Form
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
-        int idforEdit;
+        int idforEdit; // ID для редактируемого объекта
         public Student_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();

@@ -12,9 +12,20 @@ namespace Add_Type
 {
     public partial class Course_view : Form
     {
+        public Course course;   // Глобальная переменная объявляет объект данной формы
         public Course_view()
         {
             InitializeComponent();
+        }
+        public Course_view(Course st) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+
+            course = st;
+
+            FillForm();
+            buildDG();
+            FillGrid();
         }
     }
 }
