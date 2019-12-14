@@ -168,8 +168,17 @@ namespace Add_Type
 
         private void studentt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Открытие формы для просмотра данных
             Student_view f = new Student_view(Students.StudentID(contract.StudentID));
             f.Show();
+        }
+
+        private void courset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Course_view f = new Course_view(Courses.CourseID(contract.CourseID));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
     }
 }

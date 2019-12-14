@@ -55,7 +55,7 @@ namespace Add_Type
             if (answer == "Данные корректны!")
             {
                 using (SampleContext context = new SampleContext())
-                {
+                { // При добавлении договора ученик добавляется автоматически на курс
                     StudentsCourses stpar = new StudentsCourses();
                     stpar.StudentID = this.StudentID;
                     stpar.CourseID = this.CourseID;
@@ -114,6 +114,15 @@ namespace Add_Type
         }
         public string Сheck(Contract st)
         {
+
+            using (SampleContext context = new SampleContext())
+            {
+                StudentsCourses v = new StudentsCourses();
+                v = context.StudentsCourses.Where(x => x.StudentID == st.StudentID && x.CourseID == st.CourseID).FirstOrDefault<StudentsCourses>();
+                if (v != null)
+                { return "Этот ученик уже числится на этом курсе"; }
+            }
+
             //if (st.FIO == "")
             //{ return "Введите ФИО ученика. Это поле не может быть пустым"; }
             //if (st.Phone == "")

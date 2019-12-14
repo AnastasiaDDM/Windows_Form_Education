@@ -22,16 +22,20 @@ namespace Add_Type
         int pages;
         string purpose;
         public Parent choosePar;
-
+        public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Parent_find()
         {
             InitializeComponent();
         }
 
-        public Parent_find(String answer)
+        public Parent_find(String answer, string button)
         {
             InitializeComponent();
             purpose = answer;
+            if (button == "bstud") // Блокировка поиска по ученикам
+            {
+                bstud.Enabled = false;
+            }
             LoadAll();
         }
 
@@ -126,8 +130,14 @@ namespace Add_Type
             parent.Phone = this.phonef.Text == "+7(   )    -" ? null : this.phonef.Text;
 
             Student student = new Student();
+            if (chooseStudent != null)
+            {
+                studentf.Text = chooseStudent.ID + ". " + chooseStudent.FIO;
+                student = Students.StudentID(chooseStudent.ID);
+            }
+
             student.FIO = this.stfiof.Text == "" ? null : this.stfiof.Text;
-            parent.Phone = this.stphonef.Text == "+7(   )    -" ? null : this.stphonef.Text;
+            student.Phone = this.stphonef.Text == "+7(   )    -" ? null : this.stphonef.Text;
 
             int countrecord = 0;
 
@@ -177,7 +187,7 @@ namespace Add_Type
 
         private void Parent_find_Activated(object sender, EventArgs e)
         {
-            FillGrid();
+            //FillGrid();
         }
 
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -241,7 +251,8 @@ namespace Add_Type
                             int l = e.RowIndex;
                             int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                             Parent_edit f = new Parent_edit(Parents.ParentID(k), false);
-                            f.Show();
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
                         }
                     }
                 }
@@ -252,17 +263,18 @@ namespace Add_Type
         {
             // Добавление
             Parent_edit f = new Parent_edit(true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
-            f.Show();
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Открытие формы для редактирования данных
+            // Открытие формы для просмотра данных
             if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
                 int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                Parent_edit f = new Parent_edit(Parents.ParentID(k), false);
+                Parent_view f = new Parent_view(Parents.ParentID(k));
                 f.Show();
             }
         }
@@ -305,6 +317,8 @@ namespace Add_Type
             this.pagef.SelectedItem = 1;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
+            studentf.Clear();
+            chooseStudent = null;
             FillGrid();
         }
 
@@ -323,6 +337,14 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             pagef.SelectedIndex = pagef.FindStringExact(pagef.Text);
             page = Convert.ToInt32(pagef.SelectedItem);
+            FillGrid();
+        }
+
+        private void bstud_Click(object sender, EventArgs e)
+        {
+            Student_find f = new Student_find("choose", "bpar"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
     }

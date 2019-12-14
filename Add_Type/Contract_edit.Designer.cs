@@ -124,8 +124,9 @@
             this.bstud.Name = "bstud";
             this.bstud.Size = new System.Drawing.Size(167, 27);
             this.bstud.TabIndex = 14;
-            this.bstud.Text = "Найти клиента";
+            this.bstud.Text = "Найти ученика";
             this.bstud.UseVisualStyleBackColor = true;
+            this.bstud.Click += new System.EventHandler(this.bstud_Click);
             // 
             // bcour
             // 
@@ -135,6 +136,7 @@
             this.bcour.TabIndex = 15;
             this.bcour.Text = "Найти курс";
             this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // save
             // 

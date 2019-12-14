@@ -33,13 +33,7 @@ namespace Add_Type
         {
             gridparent.Columns.Clear();
             gridparent.Rows.Clear();
-            //nom = D.Columns.Add("ID", typeof(Int32));
-            //DataGridViewTextBoxColumn nom = new DataGridViewTextBoxColumn();
-            //DataGridViewColumn nom = D.Columns.Add("ID", typeof(Int32));
-            //nom.HeaderText = "№";
-            //nom.Aut
-            //nom.AutoIncrementSeed = 1;
-            //nom.AutoIncrementStep = 1;
+            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -47,7 +41,7 @@ namespace Add_Type
             DataGridViewTextBoxColumn ph = new DataGridViewTextBoxColumn();
             ph.HeaderText = "Телефон";
 
-            //D.Columns.Add(nom);
+            gridparent.Columns.Add(edit);
             gridparent.Columns.Add(id);
             gridparent.Columns.Add(st);
             gridparent.Columns.Add(ph);
@@ -61,6 +55,7 @@ namespace Add_Type
 
             gridcourse.Columns.Clear();
             gridcourse.Rows.Clear();
+            DataGridViewButtonColumn edit1 = new DataGridViewButtonColumn();
             DataGridViewTextBoxColumn idc = new DataGridViewTextBoxColumn();
             idc.HeaderText = "№";
             DataGridViewTextBoxColumn group = new DataGridViewTextBoxColumn();
@@ -76,6 +71,7 @@ namespace Add_Type
             DataGridViewTextBoxColumn end = new DataGridViewTextBoxColumn();
             end.HeaderText = "Окончание курса";
 
+            gridcourse.Columns.Add(edit1);
             gridcourse.Columns.Add(idc);
             gridcourse.Columns.Add(group);
             gridcourse.Columns.Add(type);
@@ -92,6 +88,7 @@ namespace Add_Type
 
             gridcontract.Columns.Clear();
             gridcontract.Rows.Clear();
+            DataGridViewButtonColumn edit2 = new DataGridViewButtonColumn();
             DataGridViewTextBoxColumn idcon = new DataGridViewTextBoxColumn();
             idcon.HeaderText = "№";
             DataGridViewTextBoxColumn date = new DataGridViewTextBoxColumn();
@@ -107,6 +104,7 @@ namespace Add_Type
             DataGridViewTextBoxColumn debt = new DataGridViewTextBoxColumn();
             debt.HeaderText = "Долг";
 
+            gridcontract.Columns.Add(edit2);
             gridcontract.Columns.Add(idcon);
             gridcontract.Columns.Add(date);
             gridcontract.Columns.Add(course);
@@ -141,13 +139,15 @@ namespace Add_Type
 
                 gridparent.Rows.Add(row);
 
-                gridparent.Rows[i].Cells[0].Value = parents[i].ID;
+                gridparent.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                gridparent.Rows[i].Cells[1].Value = parents[i].FIO;
+                gridparent.Rows[i].Cells[1].Value = parents[i].ID;
 
-                gridparent.Rows[i].Cells[2].Value = parents[i].Phone;
+                gridparent.Rows[i].Cells[2].Value = parents[i].FIO;
 
-                gridparent.Rows[i].Cells[3].Value = "Удалить";
+                gridparent.Rows[i].Cells[3].Value = parents[i].Phone;
+
+                gridparent.Rows[i].Cells[4].Value = "Удалить";
             }
 
 
@@ -160,20 +160,22 @@ namespace Add_Type
 
                 gridcontract.Rows.Add(row);
 
-                gridcontract.Rows[i].Cells[0].Value = contracts[i].ID;
+                gridcontract.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                gridcontract.Rows[i].Cells[1].Value = contracts[i].Date;
+                gridcontract.Rows[i].Cells[1].Value = contracts[i].ID;
 
-                gridcontract.Rows[i].Cells[2].Value = contracts[i].CourseID + ". " + Courses.CourseID(contracts[i].CourseID).nameGroup;
+                gridcontract.Rows[i].Cells[2].Value = contracts[i].Date;
 
-                gridcontract.Rows[i].Cells[3].Value = contracts[i].Cost;
+                gridcontract.Rows[i].Cells[3].Value = contracts[i].CourseID + ". " + Courses.CourseID(contracts[i].CourseID).nameGroup;
 
-                gridcontract.Rows[i].Cells[4].Value = contracts[i].PayofMonth;
+                gridcontract.Rows[i].Cells[4].Value = contracts[i].Cost;
+
+                gridcontract.Rows[i].Cells[5].Value = contracts[i].PayofMonth;
 
                 //gridcontract.Rows[i].Cells[5].Value = contracts[i].ManagerID + ". " + Workers.WorkerID(contracts[i].ManagerID).FIO;
-                gridcontract.Rows[i].Cells[5].Value = student.getDebt(contracts[i]);
+                gridcontract.Rows[i].Cells[6].Value = student.getDebt(contracts[i]);
 
-                gridcontract.Rows[i].Cells[6].Value = "Оплатить";
+                gridcontract.Rows[i].Cells[7].Value = "Оплатить";
             }
 
 
@@ -186,21 +188,23 @@ namespace Add_Type
 
                 gridcourse.Rows.Add(row);
 
-                gridcourse.Rows[i].Cells[0].Value = courses[i].ID;
+                gridcourse.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                gridcourse.Rows[i].Cells[1].Value = courses[i].nameGroup;
+                gridcourse.Rows[i].Cells[1].Value = courses[i].ID;
 
-                gridcourse.Rows[i].Cells[2].Value = Types.TypeID(courses[i].TypeID).Name;
+                gridcourse.Rows[i].Cells[2].Value = courses[i].nameGroup;
 
-                gridcourse.Rows[i].Cells[3].Value = courses[i].Cost;
+                gridcourse.Rows[i].Cells[3].Value = Types.TypeID(courses[i].TypeID).Name;
 
-                gridcourse.Rows[i].Cells[4].Value = Branches.BranchID(courses[i].BranchID).ID + ". " + Branches.BranchID(courses[i].BranchID).Name;
+                gridcourse.Rows[i].Cells[4].Value = courses[i].Cost;
 
-                gridcourse.Rows[i].Cells[5].Value = courses[i].Start;
+                gridcourse.Rows[i].Cells[5].Value = Branches.BranchID(courses[i].BranchID).ID + ". " + Branches.BranchID(courses[i].BranchID).Name;
 
-                gridcourse.Rows[i].Cells[6].Value = courses[i].End;
+                gridcourse.Rows[i].Cells[6].Value = courses[i].Start;
+            
+                gridcourse.Rows[i].Cells[7].Value = courses[i].End;
 
-                gridcourse.Rows[i].Cells[7].Value = "Удалить";
+                gridcourse.Rows[i].Cells[8].Value = "Удалить";
             }
         }
 
@@ -211,41 +215,34 @@ namespace Add_Type
 
         private void gridcontract_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 6)
+            //Добавление оплаты
+            if (e.ColumnIndex == 7)
             {
                 if (e.RowIndex > -1)
                 {
                     if (gridcontract.RowCount - 1 >= e.RowIndex)
                     {
                         int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[0].Value);
+                        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[1].Value);
                         Contract contract = Contracts.ContractID(k);
 
                         Pay_edit f = new Pay_edit(contract);
                         f.Show();
-
-
-
-
-
-
-                        //    const string message = "Вы уверены, что хотите удалить договор?";
-                        //    const string caption = "Удаление";
-                        //    var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        //    if (result == DialogResult.OK)
-                        //    {
-                        //        // Форма не закрывается
-                        //        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[0].Value);
-                        //        gridcontract.Rows.Remove(gridcontract.Rows[l]);
-                        //        Contract o = Contracts.ContractID(k);
-                        //        String ans = o.Del();
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
-                        //}
+                    }
+                }
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (gridcontract.RowCount - 1 >= e.RowIndex)
+                    {
+                        int l = e.RowIndex;
+                        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[1].Value);
+                        Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
+                        DialogResult result = f.ShowDialog();
+                        FillGrid();
                     }
                 }
             }
@@ -253,7 +250,7 @@ namespace Add_Type
 
         private void gridcourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 if (e.RowIndex > -1)
                 {
@@ -267,7 +264,7 @@ namespace Add_Type
                         if (result == DialogResult.OK)
                         {
                             // Форма не закрывается
-                            int k = Convert.ToInt32(gridcourse.Rows[l].Cells[0].Value);
+                            int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
                             gridcourse.Rows.Remove(gridcourse.Rows[l]);
                             Course o = Courses.CourseID(k);
                             String ans = o.delStudent(student);
@@ -279,11 +276,26 @@ namespace Add_Type
                     }
                 }
             }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (gridcourse.RowCount - 1 >= e.RowIndex)
+                    {
+                        int l = e.RowIndex;
+                        int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
+                        Course_edit f = new Course_edit(Courses.CourseID(k), false);
+                        DialogResult result = f.ShowDialog();
+                        FillGrid();
+                    }
+                }
+            }
         }
 
         private void gridparent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 if (e.RowIndex > -1)
                 {
@@ -297,7 +309,7 @@ namespace Add_Type
                         if (result == DialogResult.OK)
                         {
                             // Форма не закрывается
-                            int k = Convert.ToInt32(gridparent.Rows[l].Cells[0].Value);
+                            int k = Convert.ToInt32(gridparent.Rows[l].Cells[1].Value);
                             gridparent.Rows.Remove(gridparent.Rows[l]);
                             Parent o = Parents.ParentID(k);
                             String ans = o.delStudent(student);
@@ -323,7 +335,7 @@ namespace Add_Type
 
         private void chooseparent_Click(object sender, EventArgs e)
         {
-            Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            Parent_find f = new Parent_find("choose", "bstud"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
 
@@ -332,21 +344,54 @@ namespace Add_Type
             FillGrid();
         }
 
+        private void timetable_Click(object sender, EventArgs e)
+        {
+            Timetable_find f = new Timetable_find(student);
+            f.Show();
+        }
+
+        private void addcontract_Click(object sender, EventArgs e)
+        {
+            // Добавление
+            Contract_edit f = new Contract_edit(student, true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
+            DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
+
+        private void gridcontract_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            if (e.RowIndex > -1)
+            {
+                int l = e.RowIndex;
+                int k = Convert.ToInt32(gridcontract.Rows[l].Cells[1].Value);
+                Contract_view f = new Contract_view(Contracts.ContractID(k));
+                DialogResult result = f.ShowDialog();
+                FillGrid();
+            }
+        }
+
+        private void gridcourse_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            if (e.RowIndex > -1)
+            {
+                int l = e.RowIndex;
+                int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
+                Course_view f = new Course_view(Courses.CourseID(k));
+                DialogResult result = f.ShowDialog();
+                FillGrid();
+            }
+        }
         private void gridparent_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
-                int k = Convert.ToInt32(gridparent.Rows[l].Cells[0].Value);
+                int k = Convert.ToInt32(gridparent.Rows[l].Cells[1].Value);
                 Parent_view f = new Parent_view(Parents.ParentID(k));
                 f.Show();
             }
-        }
-
-        private void timetable_Click(object sender, EventArgs e)
-        {
-            Timetable_find f = new Timetable_find(student);
-            f.Show();
         }
     }
 }

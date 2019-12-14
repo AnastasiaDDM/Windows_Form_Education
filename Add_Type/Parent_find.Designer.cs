@@ -43,7 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.fiof = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.bstud = new System.Windows.Forms.Button();
             this.studentf = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.D = new System.Windows.Forms.DataGridView();
@@ -74,7 +74,7 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.fiof);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.bstud);
             this.groupBox1.Controls.Add(this.studentf);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(3, -2);
@@ -175,9 +175,9 @@
             // 
             // reset
             // 
-            this.reset.Location = new System.Drawing.Point(607, 39);
+            this.reset.Location = new System.Drawing.Point(605, 39);
             this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(83, 27);
+            this.reset.Size = new System.Drawing.Size(88, 27);
             this.reset.TabIndex = 51;
             this.reset.Text = "Сбросить";
             this.reset.UseVisualStyleBackColor = true;
@@ -209,18 +209,19 @@
             this.label6.TabIndex = 48;
             this.label6.Text = "ФИО";
             // 
-            // button6
+            // bstud
             // 
-            this.button6.Location = new System.Drawing.Point(446, 12);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(23, 23);
-            this.button6.TabIndex = 41;
-            this.button6.Text = "🔍";
-            this.button6.UseVisualStyleBackColor = true;
+            this.bstud.Location = new System.Drawing.Point(448, 13);
+            this.bstud.Name = "bstud";
+            this.bstud.Size = new System.Drawing.Size(23, 23);
+            this.bstud.TabIndex = 41;
+            this.bstud.Text = "🔍";
+            this.bstud.UseVisualStyleBackColor = true;
+            this.bstud.Click += new System.EventHandler(this.bstud_Click);
             // 
             // studentf
             // 
-            this.studentf.Location = new System.Drawing.Point(285, 14);
+            this.studentf.Location = new System.Drawing.Point(287, 15);
             this.studentf.Multiline = true;
             this.studentf.Name = "studentf";
             this.studentf.ReadOnly = true;
@@ -230,10 +231,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Location = new System.Drawing.Point(232, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 19);
+            this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 38;
             this.label2.Text = "Ученик";
             // 
@@ -317,7 +317,7 @@
             // 
             this.add.Location = new System.Drawing.Point(6, 527);
             this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(147, 27);
+            this.add.Size = new System.Drawing.Size(158, 27);
             this.add.TabIndex = 52;
             this.add.Text = "Добавить отв. лицо";
             this.add.UseVisualStyleBackColor = true;
@@ -362,7 +362,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox fiof;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button bstud;
         private System.Windows.Forms.TextBox studentf;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox phonef;

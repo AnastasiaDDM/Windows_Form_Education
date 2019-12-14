@@ -24,11 +24,19 @@ namespace Add_Type
         {
             InitializeComponent();
         }
-        public Pay_edit(Contract con) // Конструктор для добавления объекта
+        public Pay_edit(Contract con) // Конструктор для добавления объекта по договору
         {
             InitializeComponent();
             indicator = true;
             contract = con;
+            // Блокировка кнопок, которые нельзя использовать
+            bcon.Enabled = false;
+            contractf.Enabled = false;
+            bteach.Enabled = false;
+            teacherf.Enabled = false;
+            btime.Enabled = false;
+            timetablef.Enabled = false;
+
 
             FillForm();
   //          FillGrid();

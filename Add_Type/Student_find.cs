@@ -42,7 +42,11 @@ namespace Add_Type
             {
                 bcon.Enabled = false;
             }
-            LoadAll();
+            if (button == "bpar")
+            {
+                bpar.Enabled = false;
+            }
+            LoadAll(); 
         }
 
         private void Student_find_Load(object sender, EventArgs e)
@@ -365,7 +369,8 @@ namespace Add_Type
                             int l = e.RowIndex;
                             int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                             Student_edit f = new Student_edit(Students.StudentID(k), false);
-                            f.Show();
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
                         }
                     }
                 }
@@ -376,7 +381,8 @@ namespace Add_Type
         {
             // Добавление
             Student_edit f = new Student_edit(true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
-            f.Show();
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e) 
@@ -407,6 +413,8 @@ namespace Add_Type
             chooseParent = null;
             contractf.Clear();
             chooseContract = null;
+            coursef.Clear();
+            chooseCourse = null;
             FillGrid();
         }
 
@@ -421,7 +429,7 @@ namespace Add_Type
 
         private void bpar_Click(object sender, EventArgs e)
         {
-            Parent_find f = new Parent_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            Parent_find f = new Parent_find("choose", "bstud"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseParent = f.choosePar; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
@@ -436,7 +444,7 @@ namespace Add_Type
         }
         private void bcon_Click(object sender, EventArgs e)
         {
-            Contract_find f = new Contract_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            Contract_find f = new Contract_find("choose", "bstud"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();

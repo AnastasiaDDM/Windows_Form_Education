@@ -56,10 +56,10 @@ namespace Add_Type
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Course_find());
+ //           Application.Run(new Course_find());
             //               Application.Run(new Contract_find());
-            //            Application.Run(new Parent_find());
-            //            Application.Run(new Student_find());
+                        Application.Run(new Parent_find());
+  //                      Application.Run(new Student_find());
         }
     }
 }

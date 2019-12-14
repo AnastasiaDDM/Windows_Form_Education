@@ -35,7 +35,7 @@ namespace Add_Type
                 {
                     context.Parents.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление ответственного лица прошло успешно";
+ //                   answer = "Добавление ответственного лица прошло успешно";
                 }
                 return answer;
             }
@@ -65,7 +65,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование ответственного лица прошло успешно";
+  //                  answer = "Редактирование ответственного лица прошло успешно";
                 }
                 return answer;
             }

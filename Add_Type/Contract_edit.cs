@@ -14,13 +14,15 @@ namespace Add_Type
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit; // ID для редактируемого объекта
-        Boolean deldate; // true - неудален false - все!!!
+        Boolean deldate = true; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
 //        bool ascflag = true;
         int page = 1;
         int count = 100;
         Contract newcontract = new Contract();
+        public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract_edit()
         {
             InitializeComponent();
@@ -38,8 +40,28 @@ namespace Add_Type
             indicator = false;
             idforEdit = contract.ID;
 
+            newcontract = contract;
             buildDG();
-            FillForm(contract);
+            //FillForm(contract);
+            FillForm();
+        }
+        public Contract_edit(Course course, bool deldate) // Конструктор для добавления договора уже на заданный курс объекта
+        {
+            InitializeComponent();
+            indicator = true;
+
+            bcour.Enabled = false;
+            buildDG();
+            courset.Text = course.ID + ". " + Courses.CourseID(course.ID).nameGroup;
+        }
+        public Contract_edit(Student student, bool deldate) // Конструктор для добавления договора уже для заданного ученика
+        {
+            InitializeComponent();
+            indicator = true;
+
+            bstud.Enabled = false;
+            buildDG();
+            studentt.Text = student.ID + ". " + Students.StudentID(student.ID).FIO;
         }
         private void LoadAll()
         {
@@ -65,15 +87,15 @@ namespace Add_Type
             }
             this.branchf.SelectedIndex = 0;
         }
-        private void FillForm(Contract s)
+        private void FillForm()
         {
-            this.Text = this.Text + s.ID;
-            datef.Value = s.Date;
-            studentt.Text = s.StudentID + ". " + Students.StudentID(s.StudentID).FIO;
-            courset.Text = s.CourseID + ". " + Courses.CourseID(s.CourseID).nameGroup;
-            costt.Text = s.Cost.ToString();
-            payt.Text = s.PayofMonth.ToString();
-            branchf.SelectedItem = s.BranchID + ". " + Branches.BranchID(s.BranchID).Name;
+            this.Text = this.Text + newcontract.ID;
+            datef.Value = newcontract.Date;
+            studentt.Text = newcontract.StudentID + ". " + Students.StudentID(newcontract.StudentID).FIO;
+            courset.Text = newcontract.CourseID + ". " + Courses.CourseID(newcontract.CourseID).nameGroup;
+            costt.Text = newcontract.Cost.ToString();
+            payt.Text = newcontract.PayofMonth.ToString();
+            branchf.SelectedItem = newcontract.BranchID + ". " + Branches.BranchID(newcontract.BranchID).Name;
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -100,7 +122,7 @@ namespace Add_Type
 
             if (indicator == false) // Значит, что происходит редактирование
             {
-                newcontract = Contracts.ContractID(idforEdit);
+ //               newcontract = Contracts.ContractID(idforEdit);
 
                 newcontract.Date = datef.Value;
                 string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
@@ -128,6 +150,30 @@ namespace Add_Type
         private void cancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void bstud_Click(object sender, EventArgs e)
+        {
+            Student_find f = new Student_find("choose", "bcon"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            if(f.chooseSt != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
+            {
+                chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+                studentt.Text = chooseStudent.ID + ". " + Students.StudentID(chooseStudent.ID).FIO;
+            }
+            //FillForm();
+        }
+
+        private void bcour_Click(object sender, EventArgs e)
+        {
+            Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            if (f.chooseCour != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
+            {
+                chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
+                courset.Text = chooseCourse.ID + ". " + Courses.CourseID(chooseCourse.ID).nameGroup;
+            }
+            //FillGrid();
         }
     }
 }

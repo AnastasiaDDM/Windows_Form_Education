@@ -189,6 +189,7 @@
             this.courset.TabIndex = 47;
             this.courset.TabStop = true;
             this.courset.Text = "linkLabel2";
+            this.courset.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.courset_LinkClicked);
             // 
             // managert
             // 

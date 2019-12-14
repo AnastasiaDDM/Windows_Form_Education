@@ -31,7 +31,7 @@
             this.timetable = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
+            this.addcontract = new System.Windows.Forms.Button();
             this.gridcontract = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -80,7 +80,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button5);
+            this.tabPage1.Controls.Add(this.addcontract);
             this.tabPage1.Controls.Add(this.gridcontract);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
@@ -90,14 +90,15 @@
             this.tabPage1.Text = "Договоры";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // addcontract
             // 
-            this.button5.Location = new System.Drawing.Point(6, 6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(146, 44);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Создать договор";
-            this.button5.UseVisualStyleBackColor = true;
+            this.addcontract.Location = new System.Drawing.Point(6, 6);
+            this.addcontract.Name = "addcontract";
+            this.addcontract.Size = new System.Drawing.Size(146, 44);
+            this.addcontract.TabIndex = 14;
+            this.addcontract.Text = "Создать договор";
+            this.addcontract.UseVisualStyleBackColor = true;
+            this.addcontract.Click += new System.EventHandler(this.addcontract_Click);
             // 
             // gridcontract
             // 
@@ -110,6 +111,7 @@
             this.gridcontract.Size = new System.Drawing.Size(772, 289);
             this.gridcontract.TabIndex = 0;
             this.gridcontract.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridcontract_CellContentClick);
+            this.gridcontract.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridcontract_CellDoubleClick);
             // 
             // tabPage2
             // 
@@ -144,6 +146,7 @@
             this.gridcourse.Size = new System.Drawing.Size(772, 306);
             this.gridcourse.TabIndex = 0;
             this.gridcourse.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridcourse_CellContentClick);
+            this.gridcourse.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridcourse_CellDoubleClick);
             // 
             // tabPage3
             // 
@@ -298,7 +301,7 @@
         private System.Windows.Forms.Button timetable;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button addcontract;
         private System.Windows.Forms.DataGridView gridcontract;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox checkBox1;

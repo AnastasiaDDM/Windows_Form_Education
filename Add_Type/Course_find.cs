@@ -191,7 +191,7 @@ namespace Add_Type
 
             List<Course> courses = new List<Course>();
             courses = Courses.FindAll(deldate, course, type, teacher, branch, mindate, maxdate, min, max, sort, asсdesс, page, count, ref countrecord);
-            int pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
+            pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
             // Формирование количества страниц
             pagef.Items.Clear();

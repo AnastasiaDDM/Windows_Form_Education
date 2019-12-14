@@ -297,8 +297,19 @@ namespace Add_Type
 
                 var paysst = pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
-                {
-                    return 0;
+                {// То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
+                    // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
+                    // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
+                    var c = db.Contracts.Where(p => p.StudentID == this.ID);
+                    if (c.Count() == 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return c.Sum(p => p.Cost);
+                    }
+                    //return 0;
                 }
                 else
                 {
@@ -333,7 +344,18 @@ namespace Add_Type
                 var paysst = pays.Where(p => p.StudentID == this.ID )/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
                 {
-                    return 0;
+                    // То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
+                    // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
+                    // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
+                    var c = db.Contracts.Where(p => p.StudentID == this.ID);
+                    if (c.Count() == 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return c.Sum(p => p.Cost);
+                    }
                 }
                 else
                 {
@@ -342,7 +364,7 @@ namespace Add_Type
                         ContractID = key.ContractID,
                         Cost = key.Cost
                     });
-                    double costsAll = (query2.Sum(p => p.Cost));   // Не работает! 
+                    double costsAll = (query2.Sum(p => p.Cost));  
                     double sumPays = (paysst.Sum(p => p.Payment));
                     return costsAll - sumPays;
                 }

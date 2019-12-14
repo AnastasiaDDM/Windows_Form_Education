@@ -20,6 +20,7 @@ namespace Add_Type
         int pages;
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public Student student; // Объект "ученик" для построения расписания для ученика
+        public Course course; // Объект "ученик" для построения расписания для ученика
         DateTime date = DateTime.Now; // Неделя показала расписания ( при загрузке подставляется дата сейчас)
         public Timetable_find()
         {
@@ -30,6 +31,15 @@ namespace Add_Type
             InitializeComponent();
 
             student = st;
+
+            LoadAll();
+        }
+
+        public Timetable_find(Course st) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+
+            course = st;
 
             LoadAll();
         }
@@ -46,15 +56,28 @@ namespace Add_Type
             Branch bran = new Branch();
             Worker teach = new Worker();
             Student stud = new Student();
-            stud = student;
-            Parent parent = new Parent();
-            if (stud != null)
+            if(student != null)
             {
+                stud = student;
                 studentf.Text = stud.ID + ". " + stud.FIO;
-                //parent = Parents.ParentID(chooseParent.ID);
             }
+
             Course cour = new Course();
+            if (course != null)
+            {
+                cour = course;
+                coursef.Text = cour.ID + ". " + cour.nameGroup;
+            }
+
             Cabinet cab = new Cabinet();
+
+            Parent parent = new Parent();
+
+            //if (stud != null)
+            //{
+            //    studentf.Text = stud.ID + ". " + stud.FIO;
+            //    //parent = Parents.ParentID(chooseParent.ID);
+            //}
 
             int countrecord = 0;
 
@@ -76,6 +99,8 @@ namespace Add_Type
             for (int i = 0; i < timetables.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
+                D.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
 
                 D.Rows.Add(row);
                 //D.Rows[i].Height = 50;

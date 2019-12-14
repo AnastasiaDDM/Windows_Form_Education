@@ -28,10 +28,14 @@ namespace Add_Type
         {
             InitializeComponent();
         }
-        public Contract_find(String answer)
+        public Contract_find(String answer, string button)
         {
             InitializeComponent();
             purpose = answer;
+            if (button == "bstud") // Блокировка поиска по ученикам
+            {
+                bstud.Enabled = false;
+            }
             LoadAll();
         }
         private void Contract_find_Load(object sender, EventArgs e)
@@ -164,7 +168,7 @@ namespace Add_Type
                 {
                     sort = "ManagerID";
                 }
-                else
+                if (this.sortf.SelectedItem.ToString() == "Филиал")
                 {
                     sort = "BranchID";
                 }
@@ -349,6 +353,8 @@ namespace Add_Type
             dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
             studentf.Clear();
             chooseStudent = null;
+            coursef.Clear();
+            chooseCourse = null;
             FillGrid();
         }
 

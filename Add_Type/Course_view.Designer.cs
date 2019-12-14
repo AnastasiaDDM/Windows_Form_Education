@@ -28,42 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button4 = new System.Windows.Forms.Button();
+            this.timetable = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
+            this.gridteacher = new System.Windows.Forms.DataGridView();
+            this.addteacher = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.addstudent = new System.Windows.Forms.Button();
+            this.gridstudent = new System.Windows.Forms.DataGridView();
+            this.close = new System.Windows.Forms.Button();
+            this.dateto = new System.Windows.Forms.DateTimePicker();
+            this.datefrom = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.namet = new System.Windows.Forms.Label();
+            this.costt = new System.Windows.Forms.Label();
+            this.typet = new System.Windows.Forms.LinkLabel();
+            this.brancht = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridteacher)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridstudent)).BeginInit();
             this.SuspendLayout();
             // 
-            // button4
+            // timetable
             // 
-            this.button4.Location = new System.Drawing.Point(488, 222);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(167, 56);
-            this.button4.TabIndex = 34;
-            this.button4.Text = "Посмотреть\r\n Расписание курса";
-            this.button4.UseVisualStyleBackColor = true;
+            this.timetable.Location = new System.Drawing.Point(488, 222);
+            this.timetable.Name = "timetable";
+            this.timetable.Size = new System.Drawing.Size(167, 56);
+            this.timetable.TabIndex = 34;
+            this.timetable.Text = "Посмотреть\r\n Расписание курса";
+            this.timetable.UseVisualStyleBackColor = true;
+            this.timetable.Click += new System.EventHandler(this.timetable_Click);
             // 
             // tabControl1
             // 
@@ -77,8 +78,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.gridteacher);
+            this.tabPage1.Controls.Add(this.addteacher);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -87,28 +88,31 @@
             this.tabPage1.Text = "Преподаватели ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // gridteacher
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 44);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(639, 267);
-            this.dataGridView1.TabIndex = 15;
+            this.gridteacher.AllowUserToAddRows = false;
+            this.gridteacher.AllowUserToDeleteRows = false;
+            this.gridteacher.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridteacher.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridteacher.Location = new System.Drawing.Point(6, 44);
+            this.gridteacher.Name = "gridteacher";
+            this.gridteacher.RowTemplate.Height = 24;
+            this.gridteacher.Size = new System.Drawing.Size(639, 267);
+            this.gridteacher.TabIndex = 15;
             // 
-            // button3
+            // addteacher
             // 
-            this.button3.Location = new System.Drawing.Point(6, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(188, 32);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Добавить преподавателя";
-            this.button3.UseVisualStyleBackColor = true;
+            this.addteacher.Location = new System.Drawing.Point(6, 6);
+            this.addteacher.Name = "addteacher";
+            this.addteacher.Size = new System.Drawing.Size(188, 32);
+            this.addteacher.TabIndex = 17;
+            this.addteacher.Text = "Добавить преподавателя";
+            this.addteacher.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button5);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.addstudent);
+            this.tabPage2.Controls.Add(this.gridstudent);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -117,46 +121,53 @@
             this.tabPage2.Text = "Ученики курса";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // addstudent
             // 
-            this.button5.Location = new System.Drawing.Point(11, 6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(134, 27);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Добавть ученика";
-            this.button5.UseVisualStyleBackColor = true;
+            this.addstudent.Location = new System.Drawing.Point(11, 6);
+            this.addstudent.Name = "addstudent";
+            this.addstudent.Size = new System.Drawing.Size(144, 27);
+            this.addstudent.TabIndex = 1;
+            this.addstudent.Text = "Добавить ученика";
+            this.addstudent.UseVisualStyleBackColor = true;
+            this.addstudent.Click += new System.EventHandler(this.addstudent_Click);
             // 
-            // dataGridView2
+            // gridstudent
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(10, 39);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(635, 272);
-            this.dataGridView2.TabIndex = 0;
+            this.gridstudent.AllowUserToAddRows = false;
+            this.gridstudent.AllowUserToDeleteRows = false;
+            this.gridstudent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridstudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridstudent.Location = new System.Drawing.Point(10, 39);
+            this.gridstudent.Name = "gridstudent";
+            this.gridstudent.RowTemplate.Height = 24;
+            this.gridstudent.Size = new System.Drawing.Size(635, 272);
+            this.gridstudent.TabIndex = 0;
+            this.gridstudent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridstudent_CellContentClick);
+            this.gridstudent.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridstudent_CellDoubleClick);
             // 
-            // button2
+            // close
             // 
-            this.button2.Location = new System.Drawing.Point(268, 656);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 38);
-            this.button2.TabIndex = 32;
-            this.button2.Text = "Закрыть";
-            this.button2.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(268, 656);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(126, 38);
+            this.close.TabIndex = 32;
+            this.close.Text = "Закрыть";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
-            // dateTimePicker2
+            // dateto
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(444, 182);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(174, 22);
-            this.dateTimePicker2.TabIndex = 30;
+            this.dateto.Location = new System.Drawing.Point(444, 182);
+            this.dateto.Name = "dateto";
+            this.dateto.Size = new System.Drawing.Size(174, 22);
+            this.dateto.TabIndex = 30;
             // 
-            // dateTimePicker1
+            // datefrom
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(163, 182);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(168, 22);
-            this.dateTimePicker1.TabIndex = 29;
+            this.datefrom.Location = new System.Drawing.Point(163, 182);
+            this.datefrom.Name = "datefrom";
+            this.datefrom.Size = new System.Drawing.Size(168, 22);
+            this.datefrom.TabIndex = 29;
             // 
             // label6
             // 
@@ -212,58 +223,58 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Наименование курса";
             // 
-            // label7
+            // namet
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(165, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 17);
-            this.label7.TabIndex = 35;
-            this.label7.Text = "label7";
+            this.namet.AutoSize = true;
+            this.namet.Location = new System.Drawing.Point(165, 9);
+            this.namet.Name = "namet";
+            this.namet.Size = new System.Drawing.Size(46, 17);
+            this.namet.TabIndex = 35;
+            this.namet.Text = "label7";
             // 
-            // label9
+            // costt
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(165, 127);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
-            this.label9.TabIndex = 37;
-            this.label9.Text = "label9";
+            this.costt.AutoSize = true;
+            this.costt.Location = new System.Drawing.Point(165, 127);
+            this.costt.Name = "costt";
+            this.costt.Size = new System.Drawing.Size(46, 17);
+            this.costt.TabIndex = 37;
+            this.costt.Text = "label9";
             // 
-            // linkLabel1
+            // typet
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(165, 72);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel1.TabIndex = 47;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.typet.AutoSize = true;
+            this.typet.Location = new System.Drawing.Point(165, 72);
+            this.typet.Name = "typet";
+            this.typet.Size = new System.Drawing.Size(72, 17);
+            this.typet.TabIndex = 47;
+            this.typet.TabStop = true;
+            this.typet.Text = "linkLabel1";
             // 
-            // linkLabel2
+            // brancht
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(367, 130);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel2.TabIndex = 48;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
+            this.brancht.AutoSize = true;
+            this.brancht.Location = new System.Drawing.Point(367, 130);
+            this.brancht.Name = "brancht";
+            this.brancht.Size = new System.Drawing.Size(72, 17);
+            this.brancht.TabIndex = 48;
+            this.brancht.TabStop = true;
+            this.brancht.Text = "linkLabel2";
             // 
             // Course_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 706);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.brancht);
+            this.Controls.Add(this.typet);
+            this.Controls.Add(this.costt);
+            this.Controls.Add(this.namet);
+            this.Controls.Add(this.timetable);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.close);
+            this.Controls.Add(this.dateto);
+            this.Controls.Add(this.datefrom);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -274,9 +285,9 @@
             this.Text = "Курс №";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridteacher)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridstudent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,26 +295,26 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button timetable;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView gridteacher;
+        private System.Windows.Forms.Button addteacher;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button addstudent;
+        private System.Windows.Forms.DataGridView gridstudent;
+        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.DateTimePicker dateto;
+        private System.Windows.Forms.DateTimePicker datefrom;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Label namet;
+        private System.Windows.Forms.Label costt;
+        private System.Windows.Forms.LinkLabel typet;
+        private System.Windows.Forms.LinkLabel brancht;
     }
 }

@@ -94,6 +94,8 @@
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(503, 203);
             this.D.TabIndex = 24;
+            this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // choosestudent
             // 

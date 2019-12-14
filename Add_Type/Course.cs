@@ -165,14 +165,21 @@ namespace Add_Type
                 var teachers = from c in db.Courses
                                join tc in db.TeachersCourses on c.ID equals tc.CourseID
                                join w in db.Workers on tc.TeacherID equals w.ID
-                               select new { SID = w.ID, SPhone = w.Phone, SFIO = w.FIO, SDelDate = w.Deldate, TecID = tc.TeacherID, CoID = tc.CourseID };
+                               select new { SID = w.ID, SPhone = w.Phone, SFIO = w.FIO, SDelDate = w.Deldate, Position = w.Position,
+                                   Rate = w.Rate, Editdate = w.Editdate, BranchID = w.BranchID, Password = w .Password, TecID = tc.TeacherID, CoID = tc.CourseID };
 
                 teachers = teachers.Where(x => x.CoID == this.ID);
                 teachers = teachers.Where(x => x.SID == x.TecID);
 
                 foreach (var p in teachers)
                 {
-                    liststeachers.Add(new Worker { ID = p.SID, Phone = p.SPhone, Deldate = p.SDelDate, FIO = p.SFIO });
+                    liststeachers.Add(new Worker { ID = p.SID, Phone = p.SPhone, Deldate = p.SDelDate, FIO = p.SFIO,
+                        Position = p.Position,
+                        Rate = p.Rate,
+                        Editdate = p.Editdate,
+                        BranchID = p.BranchID,
+                        Password = p.Password
+                    });
                 }
                 return liststeachers;
             }
