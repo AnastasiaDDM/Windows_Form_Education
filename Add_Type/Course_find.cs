@@ -27,12 +27,23 @@ namespace Add_Type
         public Course_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             LoadAll();
         }
         public Course_find(String answer)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             purpose = answer;
+            LoadAll();
+        }
+        public Course_find(Type st) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+
+            chooseType = st;
+
             LoadAll();
         }
         private void LoadAll()
@@ -162,11 +173,13 @@ namespace Add_Type
             Worker teacher = new Worker();
 
             Course course = new Course();
+            course.nameGroup = this.namet.Text == "" ? null : this.namet.Text;
+
             DateTime mindate = datefrom.Value;
             DateTime maxdate = dateto.Value;
 
             Type type = new Type();
-            if (chooseStudent != null)
+            if (chooseType != null)
             {
                 typef.Text = chooseType.ID + ". " + chooseType.Name;
                 type = Types.TypeID(chooseType.ID);
@@ -387,6 +400,28 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             page = Convert.ToInt32(pagef.SelectedItem);
             FillGrid();
+        }
+
+        private void btype_Click(object sender, EventArgs e)
+        {
+            Type_find f = new Type_find("choose"); // Передаем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseType = f.chooseTyp; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+            if (ascflag == true)
+            {
+                ascflag = false;
+                ascf.BackColor = Color.FromArgb(220, 220, 220);
+            }
+            else
+            {
+                ascflag = true;
+                ascf.BackColor = Color.FromArgb(192, 192, 192);
+            }
         }
     }
 }

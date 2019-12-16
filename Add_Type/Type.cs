@@ -42,7 +42,7 @@ namespace Add_Type
                 {
                     context.Types.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление типа курса прошло успешно";
+//                    answer = "Добавление типа курса прошло успешно";
                 }
                 return answer;
             }
@@ -72,7 +72,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование типа курса прошло успешно";
+//                    answer = "Редактирование типа курса прошло успешно";
                 }
                 return answer;
             }

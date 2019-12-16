@@ -33,10 +33,12 @@ namespace Add_Type
         public Student_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Student_find(String answer, string button)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             purpose = answer;
             if(button == "bcon")
             {
@@ -97,7 +99,7 @@ namespace Add_Type
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();
-                choose.HeaderText = "Изменить";
+                choose.HeaderText = "Выбрать";
                 D.Columns.Add(choose);
             }
             else
@@ -310,7 +312,7 @@ namespace Add_Type
  //           FillGrid();
         }
 
-        private void D_CellClick(object sender, DataGridViewCellEventArgs e)  // Удаление
+        private void D_CellClick(object sender, DataGridViewCellEventArgs e)  
         {
             // Обрабатывается событие нажатия на кнопку "Выбрать"
             if (purpose == "choose")
@@ -393,7 +395,7 @@ namespace Add_Type
                 int l = e.RowIndex;
                 int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                 Student_view f = new Student_view(Students.StudentID(k));
-                f.Show();
+                DialogResult result = f.ShowDialog();
             }
         }
 
@@ -456,6 +458,14 @@ namespace Add_Type
             DialogResult result = f.ShowDialog();
             chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
+        }
+
+        private void Student_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

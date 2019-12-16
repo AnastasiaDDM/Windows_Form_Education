@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.costto = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dateto = new System.Windows.Forms.DateTimePicker();
             this.branchf = new System.Windows.Forms.ComboBox();
@@ -61,7 +62,6 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.add = new System.Windows.Forms.Button();
-            this.costto = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
@@ -99,6 +99,15 @@
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
+            // 
+            // costto
+            // 
+            this.costto.Location = new System.Drawing.Point(739, 39);
+            this.costto.Mask = "00000";
+            this.costto.Name = "costto";
+            this.costto.Size = new System.Drawing.Size(71, 22);
+            this.costto.TabIndex = 46;
+            this.costto.ValidatingType = typeof(int);
             // 
             // label6
             // 
@@ -188,6 +197,7 @@
             this.btype.TabIndex = 32;
             this.btype.Text = "🔍";
             this.btype.UseVisualStyleBackColor = true;
+            this.btype.Click += new System.EventHandler(this.btype_Click);
             // 
             // label11
             // 
@@ -224,6 +234,7 @@
             this.ascf.TabIndex = 38;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // label7
             // 
@@ -401,15 +412,6 @@
             this.add.Text = "Добавить курс";
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
-            // 
-            // costto
-            // 
-            this.costto.Location = new System.Drawing.Point(739, 39);
-            this.costto.Mask = "00000";
-            this.costto.Name = "costto";
-            this.costto.Size = new System.Drawing.Size(71, 22);
-            this.costto.TabIndex = 46;
-            this.costto.ValidatingType = typeof(int);
             // 
             // Course_find
             // 

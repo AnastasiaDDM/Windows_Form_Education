@@ -15,6 +15,7 @@ namespace Add_Type
         public Theme_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

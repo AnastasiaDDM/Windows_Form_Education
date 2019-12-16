@@ -15,6 +15,7 @@ namespace Add_Type
         public Visit_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void label13_Click(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace Add_Type
         public Timetable_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void label4_Click(object sender, EventArgs e)

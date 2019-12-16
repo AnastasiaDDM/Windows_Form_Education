@@ -15,6 +15,7 @@ namespace Add_Type
         public Theme_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void label9_Click(object sender, EventArgs e)

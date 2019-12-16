@@ -27,10 +27,13 @@ namespace Add_Type
         public Contract_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            LoadAll();
         }
         public Contract_find(String answer, string button)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             purpose = answer;
             if (button == "bstud") // Блокировка поиска по ученикам
             {
@@ -40,7 +43,7 @@ namespace Add_Type
         }
         private void Contract_find_Load(object sender, EventArgs e)
         {
-            LoadAll();
+            //LoadAll();
         }
         private void LoadAll()
         {
@@ -109,6 +112,7 @@ namespace Add_Type
             this.pagef.SelectedIndex = 0;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
+            this.sortf.SelectedIndex = 0;
 
             // Построение комбобокса филиалов
             Branch branch = new Branch();
@@ -125,7 +129,6 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
             this.branchf.SelectedIndex = 0;
-            this.sortf.SelectedIndex = 0;
         }
 
         private void FillGrid() // Заполняем гриды
@@ -405,14 +408,6 @@ namespace Add_Type
             FillGrid();
         }
 
-        private void bstud_Click(object sender, EventArgs e)
-        {
-            Student_find f = new Student_find("choose", "bcon"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
-            DialogResult result = f.ShowDialog();
-            chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
-            FillGrid();
-        }
-
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Открытие формы для просмотра данных
@@ -431,6 +426,13 @@ namespace Add_Type
             Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
             DialogResult result = f.ShowDialog();
             chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+        private void bstud_Click(object sender, EventArgs e)
+        {
+            Student_find f = new Student_find("choose", "bcon"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
     }

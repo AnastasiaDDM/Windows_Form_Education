@@ -15,6 +15,7 @@ namespace Add_Type
         public Cabinet_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

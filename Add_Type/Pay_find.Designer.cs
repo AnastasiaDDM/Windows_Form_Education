@@ -35,6 +35,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -160,6 +160,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(447, 8);
+            this.maskedTextBox1.Mask = "000000.00 ";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(71, 22);
+            this.maskedTextBox1.TabIndex = 62;
             // 
             // button8
             // 
@@ -421,14 +429,7 @@
             this.button5.TabIndex = 52;
             this.button5.Text = "Добавить оплату";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(447, 8);
-            this.maskedTextBox1.Mask = "000000.00 ";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(71, 22);
-            this.maskedTextBox1.TabIndex = 62;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Pay_find
             // 

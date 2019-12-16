@@ -28,107 +28,115 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.D = new System.Windows.Forms.DataGridView();
+            this.reset = new System.Windows.Forms.Button();
+            this.sortf = new System.Windows.Forms.ComboBox();
+            this.find = new System.Windows.Forms.Button();
+            this.lessonto = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.lessonfrom = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.deldatef = new System.Windows.Forms.CheckBox();
+            this.namet = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button9 = new System.Windows.Forms.Button();
+            this.form = new System.Windows.Forms.GroupBox();
+            this.monthto = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.ascf = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.costto = new System.Windows.Forms.MaskedTextBox();
+            this.monthfrom = new System.Windows.Forms.NumericUpDown();
+            this.costfrom = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.countf = new System.Windows.Forms.ComboBox();
+            this.prev = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
+            this.pagef = new System.Windows.Forms.ComboBox();
+            this.add = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lessonto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lessonfrom)).BeginInit();
+            this.form.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.monthto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monthfrom)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 80);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(926, 563);
-            this.dataGridView1.TabIndex = 2;
+            this.D.AllowUserToAddRows = false;
+            this.D.AllowUserToDeleteRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.D.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(11, 80);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(926, 563);
+            this.D.TabIndex = 2;
+            this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
-            // button4
+            // reset
             // 
-            this.button4.Location = new System.Drawing.Point(654, 46);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 24);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "Сбросить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.reset.Location = new System.Drawing.Point(687, 45);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(89, 24);
+            this.reset.TabIndex = 23;
+            this.reset.Text = "Сбросить";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
-            // comboBox4
+            // sortf
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(415, 44);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(180, 24);
-            this.comboBox4.TabIndex = 24;
+            this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sortf.FormattingEnabled = true;
+            this.sortf.Location = new System.Drawing.Point(434, 48);
+            this.sortf.Name = "sortf";
+            this.sortf.Size = new System.Drawing.Size(180, 24);
+            this.sortf.TabIndex = 24;
             // 
-            // button3
+            // find
             // 
-            this.button3.Location = new System.Drawing.Point(800, 31);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(134, 39);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Поиск";
-            this.button3.UseVisualStyleBackColor = true;
+            this.find.Location = new System.Drawing.Point(800, 31);
+            this.find.Name = "find";
+            this.find.Size = new System.Drawing.Size(134, 39);
+            this.find.TabIndex = 20;
+            this.find.Text = "Поиск";
+            this.find.UseVisualStyleBackColor = true;
+            this.find.Click += new System.EventHandler(this.find_Click);
             // 
-            // numericUpDown2
+            // lessonto
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(458, 17);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(55, 22);
-            this.numericUpDown2.TabIndex = 29;
+            this.lessonto.Location = new System.Drawing.Point(465, 17);
+            this.lessonto.Name = "lessonto";
+            this.lessonto.Size = new System.Drawing.Size(55, 22);
+            this.lessonto.TabIndex = 29;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(306, 47);
+            this.label7.Location = new System.Drawing.Point(318, 51);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(117, 17);
+            this.label7.Size = new System.Drawing.Size(113, 17);
             this.label7.TabIndex = 21;
-            this.label7.Text = "Сортировать по ";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.label7.Text = "Сортировать по";
             // 
-            // numericUpDown1
+            // lessonfrom
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(377, 16);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(56, 22);
-            this.numericUpDown1.TabIndex = 28;
+            this.lessonfrom.Location = new System.Drawing.Point(384, 16);
+            this.lessonfrom.Name = "lessonfrom";
+            this.lessonfrom.Size = new System.Drawing.Size(56, 22);
+            this.lessonfrom.TabIndex = 28;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(436, 18);
+            this.label6.Location = new System.Drawing.Point(442, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 17);
             this.label6.TabIndex = 27;
@@ -137,7 +145,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(247, 14);
+            this.label5.Location = new System.Drawing.Point(253, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 17);
             this.label5.TabIndex = 25;
@@ -151,74 +159,89 @@
             this.label4.Size = new System.Drawing.Size(88, 17);
             this.label4.TabIndex = 22;
             this.label4.Text = "Месяцев от:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // checkBox1
+            // deldatef
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(764, 4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(170, 21);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Только неудаленные";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.deldatef.AutoSize = true;
+            this.deldatef.Location = new System.Drawing.Point(764, 4);
+            this.deldatef.Name = "deldatef";
+            this.deldatef.Size = new System.Drawing.Size(170, 21);
+            this.deldatef.TabIndex = 19;
+            this.deldatef.Text = "Только неудаленные";
+            this.deldatef.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // namet
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 14);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 24);
-            this.textBox1.TabIndex = 18;
+            this.namet.Location = new System.Drawing.Point(80, 14);
+            this.namet.Multiline = true;
+            this.namet.Name = "namet";
+            this.namet.Size = new System.Drawing.Size(164, 24);
+            this.namet.TabIndex = 18;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 17);
+            this.label3.Location = new System.Drawing.Point(2, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 17);
             this.label3.TabIndex = 17;
             this.label3.Text = "Название";
             // 
-            // groupBox1
+            // form
             // 
-            this.groupBox1.Controls.Add(this.numericUpDown3);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.maskedTextBox2);
-            this.groupBox1.Controls.Add(this.numericUpDown5);
-            this.groupBox1.Controls.Add(this.maskedTextBox1);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(0, -2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(952, 76);
-            this.groupBox1.TabIndex = 30;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Поиск";
+            this.form.Controls.Add(this.monthto);
+            this.form.Controls.Add(this.label12);
+            this.form.Controls.Add(this.ascf);
+            this.form.Controls.Add(this.label8);
+            this.form.Controls.Add(this.costto);
+            this.form.Controls.Add(this.monthfrom);
+            this.form.Controls.Add(this.costfrom);
+            this.form.Controls.Add(this.label11);
+            this.form.Controls.Add(this.label10);
+            this.form.Controls.Add(this.reset);
+            this.form.Controls.Add(this.label3);
+            this.form.Controls.Add(this.sortf);
+            this.form.Controls.Add(this.namet);
+            this.form.Controls.Add(this.find);
+            this.form.Controls.Add(this.deldatef);
+            this.form.Controls.Add(this.lessonto);
+            this.form.Controls.Add(this.label4);
+            this.form.Controls.Add(this.label7);
+            this.form.Controls.Add(this.label5);
+            this.form.Controls.Add(this.lessonfrom);
+            this.form.Controls.Add(this.label6);
+            this.form.Location = new System.Drawing.Point(0, -2);
+            this.form.Name = "form";
+            this.form.Size = new System.Drawing.Size(952, 76);
+            this.form.TabIndex = 30;
+            this.form.TabStop = false;
+            this.form.Text = "Поиск";
             // 
-            // button9
+            // monthto
             // 
-            this.button9.Location = new System.Drawing.Point(595, 45);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(42, 23);
-            this.button9.TabIndex = 40;
-            this.button9.Text = "А-Я";
-            this.button9.UseVisualStyleBackColor = true;
+            this.monthto.Location = new System.Drawing.Point(687, 14);
+            this.monthto.Name = "monthto";
+            this.monthto.Size = new System.Drawing.Size(55, 22);
+            this.monthto.TabIndex = 43;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(666, 17);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(24, 17);
+            this.label12.TabIndex = 42;
+            this.label12.Text = "до";
+            // 
+            // ascf
+            // 
+            this.ascf.Location = new System.Drawing.Point(617, 50);
+            this.ascf.Name = "ascf";
+            this.ascf.Size = new System.Drawing.Size(51, 23);
+            this.ascf.TabIndex = 40;
+            this.ascf.Text = "А-Я";
+            this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // label8
             // 
@@ -229,28 +252,30 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "руб.";
             // 
-            // maskedTextBox2
+            // costto
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(188, 46);
-            this.maskedTextBox2.Mask = "000000.00 ";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(71, 22);
-            this.maskedTextBox2.TabIndex = 38;
+            this.costto.Location = new System.Drawing.Point(188, 46);
+            this.costto.Mask = "00000";
+            this.costto.Name = "costto";
+            this.costto.Size = new System.Drawing.Size(71, 22);
+            this.costto.TabIndex = 38;
+            this.costto.ValidatingType = typeof(int);
             // 
-            // numericUpDown5
+            // monthfrom
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(618, 15);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(47, 22);
-            this.numericUpDown5.TabIndex = 38;
+            this.monthfrom.Location = new System.Drawing.Point(619, 15);
+            this.monthfrom.Name = "monthfrom";
+            this.monthfrom.Size = new System.Drawing.Size(47, 22);
+            this.monthfrom.TabIndex = 38;
             // 
-            // maskedTextBox1
+            // costfrom
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(73, 46);
-            this.maskedTextBox1.Mask = "000000.00 ";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(71, 22);
-            this.maskedTextBox1.TabIndex = 37;
+            this.costfrom.Location = new System.Drawing.Point(73, 46);
+            this.costfrom.Mask = "00000";
+            this.costfrom.Name = "costfrom";
+            this.costfrom.Size = new System.Drawing.Size(71, 22);
+            this.costfrom.TabIndex = 37;
+            this.costfrom.ValidatingType = typeof(int);
             // 
             // label11
             // 
@@ -288,88 +313,84 @@
             this.label1.TabIndex = 35;
             this.label1.Text = "Показывать";
             // 
-            // comboBox2
+            // countf
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(708, 692);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(106, 24);
-            this.comboBox2.TabIndex = 34;
+            this.countf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.countf.FormattingEnabled = true;
+            this.countf.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "30"});
+            this.countf.Location = new System.Drawing.Point(708, 692);
+            this.countf.Name = "countf";
+            this.countf.Size = new System.Drawing.Size(106, 24);
+            this.countf.TabIndex = 34;
+            this.countf.SelectionChangeCommitted += new System.EventHandler(this.countf_SelectionChangeCommitted);
             // 
-            // button2
+            // prev
             // 
-            this.button2.Location = new System.Drawing.Point(284, 688);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 32);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "◀ Назад";
-            this.button2.UseVisualStyleBackColor = true;
+            this.prev.Location = new System.Drawing.Point(284, 688);
+            this.prev.Name = "prev";
+            this.prev.Size = new System.Drawing.Size(106, 32);
+            this.prev.TabIndex = 33;
+            this.prev.Text = "◀ Назад";
+            this.prev.UseVisualStyleBackColor = true;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
             // 
-            // button1
+            // next
             // 
-            this.button1.Location = new System.Drawing.Point(479, 688);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 32);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "Вперед ▶";
-            this.button1.UseVisualStyleBackColor = true;
+            this.next.Location = new System.Drawing.Point(479, 688);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(106, 32);
+            this.next.TabIndex = 32;
+            this.next.Text = "Вперед ▶";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
-            // comboBox1
+            // pagef
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(396, 693);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(77, 24);
-            this.comboBox1.TabIndex = 31;
+            this.pagef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pagef.FormattingEnabled = true;
+            this.pagef.Location = new System.Drawing.Point(396, 693);
+            this.pagef.Name = "pagef";
+            this.pagef.Size = new System.Drawing.Size(77, 24);
+            this.pagef.TabIndex = 31;
+            this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
             // 
-            // button6
+            // add
             // 
-            this.button6.Location = new System.Drawing.Point(11, 649);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(156, 27);
-            this.button6.TabIndex = 52;
-            this.button6.Text = "Добавить тип курса";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Location = new System.Drawing.Point(685, 14);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(55, 22);
-            this.numericUpDown3.TabIndex = 43;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(666, 17);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(24, 17);
-            this.label12.TabIndex = 42;
-            this.label12.Text = "до";
+            this.add.Location = new System.Drawing.Point(11, 649);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(156, 27);
+            this.add.TabIndex = 52;
+            this.add.Text = "Добавить тип курса";
+            this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // Type_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 727);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.add);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.countf);
+            this.Controls.Add(this.prev);
+            this.Controls.Add(this.next);
+            this.Controls.Add(this.pagef);
+            this.Controls.Add(this.form);
+            this.Controls.Add(this.D);
             this.Name = "Type_find";
             this.Text = "Список типов курсов";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lessonto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lessonfrom)).EndInit();
+            this.form.ResumeLayout(false);
+            this.form.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.monthto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monthfrom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,35 +398,35 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.DataGridView D;
+        private System.Windows.Forms.Button reset;
+        private System.Windows.Forms.ComboBox sortf;
+        private System.Windows.Forms.Button find;
+        private System.Windows.Forms.NumericUpDown lessonto;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown lessonfrom;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox deldatef;
+        private System.Windows.Forms.TextBox namet;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox form;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown monthfrom;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox costto;
+        private System.Windows.Forms.MaskedTextBox costfrom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.ComboBox countf;
+        private System.Windows.Forms.Button prev;
+        private System.Windows.Forms.Button next;
+        private System.Windows.Forms.ComboBox pagef;
+        private System.Windows.Forms.Button ascf;
+        private System.Windows.Forms.Button add;
+        private System.Windows.Forms.NumericUpDown monthto;
         private System.Windows.Forms.Label label12;
     }
 }

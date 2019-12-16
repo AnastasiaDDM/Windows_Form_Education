@@ -20,16 +20,18 @@ namespace Add_Type
 //        bool ascflag = true;
         int page = 1;
         int count = 100;
-        Contract newcontract = new Contract();
+        Contract newcontract = new Contract(); // Глобальная перменная этой формы
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Contract_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
 
             buildDG();
@@ -37,6 +39,7 @@ namespace Add_Type
         public Contract_edit(Contract contract, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = false;
             idforEdit = contract.ID;
 
@@ -48,6 +51,7 @@ namespace Add_Type
         public Contract_edit(Course course, bool deldate) // Конструктор для добавления договора уже на заданный курс объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
 
             bcour.Enabled = false;
@@ -57,6 +61,7 @@ namespace Add_Type
         public Contract_edit(Student student, bool deldate) // Конструктор для добавления договора уже для заданного ученика
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
 
             bstud.Enabled = false;

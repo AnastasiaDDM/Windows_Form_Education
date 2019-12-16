@@ -217,7 +217,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Клиент";
+            this.label3.Text = "Ученик";
             // 
             // groupBox1
             // 
@@ -310,14 +310,14 @@
             // 
             this.ascf.Location = new System.Drawing.Point(670, 69);
             this.ascf.Name = "ascf";
-            this.ascf.Size = new System.Drawing.Size(42, 23);
+            this.ascf.Size = new System.Drawing.Size(45, 23);
             this.ascf.TabIndex = 38;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
             // 
             // dateto
             // 
-            this.dateto.Location = new System.Drawing.Point(849, 21);
+            this.dateto.Location = new System.Drawing.Point(851, 21);
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(165, 22);
             this.dateto.TabIndex = 37;
@@ -334,7 +334,7 @@
             // 
             // datefrom
             // 
-            this.datefrom.Location = new System.Drawing.Point(599, 21);
+            this.datefrom.Location = new System.Drawing.Point(603, 21);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(172, 22);
             this.datefrom.TabIndex = 36;

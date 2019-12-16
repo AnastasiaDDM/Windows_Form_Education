@@ -23,10 +23,12 @@ namespace Add_Type
         public Pay_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Pay_edit(Contract con) // Конструктор для добавления объекта по договору
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
             contract = con;
             // Блокировка кнопок, которые нельзя использовать
@@ -44,6 +46,7 @@ namespace Add_Type
         public Pay_edit(Pay p) // Конструктор для редактирования объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = false;
             pay = p;
 
@@ -128,6 +131,21 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void bcon_Click(object sender, EventArgs e)
+        {
+  //          DialogResult result = f.ShowDialog();
+        }
+
+        private void bteach_Click(object sender, EventArgs e)
+        {
+   //         DialogResult result = f.ShowDialog();
+        }
+
+        private void btime_Click(object sender, EventArgs e)
+        {
+   //         DialogResult result = f.ShowDialog();
         }
     }
 }

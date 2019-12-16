@@ -15,6 +15,7 @@ namespace Add_Type
         public Visit_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

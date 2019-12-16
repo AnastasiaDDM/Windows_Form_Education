@@ -15,6 +15,7 @@ namespace Add_Type
         public Statistic()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

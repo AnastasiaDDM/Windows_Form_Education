@@ -265,6 +265,7 @@
             this.payAll.TabIndex = 26;
             this.payAll.Text = "Оплатить все";
             this.payAll.UseVisualStyleBackColor = true;
+            this.payAll.Click += new System.EventHandler(this.payAll_Click);
             // 
             // Student_view
             // 

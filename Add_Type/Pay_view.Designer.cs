@@ -190,6 +190,7 @@
             this.brancht.TabIndex = 58;
             this.brancht.TabStop = true;
             this.brancht.Text = "linkLabel3";
+            this.brancht.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.brancht_LinkClicked);
             // 
             // label13
             // 

@@ -108,6 +108,7 @@
             this.addteacher.TabIndex = 17;
             this.addteacher.Text = "Добавить преподавателя";
             this.addteacher.UseVisualStyleBackColor = true;
+            this.addteacher.Click += new System.EventHandler(this.addteacher_Click);
             // 
             // tabPage2
             // 
@@ -250,6 +251,7 @@
             this.typet.TabIndex = 47;
             this.typet.TabStop = true;
             this.typet.Text = "linkLabel1";
+            this.typet.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.typet_LinkClicked);
             // 
             // brancht
             // 
@@ -260,6 +262,7 @@
             this.brancht.TabIndex = 48;
             this.brancht.TabStop = true;
             this.brancht.Text = "linkLabel2";
+            this.brancht.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.brancht_LinkClicked);
             // 
             // Course_view
             // 

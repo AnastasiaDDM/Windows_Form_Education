@@ -24,10 +24,12 @@ namespace Add_Type
         public Course_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Course_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
 
             buildDG();
@@ -35,6 +37,7 @@ namespace Add_Type
         public Course_edit(Course cour, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = false;
             idforEdit = cour.ID;
             //        newcourse = cour;

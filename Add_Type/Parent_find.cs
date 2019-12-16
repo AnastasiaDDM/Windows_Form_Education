@@ -26,11 +26,13 @@ namespace Add_Type
         public Parent_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         public Parent_find(String answer, string button)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             purpose = answer;
             if (button == "bstud") // Блокировка поиска по ученикам
             {

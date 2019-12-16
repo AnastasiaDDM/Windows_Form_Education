@@ -15,6 +15,7 @@ namespace Add_Type
         public Input()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

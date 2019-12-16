@@ -15,6 +15,7 @@ namespace Add_Type
         public Pay_find()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -28,6 +29,11 @@ namespace Add_Type
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }

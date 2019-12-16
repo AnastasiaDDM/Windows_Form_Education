@@ -17,10 +17,12 @@ namespace Add_Type
         public Parent_view()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Parent_view(Parent par) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             parent = par;
 

@@ -18,11 +18,13 @@ namespace Add_Type
         public Parent_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
         }
         public Parent_edit(Parent parent, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = false;
 
             FillForm(parent);
@@ -30,6 +32,7 @@ namespace Add_Type
         public Parent_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void FillForm(Parent s)

@@ -18,10 +18,12 @@ namespace Add_Type
         public Student_view()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Student_view(Student st) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             student = st;
 
@@ -80,9 +82,9 @@ namespace Add_Type
             gridcourse.Columns.Add(start);
             gridcourse.Columns.Add(end);
 
-            DataGridViewButtonColumn remove2 = new DataGridViewButtonColumn();
-            remove2.HeaderText = "Завершить?";
-            gridcourse.Columns.Add(remove2);
+            //DataGridViewButtonColumn remove2 = new DataGridViewButtonColumn();
+            //remove2.HeaderText = "Завершить?";
+            //gridcourse.Columns.Add(remove2);
             gridcourse.ReadOnly = true;
 
 
@@ -204,7 +206,7 @@ namespace Add_Type
             
                 gridcourse.Rows[i].Cells[7].Value = courses[i].End;
 
-                gridcourse.Rows[i].Cells[8].Value = "Удалить";
+                //gridcourse.Rows[i].Cells[8].Value = "Удалить";
             }
         }
 
@@ -227,7 +229,7 @@ namespace Add_Type
                         Contract contract = Contracts.ContractID(k);
 
                         Pay_edit f = new Pay_edit(contract);
-                        f.Show();
+                        DialogResult result = f.ShowDialog();
                     }
                 }
             }
@@ -250,32 +252,32 @@ namespace Add_Type
 
         private void gridcourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 8)
-            {
-                if (e.RowIndex > -1)
-                {
-                    if (gridcourse.RowCount - 1 >= e.RowIndex)
-                    {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить ученика с этого курса?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            //if (e.ColumnIndex == 8)
+            //{
+            //    if (e.RowIndex > -1)
+            //    {
+            //        if (gridcourse.RowCount - 1 >= e.RowIndex)
+            //        {
+            //            int l = e.RowIndex;
+            //            const string message = "Вы уверены, что хотите удалить ученика с этого курса?";
+            //            const string caption = "Удаление";
+            //            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                        if (result == DialogResult.OK)
-                        {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
-                            gridcourse.Rows.Remove(gridcourse.Rows[l]);
-                            Course o = Courses.CourseID(k);
-                            String ans = o.delStudent(student);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
-                    }
-                }
-            }
+            //            if (result == DialogResult.OK)
+            //            {
+            //                // Форма не закрывается
+            //                int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
+            //                gridcourse.Rows.Remove(gridcourse.Rows[l]);
+            //                Course o = Courses.CourseID(k);
+            //                String ans = o.delStudent(student);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+            //        }
+            //    }
+            //}
             // Редактирование
             if (e.ColumnIndex == 0)
             {
@@ -347,7 +349,7 @@ namespace Add_Type
         private void timetable_Click(object sender, EventArgs e)
         {
             Timetable_find f = new Timetable_find(student);
-            f.Show();
+            DialogResult result = f.ShowDialog();
         }
 
         private void addcontract_Click(object sender, EventArgs e)
@@ -390,8 +392,13 @@ namespace Add_Type
                 int l = e.RowIndex;
                 int k = Convert.ToInt32(gridparent.Rows[l].Cells[1].Value);
                 Parent_view f = new Parent_view(Parents.ParentID(k));
-                f.Show();
+                DialogResult result = f.ShowDialog();
             }
+        }
+
+        private void payAll_Click(object sender, EventArgs e)
+        {
+ //           DialogResult result = f.ShowDialog();
         }
     }
 }

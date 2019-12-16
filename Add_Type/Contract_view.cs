@@ -16,10 +16,12 @@ namespace Add_Type
         public Contract_view()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Contract_view(Contract st) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             contract = st;
 
@@ -132,7 +134,7 @@ namespace Add_Type
         private void addpay_Click(object sender, EventArgs e)
         {   // Добавление оплаты по договору
             Pay_edit f = new Pay_edit(contract);
-            f.Show();
+            DialogResult result = f.ShowDialog();
         }
         private void bcancel_Click(object sender, EventArgs e)
         {
@@ -170,7 +172,7 @@ namespace Add_Type
         {
             // Открытие формы для просмотра данных
             Student_view f = new Student_view(Students.StudentID(contract.StudentID));
-            f.Show();
+            DialogResult result = f.ShowDialog();
         }
 
         private void courset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -179,6 +181,17 @@ namespace Add_Type
             Course_view f = new Course_view(Courses.CourseID(contract.CourseID));
             DialogResult result = f.ShowDialog();
             FillGrid();
+        }
+
+        private void brancht_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Branch_view f = new Branch_view(Branches.BranchID(contract.BranchID));
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void managert_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+   //         DialogResult result = f.ShowDialog();
         }
     }
 }

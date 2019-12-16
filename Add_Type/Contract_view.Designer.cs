@@ -200,6 +200,7 @@
             this.managert.TabIndex = 48;
             this.managert.TabStop = true;
             this.managert.Text = "linkLabel3";
+            this.managert.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.managert_LinkClicked);
             // 
             // brancht
             // 
@@ -210,6 +211,7 @@
             this.brancht.TabIndex = 49;
             this.brancht.TabStop = true;
             this.brancht.Text = "linkLabel4";
+            this.brancht.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.brancht_LinkClicked);
             // 
             // bcancel
             // 

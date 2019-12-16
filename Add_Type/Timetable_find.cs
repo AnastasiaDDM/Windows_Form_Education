@@ -29,6 +29,7 @@ namespace Add_Type
         public Timetable_find(Student st) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             student = st;
 
@@ -38,6 +39,7 @@ namespace Add_Type
         public Timetable_find(Course st) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             course = st;
 

@@ -28,53 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bcour = new System.Windows.Forms.Button();
+            this.opentemlate = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.namet = new System.Windows.Forms.Label();
+            this.costt = new System.Windows.Forms.Label();
+            this.lessont = new System.Windows.Forms.Label();
+            this.montht = new System.Windows.Forms.Label();
+            this.createtemplate = new System.Windows.Forms.Button();
+            this.notet = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button4
+            // bcour
             // 
-            this.button4.Location = new System.Drawing.Point(340, 127);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(176, 49);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "Посмотреть курсы\r\nс этим типом";
-            this.button4.UseVisualStyleBackColor = true;
+            this.bcour.Location = new System.Drawing.Point(354, 76);
+            this.bcour.Name = "bcour";
+            this.bcour.Size = new System.Drawing.Size(176, 49);
+            this.bcour.TabIndex = 32;
+            this.bcour.Text = "Посмотреть курсы\r\nс этим типом";
+            this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
-            // button3
+            // opentemlate
             // 
-            this.button3.Location = new System.Drawing.Point(385, 239);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(131, 55);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Открыть шаблон";
-            this.button3.UseVisualStyleBackColor = true;
+            this.opentemlate.Location = new System.Drawing.Point(399, 203);
+            this.opentemlate.Name = "opentemlate";
+            this.opentemlate.Size = new System.Drawing.Size(131, 55);
+            this.opentemlate.TabIndex = 30;
+            this.opentemlate.Text = "Открыть шаблон";
+            this.opentemlate.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // close
             // 
-            this.button2.Location = new System.Drawing.Point(210, 361);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(131, 40);
-            this.button2.TabIndex = 28;
-            this.button2.Text = "Закрыть ";
-            this.button2.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(210, 361);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(131, 40);
+            this.close.TabIndex = 28;
+            this.close.Text = "Закрыть ";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 196);
+            this.label6.Location = new System.Drawing.Point(12, 183);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 17);
             this.label6.TabIndex = 24;
@@ -83,7 +85,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(310, 92);
+            this.label5.Location = new System.Drawing.Point(12, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(145, 17);
             this.label5.TabIndex = 23;
@@ -92,7 +94,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 143);
+            this.label4.Location = new System.Drawing.Point(12, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 17);
             this.label4.TabIndex = 22;
@@ -101,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 92);
+            this.label3.Location = new System.Drawing.Point(12, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 17);
             this.label3.TabIndex = 21;
@@ -116,75 +118,74 @@
             this.label2.TabIndex = 20;
             this.label2.Text = "Название \r\nтипа курса";
             // 
-            // label1
+            // namet
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(169, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "label1";
+            this.namet.AutoSize = true;
+            this.namet.Location = new System.Drawing.Point(169, 9);
+            this.namet.Name = "namet";
+            this.namet.Size = new System.Drawing.Size(46, 17);
+            this.namet.TabIndex = 33;
+            this.namet.Text = "label1";
             // 
-            // label7
+            // costt
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(169, 92);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 17);
-            this.label7.TabIndex = 34;
-            this.label7.Text = "label7";
+            this.costt.AutoSize = true;
+            this.costt.Location = new System.Drawing.Point(169, 62);
+            this.costt.Name = "costt";
+            this.costt.Size = new System.Drawing.Size(46, 17);
+            this.costt.TabIndex = 34;
+            this.costt.Text = "label7";
             // 
-            // label8
+            // lessont
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(169, 143);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 17);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "label8";
+            this.lessont.AutoSize = true;
+            this.lessont.Location = new System.Drawing.Point(169, 108);
+            this.lessont.Name = "lessont";
+            this.lessont.Size = new System.Drawing.Size(46, 17);
+            this.lessont.TabIndex = 35;
+            this.lessont.Text = "label8";
             // 
-            // label9
+            // montht
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(470, 92);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "label9";
+            this.montht.AutoSize = true;
+            this.montht.Location = new System.Drawing.Point(169, 143);
+            this.montht.Name = "montht";
+            this.montht.Size = new System.Drawing.Size(46, 17);
+            this.montht.TabIndex = 36;
+            this.montht.Text = "label9";
             // 
-            // label10
+            // createtemplate
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(169, 196);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 17);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "label10";
+            this.createtemplate.Location = new System.Drawing.Point(399, 275);
+            this.createtemplate.Name = "createtemplate";
+            this.createtemplate.Size = new System.Drawing.Size(131, 55);
+            this.createtemplate.TabIndex = 38;
+            this.createtemplate.Text = "Создать шаблон из файла";
+            this.createtemplate.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // notet
             // 
-            this.button1.Location = new System.Drawing.Point(385, 300);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 55);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Создать шаблон из файла";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.notet.Location = new System.Drawing.Point(12, 203);
+            this.notet.Multiline = true;
+            this.notet.Name = "notet";
+            this.notet.ReadOnly = true;
+            this.notet.Size = new System.Drawing.Size(329, 127);
+            this.notet.TabIndex = 39;
             // 
             // Type_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 413);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.notet);
+            this.Controls.Add(this.createtemplate);
+            this.Controls.Add(this.montht);
+            this.Controls.Add(this.lessont);
+            this.Controls.Add(this.costt);
+            this.Controls.Add(this.namet);
+            this.Controls.Add(this.bcour);
+            this.Controls.Add(this.opentemlate);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -199,19 +200,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button bcour;
+        private System.Windows.Forms.Button opentemlate;
+        private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label namet;
+        private System.Windows.Forms.Label costt;
+        private System.Windows.Forms.Label lessont;
+        private System.Windows.Forms.Label montht;
+        private System.Windows.Forms.Button createtemplate;
+        private System.Windows.Forms.TextBox notet;
     }
 }

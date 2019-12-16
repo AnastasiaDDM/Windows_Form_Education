@@ -15,6 +15,7 @@ namespace Add_Type
         public List()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

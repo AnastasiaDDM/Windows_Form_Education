@@ -534,20 +534,24 @@ namespace Add_Type
                     query = query.Where(x => x.TeacherID == teacher.ID);
                 }
 
-    //            string format = "yyyy-MM-dd HH:mm:ss";
-                // Подсчет недели, которую необходимо отобразить!
-                DateTime firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;
-                DateTime lastdate = firstdate.AddDays(+6);
-
-                if (firstdate != DateTime.MinValue)
+                if(date != DateTime.MinValue)
                 {
-                    query = query.Where(x => x.Startlesson >= firstdate);
+                    //            string format = "yyyy-MM-dd HH:mm:ss";
+                    // Подсчет недели, которую необходимо отобразить!
+                    DateTime firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;
+                    DateTime lastdate = firstdate.AddDays(+6);
+
+                    if (firstdate != DateTime.MinValue)
+                    {
+                        query = query.Where(x => x.Startlesson >= firstdate);
+                    }
+
+                    if (lastdate != DateTime.MaxValue)
+                    {
+                        query = query.Where(x => x.Endlesson <= lastdate);
+                    }
                 }
 
-                if (lastdate != DateTime.MaxValue)
-                {
-                    query = query.Where(x => x.Endlesson <= lastdate);
-                }
 
                //, StudentID = sc.StudentID, CabinetID = t.CabinetID, CourseID = t.CourseID, Note = t.Note, 
                // Startlesson = t.Startlesson, Endlesson = t.Endlesson, Deldate = t.Deldate, Editdate = t.Editdate, BranchID = c.BranchID, TeacherID = tt.TeacherID

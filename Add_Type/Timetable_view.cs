@@ -15,6 +15,7 @@ namespace Add_Type
         public Timetable_view()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

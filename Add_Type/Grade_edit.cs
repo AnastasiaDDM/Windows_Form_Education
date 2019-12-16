@@ -15,6 +15,7 @@ namespace Add_Type
         public Grade_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
     }
 }

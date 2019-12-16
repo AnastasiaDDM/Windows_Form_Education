@@ -344,7 +344,7 @@
             // D
             // 
             this.D.AllowUserToAddRows = false;
-            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Location = new System.Drawing.Point(4, 71);
             this.D.Name = "D";
@@ -371,6 +371,7 @@
             this.Name = "Student_find";
             this.Text = "Список учеников";
             this.Load += new System.EventHandler(this.Student_find_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Student_find_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();

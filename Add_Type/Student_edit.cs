@@ -17,11 +17,13 @@ namespace Add_Type
         public Student_edit(bool deldate) // Конструктор для добавление нового объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = true;
         }
         public Student_edit(Student  student, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             indicator = false;
 
             FillForm(student);
@@ -30,6 +32,7 @@ namespace Add_Type
         public Student_edit()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void FillForm(Student s)

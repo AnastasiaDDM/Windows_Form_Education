@@ -51,7 +51,7 @@ namespace Add_Type
                 {
                     context.Branches.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление филиала прошло успешно";
+  //                  answer = "Добавление филиала прошло успешно";
                 }
                 return answer;
             }
@@ -81,7 +81,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование филиала прошло успешно";
+ //                   answer = "Редактирование филиала прошло успешно";
                 }
                 return answer;
             }

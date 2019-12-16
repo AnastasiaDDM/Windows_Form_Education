@@ -13,13 +13,16 @@ namespace Add_Type
     public partial class Course_view : Form
     {
         public Course course;   // Глобальная переменная объявляет объект данной формы
+        public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Course_view()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public Course_view(Course st) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             course = st;
 
@@ -141,23 +144,10 @@ namespace Add_Type
             }
         }
 
-        private void close_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void addstudent_Click(object sender, EventArgs e)
-        {
-            // Добавление
-            Contract_edit f = new Contract_edit(course, true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
-            DialogResult result = f.ShowDialog();
-            FillGrid();
-        }
-
         private void timetable_Click(object sender, EventArgs e)
         {
             Timetable_find f = new Timetable_find(course);
-            f.Show();
+            DialogResult result = f.ShowDialog();
         }
 
         private void gridstudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -234,8 +224,40 @@ namespace Add_Type
                 int l = e.RowIndex;
                 int k = Convert.ToInt32(gridstudent.Rows[l].Cells[1].Value);
                 Student_view f = new Student_view(Students.StudentID(k));
-                f.Show();
+                DialogResult result = f.ShowDialog();
             }
+        }
+
+        private void typet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Type_view f = new Type_view(Types.TypeID(course.TypeID));
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void brancht_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Branch_view f = new Branch_view(Branches.BranchID(course.BranchID));
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void addteacher_Click(object sender, EventArgs e)
+        {
+            Worker_find f = new Worker_find("choose"); // Передаем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void addstudent_Click(object sender, EventArgs e)
+        {
+            // Добавление
+            Contract_edit f = new Contract_edit(course, true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
+            DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

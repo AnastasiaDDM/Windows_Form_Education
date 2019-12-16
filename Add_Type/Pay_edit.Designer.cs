@@ -211,6 +211,7 @@
             this.btime.TabIndex = 60;
             this.btime.Text = "🔍";
             this.btime.UseVisualStyleBackColor = true;
+            this.btime.Click += new System.EventHandler(this.btime_Click);
             // 
             // timetablef
             // 
@@ -228,6 +229,7 @@
             this.bcon.TabIndex = 62;
             this.bcon.Text = "🔍";
             this.bcon.UseVisualStyleBackColor = true;
+            this.bcon.Click += new System.EventHandler(this.bcon_Click);
             // 
             // contractf
             // 
@@ -245,6 +247,7 @@
             this.bteach.TabIndex = 64;
             this.bteach.Text = "🔍";
             this.bteach.UseVisualStyleBackColor = true;
+            this.bteach.Click += new System.EventHandler(this.bteach_Click);
             // 
             // teacherf
             // 

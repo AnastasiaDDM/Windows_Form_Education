@@ -45,7 +45,7 @@ namespace Add_Type
                 {
                     context.Workers.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление договора прошло успешно";
+//                    answer = "Добавление договора прошло успешно";
                 }
                 return answer;
             }
@@ -75,7 +75,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование договора прошло успешно";
+ //                   answer = "Редактирование договора прошло успешно";
                 }
                 return answer;
             }
@@ -85,15 +85,15 @@ namespace Add_Type
         public string Сheck(Worker st)
         {
             if (st.FIO == "")
-            { return "Введите ФИО ученика. Это поле не может быть пустым"; }
+            { return "Введите ФИО работника. Это поле не может быть пустым"; }
             if (st.Phone == "")
-            { return "Введите номер телефона ученика. Это поле не может быть пустым"; }
+            { return "Введите номер телефона. Это поле не может быть пустым"; }
             using (SampleContext context = new SampleContext())
             {
                 Worker v = new Worker();
                 v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
                 if (v != null)
-                { return "Такой ученик уже существует в базе под номером " + v.ID; }
+                { return "Такой работник уже существует в базе под номером " + v.ID; }
             }
             return "Данные корректны!";
         }
@@ -241,7 +241,7 @@ namespace Add_Type
 
                 foreach (var p in query)
                 {
-                    list.Add(new Worker { ID = p.ID, FIO = p.FIO, Type = p.Type, Position = p.Position, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
+                    list.Add(new Worker { ID = p.ID, FIO = p.FIO, Type = p.Type, Rate = p.Rate, Phone = p.Phone, Password = p.Password,  Position = p.Position, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
                 }
                 return list;
             }

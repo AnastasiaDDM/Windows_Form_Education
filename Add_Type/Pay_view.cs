@@ -21,6 +21,7 @@ namespace Add_Type
         public Pay_view(Pay st) // Конструктор для просмотра объекта
         {
             InitializeComponent();
+            this.KeyPreview = true;
             pay = st;
             FillForm();
         }
@@ -48,6 +49,12 @@ namespace Add_Type
             // Открытие формы для просмотра данных
             Contract_view f = new Contract_view(Contracts.ContractID(Convert.ToInt32(pay.ContractID)));
             f.Show();
+        }
+
+        private void brancht_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Branch_view f = new Branch_view(Branches.BranchID(pay.BranchID));
+            DialogResult result = f.ShowDialog();
         }
     }
 }
