@@ -12,18 +12,40 @@ namespace Add_Type
 {
     public partial class Pay_edit : Form
     {
+        public static Contract chooseContract = new Contract(); // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseTeacher = new Worker(); // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract contract;   // Глобальная переменная объявляет договор данной формы
+        public Timetable timetable;   // Глобальная переменная объявляет занятие данной формы
+        public Worker teacher;   // Глобальная переменная объявляет преподавателя данной формы
         public Pay pay = new Pay();
+        int idforEdit; // ID для редактируемого объекта
         Boolean deldate = true; // true - неудален false - все!!!
         int count = 20;
         int page = 1;
         String sort = "ID";
         String asсdesс = "asc";
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
+        double maxvalue;
+
+        string format2 = "HH:mm"; // Формат для отображения даты 
+
+        string format = "dd.MM.yy HH:mm"; // Формат для отображения даты 
+
         public Pay_edit()
         {
             InitializeComponent();
             this.KeyPreview = true;
+            indicator = true;
+
+            // Блокировка кнопок, которые нельзя использовать
+            bcon.Enabled = false;
+            contractf.Enabled = false;
+            bteach.Enabled = false;
+            teacherf.Enabled = false;
+            btime.Enabled = false;
+            timetablef.Enabled = false;
+
+            FillForm();
         }
         public Pay_edit(Contract con) // Конструктор для добавления объекта по договору
         {
@@ -38,20 +60,41 @@ namespace Add_Type
             teacherf.Enabled = false;
             btime.Enabled = false;
             timetablef.Enabled = false;
-
+            incomef.Checked = true;
 
             FillForm();
-  //          FillGrid();
+        }
+
+        public Pay_edit(Worker teach, Timetable timetab, double max) // Конструктор для добавления объекта по занятию и работнику
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            indicator = true;
+            teacher = teach;
+            timetable = timetab;
+            // Блокировка кнопок, которые нельзя использовать
+            bcon.Enabled = false;
+            contractf.Enabled = false;
+            bteach.Enabled = false;
+            teacherf.Enabled = false;
+            btime.Enabled = false;
+            timetablef.Enabled = false;
+            indicatorf.Enabled = false;
+            maxvalue = max;
+            incomef.Checked = false;
+            incomef.Enabled = false;
+
+            FillForm();
         }
         public Pay_edit(Pay p) // Конструктор для редактирования объекта
         {
             InitializeComponent();
+            idforEdit = p.ID;
             this.KeyPreview = true;
             indicator = false;
             pay = p;
 
             FillForm();
-            //          FillGrid();
         }
         private void FillForm()
         {
@@ -70,24 +113,81 @@ namespace Add_Type
             }
 
             // Установление общих данных для добавления и редактирования
-            indicatorf.SelectedIndex = 0;
-            pay.Indicator = 1;
+            if (contract != null | pay.ContractID != null)
+            {
+                indicatorf.SelectedIndex = 0;
+                pay.Indicator = 1;
+            }
+            if (teacher != null | pay.WorkerID != null)
+            {
+                indicatorf.SelectedIndex = 1;
+                pay.Indicator = 2;
+            }
+
 
             if (indicator == true) // Для добавления
             {
-                branchf.SelectedItem = contract.BranchID + ". " + Branches.BranchID(contract.BranchID).Name;
-                pay.ContractID = contract.ID;
-                contractt.Text = "№" + contract.ID;
+                if(contract != null)
+                {
+                    branchf.SelectedItem = contract.BranchID + ". " + Branches.BranchID(contract.BranchID).Name;
+                    pay.ContractID = contract.ID;
+                    contractf.Text = "№ " + contract.ID;
+                }
+                if(teacher != null)
+                {
+                    branchf.SelectedItem = Cabinets.CabinetID(timetable.CabinetID).BranchID + ". " + Branches.BranchID(Cabinets.CabinetID(timetable.CabinetID).BranchID).Name;
+                    pay.WorkerID = teacher.ID;
+                    teacherf.Text = teacher.ID + ". " + teacher.FIO ;
+
+                    pay.TimetableID = timetable.ID;
+                    timetablef.Text = timetable.ID + ". " + timetable.Startlesson.ToString(format) + " - " + timetable.Endlesson.ToString(format2);
+                }
+
+                // Это для выбора договора по конпке поиска договоров
+                if (chooseContract != null)
+                {
+                    contractf.Text = "№ " + chooseContract.ID;
+                    chooseContract = null;
+       //             contract = Contracts.ContractID(chooseContract.ID);
+                }
+                // Это для выбора договора по конпке поиска преподавателя
+                if (chooseTeacher != null)
+                {
+                    teacherf.Text = "№ " + chooseTeacher.ID + " " + chooseTeacher.FIO;
+                    chooseTeacher = null;
+        //            contract = Wo.ContractID(chooseTeacher.ID);
+                }
+
             }
             else // Для редактирования
             {
+                this.Text = this.Text + pay.ID;
                 branchf.SelectedItem = pay.BranchID + ". " + Branches.BranchID(pay.BranchID).Name;
                 datef.Value = pay.Date;
-                paymentf.Text = pay.Payment.ToString();
+                if (pay.Payment < 0) // Выбор приход это или убыток
+                {
+                    incomef.Checked = false;
+                }
+                else
+                {
+                    incomef.Checked = true;
+                }
+                paymentt.Text = pay.Payment.ToString();
                 typef.SelectedItem = pay.Type;
                 purposef.Text = pay.Purpose;
-                pay.ContractID = pay.ContractID;
-                contractt.Text = "№" + pay.ContractID;
+                if (pay.ContractID != null)
+                {
+                    contractf.Text = "№ " + pay.ContractID;
+                }
+                if (pay.WorkerID != null)
+                {
+                    teacherf.Text = pay.WorkerID.ToString() + ". " + Workers.WorkerID(Convert.ToInt32(pay.WorkerID)).FIO;
+                    timetablef.Text = pay.TimetableID + ". " + Timetables.TimetableID(Convert.ToInt32(pay.TimetableID)).Startlesson.ToString(format) + " - " + Timetables.TimetableID(Convert.ToInt32(pay.TimetableID)).Endlesson.ToString(format2);
+                }
+
+
+                    ////             pay.ContractID = pay.ContractID;
+                    //contractt.Text = "№" + pay.ContractID;
             }
         }
 
@@ -110,21 +210,70 @@ namespace Add_Type
                 string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
                 pay.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
                 pay.Date = DateTime.Now;
-                pay.Payment = Convert.ToDouble(paymentf.Text);
                 pay.Purpose = purposef.Text;
                 pay.Type = typef.SelectedItem.ToString();
+
+                if(contractf.Text != "")
+                {
+                    string[] contrID = (Convert.ToString(contractf.Text)).Split(' ');
+                    pay.ContractID = Convert.ToInt32(contrID[1]);
+
+                    if (incomef.Checked == true)
+                    {
+                        pay.Payment = Convert.ToDouble(paymentt.Text);
+                    }
+                    else
+                    {
+                        pay.Payment = -Convert.ToDouble(paymentt.Text);
+                    }
+                   
+                }
+                else
+                {
+                    string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+                    pay.WorkerID = Convert.ToInt32(teachID[0]);
+
+                    string[] timeID = (Convert.ToString(timetablef.Text)).Split('.');
+                    pay.TimetableID = Convert.ToInt32(timeID[0]);
+
+                    pay.Payment = -Convert.ToDouble(paymentt.Text);
+                }
+
 
                 Answer = pay.Add();
             }
 
-            //if (indicator == false) // Значит, что происходит редактирование
-            //{
-            //    Student st = Students.StudentID(idforEdit);
+            if (indicator == false) // Значит, что происходит редактирование
+            {
+                //              Pay st = Pays.PayID(idforEdit);
 
-            //    st.FIO = fiof.Text;
-            //    st.Phone = phonef.Text;
-            //    Answer = st.Edit();
-            //}
+                string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
+                pay.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
+                pay.Date = DateTime.Now;
+                pay.Purpose = purposef.Text;
+                pay.Type = typef.SelectedItem.ToString();
+
+                if (contractf.Text != "")
+                {
+                    string[] contrID = (Convert.ToString(contractf.Text)).Split(' ');
+                    pay.ContractID = Convert.ToInt32(contrID[1]);
+
+                    pay.Payment = Convert.ToDouble(paymentt.Text);
+                }
+                else
+                {
+                    string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+                    pay.WorkerID = Convert.ToInt32(teachID[0]);
+
+                    string[] timeID = (Convert.ToString(timetablef.Text)).Split('.');
+                    pay.TimetableID = Convert.ToInt32(timeID[0]);
+
+                    pay.Payment = -Convert.ToDouble(paymentt.Text); //  Отрицательная оплата, тк это не прибыль центра
+                }
+
+
+                Answer = pay.Edit();
+            }
 
             label6.Text = Answer;
             if (Answer == "Данные корректны!")
@@ -135,17 +284,92 @@ namespace Add_Type
 
         private void bcon_Click(object sender, EventArgs e)
         {
-  //          DialogResult result = f.ShowDialog();
+            Contract_find f = new Contract_find("choose", "b"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
+            if(chooseContract != null)
+            {
+                chooseTeacher = null;
+                teacherf.Clear();
+            }
+            FillForm();
         }
 
         private void bteach_Click(object sender, EventArgs e)
         {
-   //         DialogResult result = f.ShowDialog();
+            Worker_find f = new Worker_find("choose", 3); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            if (chooseTeacher != null)
+            {
+                chooseContract = null;
+                contractf.Clear();
+            }
+            FillForm();
         }
 
         private void btime_Click(object sender, EventArgs e)
         {
    //         DialogResult result = f.ShowDialog();
+        }
+
+        private void paymentt_TextChanged(object sender, EventArgs e)
+        {
+         
+            if (paymentt.Text != "" & maxvalue != 0)
+            {
+                if (Convert.ToDouble(paymentt.Text) > maxvalue)
+                {
+                    erpay.SetError(paymentt, "Размер оплаты не может быть больше размера долга") ;
+                    paymentt.Text = maxvalue.ToString();
+                }
+                //else
+                //{
+                //    erpay.Clear();
+                //}
+            }
+        }
+
+        private void indicatorf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if(indicatorf.SelectedIndex == 0)
+            {
+                bcon.Enabled = true;
+                contractf.Enabled = true;
+                bteach.Enabled = false;
+                teacherf.Enabled = false;
+                btime.Enabled = false;
+                timetablef.Enabled = false;
+                incomef.Checked = true;
+                incomef.Enabled = true;
+            }
+            else
+            {
+                bcon.Enabled = false;
+                contractf.Enabled = false;
+                bteach.Enabled = true;
+                teacherf.Enabled = true;
+                btime.Enabled = true;
+                timetablef.Enabled = true;
+                incomef.Checked = false;
+                incomef.Enabled = false;
+            }
+        }
+
+        private void incomef_CheckedChanged(object sender, EventArgs e)
+        {
+            //if(incomef.Checked == true)
+            //{
+
+            //}
+        }
+
+        private void Pay_edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

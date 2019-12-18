@@ -23,6 +23,7 @@ namespace Add_Type
         string purpose;
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Type chooseType; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Course chooseCour; // Эта переменная для пересылке своего значения в вызывающую форму
         public Course_find()
         {
@@ -171,6 +172,11 @@ namespace Add_Type
 
             // Смысловые переменные, отражающие основные параметры поиска
             Worker teacher = new Worker();
+            if (chooseTeacher != null)
+            {
+                teacher = chooseTeacher;
+                teacherf.Text = teacher.ID + ". " + teacher.FIO;
+            }
 
             Course course = new Course();
             course.nameGroup = this.namet.Text == "" ? null : this.namet.Text;
@@ -422,6 +428,14 @@ namespace Add_Type
                 ascflag = true;
                 ascf.BackColor = Color.FromArgb(192, 192, 192);
             }
+        }
+
+        private void bteach_Click(object sender, EventArgs e)
+        {
+                        Worker_find f = new Worker_find("choose", 3); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
         }
     }
 }

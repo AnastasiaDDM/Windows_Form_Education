@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.D = new System.Windows.Forms.DataGridView();
@@ -50,7 +51,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.coursef = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.bwor = new System.Windows.Forms.Button();
             this.studentf = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -99,6 +100,14 @@
             this.friday,
             this.satyrday,
             this.sunday});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.D.DefaultCellStyle = dataGridViewCellStyle1;
             this.D.Location = new System.Drawing.Point(11, 179);
             this.D.Name = "D";
             this.D.ReadOnly = true;
@@ -193,7 +202,7 @@
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.coursef);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.bwor);
             this.groupBox1.Controls.Add(this.studentf);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label8);
@@ -231,6 +240,7 @@
             this.find.TabIndex = 52;
             this.find.Text = "Поиск";
             this.find.UseVisualStyleBackColor = true;
+            this.find.Click += new System.EventHandler(this.find_Click);
             // 
             // reset
             // 
@@ -276,14 +286,15 @@
             this.label9.TabIndex = 42;
             this.label9.Text = "Курс";
             // 
-            // button6
+            // bwor
             // 
-            this.button6.Location = new System.Drawing.Point(522, 15);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(23, 23);
-            this.button6.TabIndex = 41;
-            this.button6.Text = "🔍";
-            this.button6.UseVisualStyleBackColor = true;
+            this.bwor.Location = new System.Drawing.Point(522, 15);
+            this.bwor.Name = "bwor";
+            this.bwor.Size = new System.Drawing.Size(23, 23);
+            this.bwor.TabIndex = 41;
+            this.bwor.Text = "🔍";
+            this.bwor.UseVisualStyleBackColor = true;
+            this.bwor.Click += new System.EventHandler(this.bwor_Click);
             // 
             // studentf
             // 
@@ -410,7 +421,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox coursef;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button bwor;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.Button button5;

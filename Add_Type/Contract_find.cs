@@ -23,7 +23,9 @@ namespace Add_Type
         string purpose;
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseManager; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract  chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
+        public Worker  manager; // Объект "менеджер" для списка договоров этого менеджера
         public Contract_find()
         {
             InitializeComponent();
@@ -41,10 +43,21 @@ namespace Add_Type
             }
             LoadAll();
         }
+
+        public Contract_find(Worker st) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+
+            manager = st;
+
+            LoadAll();
+        }
         private void Contract_find_Load(object sender, EventArgs e)
         {
             //LoadAll();
         }
+
         private void LoadAll()
         {
             buildDG();
@@ -122,6 +135,7 @@ namespace Add_Type
             List<Branch> branches = new List<Branch>();
             branches = Branches.FindAll(deldate, branch, director, sort, asсdesс, page, count, ref countrecord);
 
+            branchf.Items.Clear();
             branchf.Items.Add("Не выбрано");
             foreach (var s in branches)
             {
@@ -196,7 +210,19 @@ namespace Add_Type
                 }
             }
 
-            Worker manager = new Worker();
+            Worker manag = new Worker();
+            if (manager != null)
+            {
+                manag = manager;
+                managerf.Text = manag.ID + ". " + manag.FIO;
+            }
+            if (chooseManager != null)
+            {
+                manag = chooseManager;
+                managerf.Text = manag.ID + ". " + manag.FIO;
+            }
+            
+
             Student student = new Student();
             if (chooseStudent != null)
             {
@@ -215,7 +241,7 @@ namespace Add_Type
             int max = this.costto.Text == "" ? 0 : Convert.ToInt32(this.costto.Text);
 
             List<Contract> contracts = new List<Contract>();
-            contracts = Contracts.FindAll(deldate, student, manager, branch, course, mindate, maxdate, min, max, sort, asсdesс, page, count, ref countrecord);
+            contracts = Contracts.FindAll(deldate, student, manag, branch, course, mindate, maxdate, min, max, sort, asсdesс, page, count, ref countrecord);
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
             // Формирование количества страниц
@@ -339,9 +365,6 @@ namespace Add_Type
         private void reset_Click(object sender, EventArgs e)
         {
             // Сброс всех выбранных значений в значения по умолчанию
-            studentf.Clear();
-            managerf.Clear();
-            coursef.Clear();
             costfrom.Clear();
             costto.Clear();
             this.branchf.SelectedIndex = 0;
@@ -358,6 +381,8 @@ namespace Add_Type
             chooseStudent = null;
             coursef.Clear();
             chooseCourse = null;
+            managerf.Clear();
+            chooseManager = null;
             FillGrid();
         }
 
@@ -433,6 +458,14 @@ namespace Add_Type
             Student_find f = new Student_find("choose", "bcon"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void bman_Click(object sender, EventArgs e)
+        {
+            Worker_find f = new Worker_find("choose", 2); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseManager = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
     }

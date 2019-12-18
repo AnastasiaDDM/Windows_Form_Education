@@ -244,6 +244,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Contract_edit";
             this.Text = "Редактирование договора №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Contract_edit_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

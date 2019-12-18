@@ -143,7 +143,7 @@ namespace Add_Type
                 var paysst = db.Pays.Where(p => p.WorkerID == this.ID & p.TimetableID == timetable.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
                 {
-                    return -1; /// Если у этого работника нет такого занятия!
+                    return Convert.ToDouble(this.Rate); /// Если у этого работника нет оплат по этому занятию
                 }
                 else
                 {

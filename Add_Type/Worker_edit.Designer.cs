@@ -34,7 +34,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lrate = new System.Windows.Forms.Label();
             this.phonet = new System.Windows.Forms.MaskedTextBox();
             this.fiot = new System.Windows.Forms.TextBox();
             this.positiont = new System.Windows.Forms.TextBox();
@@ -44,7 +44,7 @@
             this.ratet = new System.Windows.Forms.MaskedTextBox();
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lrate2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -102,14 +102,14 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Пароль";
             // 
-            // label7
+            // lrate
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(366, 180);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 17);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Ставка";
+            this.lrate.AutoSize = true;
+            this.lrate.Location = new System.Drawing.Point(366, 180);
+            this.lrate.Name = "lrate";
+            this.lrate.Size = new System.Drawing.Size(54, 17);
+            this.lrate.TabIndex = 6;
+            this.lrate.Text = "Ставка";
             // 
             // phonet
             // 
@@ -192,14 +192,14 @@
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // label8
+            // lrate2
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(489, 180);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 17);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "руб.";
+            this.lrate2.AutoSize = true;
+            this.lrate2.Location = new System.Drawing.Point(489, 180);
+            this.lrate2.Name = "lrate2";
+            this.lrate2.Size = new System.Drawing.Size(35, 17);
+            this.lrate2.TabIndex = 16;
+            this.lrate2.Text = "руб.";
             // 
             // label9
             // 
@@ -215,7 +215,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 454);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lrate2);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
             this.Controls.Add(this.ratet);
@@ -225,7 +225,7 @@
             this.Controls.Add(this.positiont);
             this.Controls.Add(this.fiot);
             this.Controls.Add(this.phonet);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lrate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -247,7 +247,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lrate;
         private System.Windows.Forms.MaskedTextBox phonet;
         private System.Windows.Forms.TextBox fiot;
         private System.Windows.Forms.TextBox positiont;
@@ -257,7 +257,7 @@
         private System.Windows.Forms.MaskedTextBox ratet;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lrate2;
         private System.Windows.Forms.Label label9;
     }
 }

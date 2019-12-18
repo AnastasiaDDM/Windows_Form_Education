@@ -22,7 +22,7 @@ namespace Add_Type
         int count = 100;
         Branch newbranch = new Branch(); // Глобальная перменная этой формы
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
-        public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseDirector; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Branch_edit()
         {
             InitializeComponent();
@@ -52,17 +52,21 @@ namespace Add_Type
         private void buildDG() //Построение комбобоксов, гридов 
         {
             // Построение комбобокса директоров
-            Branch branch = new Branch();
-            Worker director = new Worker();
+            directorf.Items.Clear();
+
             int countrecord = 0;
 
-            List<Branch> branches = new List<Branch>();
-            branches = Branches.FindAll(deldate, branch, director, sort, asсdesс, page, count, ref countrecord);
+            Branch branch = new Branch();
+            Worker wor = new Worker();
+            wor.Type = 1;             
 
-            foreach (var s in branches)
+            List<Worker> workers = new List<Worker>();
+            workers = Workers.FindAll(true, wor, branch, sort, asсdesс, page, count, ref countrecord);
+
+            foreach (var s in workers)
             {
                 // добавляем один элемент
-                directorf.Items.Add(s.DirectorBranch + ". " + Workers.WorkerID(s.DirectorBranch).FIO);
+                directorf.Items.Add(s.ID + ". " + s.FIO);
             }
             this.directorf.SelectedIndex = 0;
         }
@@ -120,6 +124,20 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void adddirector_Click(object sender, EventArgs e)
+        {
+            // Добавление
+            Worker_edit f = new Worker_edit(1, newbranch, true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
+            DialogResult result = f.ShowDialog();
+            chooseDirector = f.chooseDir;
+            buildDG();
+            if (chooseDirector != null)
+            {
+                this.directorf.SelectedItem = chooseDirector.ID + ". " + chooseDirector.FIO;
+            }
+            //FillForm();
         }
     }
 }

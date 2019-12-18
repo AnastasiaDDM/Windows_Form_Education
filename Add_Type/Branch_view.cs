@@ -297,7 +297,21 @@ namespace Add_Type
 
         private void gridworker_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (gridworker.RowCount - 1 >= e.RowIndex)
+                    {
+                        int l = e.RowIndex;
+                        int k = Convert.ToInt32(gridworker.Rows[l].Cells[1].Value);
+                        Worker_edit f = new Worker_edit(Workers.WorkerID(k), false);
+                        DialogResult result = f.ShowDialog();
+                        FillGrid();
+                    }
+                }
+            }
         }
 
         private void gridcabinet_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -350,8 +364,8 @@ namespace Add_Type
             if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
-                int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
-                Course_view f = new Course_view(Courses.CourseID(k));
+                int k = Convert.ToInt32(gridworker.Rows[l].Cells[1].Value);
+                Worker_view f = new Worker_view(Workers.WorkerID(k));
                 DialogResult result = f.ShowDialog();
                 FillGrid();
             }
@@ -359,7 +373,10 @@ namespace Add_Type
 
         private void directort_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //DialogResult result = f.ShowDialog();
+            // Открытие формы для просмотра данных
+            Worker_view f = new Worker_view(Workers.WorkerID(branch.DirectorBranch));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
     }
 }

@@ -386,6 +386,7 @@
             this.bman.TabIndex = 32;
             this.bman.Text = "🔍";
             this.bman.UseVisualStyleBackColor = true;
+            this.bman.Click += new System.EventHandler(this.bman_Click);
             // 
             // label8
             // 

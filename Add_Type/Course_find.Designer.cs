@@ -281,6 +281,7 @@
             this.bteach.TabIndex = 35;
             this.bteach.Text = "🔍";
             this.bteach.UseVisualStyleBackColor = true;
+            this.bteach.Click += new System.EventHandler(this.bteach_Click);
             // 
             // teacherf
             // 

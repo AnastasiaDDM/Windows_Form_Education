@@ -23,6 +23,7 @@ namespace Add_Type
         Worker newworker = new Worker(); // Глобальная перменная этой формы
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public Worker chooseDir; // Эта переменная для пересылке своего значения в вызывающую форму
         public Worker_edit()
         {
             InitializeComponent();
@@ -36,6 +37,28 @@ namespace Add_Type
 
             buildDG();
         }
+
+        public Worker_edit(int type, Branch br, bool deldate) // Конструктор для добавление нового объекта с заданным типом (например, директор) 
+            // и с заданным значение филиала
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            indicator = true;
+
+            if(type == 1)
+            {
+                typef.SelectedIndex = 0;
+                typef.Enabled = false;
+                ratet.Visible = false;
+                lrate.Visible = false;
+                lrate2.Visible = false;
+                positiont.Text = "Директор";
+ //               branchf.SelectedItem =   КАК БЫТЬ С ФИЛИАЛОМ Я НЕ ЗНАЮ 
+ //  ПУСТЬ БУДЕТ ТАК, ЧТО ДИРЕКТОР ВООБЩЕ МОЖЕТ БЫТЬ ФИЛИАЛА, НО РУКОВОДИТЬ НЕСКОЛЬКИМИ ФИЛИАЛАМИ
+            }
+
+            buildDG();
+        }
         public Worker_edit(Worker worker, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
@@ -44,6 +67,12 @@ namespace Add_Type
             idforEdit = worker.ID;
 
             newworker = worker;
+            if( newworker.Type != 3)
+            {
+                ratet.Visible = false;
+                lrate.Visible = false;
+                lrate2.Visible = false;
+            }
             buildDG();
             FillForm();
         }
@@ -142,6 +171,7 @@ namespace Add_Type
             // Проверка действий
             if (indicator == true) // Значит, что происходит добавление нового
             {
+                chooseDir = newworker;
                 Answer = newworker.Add();
             }
 

@@ -27,9 +27,33 @@ namespace Add_Type
 
             worker = st;
 
+            // Эти проверки организованиы для сокрытия тех данных, которые не нужны для катрточек отдельных типов работников
+            if(worker.Type == 1)
+            {
+                timetable.Visible = false;
+                bcon.Visible = false;
+                payAll.Visible = false;
+                tabcontrol.Visible = false;
+                this.Size = new Size(580, 220);
+                close.Location = new Point(260, 140); 
+            }
+            if (worker.Type == 2)
+            {
+                timetable.Visible = false;
+                payAll.Visible = false;
+                tabcontrol.Visible = false;
+                this.Size = new Size(580, 250);
+                close.Location = new Point(260, 173);
+            }
+            if (worker.Type == 3)
+            {
+                bcon.Visible = false;
+                //Заполнение таблиц
+                buildDG();
+                FillGrid();
+            }
+
             FillForm();
-            buildDG();
-            FillGrid();
         }
         private void buildDG() //Построение грида 
         {
@@ -183,9 +207,9 @@ namespace Add_Type
             //int pages;
             int countrecord = 0;
 
-            string format = "yyyy-MM-dd HH:mm"; // Формат для отображения даты 
-
             string format2 = "HH:mm"; // Формат для отображения даты 
+
+            string format = "dd.MM.yy HH:mm"; // Формат для отображения даты 
 
             // Значимые перменные
             Pay pay = new Pay();
@@ -245,6 +269,8 @@ namespace Add_Type
             double salary; // Переменная для хранения значения оплаты
             gridpaid.Rows.Clear();
             gridunpaid.Rows.Clear();
+            int nextpaid = 0;
+            int nextunpaid = 0;
 
             List<Timetable> t = new List<Timetable>();
             t = Timetables.FindAll(deldate, branch, cabinet, teacher, course, student, date, sort, asсdesс, page, count, ref countrecord);
@@ -259,15 +285,16 @@ namespace Add_Type
 
                     gridpaid.Rows.Add(row);
 
-                    gridpaid.Rows[i].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                    gridpaid.Rows[nextpaid].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                    gridpaid.Rows[i].Cells[1].Value = t[i].ID;
+                    gridpaid.Rows[nextpaid].Cells[1].Value = t[i].ID;
 
-                    gridpaid.Rows[i].Cells[2].Value = t[i].ID + ". " + t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
+                    gridpaid.Rows[nextpaid].Cells[2].Value = /*t[i].ID + ". " + */t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
 
-                    gridpay.Rows[i].Cells[3].Value = t[i].CourseID + ". " + Courses.CourseID(t[i].CourseID).nameGroup;
+                    gridpaid.Rows[nextpaid].Cells[3].Value = t[i].CourseID + ". " + Courses.CourseID(t[i].CourseID).nameGroup;
 
-                    gridpay.Rows[i].Cells[4].Value = Courses.CourseID(t[i].CourseID).BranchID + ". " + Branches.BranchID(Courses.CourseID(t[i].CourseID).BranchID).Name;
+                    gridpaid.Rows[nextpaid].Cells[4].Value = Cabinets.CabinetID(t[i].CabinetID).BranchID + ". " + Branches.BranchID(Cabinets.CabinetID(t[i].CabinetID).BranchID).Name;
+                    nextpaid++;
                 }
                 else
                 {
@@ -275,21 +302,100 @@ namespace Add_Type
 
                     gridunpaid.Rows.Add(row);
 
-                    gridunpaid.Rows[i].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                    gridunpaid.Rows[nextunpaid].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                    gridunpaid.Rows[i].Cells[1].Value = t[i].ID;
+                    gridunpaid.Rows[nextunpaid].Cells[1].Value = t[i].ID;
 
-                    gridunpaid.Rows[i].Cells[2].Value = t[i].ID + ". " + t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
+                    gridunpaid.Rows[nextunpaid].Cells[2].Value = /*t[i].ID + ". " + */t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
 
-                    gridunpaid.Rows[i].Cells[3].Value = t[i].CourseID + ". " + Courses.CourseID(t[i].CourseID).nameGroup;
+                    gridunpaid.Rows[nextunpaid].Cells[3].Value = t[i].CourseID + ". " + Courses.CourseID(t[i].CourseID).nameGroup;
 
-                    gridunpaid.Rows[i].Cells[4].Value = Courses.CourseID(t[i].CourseID).BranchID + ". " + Branches.BranchID(Courses.CourseID(t[i].CourseID).BranchID).Name;
 
-                    gridunpaid.Rows[i].Cells[5].Value = salary;
+                    gridunpaid.Rows[nextunpaid].Cells[4].Value = Cabinets.CabinetID(t[i].CabinetID).BranchID + ". " + Branches.BranchID(Cabinets.CabinetID(t[i].CabinetID).BranchID).Name;
 
-                    gridunpaid.Rows[i].Cells[6].Value = "Оплатить";
+                    gridunpaid.Rows[nextunpaid].Cells[5].Value = salary;
+
+                    gridunpaid.Rows[nextunpaid].Cells[6].Value = "Оплатить";
+                    nextunpaid++;
                 }
             }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Worker_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void gridunpaid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Добавление оплаты
+            if (e.ColumnIndex == 6)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (gridunpaid.RowCount - 1 >= e.RowIndex)
+                    {
+                        int l = e.RowIndex;
+                        int k = Convert.ToInt32(gridunpaid.Rows[l].Cells[1].Value);
+                        Timetable timetable = Timetables.TimetableID(k); 
+
+                        Pay_edit f = new Pay_edit(worker, timetable, Convert.ToDouble(gridunpaid.Rows[l].Cells[5].Value)); // передаем преподавателя, занятие и долг - чтобы сделать это значение максимальным
+                        DialogResult result = f.ShowDialog();
+                        FillForm();
+                        FillGrid();                   
+                    }
+                }
+            }
+            
+        }
+
+        private void gridpay_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (gridpay.RowCount - 1 >= e.RowIndex)
+                    {
+                        int l = e.RowIndex;
+                        int k = Convert.ToInt32(gridpay.Rows[l].Cells[1].Value);
+                        Pay_edit f = new Pay_edit(Pays.PayID(k));
+                        DialogResult result = f.ShowDialog();
+                        FillGrid();
+                    }
+                }
+            }
+        }
+
+        private void bcon_Click(object sender, EventArgs e)
+        {
+            Contract_find f = new Contract_find(worker); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            //chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void timetable_Click(object sender, EventArgs e)
+        {
+            Timetable_find f = new Timetable_find(worker);
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void brancht_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Branch_view f = new Branch_view(Branches.BranchID(Convert.ToInt32(worker.BranchID)));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
     }
 }

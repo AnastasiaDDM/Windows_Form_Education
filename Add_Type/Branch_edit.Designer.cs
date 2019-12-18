@@ -120,6 +120,7 @@
             this.adddirector.TabIndex = 8;
             this.adddirector.Text = "➕";
             this.adddirector.UseVisualStyleBackColor = true;
+            this.adddirector.Click += new System.EventHandler(this.adddirector_Click);
             // 
             // label4
             // 

@@ -57,6 +57,7 @@ namespace Add_Type
             bcour.Enabled = false;
             buildDG();
             courset.Text = course.ID + ". " + Courses.CourseID(course.ID).nameGroup;
+            costt.Text = Types.TypeID(course.TypeID).Cost.ToString(); // Подстановка стоимости из типа курса
         }
         public Contract_edit(Student student, bool deldate) // Конструктор для добавления договора уже для заданного ученика
         {
@@ -177,8 +178,20 @@ namespace Add_Type
             {
                 chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
                 courset.Text = chooseCourse.ID + ". " + Courses.CourseID(chooseCourse.ID).nameGroup;
+                if(costt.Text == "") // Подстановка стоимости из типа курса, если это поле пустое
+                {
+                    costt.Text = Types.TypeID(chooseCourse.TypeID).Cost.ToString();
+                }            
             }
             //FillGrid();
+        }
+
+        private void Contract_edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -84,8 +84,9 @@ namespace Add_Type
 
         public string Сheck(Pay st)
         {
-            if (st.Payment <=0)
-            { return "Введите неотрицательную оплату"; }
+            //if (st.Payment <=0)
+            //{ return "Введите неотрицательную оплату"; }
+
             //if (st.Phone == "")
             //{ return "Введите номер телефона ученика. Это поле не может быть пустым"; }
             //using (SampleContext context = new SampleContext())

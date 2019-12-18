@@ -58,14 +58,15 @@ namespace Add_Type
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            Application.Run(new Worker_find());
-            //        Application.Run(new Branch_find());
+            //Application.Run(new Worker_find());
+            //Application.Run(new Branch_find());
             //Application.Run(new Course_find());
-            //                      Application.Run(new Contract_find());
-            //            Application.Run(new Parent_find());
-            //                      Application.Run(new Student_find());
+            //Application.Run(new Contract_find());
+            Application.Run(new Timetable_find());
+            //Application.Run(new Parent_find());
+            //Application.Run(new Student_find());
             //Application.Run(new Pay_find());
-            //          Application.Run(new Type_find());
+            //Application.Run(new Type_find());
         }
     }
 }

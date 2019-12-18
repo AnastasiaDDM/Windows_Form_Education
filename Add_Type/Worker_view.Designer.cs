@@ -46,14 +46,14 @@
             this.passwordt = new System.Windows.Forms.Label();
             this.brancht = new System.Windows.Forms.LinkLabel();
             this.payAll = new System.Windows.Forms.Button();
-            this.gri = new System.Windows.Forms.TabControl();
+            this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gridpaid = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gridunpaid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gridpay = new System.Windows.Forms.DataGridView();
-            this.gri.SuspendLayout();
+            this.tabcontrol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridpaid)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -70,6 +70,7 @@
             this.timetable.TabIndex = 36;
             this.timetable.Text = "Расписание\r\n преподавателя";
             this.timetable.UseVisualStyleBackColor = true;
+            this.timetable.Click += new System.EventHandler(this.timetable_Click);
             // 
             // bcon
             // 
@@ -79,6 +80,7 @@
             this.bcon.TabIndex = 35;
             this.bcon.Text = "Договоры\r\n менеджера";
             this.bcon.UseVisualStyleBackColor = true;
+            this.bcon.Click += new System.EventHandler(this.bcon_Click);
             // 
             // close
             // 
@@ -88,6 +90,7 @@
             this.close.TabIndex = 34;
             this.close.Text = "Закрыть";
             this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // label7
             // 
@@ -215,6 +218,7 @@
             this.brancht.TabIndex = 47;
             this.brancht.TabStop = true;
             this.brancht.Text = "linkLabel1";
+            this.brancht.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.brancht_LinkClicked);
             // 
             // payAll
             // 
@@ -225,16 +229,16 @@
             this.payAll.Text = "Заплатить за все";
             this.payAll.UseVisualStyleBackColor = true;
             // 
-            // gri
+            // tabcontrol
             // 
-            this.gri.Controls.Add(this.tabPage1);
-            this.gri.Controls.Add(this.tabPage2);
-            this.gri.Controls.Add(this.tabPage3);
-            this.gri.Location = new System.Drawing.Point(12, 255);
-            this.gri.Name = "gri";
-            this.gri.SelectedIndex = 0;
-            this.gri.Size = new System.Drawing.Size(789, 411);
-            this.gri.TabIndex = 51;
+            this.tabcontrol.Controls.Add(this.tabPage1);
+            this.tabcontrol.Controls.Add(this.tabPage2);
+            this.tabcontrol.Controls.Add(this.tabPage3);
+            this.tabcontrol.Location = new System.Drawing.Point(12, 255);
+            this.tabcontrol.Name = "tabcontrol";
+            this.tabcontrol.SelectedIndex = 0;
+            this.tabcontrol.Size = new System.Drawing.Size(789, 411);
+            this.tabcontrol.TabIndex = 51;
             // 
             // tabPage1
             // 
@@ -281,6 +285,7 @@
             this.gridunpaid.RowTemplate.Height = 24;
             this.gridunpaid.Size = new System.Drawing.Size(769, 370);
             this.gridunpaid.TabIndex = 0;
+            this.gridunpaid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridunpaid_CellContentClick);
             // 
             // tabPage3
             // 
@@ -303,13 +308,14 @@
             this.gridpay.RowTemplate.Height = 24;
             this.gridpay.Size = new System.Drawing.Size(775, 376);
             this.gridpay.TabIndex = 0;
+            this.gridpay.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridpay_CellContentClick);
             // 
             // Worker_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 734);
-            this.Controls.Add(this.gri);
+            this.Controls.Add(this.tabcontrol);
             this.Controls.Add(this.payAll);
             this.Controls.Add(this.brancht);
             this.Controls.Add(this.passwordt);
@@ -330,7 +336,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Worker_view";
             this.Text = "Работник №";
-            this.gri.ResumeLayout(false);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Worker_view_KeyDown);
+            this.tabcontrol.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridpaid)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -362,7 +369,7 @@
         private System.Windows.Forms.Label passwordt;
         private System.Windows.Forms.LinkLabel brancht;
         private System.Windows.Forms.Button payAll;
-        private System.Windows.Forms.TabControl gri;
+        private System.Windows.Forms.TabControl tabcontrol;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridpaid;
         private System.Windows.Forms.TabPage tabPage2;

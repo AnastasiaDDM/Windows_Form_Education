@@ -24,6 +24,7 @@ namespace Add_Type
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
         public Worker chooseWor; // Эта переменная для пересылке своего значения в вызывающую форму
+        int typeworker = 0; // Тип должности, для отображения только необходимого типа работников
         public Worker_find()
         {
             InitializeComponent();
@@ -35,6 +36,16 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             purpose = answer;
+
+            LoadAll();
+        }
+
+        public Worker_find(String answer, int type) // type -  тип должности, для отображения только необходимого типа работников
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            purpose = answer;
+            typeworker = type;
 
             LoadAll();
         }
@@ -99,7 +110,13 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
             this.sortf.SelectedIndex = 0;
-            this.typef.SelectedIndex = 0;
+            //if(typeworker != 0)
+            //{
+
+            //}
+            //typef.SelectedIndex = 2;
+            //this.typef.SelectedIndex = 0;
+            this.typef.SelectedIndex = typeworker;
 
             // Построение комбобокса филиалов
             Branch branch = new Branch();
@@ -425,6 +442,14 @@ namespace Add_Type
                         }
                     }
                 }
+            }
+        }
+
+        private void Worker_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
     }
