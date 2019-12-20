@@ -122,19 +122,6 @@ namespace Add_Type
             count = this.countf.SelectedItem == null ? 10 : Convert.ToInt32(this.countf.SelectedItem);
             page = this.pagef.SelectedItem == null ? 1 : Convert.ToInt32(this.pagef.SelectedItem);
 
-
-            sortf.Items.Add("№ филиала");
-            DataGridViewTextBoxColumn name = new DataGridViewTextBoxColumn();
-            name.HeaderText = "Наименование";
-            sortf.Items.Add("Наименование");
-            DataGridViewTextBoxColumn address = new DataGridViewTextBoxColumn();
-            address.HeaderText = "Адрес";
-            sortf.Items.Add("Адрес");
-            DataGridViewTextBoxColumn dir = new DataGridViewTextBoxColumn();
-            dir.HeaderText = "Директор";
-            sortf.Items.Add("Директор");
-
-
             if (this.sortf.SelectedItem != null)
             {
                 if (this.sortf.SelectedItem.ToString() == "№ филиала")

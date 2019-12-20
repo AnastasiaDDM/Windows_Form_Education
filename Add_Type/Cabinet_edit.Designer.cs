@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numbert = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.branchf = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.capacityf = new System.Windows.Forms.NumericUpDown();
+            this.save = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.capacityf)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -48,13 +52,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Номер кабинета";
             // 
-            // textBox1
+            // numbert
             // 
-            this.textBox1.Location = new System.Drawing.Point(148, 45);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(387, 50);
-            this.textBox1.TabIndex = 1;
+            this.numbert.Location = new System.Drawing.Point(148, 45);
+            this.numbert.Multiline = true;
+            this.numbert.Name = "numbert";
+            this.numbert.Size = new System.Drawing.Size(387, 50);
+            this.numbert.TabIndex = 1;
             // 
             // label2
             // 
@@ -65,64 +69,81 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Филиал";
             // 
-            // comboBox1
+            // branchf
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(148, 101);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(387, 24);
-            this.comboBox1.TabIndex = 3;
+            this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.branchf.FormattingEnabled = true;
+            this.branchf.Location = new System.Drawing.Point(148, 101);
+            this.branchf.Name = "branchf";
+            this.branchf.Size = new System.Drawing.Size(387, 24);
+            this.branchf.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 151);
+            this.label3.Location = new System.Drawing.Point(12, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Вместимость";
             // 
-            // numericUpDown1
+            // capacityf
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(148, 151);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(82, 22);
-            this.numericUpDown1.TabIndex = 5;
+            this.capacityf.Location = new System.Drawing.Point(148, 138);
+            this.capacityf.Name = "capacityf";
+            this.capacityf.Size = new System.Drawing.Size(82, 22);
+            this.capacityf.TabIndex = 5;
             // 
-            // button1
+            // save
             // 
-            this.button1.Location = new System.Drawing.Point(428, 190);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 39);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.save.Location = new System.Drawing.Point(428, 213);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(115, 39);
+            this.save.TabIndex = 6;
+            this.save.Text = "Сохранить";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
-            // button2
+            // cancel
             // 
-            this.button2.Location = new System.Drawing.Point(12, 190);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 39);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Отменить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancel.Location = new System.Drawing.Point(12, 213);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(115, 39);
+            this.cancel.TabIndex = 7;
+            this.cancel.Text = "Отменить";
+            this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 184);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 17);
+            this.label4.TabIndex = 8;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // Cabinet_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 245);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown1);
+            this.ClientSize = new System.Drawing.Size(553, 264);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.save);
+            this.Controls.Add(this.capacityf);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.branchf);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.numbert);
             this.Controls.Add(this.label1);
             this.Name = "Cabinet_edit";
             this.Text = "Редактирование кабинета №";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.capacityf)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,12 +152,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox numbert;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox branchf;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.NumericUpDown capacityf;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

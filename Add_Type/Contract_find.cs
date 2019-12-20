@@ -127,6 +127,9 @@ namespace Add_Type
             deldatef.Checked = true;
             this.sortf.SelectedIndex = 0;
 
+            datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
+            dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
+
             // Построение комбобокса филиалов
             Branch branch = new Branch();
             Worker director = new Worker();
@@ -237,7 +240,7 @@ namespace Add_Type
             }
 
 
-                int min = this.costfrom.Text == "" ? 0 : Convert.ToInt32(this.costfrom.Text);
+            int min = this.costfrom.Text == "" ? 0 : Convert.ToInt32(this.costfrom.Text);
             int max = this.costto.Text == "" ? 0 : Convert.ToInt32(this.costto.Text);
 
             List<Contract> contracts = new List<Contract>();

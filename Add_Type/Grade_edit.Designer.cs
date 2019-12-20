@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.D = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.add = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 116);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(632, 457);
-            this.dataGridView1.TabIndex = 0;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(12, 116);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(632, 457);
+            this.D.TabIndex = 0;
             // 
             // label1
             // 
@@ -66,23 +66,23 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Преподаватель";
             // 
-            // button1
+            // save
             // 
-            this.button1.Location = new System.Drawing.Point(521, 645);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 41);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.save.Location = new System.Drawing.Point(521, 645);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(123, 41);
+            this.save.TabIndex = 3;
+            this.save.Text = "Сохранить";
+            this.save.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // cancel
             // 
-            this.button2.Location = new System.Drawing.Point(12, 645);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 41);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Отменить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancel.Location = new System.Drawing.Point(12, 645);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(123, 41);
+            this.cancel.TabIndex = 4;
+            this.cancel.Text = "Отменить";
+            this.cancel.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -102,31 +102,31 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Дата";
             // 
-            // button3
+            // add
             // 
-            this.button3.Location = new System.Drawing.Point(502, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 44);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Добавить еще оценку";
-            this.button3.UseVisualStyleBackColor = true;
+            this.add.Location = new System.Drawing.Point(502, 66);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(142, 44);
+            this.add.TabIndex = 7;
+            this.add.Text = "Добавить еще оценку";
+            this.add.UseVisualStyleBackColor = true;
             // 
             // Grade_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 694);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.add);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.save);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.D);
             this.Name = "Grade_edit";
             this.Text = "Редактирование успеваемости";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,13 +134,13 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView D;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button add;
     }
 }

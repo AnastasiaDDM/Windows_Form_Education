@@ -12,15 +12,219 @@ namespace Add_Type
 {
     public partial class Visit_find : Form
     {
+        Boolean deldate; // true - неудален false - все!!!
+        String sort = "ID";
+        String asсdesс = "asc";
+        bool ascflag = true;
+        int page = 1;
+        int count = 100;
+        int pageindex;
+        int pages;
+        string purpose;
+        public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Theme chooseTheme; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public Contract chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
         public Visit_find()
         {
             InitializeComponent();
             this.KeyPreview = true;
+            LoadAll();
+        }
+        public Visit_find(String answer/*, string button*/)
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            purpose = answer;
+            //if (button == "bstud") // Блокировка поиска по ученикам
+            //{
+            //    bstud.Enabled = false;
+            //}
+            LoadAll();
+        }
+        private void LoadAll()
+        {
+            buildDG();
+            FillGrid();
+        }
+        private void buildDG() //Построение грида 
+        {
+            D.Columns.Clear();
+            D.Rows.Clear();
+
+            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
+            id.HeaderText = "№ ";
+            sortf.Items.Add("№ присутствия");
+            DataGridViewTextBoxColumn date = new DataGridViewTextBoxColumn();
+            date.HeaderText = "Дата";
+            sortf.Items.Add("Дата");
+            DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
+            st.HeaderText = "№ ученика";
+            sortf.Items.Add("№ ученика");
+            DataGridViewTextBoxColumn time = new DataGridViewTextBoxColumn();
+            time.HeaderText = "Занятие";
+            sortf.Items.Add("Занятие");
+            DataGridViewTextBoxColumn vis = new DataGridViewTextBoxColumn();
+            vis.HeaderText = "Присутствие";
+            sortf.Items.Add("Присутствие");
+
+            D.Columns.Add(edit);
+            D.Columns.Add(id);
+            D.Columns.Add(date);
+            D.Columns.Add(st);
+            D.Columns.Add(time);
+            D.Columns.Add(vis);
+
+            if (purpose == "choose")
+            {
+                DataGridViewButtonColumn choose = new DataGridViewButtonColumn();
+                choose.HeaderText = "Выбрать";
+                D.Columns.Add(choose);
+            }
+            else
+            {
+                DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
+                remove.HeaderText = "Удалить?";
+                D.Columns.Add(remove);
+            }
+
+            D.ReadOnly = true;
+
+            // Установление начальных значений на элементах формы
+            this.countf.SelectedItem = "10";
+            pagef.Items.Add(1);
+            this.pagef.SelectedIndex = 0;
+            pageindex = pagef.SelectedIndex;
+            deldatef.Checked = true;
+            this.sortf.SelectedIndex = 0;
+
+            this.visitf.SelectedIndex = 0;
+
+            datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
+            dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);   
         }
 
-        private void label13_Click(object sender, EventArgs e)
+        private void FillGrid() // Заполняем гриды
         {
+            D.Rows.Clear();
+            // Служебные переменные, связанные с выбором страниц, количества, сортировки
+            int countrecord = 0;
+            deldate = this.deldatef.Checked;
+            asсdesс = ascflag == true ? "asc" : "desc";
+            count = this.countf.SelectedItem == null ? 10 : Convert.ToInt32(this.countf.SelectedItem);
+            page = this.pagef.SelectedItem == null ? 1 : Convert.ToInt32(this.pagef.SelectedItem);
 
+            if (this.sortf.SelectedItem != null)
+            {
+                if (this.sortf.SelectedItem.ToString() == "№ присутствия")
+                {
+                    sort = "ID";
+                }
+                if (this.sortf.SelectedItem.ToString() == "№ ученика")
+                {
+                    sort = "StudentID";
+                }
+                if (this.sortf.SelectedItem.ToString() == "Занятие")
+                {
+                    sort = "TimetableID";
+                }
+                if (this.sortf.SelectedItem.ToString() == "Присутствие")
+                {
+                    sort = "Vis";
+                }
+            }
+
+            // Смысловые переменные, отражающие основные параметры поиска
+            DateTime mindate = datefrom.Value;
+            DateTime maxdate = dateto.Value;
+
+            Visit vis = new Visit();
+            if (visitf.SelectedItem != null)
+            {
+                if (visitf.SelectedIndex == 0)
+                {
+                    vis.ID = 0;
+                }
+                if (visitf.SelectedIndex == 1)
+                {
+                    vis.ID = 2; // Присутствие
+                }
+                if (visitf.SelectedIndex == 2)
+                {
+                    vis.ID = 1; // Отсутствие
+                }
+            }
+
+            Theme theme = new Theme();
+            if (chooseTheme != null)
+            {
+                themef.Text = chooseTheme.ID + ". " + chooseTheme.Tema;
+                theme = chooseTheme;
+            }
+
+            Student student = new Student();
+            if (chooseStudent != null)
+            {
+                studentf.Text = chooseStudent.ID + ". " + chooseStudent.FIO;
+                student = Students.StudentID(chooseStudent.ID);
+            }
+            Course course = new Course();
+            if (chooseCourse != null)
+            {
+                coursef.Text = chooseCourse.ID + ". " + chooseCourse.nameGroup;
+                course = Courses.CourseID(chooseCourse.ID);
+            }
+
+            List<Visit> visits = new List<Visit>();
+            visits = Visits.FindAll(deldate, vis, theme, course, student, mindate, maxdate, sort, asсdesс, page, count, ref countrecord);
+            pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
+
+            // Формирование количества страниц
+            pagef.Items.Clear();
+            pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
+            for (int p = 1; p <= pages; p++)
+            {
+                // добавляем один элемент
+                pagef.Items.Add(p);
+            }
+            this.pagef.SelectedItem = page; // Выбираем текущую страницу поиска
+
+            // Заполнение грида данными
+            for (int i = 0; i < visits.Count; i++)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+
+                D.Rows.Add(row);
+
+                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+
+                D.Rows[i].Cells[1].Value = visits[i].ID;
+
+                D.Rows[i].Cells[2].Value = Timetables.TimetableID(visits[i].TimetableID).Startlesson;
+
+                D.Rows[i].Cells[3].Value = visits[i].StudentID + ". " + Students.StudentID(visits[i].StudentID).FIO;
+
+                D.Rows[i].Cells[4].Value = visits[i].TimetableID + ". " + Timetables.TimetableID(visits[i].TimetableID).Startlesson;
+
+                if(visits[i].Vis == 1)
+                {
+                    D.Rows[i].Cells[5].Value = "Отсутствует";
+                }
+                if (visits[i].Vis == 2)
+                {
+                    D.Rows[i].Cells[5].Value = "Присутствует";
+                }
+
+                if (purpose == "choose")
+                {
+                    D.Rows[i].Cells[6].Value = "Выбрать";
+                }
+                else
+                { 
+                    D.Rows[i].Cells[6].Value = "Удалить";
+                }
+            }
         }
     }
 }

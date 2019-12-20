@@ -12,10 +12,35 @@ namespace Add_Type
 {
     public partial class Cabinet_view : Form
     {
+        public Cabinet cabinet;   // Глобальная переменная объявляет объект данной формы
         public Cabinet_view()
         {
             InitializeComponent();
             this.KeyPreview = true;
+        }
+        public Cabinet_view(Cabinet st) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+
+            cabinet = st;
+
+            FillForm();
+        }
+        private void FillForm()
+        {   // Заполнение формы известными данными о филиале
+            this.Text = this.Text + cabinet.ID;
+            numbert.Text = cabinet.Number;
+            capacityt.Text = cabinet.Capacity.ToString();
+            brancht.Text = cabinet.BranchID + ". " + Branches.BranchID(cabinet.BranchID).Name;
+        }
+
+        private void brancht_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Branch_view f = new Branch_view(Branches.BranchID(Convert.ToInt32(cabinet.BranchID)));
+            DialogResult result = f.ShowDialog();
+            FillForm();
         }
     }
 }

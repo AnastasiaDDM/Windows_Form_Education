@@ -29,50 +29,50 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dateto = new System.Windows.Forms.DateTimePicker();
+            this.namet = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.datefrom = new System.Windows.Forms.DateTimePicker();
+            this.coursef = new System.Windows.Forms.TextBox();
+            this.bcour = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ascf = new System.Windows.Forms.Button();
+            this.reset = new System.Windows.Forms.Button();
+            this.sortf = new System.Windows.Forms.ComboBox();
+            this.find = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.deldatef = new System.Windows.Forms.CheckBox();
+            this.D = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.countf = new System.Windows.Forms.ComboBox();
+            this.prev = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
+            this.pagef = new System.Windows.Forms.ComboBox();
+            this.add = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.dateto);
+            this.groupBox1.Controls.Add(this.namet);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.button8);
+            this.groupBox1.Controls.Add(this.datefrom);
+            this.groupBox1.Controls.Add(this.coursef);
+            this.groupBox1.Controls.Add(this.bcour);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.ascf);
+            this.groupBox1.Controls.Add(this.reset);
+            this.groupBox1.Controls.Add(this.sortf);
+            this.groupBox1.Controls.Add(this.find);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.deldatef);
             this.groupBox1.Location = new System.Drawing.Point(2, -3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(938, 70);
@@ -80,20 +80,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
             // 
-            // dateTimePicker2
+            // dateto
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(275, 16);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(165, 22);
-            this.dateTimePicker2.TabIndex = 47;
+            this.dateto.Location = new System.Drawing.Point(275, 16);
+            this.dateto.Name = "dateto";
+            this.dateto.Size = new System.Drawing.Size(165, 22);
+            this.dateto.TabIndex = 47;
             // 
-            // textBox1
+            // namet
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 41);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 20);
-            this.textBox1.TabIndex = 9;
+            this.namet.Location = new System.Drawing.Point(129, 45);
+            this.namet.Multiline = true;
+            this.namet.Name = "namet";
+            this.namet.Size = new System.Drawing.Size(190, 20);
+            this.namet.TabIndex = 9;
             // 
             // label13
             // 
@@ -107,35 +107,37 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 44);
+            this.label3.Location = new System.Drawing.Point(6, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 17);
             this.label3.TabIndex = 8;
             this.label3.Text = "Название темы";
             // 
-            // dateTimePicker1
+            // datefrom
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(67, 17);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(172, 22);
-            this.dateTimePicker1.TabIndex = 46;
+            this.datefrom.Location = new System.Drawing.Point(67, 17);
+            this.datefrom.Name = "datefrom";
+            this.datefrom.Size = new System.Drawing.Size(172, 22);
+            this.datefrom.TabIndex = 46;
             // 
-            // textBox4
+            // coursef
             // 
-            this.textBox4.Location = new System.Drawing.Point(491, 15);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(161, 20);
-            this.textBox4.TabIndex = 42;
+            this.coursef.Location = new System.Drawing.Point(491, 15);
+            this.coursef.Multiline = true;
+            this.coursef.Name = "coursef";
+            this.coursef.ReadOnly = true;
+            this.coursef.Size = new System.Drawing.Size(161, 20);
+            this.coursef.TabIndex = 42;
             // 
-            // button8
+            // bcour
             // 
-            this.button8.Location = new System.Drawing.Point(653, 14);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(23, 23);
-            this.button8.TabIndex = 43;
-            this.button8.Text = "🔍";
-            this.button8.UseVisualStyleBackColor = true;
+            this.bcour.Location = new System.Drawing.Point(653, 14);
+            this.bcour.Name = "bcour";
+            this.bcour.Size = new System.Drawing.Size(23, 23);
+            this.bcour.TabIndex = 43;
+            this.bcour.Text = "🔍";
+            this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // label12
             // 
@@ -154,42 +156,44 @@
             this.label9.Size = new System.Drawing.Size(39, 17);
             this.label9.TabIndex = 41;
             this.label9.Text = "Курс";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // button9
+            // ascf
             // 
-            this.button9.Location = new System.Drawing.Point(654, 44);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(42, 23);
-            this.button9.TabIndex = 40;
-            this.button9.Text = "А-Я";
-            this.button9.UseVisualStyleBackColor = true;
+            this.ascf.Location = new System.Drawing.Point(654, 44);
+            this.ascf.Name = "ascf";
+            this.ascf.Size = new System.Drawing.Size(42, 23);
+            this.ascf.TabIndex = 40;
+            this.ascf.Text = "А-Я";
+            this.ascf.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // reset
             // 
-            this.button4.Location = new System.Drawing.Point(702, 42);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 24);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Сбросить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.reset.Location = new System.Drawing.Point(702, 42);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(86, 24);
+            this.reset.TabIndex = 12;
+            this.reset.Text = "Сбросить";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
-            // comboBox4
+            // sortf
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(472, 42);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(180, 24);
-            this.comboBox4.TabIndex = 12;
+            this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sortf.FormattingEnabled = true;
+            this.sortf.Location = new System.Drawing.Point(472, 42);
+            this.sortf.Name = "sortf";
+            this.sortf.Size = new System.Drawing.Size(180, 24);
+            this.sortf.TabIndex = 12;
             // 
-            // button3
+            // find
             // 
-            this.button3.Location = new System.Drawing.Point(805, 25);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(127, 36);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Поиск";
-            this.button3.UseVisualStyleBackColor = true;
+            this.find.Location = new System.Drawing.Point(805, 25);
+            this.find.Name = "find";
+            this.find.Size = new System.Drawing.Size(127, 36);
+            this.find.TabIndex = 11;
+            this.find.Text = "Поиск";
+            this.find.UseVisualStyleBackColor = true;
+            this.find.Click += new System.EventHandler(this.find_Click);
             // 
             // label7
             // 
@@ -200,24 +204,29 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Сортировать по ";
             // 
-            // checkBox1
+            // deldatef
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(687, 5);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(251, 21);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Показывать только неудаленные";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.deldatef.AutoSize = true;
+            this.deldatef.Location = new System.Drawing.Point(687, 5);
+            this.deldatef.Name = "deldatef";
+            this.deldatef.Size = new System.Drawing.Size(251, 21);
+            this.deldatef.TabIndex = 10;
+            this.deldatef.Text = "Показывать только неудаленные";
+            this.deldatef.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 73);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(921, 446);
-            this.dataGridView1.TabIndex = 12;
+            this.D.AllowUserToAddRows = false;
+            this.D.AllowUserToDeleteRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(11, 73);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(921, 446);
+            this.D.TabIndex = 12;
+            this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // label2
             // 
@@ -237,68 +246,80 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "Показывать";
             // 
-            // comboBox2
+            // countf
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(722, 606);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(106, 24);
-            this.comboBox2.TabIndex = 48;
+            this.countf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.countf.FormattingEnabled = true;
+            this.countf.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "30"});
+            this.countf.Location = new System.Drawing.Point(722, 606);
+            this.countf.Name = "countf";
+            this.countf.Size = new System.Drawing.Size(106, 24);
+            this.countf.TabIndex = 48;
+            this.countf.SelectionChangeCommitted += new System.EventHandler(this.countf_SelectionChangeCommitted);
             // 
-            // button5
+            // prev
             // 
-            this.button5.Location = new System.Drawing.Point(298, 602);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(106, 32);
-            this.button5.TabIndex = 47;
-            this.button5.Text = "◀ Назад";
-            this.button5.UseVisualStyleBackColor = true;
+            this.prev.Location = new System.Drawing.Point(298, 602);
+            this.prev.Name = "prev";
+            this.prev.Size = new System.Drawing.Size(106, 32);
+            this.prev.TabIndex = 47;
+            this.prev.Text = "◀ Назад";
+            this.prev.UseVisualStyleBackColor = true;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
             // 
-            // button7
+            // next
             // 
-            this.button7.Location = new System.Drawing.Point(493, 602);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(106, 32);
-            this.button7.TabIndex = 46;
-            this.button7.Text = "Вперед ▶";
-            this.button7.UseVisualStyleBackColor = true;
+            this.next.Location = new System.Drawing.Point(493, 602);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(106, 32);
+            this.next.TabIndex = 46;
+            this.next.Text = "Вперед ▶";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
-            // comboBox3
+            // pagef
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(410, 607);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(77, 24);
-            this.comboBox3.TabIndex = 45;
+            this.pagef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pagef.FormattingEnabled = true;
+            this.pagef.Location = new System.Drawing.Point(410, 607);
+            this.pagef.Name = "pagef";
+            this.pagef.Size = new System.Drawing.Size(77, 24);
+            this.pagef.TabIndex = 45;
+            this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
             // 
-            // button1
+            // add
             // 
-            this.button1.Location = new System.Drawing.Point(12, 525);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 27);
-            this.button1.TabIndex = 51;
-            this.button1.Text = "Добавить тему";
-            this.button1.UseVisualStyleBackColor = true;
+            this.add.Location = new System.Drawing.Point(12, 525);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(147, 27);
+            this.add.TabIndex = 51;
+            this.add.Text = "Добавить тему";
+            this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // Theme_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 643);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.add);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.countf);
+            this.Controls.Add(this.prev);
+            this.Controls.Add(this.next);
+            this.Controls.Add(this.pagef);
+            this.Controls.Add(this.D);
             this.Controls.Add(this.groupBox1);
             this.Name = "Theme_find";
             this.Text = "Список тем";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,28 +328,28 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ascf;
+        private System.Windows.Forms.Button reset;
+        private System.Windows.Forms.ComboBox sortf;
+        private System.Windows.Forms.Button find;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox deldatef;
+        private System.Windows.Forms.TextBox namet;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button bcour;
+        private System.Windows.Forms.TextBox coursef;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateto;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datefrom;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView D;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox countf;
+        private System.Windows.Forms.Button prev;
+        private System.Windows.Forms.Button next;
+        private System.Windows.Forms.ComboBox pagef;
+        private System.Windows.Forms.Button add;
     }
 }

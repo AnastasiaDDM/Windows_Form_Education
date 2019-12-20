@@ -48,19 +48,19 @@
             this.find = new System.Windows.Forms.Button();
             this.reset = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
+            this.bcour = new System.Windows.Forms.Button();
             this.coursef = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.bwor = new System.Windows.Forms.Button();
             this.studentf = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.bstud = new System.Windows.Forms.Button();
             this.teacherf = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.add = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.datef = new System.Windows.Forms.DateTimePicker();
             this.countimetables = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -199,14 +199,14 @@
             this.groupBox1.Controls.Add(this.find);
             this.groupBox1.Controls.Add(this.reset);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.button8);
+            this.groupBox1.Controls.Add(this.bcour);
             this.groupBox1.Controls.Add(this.coursef);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.bwor);
             this.groupBox1.Controls.Add(this.studentf);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.bstud);
             this.groupBox1.Controls.Add(this.teacherf);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(4, -1);
@@ -250,6 +250,7 @@
             this.reset.TabIndex = 51;
             this.reset.Text = "Сбросить";
             this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
             // label6
             // 
@@ -260,14 +261,15 @@
             this.label6.TabIndex = 48;
             this.label6.Text = "Кабинет";
             // 
-            // button8
+            // bcour
             // 
-            this.button8.Location = new System.Drawing.Point(523, 41);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(23, 23);
-            this.button8.TabIndex = 46;
-            this.button8.Text = "🔍";
-            this.button8.UseVisualStyleBackColor = true;
+            this.bcour.Location = new System.Drawing.Point(523, 41);
+            this.bcour.Name = "bcour";
+            this.bcour.Size = new System.Drawing.Size(23, 23);
+            this.bcour.TabIndex = 46;
+            this.bcour.Text = "🔍";
+            this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // coursef
             // 
@@ -322,14 +324,15 @@
             this.label8.TabIndex = 43;
             this.label8.Text = "Филиал";
             // 
-            // button5
+            // bstud
             // 
-            this.button5.Location = new System.Drawing.Point(789, 13);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
-            this.button5.TabIndex = 40;
-            this.button5.Text = "🔍";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bstud.Location = new System.Drawing.Point(789, 13);
+            this.bstud.Name = "bstud";
+            this.bstud.Size = new System.Drawing.Size(23, 23);
+            this.bstud.TabIndex = 40;
+            this.bstud.Text = "🔍";
+            this.bstud.UseVisualStyleBackColor = true;
+            this.bstud.Click += new System.EventHandler(this.bstud_Click);
             // 
             // teacherf
             // 
@@ -366,12 +369,12 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Посмотреть конкретную дату";
             // 
-            // dateTimePicker1
+            // datef
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 110);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 11;
+            this.datef.Location = new System.Drawing.Point(12, 110);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(200, 22);
+            this.datef.TabIndex = 11;
             // 
             // countimetables
             // 
@@ -388,7 +391,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 724);
             this.Controls.Add(this.countimetables);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.datef);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.add);
             this.Controls.Add(this.groupBox1);
@@ -418,13 +421,13 @@
         private System.Windows.Forms.Label sundayt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button bcour;
         private System.Windows.Forms.TextBox coursef;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button bwor;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox teacherf;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button bstud;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox studentf;
         private System.Windows.Forms.Label label2;
@@ -433,7 +436,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datef;
         private System.Windows.Forms.Label countimetables;
         private System.Windows.Forms.ComboBox cabinetf;
         private System.Windows.Forms.ComboBox branchf;

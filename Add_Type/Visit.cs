@@ -121,7 +121,7 @@ namespace Add_Type
                     query = query.Where(x => x.Deldate == null);
                 }
 
-                if (visit.ID != 0)
+                if (visit.Vis != 0)
                 {
                     query = query.Where(x => x.Vis == visit.Vis);
                 }

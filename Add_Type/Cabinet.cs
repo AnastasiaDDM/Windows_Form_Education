@@ -37,7 +37,7 @@ namespace Add_Type
                 {
                     context.Cabinets.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление кабинета прошло успешно";
+ //                   answer = "Добавление кабинета прошло успешно";
                 }
                 return answer;
             }
@@ -67,7 +67,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование кабинета прошло успешно";
+ //                   answer = "Редактирование кабинета прошло успешно";
                 }
                 return answer;
             }
@@ -124,7 +124,7 @@ namespace Add_Type
         }
 
 
-        public static List<Cabinet> getFree()
+        public static List<Cabinet> getFree(ref int countrecord)
         {
             List<Cabinet> free = new List<Cabinet>(); // Лист свободных 
             using (SampleContext context = new SampleContext())
@@ -185,6 +185,8 @@ namespace Add_Type
                     Deldate = key.Deldate
                 }).Distinct();
 
+                countrecord = freecab.GroupBy(u => u.ID).Count();
+
                 foreach (var p in freecab)
                 {
                     free.Add(new Cabinet { ID = p.ID, Number = p.Number, Capacity = p.Capacity, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
@@ -229,7 +231,7 @@ namespace Add_Type
 
                 if (branch.ID != 0)
                 {
-                    query = query.Where(x => x.BranchID <= branch.ID);
+                    query = query.Where(x => x.BranchID == branch.ID);
                 }
 
                 if (sort != null)  // Сортировка, если нужно
@@ -237,7 +239,6 @@ namespace Add_Type
                     query = Utilit.OrderByDynamic(query, sort, asсdesс);
                 }
 
-                // Я перепроверила все варианты - это должно работать правильно!
                 countrecord = query.GroupBy(u => u.ID).Count();
 
                 query = query.Skip((page - 1) * count).Take(count);

@@ -51,6 +51,14 @@ namespace Add_Type
             LoadAll(); 
         }
 
+        public Student_find(String answer)
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            purpose = answer;
+            LoadAll();
+        }
+
         private void Student_find_Load(object sender, EventArgs e)
         {
             LoadAll();

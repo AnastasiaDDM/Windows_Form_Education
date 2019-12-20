@@ -264,5 +264,36 @@ namespace Add_Type
         {
             FillGrid();
         }
+
+        private void bcour_Click(object sender, EventArgs e)
+        {
+            Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void bstud_Click(object sender, EventArgs e)
+        {
+            Student_find f = new Student_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            // Сброс всех выбранных значений в значения по умолчанию
+            this.branchf.SelectedIndex = 0;
+//            this.cabinetf.SelectedIndex = 0;
+            datef.Value = DateTime.Now;
+            teacherf.Clear();
+            chooseTeacher = null;
+            studentf.Clear();
+            chooseStudent = null;
+            coursef.Clear();
+            chooseCourse = null;
+            FillGrid();
+        }
     }
 }
