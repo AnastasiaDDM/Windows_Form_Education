@@ -144,15 +144,15 @@ namespace Add_Type
             {
                 if (visitf.SelectedIndex == 0)
                 {
-                    vis.ID = 0;
+                    vis.Vis = 0;
                 }
                 if (visitf.SelectedIndex == 1)
                 {
-                    vis.ID = 2; // Присутствие
+                    vis.Vis = 2; // Присутствие
                 }
                 if (visitf.SelectedIndex == 2)
                 {
-                    vis.ID = 1; // Отсутствие
+                    vis.Vis = 1; // Отсутствие
                 }
             }
 
@@ -225,6 +225,96 @@ namespace Add_Type
                     D.Rows[i].Cells[6].Value = "Удалить";
                 }
             }
+        }
+
+        private void find_Click(object sender, EventArgs e)
+        {
+            FillGrid();
+        }
+
+        private void bstud_Click(object sender, EventArgs e)
+        {
+            Student_find f = new Student_find("choose", "bcon"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void bcour_Click(object sender, EventArgs e)
+        {
+            Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void bthem_Click(object sender, EventArgs e)
+        {
+            Theme_find f = new Theme_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseTheme = f.chooseThem; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            // Сброс всех выбранных значений в значения по умолчанию
+            ascflag = true;
+            this.countf.SelectedItem = "10";
+            pagef.Items.Add(1);
+            this.pagef.SelectedItem = 1;
+            pageindex = pagef.SelectedIndex;
+            deldatef.Checked = true;
+            datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
+            dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
+            visitf.SelectedIndex = 0;
+            studentf.Clear();
+            chooseStudent = null;
+            coursef.Clear();
+            chooseCourse = null;
+            themef.Clear();
+            chooseTheme = null;
+            FillGrid();
+        }
+
+        private void prev_Click(object sender, EventArgs e)
+        {
+            // Переключение страниц на предыдущую по средствам кнопки
+            if (pageindex + 1 > 1)
+            {
+                pagef.SelectedIndex = (pageindex - 1);
+                pageindex = pagef.SelectedIndex;
+                FillGrid();
+            }
+        }
+
+        private void next_Click(object sender, EventArgs e)
+        {
+            // Переключение страниц на следующую по средствам кнопки
+            if (pageindex + 1 < pages)
+            {
+                pagef.SelectedIndex = (pageindex + 1);
+                pageindex = pagef.SelectedIndex;
+                FillGrid();
+            }
+        }
+
+        private void pagef_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Переключение страниц по средствам комбобокса
+            pageindex = pagef.SelectedIndex;
+            pagef.SelectedIndex = pagef.FindStringExact(pagef.Text);
+            page = Convert.ToInt32(pagef.SelectedItem);
+            FillGrid();
+        }
+
+        private void countf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Переключение количества записей на странице по средствам комбобокса
+            this.pagef.SelectedItem = 1;
+            pageindex = pagef.SelectedIndex;
+            page = Convert.ToInt32(pagef.SelectedItem);
+            FillGrid();
         }
     }
 }

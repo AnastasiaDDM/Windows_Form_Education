@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.D = new System.Windows.Forms.DataGridView();
@@ -62,15 +62,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.datef = new System.Windows.Forms.DateTimePicker();
             this.countimetables = new System.Windows.Forms.Label();
+            this.toMarkandThemes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // prev
             // 
-            this.prev.Location = new System.Drawing.Point(373, 101);
+            this.prev.Location = new System.Drawing.Point(316, 90);
             this.prev.Name = "prev";
-            this.prev.Size = new System.Drawing.Size(160, 31);
+            this.prev.Size = new System.Drawing.Size(160, 28);
             this.prev.TabIndex = 0;
             this.prev.Text = "Предыдущая неделя";
             this.prev.UseVisualStyleBackColor = true;
@@ -78,9 +79,9 @@
             // 
             // next
             // 
-            this.next.Location = new System.Drawing.Point(595, 101);
+            this.next.Location = new System.Drawing.Point(538, 90);
             this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(160, 31);
+            this.next.Size = new System.Drawing.Size(160, 28);
             this.next.TabIndex = 1;
             this.next.Text = "Следующая неделя";
             this.next.UseVisualStyleBackColor = true;
@@ -100,15 +101,15 @@
             this.friday,
             this.satyrday,
             this.sunday});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.D.DefaultCellStyle = dataGridViewCellStyle1;
-            this.D.Location = new System.Drawing.Point(11, 179);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.D.DefaultCellStyle = dataGridViewCellStyle4;
+            this.D.Location = new System.Drawing.Point(12, 167);
             this.D.Name = "D";
             this.D.ReadOnly = true;
             this.D.RowTemplate.Height = 24;
@@ -168,25 +169,23 @@
             // mondayt
             // 
             this.mondayt.AutoSize = true;
-            this.mondayt.Location = new System.Drawing.Point(386, 152);
+            this.mondayt.Location = new System.Drawing.Point(408, 137);
             this.mondayt.Name = "mondayt";
-            this.mondayt.Size = new System.Drawing.Size(140, 17);
+            this.mondayt.Size = new System.Drawing.Size(0, 17);
             this.mondayt.TabIndex = 5;
-            this.mondayt.Text = "Дата понедельника";
             // 
             // sundayt
             // 
             this.sundayt.AutoSize = true;
-            this.sundayt.Location = new System.Drawing.Point(556, 152);
+            this.sundayt.Location = new System.Drawing.Point(512, 137);
             this.sundayt.Name = "sundayt";
-            this.sundayt.Size = new System.Drawing.Size(129, 17);
+            this.sundayt.Size = new System.Drawing.Size(0, 17);
             this.sundayt.TabIndex = 6;
-            this.sundayt.Text = "Дата воскресенья";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(534, 143);
+            this.label5.Location = new System.Drawing.Point(490, 128);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(16, 17);
             this.label5.TabIndex = 7;
@@ -379,17 +378,28 @@
             // countimetables
             // 
             this.countimetables.AutoSize = true;
-            this.countimetables.Location = new System.Drawing.Point(12, 698);
+            this.countimetables.Location = new System.Drawing.Point(12, 686);
             this.countimetables.Name = "countimetables";
             this.countimetables.Size = new System.Drawing.Size(217, 17);
             this.countimetables.TabIndex = 12;
             this.countimetables.Text = "Количестов занятий в неделю: ";
             // 
+            // toMarkandThemes
+            // 
+            this.toMarkandThemes.Location = new System.Drawing.Point(789, 686);
+            this.toMarkandThemes.Name = "toMarkandThemes";
+            this.toMarkandThemes.Size = new System.Drawing.Size(232, 67);
+            this.toMarkandThemes.TabIndex = 13;
+            this.toMarkandThemes.Text = "Оценивание и темы";
+            this.toMarkandThemes.UseVisualStyleBackColor = true;
+            this.toMarkandThemes.Click += new System.EventHandler(this.toMarkandThemes_Click);
+            // 
             // Timetable_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 724);
+            this.ClientSize = new System.Drawing.Size(1036, 765);
+            this.Controls.Add(this.toMarkandThemes);
             this.Controls.Add(this.countimetables);
             this.Controls.Add(this.datef);
             this.Controls.Add(this.label7);
@@ -447,5 +457,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn friday;
         private System.Windows.Forms.DataGridViewTextBoxColumn satyrday;
         private System.Windows.Forms.DataGridViewTextBoxColumn sunday;
+        private System.Windows.Forms.Button toMarkandThemes;
     }
 }

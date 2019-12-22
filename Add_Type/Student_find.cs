@@ -248,12 +248,12 @@ namespace Add_Type
             if(ascflag == true)
             {
                 ascflag = false;
-                ascf.BackColor = Color.FromArgb(220, 220, 220);
+                //ascf.BackColor = Color.FromArgb(220, 220, 220);
             }
             else
             {
                 ascflag = true;
-                ascf.BackColor = Color.FromArgb(192, 192, 192);
+                //ascf.BackColor = Color.FromArgb(192, 192, 192);
             }
         }
 

@@ -203,7 +203,7 @@
             // ascf
             // 
             this.ascf.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ascf.Location = new System.Drawing.Point(807, 38);
+            this.ascf.Location = new System.Drawing.Point(810, 38);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(42, 23);
             this.ascf.TabIndex = 38;

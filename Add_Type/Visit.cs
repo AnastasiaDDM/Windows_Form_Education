@@ -150,18 +150,35 @@ namespace Add_Type
                 {
                     query = query.Where(x => x.Date <= maxdate);
                 }
+                
+                var query2 = query.GroupBy(v => new {
+                    v.ID,
+                    v.StudentID,
+                    v.TimetableID,
+                    Vis = v.Vis,
+                    v.Deldate,
+                    v.Editdate,
+                }, (key, group) => new
+                {
+                    ID = key.ID,
+                    StudentID = key.StudentID,
+                    TimetableID = key.TimetableID,
+                    Vis = key.Vis,
+                    Deldate = key.Deldate,
+                    Editdate = key.Editdate
+                });
 
                 if (sort != null)  // Сортировка, если нужно
                 {
-                    query = Utilit.OrderByDynamic(query, sort, asсdesс);
+                    query2 = Utilit.OrderByDynamic(query2, sort, asсdesс);
                 }
 
-                countrecord = query.GroupBy(u => u.ID).Count();
+                countrecord = query2.GroupBy(u => u.ID).Count();
 
-                query = query.Skip((page - 1) * count).Take(count);
-                query = query.Distinct();
+                query2 = query2.Skip((page - 1) * count).Take(count);
+                query2 = query2.Distinct();
 
-                foreach (var p in query)
+                foreach (var p in query2)
                 {
                     list.Add(new Visit { ID = p.ID, StudentID = p.StudentID, TimetableID = p.TimetableID, Vis = p.Vis, Deldate = p.Deldate, Editdate = p.Editdate });
                 }

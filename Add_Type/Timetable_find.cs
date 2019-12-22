@@ -80,7 +80,7 @@ namespace Add_Type
             int countrecord = 0;
 
             List<Branch> branches = new List<Branch>();
-            branches = Branches.FindAll(deldate, branch, director, sort, asсdesс, page, count, ref countrecord);
+            branches = Branches.FindAll(deldate, branch, director, "ID", "asc", page, count, ref countrecord);
 
             branchf.Items.Clear();
             branchf.Items.Add("Не выбрано");
@@ -151,8 +151,6 @@ namespace Add_Type
             }
 
             Cabinet cab = new Cabinet();
-
-
 
             int countrecord = 0;
 
@@ -294,6 +292,21 @@ namespace Add_Type
             coursef.Clear();
             chooseCourse = null;
             FillGrid();
+        }
+
+        private void toMarkandThemes_Click(object sender, EventArgs e)
+        {
+            if(chooseTeacher != null | chooseCourse != null | chooseStudent != null | this.branchf.SelectedIndex != 0)
+            {
+                MarkandThemes f = new MarkandThemes(chooseTeacher, chooseCourse, chooseStudent, this.branchf.SelectedIndex); // Передем 
+                DialogResult result = f.ShowDialog();
+      //          chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+                FillGrid();
+            }
+            else
+            {
+                MessageBox.Show("Для начала вам нужно выбрать преподавателя или  курс");
+            }
         }
     }
 }

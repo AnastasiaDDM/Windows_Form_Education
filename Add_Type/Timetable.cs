@@ -12,7 +12,9 @@ using Itenso.TimePeriod;
 //+ addTeachers(): String DONE
 //+ delTeachers(): String DONE
 //+ GetFreeteachers(DateTime date) : List<Worker> 
+//+ getTeachers(DateTime date) : List<Worker> 
 //+ findAll(): List<Timetable> 
+
 
 namespace Add_Type
 {
@@ -328,82 +330,82 @@ namespace Add_Type
 
 
 
-                List<TimeRange> listtimerange = new List<TimeRange>();
+            List<TimeRange> listtimerange = new List<TimeRange>();
 
-                //Ежедневно
-                //Еженедельно
-                //Ежемесячно
-                //Каждый год
-                //Каждый будний день(пн - пт)
+            //Ежедневно
+            //Еженедельно
+            //Ежемесячно
+            //Каждый год
+            //Каждый будний день(пн - пт)
 
-                DateTime newstart = this.Startlesson; // Присваиваем дате начала занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
-                DateTime newend = this.Endlesson; // Присваиваем дате окончания занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
+            DateTime newstart = this.Startlesson; // Присваиваем дате начала занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
+            DateTime newend = this.Endlesson; // Присваиваем дате окончания занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
 
 
-                while (newend <= Endrepeat) // Организуем цикл для перебора всех дат в заданном диапазоне, т.е. до Endrepeat
+            while (newend <= Endrepeat) // Организуем цикл для перебора всех дат в заданном диапазоне, т.е. до Endrepeat
+            {
+                using (SampleContext context = new SampleContext())
                 {
-                    using (SampleContext context = new SampleContext())
+                    Timetable v = context.Timetables.Where(x => x.Startlesson == newstart).FirstOrDefault<Timetable>();
+
+                    // В первом проходе добавляется или не добавляется начальная дата, а дальше уже происходит увеличение дат
+                    if (v == null & (period != "Каждый будний день(пн - пт)")) // Добавление для всех вариантов, кроме будних дней, т.к. не нужно учитывать выходные!
                     {
-                        Timetable v = context.Timetables.Where(x => x.Startlesson == newstart).FirstOrDefault<Timetable>();
-
-                        // В первом проходе добавляется или не добавляется начальная дата, а дальше уже происходит увеличение дат
-                        if (v == null & (period != "Каждый будний день(пн - пт)")) // Добавление для всех вариантов, кроме будних дней, т.к. не нужно учитывать выходные!
-                        {
-                            TimeRange Range = new TimeRange(newstart, newend);
-                            listtimerange.Add(Range);
+                        TimeRange Range = new TimeRange(newstart, newend);
+                        listtimerange.Add(Range);
 
 
-                        }
-
-                        if ((period == "Каждый будний день(пн - пт)") & v == null & (newstart.DayOfWeek != DayOfWeek.Saturday & newstart.DayOfWeek != DayOfWeek.Sunday)) // Добавление для варианта будних дней, т.к. нужно учитывать выходные и не добавлять такие дни в список!
-                        {
-                            TimeRange Range = new TimeRange(newstart, newend);
-                            listtimerange.Add(Range);
-                        }
                     }
 
-                    if (period == "Ежедневно" || period == "Не повторять" || period == "Каждый будний день(пн - пт)") // Изменение дат исходя из условия
+                    if ((period == "Каждый будний день(пн - пт)") & v == null & (newstart.DayOfWeek != DayOfWeek.Saturday & newstart.DayOfWeek != DayOfWeek.Sunday)) // Добавление для варианта будних дней, т.к. нужно учитывать выходные и не добавлять такие дни в список!
                     {
-                        newstart = newstart.AddDays(1);
-
-                        newend = newend.AddDays(1);
+                        TimeRange Range = new TimeRange(newstart, newend);
+                        listtimerange.Add(Range);
                     }
-
-                    if (period == "Еженедельно") // Изменение дат исходя из условия
-                    {
-                        newstart = newstart.AddDays(7);
-
-                        newend = newend.AddDays(7);
-                    }
-
-                    if (period == "Ежемесячно") // Изменение дат исходя из условия
-                    {
-                        newstart = newstart.AddMonths(1);
-
-                        newend = newend.AddMonths(1);
-                    }
-
-                    if (period == "Каждый год") // Изменение дат исходя из условия
-                    {
-                        newstart = newstart.AddYears(1);
-
-                        newend = newend.AddYears(1);
-                    }
-
-                    //if (period == "Каждый будний день(пн - пт)") // Изменение дат исходя из условия
-                    //{
-                    //    {
-                    //        newstart = newstart.AddDays(1);
-
-                    //        newend = newend.AddDays(1);
-                    //    }
-                    //}
                 }
+
+                if (period == "Ежедневно" || period == "Не повторять" || period == "Каждый будний день(пн - пт)") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddDays(1);
+
+                    newend = newend.AddDays(1);
+                }
+
+                if (period == "Еженедельно") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddDays(7);
+
+                    newend = newend.AddDays(7);
+                }
+
+                if (period == "Ежемесячно") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddMonths(1);
+
+                    newend = newend.AddMonths(1);
+                }
+
+                if (period == "Каждый год") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddYears(1);
+
+                    newend = newend.AddYears(1);
+                }
+
+                //if (period == "Каждый будний день(пн - пт)") // Изменение дат исходя из условия
+                //{
+                //    {
+                //        newstart = newstart.AddDays(1);
+
+                //        newend = newend.AddDays(1);
+                //    }
+                //}
+            }
 
             List<Worker> freeteachers = new List<Worker>(); // Лист свободных преподавателей
             using (SampleContext context = new SampleContext())
             {
-                
+
 
                 StringBuilder s = new StringBuilder("Select Distinct Workers.* from Workers where Workers.Type = 3 and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.Type = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
 
@@ -432,48 +434,75 @@ namespace Add_Type
             return freeteachers;
         }
 
+        public List<Worker> GetTeachers()  // Поиск  всех преподавателей у этого элемента расписания
+        {
+            List<Worker> teachers = new List<Worker>();
+            using (SampleContext context = new SampleContext())
+            {
+                var v = context.TimetablesTeachers.Where(x => x.TimetableID == this.ID).OrderBy(u => u.TimetableID);
+                foreach (var o in v)
+                {
+                    teachers.Add(Workers.WorkerID(o.TeacherID));
+                }
+                return teachers;
+            }
+        }
 
-    //    private bool Overlap(TimeRange timetablerange, List<TimeRange> listtimerange)
-    //    {
-    //        foreach (TimeRange date in listtimerange)
-    //        {
-    //            //// Теперь этот onetimetable нужно сравнить с каждой датой! - и если совпадений нет, то добавить этого преподавателя в лист.
+        public List<int> GetThemes()  // Поиск  всех тем у этого элемента расписания
+        {
+            List<int> themesId = new List<int>();
+            using (SampleContext context = new SampleContext())
+            {
+                var v = context.TimetablesThemes.Where(x => x.TimetableID == this.ID).OrderBy(u => u.TimetableID);
+                foreach (var o in v)
+                {
+                    themesId.Add(o.ThemeID);
+                }
+                return themesId;
+            }
+        }
 
-    //            if (timetablerange.GetIntersection(date) != null)
-    //            //    Console.WriteLine(timeRange5.GetIntersection(timeRange6).ToString());
-    //            //if (timeRange5.GetIntersection(timeRange6).ToString() != "")
-    //            {
-    //                //" Наблюдается временное перекрытие -  timetablerange.GetIntersection(date): " +
-    //                //              timetablerange.GetIntersection(date);
-    //                break;
-    //                return false;
-    //            }
-    //            //else
-    //            //{
-    //            //    Console.WriteLine("Временного перекрытия нет!");
-    //            //}
+        //    private bool Overlap(TimeRange timetablerange, List<TimeRange> listtimerange)
+        //    {
+        //        foreach (TimeRange date in listtimerange)
+        //        {
+        //            //// Теперь этот onetimetable нужно сравнить с каждой датой! - и если совпадений нет, то добавить этого преподавателя в лист.
+
+        //            if (timetablerange.GetIntersection(date) != null)
+        //            //    Console.WriteLine(timeRange5.GetIntersection(timeRange6).ToString());
+        //            //if (timeRange5.GetIntersection(timeRange6).ToString() != "")
+        //            {
+        //                //" Наблюдается временное перекрытие -  timetablerange.GetIntersection(date): " +
+        //                //              timetablerange.GetIntersection(date);
+        //                break;
+        //                return false;
+        //            }
+        //            //else
+        //            //{
+        //            //    Console.WriteLine("Временного перекрытия нет!");
+        //            //}
 
 
 
 
-    //            //if (onetimetable.Startlesson)
-    //            //{
+        //            //if (onetimetable.Startlesson)
+        //            //{
 
-    //            //}
+        //            //}
 
-    //            //bool overlap = onetimetable.Startlesson < date.Endlesson && date.Startlesson < onetimetable.Endlesson;
+        //            //bool overlap = onetimetable.Startlesson < date.Endlesson && date.Startlesson < onetimetable.Endlesson;
 
-    //            //TimeRange
-
-
+        //            //TimeRange
 
 
-    //            // Timetable time = context.Timetables.Where(x => x.Startlesson == timetable.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>(); //
-    //            //if (ts != null)
-    //            //{ return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
-    //        }
-    //        return true;
-    //    }
+
+
+        //            // Timetable time = context.Timetables.Where(x => x.Startlesson == timetable.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>(); //
+        //            //if (ts != null)
+        //            //{ return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
+        //        }
+        //        return true;
+        //    }
 
     }
     public static class Timetables

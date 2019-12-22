@@ -118,7 +118,7 @@
             // 
             this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
-            this.sortf.Location = new System.Drawing.Point(593, 39);
+            this.sortf.Location = new System.Drawing.Point(593, 43);
             this.sortf.Name = "sortf";
             this.sortf.Size = new System.Drawing.Size(180, 24);
             this.sortf.TabIndex = 56;
@@ -131,10 +131,11 @@
             this.find.TabIndex = 52;
             this.find.Text = "Поиск";
             this.find.UseVisualStyleBackColor = true;
+            this.find.Click += new System.EventHandler(this.find_Click);
             // 
             // ascf
             // 
-            this.ascf.Location = new System.Drawing.Point(774, 40);
+            this.ascf.Location = new System.Drawing.Point(776, 45);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(42, 23);
             this.ascf.TabIndex = 57;
@@ -145,10 +146,11 @@
             // 
             this.reset.Location = new System.Drawing.Point(844, 41);
             this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(83, 27);
+            this.reset.Size = new System.Drawing.Size(94, 27);
             this.reset.TabIndex = 51;
             this.reset.Text = "Отменить";
             this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
             // dateto
             // 
@@ -169,7 +171,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(484, 38);
+            this.label7.Location = new System.Drawing.Point(484, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(113, 17);
             this.label7.TabIndex = 55;
@@ -193,12 +195,13 @@
             // 
             // bthem
             // 
-            this.bthem.Location = new System.Drawing.Point(209, 38);
+            this.bthem.Location = new System.Drawing.Point(210, 39);
             this.bthem.Name = "bthem";
             this.bthem.Size = new System.Drawing.Size(23, 23);
             this.bthem.TabIndex = 54;
             this.bthem.Text = "🔍";
             this.bthem.UseVisualStyleBackColor = true;
+            this.bthem.Click += new System.EventHandler(this.bthem_Click);
             // 
             // themef
             // 
@@ -220,12 +223,13 @@
             // 
             // bcour
             // 
-            this.bcour.Location = new System.Drawing.Point(453, 36);
+            this.bcour.Location = new System.Drawing.Point(454, 36);
             this.bcour.Name = "bcour";
             this.bcour.Size = new System.Drawing.Size(23, 23);
             this.bcour.TabIndex = 46;
             this.bcour.Text = "🔍";
             this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // coursef
             // 
@@ -247,12 +251,13 @@
             // 
             // bstud
             // 
-            this.bstud.Location = new System.Drawing.Point(452, 10);
+            this.bstud.Location = new System.Drawing.Point(453, 10);
             this.bstud.Name = "bstud";
             this.bstud.Size = new System.Drawing.Size(23, 23);
             this.bstud.TabIndex = 41;
             this.bstud.Text = "🔍";
             this.bstud.UseVisualStyleBackColor = true;
+            this.bstud.Click += new System.EventHandler(this.bstud_Click);
             // 
             // label8
             // 
@@ -283,6 +288,9 @@
             // 
             // D
             // 
+            this.D.AllowUserToAddRows = false;
+            this.D.AllowUserToDeleteRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Location = new System.Drawing.Point(11, 76);
             this.D.Name = "D";
@@ -321,6 +329,7 @@
             this.countf.Name = "countf";
             this.countf.Size = new System.Drawing.Size(106, 24);
             this.countf.TabIndex = 16;
+            this.countf.SelectionChangeCommitted += new System.EventHandler(this.countf_SelectionChangeCommitted);
             // 
             // prev
             // 
@@ -330,6 +339,7 @@
             this.prev.TabIndex = 15;
             this.prev.Text = "◀ Назад";
             this.prev.UseVisualStyleBackColor = true;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
             // 
             // next
             // 
@@ -339,6 +349,7 @@
             this.next.TabIndex = 14;
             this.next.Text = "Вперед ▶";
             this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // pagef
             // 
@@ -348,6 +359,7 @@
             this.pagef.Name = "pagef";
             this.pagef.Size = new System.Drawing.Size(77, 24);
             this.pagef.TabIndex = 13;
+            this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
             // 
             // Visit_find
             // 

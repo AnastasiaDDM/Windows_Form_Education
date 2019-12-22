@@ -66,6 +66,8 @@ namespace Add_Type
             DataGridViewTextBoxColumn deadline = new DataGridViewTextBoxColumn();
             deadline.HeaderText = "Срок сдачи дз";
             sortf.Items.Add("Срок сдачи дз");
+            DataGridViewTextBoxColumn teach = new DataGridViewTextBoxColumn();
+            teach.HeaderText = "Составитель";
 
             D.Columns.Add(edit);
             D.Columns.Add(id);
@@ -73,6 +75,7 @@ namespace Add_Type
             D.Columns.Add(st);
             D.Columns.Add(hw);
             D.Columns.Add(deadline);
+            D.Columns.Add(teach);
 
             if (purpose == "choose")
             {
@@ -178,13 +181,15 @@ namespace Add_Type
 
                 D.Rows[i].Cells[5].Value = themes[i].Deadline;
 
+                D.Rows[i].Cells[6].Value = themes[i].TeacherID + ". " + Workers.WorkerID(Convert.ToInt32(themes[i].TeacherID)).FIO;
+
                 if (purpose == "choose")
                 {
-                    D.Rows[i].Cells[6].Value = "Выбрать";
+                    D.Rows[i].Cells[7].Value = "Выбрать";
                 }
                 else
                 {
-                    D.Rows[i].Cells[6].Value = "Удалить";
+                    D.Rows[i].Cells[7].Value = "Удалить";
                 }
             }
         }

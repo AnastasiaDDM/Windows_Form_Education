@@ -263,3 +263,4 @@ C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.csproj.GenerateResource.Cache
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Pay_edit.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.csprojResolveAssemblyReference.cache
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.MarkandThemes.resources

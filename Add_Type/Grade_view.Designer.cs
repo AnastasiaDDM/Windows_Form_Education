@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label4 = new System.Windows.Forms.Label();
+            this.datet = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Close = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button5 = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.D = new System.Windows.Forms.DataGridView();
+            this.update = new System.Windows.Forms.Button();
+            this.courset = new System.Windows.Forms.LinkLabel();
+            this.themet = new System.Windows.Forms.LinkLabel();
+            this.teacherst = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
-            // label4
+            // datet
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(602, 17);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 17);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Дата";
+            this.datet.AutoSize = true;
+            this.datet.Location = new System.Drawing.Point(535, 8);
+            this.datet.Name = "datet";
+            this.datet.Size = new System.Drawing.Size(42, 17);
+            this.datet.TabIndex = 14;
+            this.datet.Text = "Дата";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(258, 74);
+            this.label3.Location = new System.Drawing.Point(105, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 17);
             this.label3.TabIndex = 13;
             this.label3.Text = "Название курса";
             // 
-            // button2
+            // Close
             // 
-            this.button2.Location = new System.Drawing.Point(261, 605);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 41);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Закрыть";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Close.Location = new System.Drawing.Point(261, 605);
+            this.Close.Name = "Close";
+            this.Close.Size = new System.Drawing.Size(123, 41);
+            this.Close.TabIndex = 12;
+            this.Close.Text = "Закрыть";
+            this.Close.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 17);
+            this.label2.Size = new System.Drawing.Size(112, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Преподаватель";
+            this.label2.Text = "Преподаватели";
             // 
             // label1
             // 
@@ -86,72 +86,72 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Тема";
             // 
-            // dataGridView1
+            // D
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 115);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(632, 457);
-            this.dataGridView1.TabIndex = 8;
+            this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.D.Location = new System.Drawing.Point(12, 115);
+            this.D.Name = "D";
+            this.D.RowTemplate.Height = 24;
+            this.D.Size = new System.Drawing.Size(632, 457);
+            this.D.TabIndex = 8;
             // 
-            // button5
+            // update
             // 
-            this.button5.Location = new System.Drawing.Point(538, 74);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(106, 34);
-            this.button5.TabIndex = 31;
-            this.button5.Text = "Изменить";
-            this.button5.UseVisualStyleBackColor = true;
+            this.update.Location = new System.Drawing.Point(538, 74);
+            this.update.Name = "update";
+            this.update.Size = new System.Drawing.Size(106, 34);
+            this.update.TabIndex = 31;
+            this.update.Text = "Изменить";
+            this.update.UseVisualStyleBackColor = true;
+            this.update.Click += new System.EventHandler(this.update_Click);
             // 
-            // linkLabel1
+            // courset
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(387, 74);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel1.TabIndex = 47;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.courset.AutoSize = true;
+            this.courset.Location = new System.Drawing.Point(234, 83);
+            this.courset.Name = "courset";
+            this.courset.Size = new System.Drawing.Size(72, 17);
+            this.courset.TabIndex = 47;
+            this.courset.TabStop = true;
+            this.courset.Text = "linkLabel1";
             // 
-            // linkLabel2
+            // themet
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(126, 44);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel2.TabIndex = 48;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
+            this.themet.AutoSize = true;
+            this.themet.Location = new System.Drawing.Point(57, 8);
+            this.themet.Name = "themet";
+            this.themet.Size = new System.Drawing.Size(72, 17);
+            this.themet.TabIndex = 49;
+            this.themet.TabStop = true;
+            this.themet.Text = "linkLabel3";
             // 
-            // linkLabel3
+            // teacherst
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(57, 8);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(72, 17);
-            this.linkLabel3.TabIndex = 49;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "linkLabel3";
+            this.teacherst.AutoSize = true;
+            this.teacherst.Location = new System.Drawing.Point(126, 44);
+            this.teacherst.Name = "teacherst";
+            this.teacherst.Size = new System.Drawing.Size(46, 17);
+            this.teacherst.TabIndex = 50;
+            this.teacherst.Text = "label4";
             // 
             // Grade_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 658);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.teacherst);
+            this.Controls.Add(this.themet);
+            this.Controls.Add(this.courset);
+            this.Controls.Add(this.update);
+            this.Controls.Add(this.datet);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Close);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.D);
             this.Name = "Grade_view";
             this.Text = "Успеваемость";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,15 +159,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label datet;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.DataGridView D;
+        private System.Windows.Forms.Button update;
+        private System.Windows.Forms.LinkLabel courset;
+        private System.Windows.Forms.LinkLabel themet;
+        private System.Windows.Forms.Label teacherst;
     }
 }

@@ -41,7 +41,6 @@
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.bcour = new System.Windows.Forms.Button();
-            this.toMark = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -154,21 +153,11 @@
             this.bcour.Text = "🔍";
             this.bcour.UseVisualStyleBackColor = true;
             // 
-            // toMark
-            // 
-            this.toMark.Location = new System.Drawing.Point(555, 69);
-            this.toMark.Name = "toMark";
-            this.toMark.Size = new System.Drawing.Size(105, 34);
-            this.toMark.TabIndex = 34;
-            this.toMark.Text = "Оценить";
-            this.toMark.UseVisualStyleBackColor = true;
-            // 
             // Theme_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 534);
-            this.Controls.Add(this.toMark);
             this.Controls.Add(this.bcour);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
@@ -204,6 +193,5 @@
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Button bcour;
-        private System.Windows.Forms.Button toMark;
     }
 }
