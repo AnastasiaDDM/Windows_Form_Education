@@ -46,6 +46,7 @@
             this.timetable.TabIndex = 17;
             this.timetable.Text = "Расписание\r\nкабинета";
             this.timetable.UseVisualStyleBackColor = true;
+            this.timetable.Click += new System.EventHandler(this.timetable_Click);
             // 
             // close
             // 

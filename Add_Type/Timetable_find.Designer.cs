@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.D = new System.Windows.Forms.DataGridView();
@@ -101,20 +101,21 @@
             this.friday,
             this.satyrday,
             this.sunday});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.D.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.D.DefaultCellStyle = dataGridViewCellStyle2;
             this.D.Location = new System.Drawing.Point(12, 167);
             this.D.Name = "D";
             this.D.ReadOnly = true;
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(1009, 516);
             this.D.TabIndex = 4;
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // monday
             // 
@@ -222,6 +223,7 @@
             this.cabinetf.Name = "cabinetf";
             this.cabinetf.Size = new System.Drawing.Size(161, 24);
             this.cabinetf.TabIndex = 13;
+            this.cabinetf.SelectionChangeCommitted += new System.EventHandler(this.cabinetf_SelectionChangeCommitted);
             // 
             // branchf
             // 
@@ -358,6 +360,7 @@
             this.add.TabIndex = 9;
             this.add.Text = "Добавить элемент\r\nрасписания";
             this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // label7
             // 

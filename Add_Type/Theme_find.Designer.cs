@@ -52,12 +52,18 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.add = new System.Windows.Forms.Button();
+            this.teacherf = new System.Windows.Forms.TextBox();
+            this.bteach = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.teacherf);
+            this.groupBox1.Controls.Add(this.bteach);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dateto);
             this.groupBox1.Controls.Add(this.namet);
             this.groupBox1.Controls.Add(this.label13);
@@ -89,10 +95,10 @@
             // 
             // namet
             // 
-            this.namet.Location = new System.Drawing.Point(129, 45);
+            this.namet.Location = new System.Drawing.Point(45, 46);
             this.namet.Multiline = true;
             this.namet.Name = "namet";
-            this.namet.Size = new System.Drawing.Size(190, 20);
+            this.namet.Size = new System.Drawing.Size(174, 19);
             this.namet.TabIndex = 9;
             // 
             // label13
@@ -109,9 +115,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 17);
+            this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Название темы";
+            this.label3.Text = "Тема";
             // 
             // datefrom
             // 
@@ -159,7 +165,7 @@
             // 
             // ascf
             // 
-            this.ascf.Location = new System.Drawing.Point(654, 44);
+            this.ascf.Location = new System.Drawing.Point(664, 42);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(42, 23);
             this.ascf.TabIndex = 40;
@@ -168,7 +174,7 @@
             // 
             // reset
             // 
-            this.reset.Location = new System.Drawing.Point(702, 42);
+            this.reset.Location = new System.Drawing.Point(713, 42);
             this.reset.Name = "reset";
             this.reset.Size = new System.Drawing.Size(86, 24);
             this.reset.TabIndex = 12;
@@ -180,14 +186,14 @@
             // 
             this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
-            this.sortf.Location = new System.Drawing.Point(472, 42);
+            this.sortf.Location = new System.Drawing.Point(515, 40);
             this.sortf.Name = "sortf";
-            this.sortf.Size = new System.Drawing.Size(180, 24);
+            this.sortf.Size = new System.Drawing.Size(147, 24);
             this.sortf.TabIndex = 12;
             // 
             // find
             // 
-            this.find.Location = new System.Drawing.Point(805, 25);
+            this.find.Location = new System.Drawing.Point(805, 30);
             this.find.Name = "find";
             this.find.Size = new System.Drawing.Size(127, 36);
             this.find.TabIndex = 11;
@@ -198,11 +204,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(349, 44);
+            this.label7.Location = new System.Drawing.Point(468, 47);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(117, 17);
+            this.label7.Size = new System.Drawing.Size(44, 17);
             this.label7.TabIndex = 11;
-            this.label7.Text = "Сортировать по ";
+            this.label7.Text = "Сорт.";
             // 
             // deldatef
             // 
@@ -301,6 +307,34 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
+            // teacherf
+            // 
+            this.teacherf.Location = new System.Drawing.Point(285, 46);
+            this.teacherf.Multiline = true;
+            this.teacherf.Name = "teacherf";
+            this.teacherf.ReadOnly = true;
+            this.teacherf.Size = new System.Drawing.Size(155, 20);
+            this.teacherf.TabIndex = 49;
+            // 
+            // bteach
+            // 
+            this.bteach.Location = new System.Drawing.Point(441, 45);
+            this.bteach.Name = "bteach";
+            this.bteach.Size = new System.Drawing.Size(22, 23);
+            this.bteach.TabIndex = 50;
+            this.bteach.Text = "🔍";
+            this.bteach.UseVisualStyleBackColor = true;
+            this.bteach.Click += new System.EventHandler(this.bteach_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(225, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Препод.";
+            // 
             // Theme_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -351,5 +385,8 @@
         private System.Windows.Forms.Button next;
         private System.Windows.Forms.ComboBox pagef;
         private System.Windows.Forms.Button add;
+        private System.Windows.Forms.TextBox teacherf;
+        private System.Windows.Forms.Button bteach;
+        private System.Windows.Forms.Label label1;
     }
 }

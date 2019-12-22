@@ -67,6 +67,7 @@
             this.Close.TabIndex = 12;
             this.Close.Text = "Закрыть";
             this.Close.UseVisualStyleBackColor = true;
+            this.Close.Click += new System.EventHandler(this.Close_Click);
             // 
             // label2
             // 

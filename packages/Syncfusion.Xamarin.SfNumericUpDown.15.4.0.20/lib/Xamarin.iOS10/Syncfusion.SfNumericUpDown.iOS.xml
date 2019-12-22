@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.SfNumericUpDown.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.ValueEventHandler">
+            <summary>
+            Represents the method that will handle the SfNumericTextBox.Value event of a SfNumericTextBox.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="E:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.ValueChanged">
+            <summary>
+            Occurs when value changed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.OnValueChanged(Syncfusion.SfNumericUpDown.iOS.ValueEventArgs)">
+            <summary>
+            Raises the value changing.
+            </summary>
+            <param name="args">Arguments.</param>
+        </member>
+        <member name="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.ReturnkeyPressedEventHandler">
+            <summary>
+            Returnkey pressed event handler.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.ReturnkeyPressed">
+            <summary>
+            Occurs when returnkey pressed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.OnReturnkeyPressed(System.EventArgs)">
+            <summary>
+            Ons the returnkey pressed.
+            </summary>
+            <param name="args">Arguments.</param>
+        </member>
+        <member name="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.FocusChangedEventHandler">
+            <summary>
+            Focus changed event handler.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.FocusChanged">
+            <summary>
+            Occurs when focus changed.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Minimum">
+            <summary>
+            Gets or sets the minimum.
+            </summary>
+            <value>The minimum.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Maximum">
+            <summary>
+            Gets or sets the maximum.
+            </summary>
+            <value>The maximum.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.StepValue">
+            <summary>
+            Gets or sets the step value.
+            </summary>
+            <value>The step value.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.BorderColor">
+            <summary>
+            Gets or sets the color of the border.
+            </summary>
+            <value>The color of the border.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.WatermarkColor">
+            <summary>
+            Gets or sets the color of the watermark.
+            </summary>
+            <value>The color of the watermark.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Watermark">
+            <summary>
+            Gets or sets the watermark.
+            </summary>
+            <value>The watermark.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.FormatString">
+            <summary>
+            Gets or sets the format string.
+            </summary>
+            <value>The format string.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.CultureInfo">
+            <summary>
+            Gets or sets the culture info.
+            </summary>
+            <value>The culture info.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.ParsingMode">
+            <summary>
+            Gets or sets the parsing mode.
+            </summary>
+            <value>The parsing mode.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.PercentDisplayMode">
+            <summary>
+            Gets or sets the percent display mode.
+            </summary>
+            <value>The percent display mode.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.ValueChangeMode">
+            <summary>
+            Gets or sets the value change mode.
+            </summary>
+            <value>The value change mode.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Frame">
+            <summary>
+            Gets or sets the frame.
+            </summary>
+            <value>The frame.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.AllowNull">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown"/> allow null.
+            </summary>
+            <value><c>true</c> if allow null; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.AutoReverse">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown"/> auto reverse.
+            </summary>
+            <value><c>true</c> if auto reverse; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.SpinButtonAlignment">
+            <summary>
+            Gets or sets the spin button alignment.
+            </summary>
+            <value>The spin button alignment.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.TextAlignment">
+            <summary>
+            Gets or sets the text alignment.
+            </summary>
+            <value>The text alignment.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.TextColor">
+            <summary>
+            Gets or sets the color of the text.
+            </summary>
+            <value>The color of the text.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Culture">
+            <summary>
+            Gets or sets the culture.
+            </summary>
+            <value>The culture.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.IncrementButtonView">
+            <summary>
+            Gets or sets the increment button view.
+            </summary>
+            <value>The increment button view.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.DecrementButtonView">
+            <summary>
+            Gets or sets the decrement button view.
+            </summary>
+            <value>The decrement button view.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.MaximumDecimalDigits">
+            <summary>
+            Gets or sets the maximum decimal digits.
+            </summary>
+            <value>The maximum decimal digits.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.FontSize">
+            <summary>
+            Gets or sets the size of the font.
+            </summary>
+            <value>The size of the font.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.Font">
+            <summary>
+            Gets or sets the font.
+            </summary>
+            <value>The font.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.IsEnabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown"/> is enabled.
+            </summary>
+            <value><c>true</c> if is enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.UpdownButtonColor">
+            <summary>
+            Gets or sets the color of the updown button.
+            </summary>
+            <value>The color of the updown button.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.IsEditable">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown"/> is editable.
+            </summary>
+            <value><c>true</c> if is editable; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.EnableGroupSeparator">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown"/> enable
+            group separator.
+            </summary>
+            <value><c>true</c> if enable group separator; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.IncrementButtonSettings">
+            <summary>
+            Gets or sets the increment button settings.
+            </summary>
+            <value>The increment button settings.</value>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.SfNumericUpDown.DecrementButtonSettings">
+            <summary>
+            Gets or sets the decrement button settings.
+            </summary>
+            <value>The decrement button settings.</value>
+        </member>
+        <member name="T:Syncfusion.SfNumericUpDown.iOS.ValueEventArgs">
+            <summary>
+            Value event arguments.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.ValueEventArgs.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="T:Syncfusion.SfNumericUpDown.iOS.FocusChangedEventArgs">
+            <summary>
+            Focus changed event arguments.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.SfNumericUpDown.iOS.FocusChangedEventArgs.HasFocus">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Syncfusion.SfNumericUpDown.iOS.FocusChangedEventArgs"/>
+            has focus.
+            </summary>
+            <value><c>true</c> if has focus; otherwise, <c>false</c>.</value>
+        </member>
+    </members>
+</doc>

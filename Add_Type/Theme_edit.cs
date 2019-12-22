@@ -22,6 +22,7 @@ namespace Add_Type
         int count = 100;
         Theme newtheme = new Theme(); // Глобальная перменная этой формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Theme_edit()
         {
             InitializeComponent();
@@ -46,13 +47,67 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            //this.Text = this.Text + newtheme.ID;
-            //datef.Value = newtheme.Date;
-            //studentt.Text = newcontract.StudentID + ". " + Students.StudentID(newcontract.StudentID).FIO;
-            //coursef.Text = newtheme.CourseID + ". " + Courses.CourseID(newtheme.CourseID).nameGroup;
-            //costt.Text = newcontract.Cost.ToString();
-            //payt.Text = newcontract.PayofMonth.ToString();
-            //branchf.SelectedItem = newcontract.BranchID + ". " + Branches.BranchID(newcontract.BranchID).Name;
+            this.Text = this.Text + newtheme.ID;
+            namet.Text = newtheme.Tema;
+            homeworkt.Text = newtheme.Homework;
+            if(newtheme.Deadline != null)
+            {
+                deadlinet.Value = Convert.ToDateTime(newtheme.Deadline);
+            }
+            else
+            {
+                datenull.Text = "Срок сдачи домашней работы не установлен";
+            }
+            teacherf.Text = newtheme.TeacherID + ". " + Workers.WorkerID(newtheme.TeacherID).FIO;
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            string Answer = "";
+
+            if (indicator == true) // Значит, что происходит добавление нового
+            {
+                newtheme.Tema = namet.Text;
+                newtheme.Homework = homeworkt.Text;
+                newtheme.Deadline = deadlinet.Value;
+                string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+                newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
+
+                Answer = newtheme.Add();
+            }
+
+            if (indicator == false) // Значит, что происходит редактирование
+            {
+                newtheme.Tema = namet.Text;
+                newtheme.Homework = homeworkt.Text;
+                newtheme.Deadline = deadlinet.Value;
+                string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+                newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
+
+                Answer = newtheme.Edit();
+            }
+
+            if (Answer == "Данные корректны!")
+            {
+                this.Close();
+            }
+        }
+
+        private void bteach_Click(object sender, EventArgs e)
+        {
+            Worker_find f = new Worker_find("choose", 3); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            if (chooseTeacher != null)
+            {
+                newtheme.TeacherID = chooseTeacher.ID;
+            }
+            FillForm();
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

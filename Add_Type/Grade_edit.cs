@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Syncfusion.SfNumericUpDown.XForms;
 
 namespace Add_Type
 {
@@ -20,6 +21,9 @@ namespace Add_Type
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit; // ID для редактируемого объекта
         Grade newgrade = new Grade(); // Глобальная перменная этой формы
+
+        List<string> forupdate = new List<string>(); // Строка для получения редактируемой оценки
+
         public Grade_edit()
         {
             InitializeComponent();
@@ -44,7 +48,7 @@ namespace Add_Type
             //buildDG();
             //FillForm();
         }
-        public Grade_edit(Timetable ti, Theme th, Course c) // Конструктор для просмотра объекта
+        public Grade_edit(Timetable ti, Theme th, Course c) // Конструктор для редактирования объекта
         {
             InitializeComponent();
             this.KeyPreview = true;
@@ -79,7 +83,7 @@ namespace Add_Type
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -94,6 +98,7 @@ namespace Add_Type
             mark4.HeaderText = "Оценка";
             DataGridViewTextBoxColumn mark5 = new DataGridViewTextBoxColumn();
             mark5.HeaderText = "Оценка";
+           
 
             D.Columns.Add(edit);
             D.Columns.Add(st);
@@ -107,7 +112,7 @@ namespace Add_Type
         }
 
         private void FillGrid()
-        {
+        { 
             // Заполняем гриды, комбобоксы
             D.Rows.Clear();
 
@@ -143,10 +148,107 @@ namespace Add_Type
                     for (int j = 0; j < gradestud.Count; j++)
                     {
                         D.Rows[i].Cells[nextcell].Value = gradestud[j].Mark;
+
+                        // Лист для сбора информации об оценках: строка, столбец , где эта оценка храниться, и  ID оценки!
+                        forupdate.Add(i + "." + nextcell + /*"." + gradestud[j].StudentID + */"." + gradestud[j].ID);
                         nextcell++;
                     }
                 }
             }
+        }
+
+        private void D_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex >=2)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (D.RowCount - 1 >= e.RowIndex)
+                    {
+                        bool addorupdate; // Индикатор для добавления или изменения 
+                        int l = e.RowIndex;
+                        int k = e.ColumnIndex;
+                        if (D.Rows[l].Cells[k].Value == null) // Добавление
+                        {
+                            addorupdate = true; // ячейка была пуста
+                        }
+                        else // Редактирование
+                        {
+                            addorupdate = false; // ячейка не была пуста
+                        }
+       
+                        addGrade f = new addGrade();
+                        DialogResult result = f.ShowDialog();
+                        if(f.indicator == 1) // Добавление и изменение
+                        {
+                            if (f.grade != 0)
+                            {
+                                if(addorupdate) // Добавление оценки
+                                {
+                                    Grade newgrade = new Grade();
+                                    newgrade.ThemeID = theme.ID;
+                                    string[] studID = (Convert.ToString(D.Rows[l].Cells[1].Value)).Split('.');
+                                    newgrade.StudentID = Convert.ToInt32(studID[0]);
+                                    newgrade.Mark = f.grade;
+                                    string answer = newgrade.Add();
+                                    D.Rows[l].Cells[k].Value = f.grade;
+                                }
+                                else // Редактирование оценки
+                                {
+                                    //Нужно найти ячейку, в которой требуется изменить данные
+                                    int idforupdate = 0;
+                                    foreach (var s in forupdate)
+                                    {
+                                        string[] updateID = (Convert.ToString(s)).Split('.');
+                                        if(l.ToString() == updateID[0] & k.ToString() == updateID[1])
+                                        {
+                                            idforupdate = Convert.ToInt32(updateID[2]);
+                                            break;
+                                        }
+                                    }
+
+                                    Grade updategrade = Grades.GradeID(idforupdate);
+                                    updategrade.Mark = f.grade;
+                                    string answer = updategrade.Edit();
+                                    D.Rows[l].Cells[k].Value = f.grade;
+                                }
+                            }
+                        }
+                        else // Удаление
+                        {
+                            //Нужно найти ячейку, в которой требуется удалить данные
+                            if (f.grade != 0)
+                            {
+                                int idfordel = 0;
+                                if (addorupdate == false)
+                                {
+                                    foreach (var s in forupdate)
+                                    {
+                                        string[] updateID = (Convert.ToString(s)).Split('.');
+                                        if (l.ToString() == updateID[0] & k.ToString() == updateID[1])
+                                        {
+                                            idfordel = Convert.ToInt32(updateID[2]);
+                                            break;
+                                        }
+                                    }
+                                    Grade o = Grades.GradeID(idfordel);
+                                    String ans = o.Del();
+                                }
+                                D.Rows[l].Cells[k].Value = null;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                }
+            }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -60,8 +60,8 @@ namespace Add_Type
 
  //           Application.Run(new Visit_find());
             //Application.Run(new Grade_find());
-            Application.Run(new Theme_find());
-            //           Application.Run(new Cabinet_find());
+   //         Application.Run(new Theme_find());
+                       Application.Run(new Cabinet_find());
             //Application.Run(new Worker_find());
             //Application.Run(new Branch_find());
             //Application.Run(new Course_find());

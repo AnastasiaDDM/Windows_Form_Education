@@ -37,7 +37,7 @@ namespace Add_Type
                 {
                     context.Themes.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление темы прошло успешно";
+ //                   answer = "Добавление темы прошло успешно";
                 }
                 return answer;
             }
@@ -67,7 +67,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование темы прошло успешно";
+  //                  answer = "Редактирование темы прошло успешно";
                 }
                 return answer;
             }
@@ -94,7 +94,7 @@ namespace Add_Type
         {
             using (SampleContext context = new SampleContext())
             {
-                var v = context.Grades.Where(x => x.ThemeID == this.ID & x.ThemeID == this.ID).OrderBy(u => u.ID).ToList<Grade>();
+                var v = context.Grades.Where(x => x.ThemeID == this.ID).OrderBy(u => u.ID).ToList<Grade>();
                 return v;
             }
         }
@@ -146,7 +146,7 @@ namespace Add_Type
         }
 
         //////////////////// ОДИН БОЛЬШОЙ ПОИСК !!! Если не введены никакие параметры, функция должна возвращать все темы //////////////////
-        public static List<Theme> FindAll(Boolean deldate, Theme theme, Course course, DateTime mindate, DateTime maxdate, String sort, String asсdesс, int page, int count, ref int countrecord) //deldate =false - все и удал и неудал!
+        public static List<Theme> FindAll(Boolean deldate, Theme theme, Worker teacher, Course course, DateTime mindate, DateTime maxdate, String sort, String asсdesс, int page, int count, ref int countrecord) //deldate =false - все и удал и неудал!
         {
             List<Theme> list = new List<Theme>();
             using (SampleContext db = new SampleContext())
@@ -175,6 +175,11 @@ namespace Add_Type
                 if (course.ID != 0)
                 {
                     query = query.Where(x => x.Course == course.ID);
+                }
+
+                if (teacher.ID != 0)
+                {
+                    query = query.Where(x => x.TeacherID == teacher.ID);
                 }
 
                 if (mindate != DateTime.MinValue)

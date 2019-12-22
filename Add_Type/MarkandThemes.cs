@@ -236,35 +236,44 @@ namespace Add_Type
                         FillGrid();
                     }
                 }
+            }
 
-                // Присутствие
-                if (e.ColumnIndex == 5)
+            // Присутствие
+            if (e.ColumnIndex == 5)
+            {
+                if (e.RowIndex > -1)
                 {
-                    if (e.RowIndex > -1)
+                    if (D.RowCount - 1 >= e.RowIndex)
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
-                        {
-                            //int l = e.RowIndex;
-                            //int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            //Grade_view f = new Grade_view(Contracts.ContractID(k), false);
-                            //DialogResult result = f.ShowDialog();
-                            //FillGrid();
-                        }
+                        int l = e.RowIndex;
+
+                        string[] timeID = (Convert.ToString(D.Rows[l].Cells[1].Value)).Split('.');
+                        Timetable time = Timetables.TimetableID(Convert.ToInt32(timeID[0]));
+
+                        string[] themeID = (Convert.ToString(D.Rows[l].Cells[3].Value)).Split('.');
+                        Theme theme = Themes.ThemeID(Convert.ToInt32(themeID[0]));
+
+                        string[] courseID = (Convert.ToString(D.Rows[l].Cells[2].Value)).Split('.');
+                        Course course = Courses.CourseID(Convert.ToInt32(courseID[0]));
+
+                        Visit_view f = new Visit_view(time, theme, course);
+                        DialogResult result = f.ShowDialog();
+                        FillGrid();
                     }
                 }
-                // Редактирование
-                if (e.ColumnIndex == 0)
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (e.RowIndex > -1)
                 {
-                    if (e.RowIndex > -1)
+                    if (D.RowCount - 1 >= e.RowIndex)
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
-                        {
-                            int l = e.RowIndex;
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
-                            DialogResult result = f.ShowDialog();
-                            FillGrid();
-                        }
+                        int l = e.RowIndex;
+                        int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                        Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
+                        DialogResult result = f.ShowDialog();
+                        FillGrid();
                     }
                 }
             }

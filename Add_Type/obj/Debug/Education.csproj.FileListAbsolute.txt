@@ -264,3 +264,14 @@ C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Pay_edit.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.csprojResolveAssemblyReference.cache
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.MarkandThemes.resources
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Syncfusion.SfNumericUpDown.XForms.dll
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Syncfusion.SfNumericUpDown.XForms.xml
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Platform.pdb
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.addGrade.resources

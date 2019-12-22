@@ -42,7 +42,7 @@ namespace Add_Type
                 {
                     context.Timetables.Add(this);
                     context.SaveChanges();
-                    answer = "Добавление элемента расписания прошло успешно";
+  //                  answer = "Добавление элемента расписания прошло успешно";
                 }
             }
             return answer;
@@ -155,7 +155,8 @@ namespace Add_Type
                     }
                 }
             }
-            return answer = "Добавление элемента(ов) расписания прошло успешно";
+            //           return answer = "Добавление элемента(ов) расписания прошло успешно";
+            return answer = "Данные корректны!";
         }
 
         public string Del()
@@ -181,7 +182,7 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-                    answer = "Редактирование элемента расписания прошло успешно";
+  //                  answer = "Редактирование элемента расписания прошло успешно";
                 }
                 return answer;
             }
@@ -346,10 +347,10 @@ namespace Add_Type
             {
                 using (SampleContext context = new SampleContext())
                 {
-                    Timetable v = context.Timetables.Where(x => x.Startlesson == newstart).FirstOrDefault<Timetable>();
+ //                   Timetable v = context.Timetables.Where(x => x.Startlesson == newstart).FirstOrDefault<Timetable>();
 
                     // В первом проходе добавляется или не добавляется начальная дата, а дальше уже происходит увеличение дат
-                    if (v == null & (period != "Каждый будний день(пн - пт)")) // Добавление для всех вариантов, кроме будних дней, т.к. не нужно учитывать выходные!
+                    if (/*v == null & */(period != "Каждый будний день(пн - пт)")) // Добавление для всех вариантов, кроме будних дней, т.к. не нужно учитывать выходные!
                     {
                         TimeRange Range = new TimeRange(newstart, newend);
                         listtimerange.Add(Range);
@@ -357,7 +358,7 @@ namespace Add_Type
 
                     }
 
-                    if ((period == "Каждый будний день(пн - пт)") & v == null & (newstart.DayOfWeek != DayOfWeek.Saturday & newstart.DayOfWeek != DayOfWeek.Sunday)) // Добавление для варианта будних дней, т.к. нужно учитывать выходные и не добавлять такие дни в список!
+                    if ((period == "Каждый будний день(пн - пт)") /*& v == null */& (newstart.DayOfWeek != DayOfWeek.Saturday & newstart.DayOfWeek != DayOfWeek.Sunday)) // Добавление для варианта будних дней, т.к. нужно учитывать выходные и не добавлять такие дни в список!
                     {
                         TimeRange Range = new TimeRange(newstart, newend);
                         listtimerange.Add(Range);
@@ -459,6 +460,15 @@ namespace Add_Type
                     themesId.Add(o.ThemeID);
                 }
                 return themesId;
+            }
+        }
+
+        public List<Visit> GetVisits()  // Поиск  всех посещений у этого элемента расписания
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                var v = context.Visits.Where(x => x.TimetableID == this.ID).OrderBy(u => u.ID).ToList<Visit>();
+                return v;
             }
         }
 

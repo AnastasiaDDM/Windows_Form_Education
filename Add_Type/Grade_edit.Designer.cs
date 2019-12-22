@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.D = new System.Windows.Forms.DataGridView();
-            this.save = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             this.datet = new System.Windows.Forms.Label();
-            this.add = new System.Windows.Forms.Button();
             this.teacherst = new System.Windows.Forms.Label();
             this.themet = new System.Windows.Forms.LinkLabel();
             this.courset = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,24 +52,17 @@
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(632, 457);
             this.D.TabIndex = 0;
+            this.D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellClick);
             // 
-            // save
+            // close
             // 
-            this.save.Location = new System.Drawing.Point(521, 645);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(123, 41);
-            this.save.TabIndex = 3;
-            this.save.Text = "Сохранить";
-            this.save.UseVisualStyleBackColor = true;
-            // 
-            // cancel
-            // 
-            this.cancel.Location = new System.Drawing.Point(12, 645);
-            this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(123, 41);
-            this.cancel.TabIndex = 4;
-            this.cancel.Text = "Отменить";
-            this.cancel.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(259, 641);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(123, 41);
+            this.close.TabIndex = 4;
+            this.close.Text = "Закрыть";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // datet
             // 
@@ -80,15 +72,6 @@
             this.datet.Size = new System.Drawing.Size(42, 17);
             this.datet.TabIndex = 6;
             this.datet.Text = "Дата";
-            // 
-            // add
-            // 
-            this.add.Location = new System.Drawing.Point(502, 66);
-            this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(142, 44);
-            this.add.TabIndex = 7;
-            this.add.Text = "Добавить еще оценку";
-            this.add.UseVisualStyleBackColor = true;
             // 
             // teacherst
             // 
@@ -146,21 +129,30 @@
             this.label7.TabIndex = 51;
             this.label7.Text = "Тема";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 576);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(505, 34);
+            this.label1.TabIndex = 57;
+            this.label1.Text = "Для выполнения работы с оценками неободимо нажать на ячейку оценки,\r\nс которой вы" +
+    " планируете работать.";
+            // 
             // Grade_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 694);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.teacherst);
             this.Controls.Add(this.themet);
             this.Controls.Add(this.courset);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.add);
             this.Controls.Add(this.datet);
-            this.Controls.Add(this.cancel);
-            this.Controls.Add(this.save);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.D);
             this.Name = "Grade_edit";
             this.Text = "Редактирование успеваемости";
@@ -173,15 +165,14 @@
         #endregion
 
         private System.Windows.Forms.DataGridView D;
-        private System.Windows.Forms.Button save;
-        private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label datet;
-        private System.Windows.Forms.Button add;
         private System.Windows.Forms.Label teacherst;
         private System.Windows.Forms.LinkLabel themet;
         private System.Windows.Forms.LinkLabel courset;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
     }
 }

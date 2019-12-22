@@ -24,6 +24,7 @@ namespace Add_Type
         public Student student; // Объект "ученик" для построения расписания для ученика
         public Course course; // Объект "ученик" для построения расписания для ученика
         public Worker teacher; // Объект "преподаватель" для построения расписания для преподавателя
+        public Cabinet cabinet; // Объект "кабинет" для построения расписания для кабинета
         DateTime date = DateTime.Now; // Неделя показала расписания ( при загрузке подставляется дата сейчас)
 
         public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
@@ -66,6 +67,16 @@ namespace Add_Type
             LoadAll();
         }
 
+        public Timetable_find(Cabinet st) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+
+            cabinet = st;
+
+            LoadAll();
+        }
+
         private void LoadAll()
         {
             buildDG();
@@ -80,7 +91,7 @@ namespace Add_Type
             int countrecord = 0;
 
             List<Branch> branches = new List<Branch>();
-            branches = Branches.FindAll(deldate, branch, director, "ID", "asc", page, count, ref countrecord);
+            branches = Branches.FindAll(true, branch, director, "ID", "asc", page, count, ref countrecord);
 
             branchf.Items.Clear();
             branchf.Items.Add("Не выбрано");
@@ -90,6 +101,21 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
             this.branchf.SelectedIndex = 0;
+
+            // Построение комбобокса кабинетов
+            Cabinet cab = new Cabinet();
+
+            List<Cabinet> cabinets = new List<Cabinet>();
+            cabinets = Cabinets.FindAll(true, cab, branch, 0, 0, "ID", "asc", page, count, ref countrecord);
+
+            cabinetf.Items.Clear();
+            cabinetf.Items.Add("Не выбрано");
+            foreach (var s in cabinets)
+            {
+                // добавляем один элемент
+                cabinetf.Items.Add(s.ID + ". " + s.Number);
+            }
+            this.cabinetf.SelectedIndex = 0;
         }
 
         private void FillGrid() // Заполняем гриды
@@ -107,6 +133,28 @@ namespace Add_Type
                 {
                     string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
                     bran.ID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
+                }
+            }
+
+            Cabinet cab = new Cabinet();
+            if (cabinet != null)
+            {
+                cab = cabinet;
+                cabinetf.SelectedItem = cab.ID + ". " + cab.Number;
+            }
+
+
+            if (cabinetf.SelectedItem != null)
+            {
+                if (cabinetf.SelectedIndex == 0)
+                {
+                    cab.ID = 0;
+                }
+                else
+                {
+                    string[] cabID = (Convert.ToString(cabinetf.SelectedItem)).Split('.');
+                    cab = Cabinets.CabinetID(Convert.ToInt32(cabID[0]));
+                    cabinetf.SelectedItem = cab.ID + ". " + cab.Number;
                 }
             }
 
@@ -149,8 +197,6 @@ namespace Add_Type
                 teacherf.Text = chooseTeacher.ID + ". " + chooseTeacher.FIO;
                 teach = chooseTeacher;
             }
-
-            Cabinet cab = new Cabinet();
 
             int countrecord = 0;
 
@@ -283,7 +329,7 @@ namespace Add_Type
         {
             // Сброс всех выбранных значений в значения по умолчанию
             this.branchf.SelectedIndex = 0;
-//            this.cabinetf.SelectedIndex = 0;
+            this.cabinetf.SelectedIndex = 0;
             datef.Value = DateTime.Now;
             teacherf.Clear();
             chooseTeacher = null;
@@ -298,7 +344,7 @@ namespace Add_Type
         {
             if(chooseTeacher != null | chooseCourse != null | chooseStudent != null | this.branchf.SelectedIndex != 0)
             {
-                MarkandThemes f = new MarkandThemes(chooseTeacher, chooseCourse, chooseStudent, this.branchf.SelectedIndex); // Передем 
+                MarkandThemes f = new MarkandThemes(chooseTeacher, chooseCourse, chooseStudent, this.branchf.SelectedIndex); // Передаем 
                 DialogResult result = f.ShowDialog();
       //          chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
                 FillGrid();
@@ -307,6 +353,49 @@ namespace Add_Type
             {
                 MessageBox.Show("Для начала вам нужно выбрать преподавателя или  курс");
             }
+        }
+
+        private void cabinetf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //if (cabinetf.SelectedItem != null)
+            //{
+            //    if (cabinetf.SelectedIndex == 0)
+            //    {
+            //    }
+            //    else
+            //    {
+            //        string[] cabID = (Convert.ToString(cabinetf.SelectedItem)).Split('.');
+            //        Cabinet cab = Cabinets.CabinetID(Convert.ToInt32(cabID[0]));
+            //        branchf.SelectedItem = cab.ID + ". " + Branches.BranchID(Convert.ToInt32(cab.ID)).Name;
+            //        //cabinetf.SelectedItem = cab.ID + ". " + cab.Number;
+            //    }
+            //}
+        }
+
+        private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            if (e.RowIndex > -1)
+            {
+                int l = e.RowIndex;
+                int k = e.ColumnIndex;
+                if(D.Rows[l].Cells[k].Value != null)
+                {
+                    string[] timeID = (Convert.ToString(D.Rows[l].Cells[k].Value)).Split('.');
+                    Timetable timet = Timetables.TimetableID(Convert.ToInt32(timeID[0]));
+                    Timetable_view f = new Timetable_view(timet);
+                    DialogResult result = f.ShowDialog();
+                    FillGrid();
+                }
+            }
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            // Добавление нового
+            Timetable_edit f = new Timetable_edit(true); // Значит, что происходит добавление нового
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
     }
 }

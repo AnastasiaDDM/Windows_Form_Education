@@ -22,6 +22,7 @@ namespace Add_Type
         int pages;
         string purpose;
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Theme chooseThem; // Эта переменная для пересылке своего значения в вызывающую форму
         public Theme_find()
         {
@@ -148,8 +149,15 @@ namespace Add_Type
                 course = Courses.CourseID(chooseCourse.ID);
             }
 
+            Worker teach = new Worker();
+            if (chooseTeacher != null)
+            {
+                teacherf.Text = chooseTeacher.ID + ". " + chooseTeacher.FIO;
+                teach = chooseTeacher;
+            }
+
             List<Theme> themes = new List<Theme>();
-            themes = Themes.FindAll(deldate, theme, course, mindate, maxdate, sort, asсdesс, page, count, ref countrecord);
+            themes = Themes.FindAll(deldate, theme, teach, course, mindate, maxdate, sort, asсdesс, page, count, ref countrecord);
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
             // Формирование количества страниц
@@ -207,6 +215,14 @@ namespace Add_Type
             FillGrid();
         }
 
+        private void bteach_Click(object sender, EventArgs e)
+        {
+            Worker_find f = new Worker_find("choose", 3); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
+            DialogResult result = f.ShowDialog();
+            chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
+
         private void reset_Click(object sender, EventArgs e)
         {
             // Сброс всех выбранных значений в значения по умолчанию
@@ -222,6 +238,8 @@ namespace Add_Type
             dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
             coursef.Clear();
             chooseCourse = null;
+            teacherf.Clear();
+            chooseTeacher = null;
 
             FillGrid();
         }
@@ -279,7 +297,7 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Выбрать"
             if (purpose == "choose")
             {
-                if (e.ColumnIndex == 6)
+                if (e.ColumnIndex == 7)
                 {
                     if (e.RowIndex > -1)
                     {
@@ -297,7 +315,7 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Удалить"
             else
             {
-                if (e.ColumnIndex == 6)
+                if (e.ColumnIndex == 7)
                 {
                     if (e.RowIndex > -1)
                     {
@@ -346,11 +364,11 @@ namespace Add_Type
             // Открытие формы для просмотра данных
             if (e.RowIndex > -1)
             {
-                //int l = e.RowIndex;
-                //int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                //Theme_view f = new Theme_view(Themes.ThemeID(k));
-                //DialogResult result = f.ShowDialog();
-                //FillGrid();
+                int l = e.RowIndex;
+                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                Theme_view f = new Theme_view(Themes.ThemeID(k));
+                DialogResult result = f.ShowDialog();
+                FillGrid();
             }
         }
     }

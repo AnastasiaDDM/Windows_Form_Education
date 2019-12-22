@@ -41,7 +41,7 @@ namespace Add_Type
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -59,8 +59,7 @@ namespace Add_Type
         }
 
         private void FillForm()
-        {   // Заполнение формы известными данными о договоре
-            //this.Text = this.Text + contract.ID;
+        {   // Заполнение формы 
 
             datet.Text = timetable.Startlesson.ToString(formattotext);
             themet.Text = theme.ID + ". " + theme.Tema;
@@ -103,6 +102,11 @@ namespace Add_Type
             Grade_edit f = new Grade_edit(timetable, theme, course);
             DialogResult result = f.ShowDialog();
             FillGrid();
+        }
+
+        private void Close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

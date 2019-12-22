@@ -42,5 +42,11 @@ namespace Add_Type
             DialogResult result = f.ShowDialog();
             FillForm();
         }
+
+        private void timetable_Click(object sender, EventArgs e)
+        {
+            Timetable_find f = new Timetable_find(cabinet);
+            DialogResult result = f.ShowDialog();
+        }
     }
 }
