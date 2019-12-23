@@ -371,5 +371,25 @@ namespace Add_Type
                 FillGrid();
             }
         }
+
+        private void Theme_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+            if (ascflag == true)
+            {
+                ascflag = false;
+            }
+            else
+            {
+                ascflag = true;
+            }
+        }
     }
 }

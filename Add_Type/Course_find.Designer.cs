@@ -430,6 +430,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Course_find";
             this.Text = "Список курсов";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Course_find_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();

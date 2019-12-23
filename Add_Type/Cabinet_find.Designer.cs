@@ -177,12 +177,13 @@
             // 
             // ascf
             // 
-            this.ascf.Location = new System.Drawing.Point(611, 46);
+            this.ascf.Location = new System.Drawing.Point(613, 46);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(42, 23);
             this.ascf.TabIndex = 40;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // reset
             // 
@@ -319,6 +320,7 @@
             this.Controls.Add(this.D);
             this.Name = "Cabinet_find";
             this.Text = "Список кабинетов";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cabinet_find_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

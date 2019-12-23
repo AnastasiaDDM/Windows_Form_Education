@@ -351,5 +351,13 @@ namespace Add_Type
                 f.Show();
             }
         }
+
+        private void Type_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

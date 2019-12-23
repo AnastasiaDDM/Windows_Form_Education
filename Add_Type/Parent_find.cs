@@ -120,7 +120,7 @@ namespace Add_Type
                 {
                     sort = "FIO";
                 }
-                else
+                if (this.sortf.SelectedItem.ToString() == "Телефон")
                 {
                     sort = "Phone";
                 }
@@ -348,6 +348,26 @@ namespace Add_Type
             DialogResult result = f.ShowDialog();
             chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
+        }
+
+        private void D_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+            if (ascflag == true)
+            {
+                ascflag = false;
+            }
+            else
+            {
+                ascflag = true;
+            }
         }
     }
 }

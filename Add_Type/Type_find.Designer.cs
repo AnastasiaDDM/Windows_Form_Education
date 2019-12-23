@@ -384,6 +384,7 @@
             this.Controls.Add(this.D);
             this.Name = "Type_find";
             this.Text = "Список типов курсов";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Type_find_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lessonto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lessonfrom)).EndInit();

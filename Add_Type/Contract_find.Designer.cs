@@ -314,6 +314,7 @@
             this.ascf.TabIndex = 38;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // dateto
             // 
@@ -443,6 +444,7 @@
             this.Name = "Contract_find";
             this.Text = "Список договоров";
             this.Load += new System.EventHandler(this.Contract_find_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Contract_find_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.bstud = new System.Windows.Forms.Button();
+            this.bcour = new System.Windows.Forms.Button();
             this.coursef = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,15 +65,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // bstud
+            // bcour
             // 
-            this.bstud.Location = new System.Drawing.Point(602, 104);
-            this.bstud.Name = "bstud";
-            this.bstud.Size = new System.Drawing.Size(23, 23);
-            this.bstud.TabIndex = 56;
-            this.bstud.Text = "🔍";
-            this.bstud.UseVisualStyleBackColor = true;
-            this.bstud.Click += new System.EventHandler(this.bstud_Click);
+            this.bcour.Location = new System.Drawing.Point(602, 104);
+            this.bcour.Name = "bcour";
+            this.bcour.Size = new System.Drawing.Size(23, 23);
+            this.bcour.TabIndex = 56;
+            this.bcour.Text = "🔍";
+            this.bcour.UseVisualStyleBackColor = true;
+            this.bcour.Click += new System.EventHandler(this.bcour_Click);
             // 
             // coursef
             // 
@@ -219,7 +219,7 @@
             this.periodf.FormattingEnabled = true;
             this.periodf.Items.AddRange(new object[] {
             "Ежедневно",
-            "Еженедельно ",
+            "Еженедельно",
             "Ежемесячно",
             "Каждый год",
             "Каждый будний день(пн - пт)"});
@@ -372,11 +372,12 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.datet);
-            this.Controls.Add(this.bstud);
+            this.Controls.Add(this.bcour);
             this.Controls.Add(this.coursef);
             this.Controls.Add(this.label9);
             this.Name = "Timetable_edit";
             this.Text = "Редактирование элемента расписания №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Timetable_edit_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
@@ -388,7 +389,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button bstud;
+        private System.Windows.Forms.Button bcour;
         private System.Windows.Forms.TextBox coursef;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;

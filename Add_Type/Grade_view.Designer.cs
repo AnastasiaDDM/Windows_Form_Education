@@ -152,6 +152,7 @@
             this.Controls.Add(this.D);
             this.Name = "Grade_view";
             this.Text = "Успеваемость";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Grade_view_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -17,5 +17,13 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
         }
+
+        private void Statistic_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

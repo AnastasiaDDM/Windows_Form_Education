@@ -137,6 +137,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Theme_view";
             this.Text = "Тема №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Theme_view_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

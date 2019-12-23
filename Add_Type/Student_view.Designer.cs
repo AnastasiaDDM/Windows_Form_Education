@@ -284,6 +284,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Student_view";
             this.Text = "Ученик №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Student_view_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridcontract)).EndInit();

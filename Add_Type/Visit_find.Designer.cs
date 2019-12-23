@@ -118,9 +118,9 @@
             // 
             this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
-            this.sortf.Location = new System.Drawing.Point(593, 43);
+            this.sortf.Location = new System.Drawing.Point(603, 43);
             this.sortf.Name = "sortf";
-            this.sortf.Size = new System.Drawing.Size(180, 24);
+            this.sortf.Size = new System.Drawing.Size(170, 24);
             this.sortf.TabIndex = 56;
             // 
             // find
@@ -141,6 +141,7 @@
             this.ascf.TabIndex = 57;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // reset
             // 
@@ -171,7 +172,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(484, 42);
+            this.label7.Location = new System.Drawing.Point(485, 46);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(113, 17);
             this.label7.TabIndex = 55;
@@ -376,6 +377,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Visit_find";
             this.Text = "Список посещаемости";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Visit_find_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();

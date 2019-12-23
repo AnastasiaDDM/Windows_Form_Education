@@ -121,6 +121,7 @@
             this.Controls.Add(this.label3);
             this.Name = "Parent_view";
             this.Text = "Ответственное лицо№";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Parent_view_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

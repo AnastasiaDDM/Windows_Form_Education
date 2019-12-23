@@ -34,6 +34,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            LoadAll();
         }
         public Student_find(String answer, string button)
         {
@@ -163,7 +164,7 @@ namespace Add_Type
                 {
                     sort = "FIO";
                 }
-                else
+                if (this.sortf.SelectedItem.ToString() == "Телефон") 
                 {
                     sort = "Phone";
                 }
@@ -248,12 +249,15 @@ namespace Add_Type
             if(ascflag == true)
             {
                 ascflag = false;
-                //ascf.BackColor = Color.FromArgb(220, 220, 220);
+                ascf.Text = "▼";
+                //         ascf.BackColor = Color.FromArgb(220, 220, 220);
             }
             else
             {
                 ascflag = true;
-                //ascf.BackColor = Color.FromArgb(192, 192, 192);
+                //ascf.Text = "ᐱ";
+                ascf.Text = "▲";
+                //          ascf.BackColor = Color.FromArgb(192, 192, 192);
             }
         }
 

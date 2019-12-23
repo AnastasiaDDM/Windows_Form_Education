@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.teacherf = new System.Windows.Forms.TextBox();
+            this.bteach = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.dateto = new System.Windows.Forms.DateTimePicker();
             this.namet = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -52,9 +55,6 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.add = new System.Windows.Forms.Button();
-            this.teacherf = new System.Windows.Forms.TextBox();
-            this.bteach = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +85,34 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
+            // 
+            // teacherf
+            // 
+            this.teacherf.Location = new System.Drawing.Point(285, 46);
+            this.teacherf.Multiline = true;
+            this.teacherf.Name = "teacherf";
+            this.teacherf.ReadOnly = true;
+            this.teacherf.Size = new System.Drawing.Size(155, 20);
+            this.teacherf.TabIndex = 49;
+            // 
+            // bteach
+            // 
+            this.bteach.Location = new System.Drawing.Point(441, 45);
+            this.bteach.Name = "bteach";
+            this.bteach.Size = new System.Drawing.Size(22, 23);
+            this.bteach.TabIndex = 50;
+            this.bteach.Text = "🔍";
+            this.bteach.UseVisualStyleBackColor = true;
+            this.bteach.Click += new System.EventHandler(this.bteach_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(225, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Препод.";
             // 
             // dateto
             // 
@@ -171,6 +199,7 @@
             this.ascf.TabIndex = 40;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // reset
             // 
@@ -307,34 +336,6 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
-            // teacherf
-            // 
-            this.teacherf.Location = new System.Drawing.Point(285, 46);
-            this.teacherf.Multiline = true;
-            this.teacherf.Name = "teacherf";
-            this.teacherf.ReadOnly = true;
-            this.teacherf.Size = new System.Drawing.Size(155, 20);
-            this.teacherf.TabIndex = 49;
-            // 
-            // bteach
-            // 
-            this.bteach.Location = new System.Drawing.Point(441, 45);
-            this.bteach.Name = "bteach";
-            this.bteach.Size = new System.Drawing.Size(22, 23);
-            this.bteach.TabIndex = 50;
-            this.bteach.Text = "🔍";
-            this.bteach.UseVisualStyleBackColor = true;
-            this.bteach.Click += new System.EventHandler(this.bteach_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(225, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 17);
-            this.label1.TabIndex = 48;
-            this.label1.Text = "Препод.";
-            // 
             // Theme_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -351,6 +352,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Theme_find";
             this.Text = "Список тем";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Theme_find_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();

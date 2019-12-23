@@ -33,9 +33,9 @@ namespace Add_Type
         public int CourseID { get; set; }
         public Course Course { get; set; }
 
-        public string Add()
+        public Timetable Add(ref string answer)
         {
-            string answer = Сheck(this);
+            answer = Сheck(this);
             if (answer == "Данные корректны!")
             {
                 using (SampleContext context = new SampleContext())
@@ -45,15 +45,128 @@ namespace Add_Type
   //                  answer = "Добавление элемента расписания прошло успешно";
                 }
             }
-            return answer;
+            return this;
         }
 
-        public string Add(DateTime Endrepeat, string period, Timetable timetable)
+        //public string Add(DateTime Endrepeat, string period, Timetable timetable/*, ref List<Timetable> listtimetable*/)
+        //{
+        //    string answer = Сheck(this);
+        //    if (answer == "Данные корректны!")
+        //    {
+        //       List<Timetable> listtimetable = new List<Timetable>();
+        //        List<TimeRange> listtimerange = new List<TimeRange>();
+
+        //        //Ежедневно
+        //        //Еженедельно
+        //        //Ежемесячно
+        //        //Каждый год
+        //        //Каждый будний день(пн - пт)
+
+        //        DateTime newstart = timetable.Startlesson; // Присваиваем дате начала занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
+        //        DateTime newend = timetable.Endlesson; // Присваиваем дате окончания занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
+
+
+        //        while (newend <= Endrepeat) // Организуем цикл для перебора всех дат в заданном диапазоне, т.е. до Endrepeat
+        //        {
+        //            using (SampleContext context = new SampleContext())
+        //            {
+        //                Timetable v = context.Timetables.Where(x => x.Startlesson == newstart).FirstOrDefault<Timetable>();
+
+        //                // В первом проходе добавляется или не добавляется начальная дата, а дальше уже происходит увеличение дат
+        //                if (v == null & (period != "Каждый будний день(пн - пт)")) // Добавление для всех вариантов, кроме будних дней, т.к. не нужно учитывать выходные!
+        //                {
+        //                    Timetable newtimetable = new Timetable(); // Создаем новый экземпляр класса
+        //                    newtimetable.CabinetID = timetable.CabinetID; // Добавляем неизменные атрибуты в новый объект из переданного объекта
+        //                    newtimetable.CourseID = timetable.CourseID;  // Добавляем неизменные атрибуты в новый объект из переданного объекта
+        //                    newtimetable.Note = timetable.Note;  // Добавляем неизменные атрибуты в новый объект из переданного объекта
+        //                    newtimetable.Startlesson = newstart; // Добавляем изменяемые атрибуты (дата начала занятия) в новый объект
+        //                    newtimetable.Endlesson = newend; // Добавляем изменяемые атрибуты (дата окончания занятия) в новый объект
+        //                    listtimetable.Add(newtimetable); // Добавление объекта в лист
+
+
+        //                    TimeRange Range = new TimeRange(newstart, newend);
+        //                    listtimerange.Add(Range);
+
+
+        //                }
+
+        //                if ((period == "Каждый будний день(пн - пт)") & v == null & (newstart.DayOfWeek != DayOfWeek.Saturday & newstart.DayOfWeek != DayOfWeek.Sunday)) // Добавление для варианта будних дней, т.к. нужно учитывать выходные и не добавлять такие дни в список!
+        //                {
+        //                    Timetable newtimetable = new Timetable(); // Создаем новый экземпляр класса
+        //                    newtimetable.CabinetID = timetable.CabinetID; // Добавляем неизменные атрибуты в новый объект из переданного объекта
+        //                    newtimetable.CourseID = timetable.CourseID;  // Добавляем неизменные атрибуты в новый объект из переданного объекта
+        //                    newtimetable.Note = timetable.Note;  // Добавляем неизменные атрибуты в новый объект из переданного объекта
+        //                    newtimetable.Startlesson = newstart; // Добавляем изменяемые атрибуты (дата начала занятия) в новый объект
+        //                    newtimetable.Endlesson = newend; // Добавляем изменяемые атрибуты (дата окончания занятия) в новый объект
+        //                    listtimetable.Add(newtimetable); // Добавление объекта в лист
+
+
+        //                    TimeRange Range = new TimeRange(newstart, newend);
+        //                    listtimerange.Add(Range);
+        //                }
+        //            }
+
+        //            if (period == "Ежедневно") // Изменение дат исходя из условия
+        //            {
+        //                newstart = newstart.AddDays(1);
+
+        //                newend = newend.AddDays(1);
+        //            }
+
+        //            if (period == "Еженедельно") // Изменение дат исходя из условия
+        //            {
+        //                newstart = newstart.AddDays(7);
+
+        //                newend = newend.AddDays(7);
+        //            }
+
+        //            if (period == "Ежемесячно") // Изменение дат исходя из условия
+        //            {
+        //                newstart = newstart.AddMonths(1);
+
+        //                newend = newend.AddMonths(1);
+        //            }
+
+        //            if (period == "Каждый год") // Изменение дат исходя из условия
+        //            {
+        //                newstart = newstart.AddYears(1);
+
+        //                newend = newend.AddYears(1);
+        //            }
+
+        //            if (period == "Каждый будний день(пн - пт)") // Изменение дат исходя из условия
+        //            {
+        //                //if (newstart.DayOfWeek != DayOfWeek.Saturday || newend.DayOfWeek != DayOfWeek.Sunday)
+        //                {
+        //                    newstart = newstart.AddDays(1);
+
+        //                    newend = newend.AddDays(1);
+        //                }
+        //            }
+        //        }
+
+        //        using (SampleContext context = new SampleContext()) // После завершения цикла нужно добавить значения листа в бд
+        //        {
+        //            context.Timetables.AddRange(listtimetable);
+        //            context.SaveChanges();
+        //            if (listtimetable.Count == 0) // Может быть ситуация, при которой ни один объект не был добавлен в бд, пользователь будет осведомлен
+        //            {
+        //                return answer = "Ни один элемент расписания не был добавлен";
+        //            }
+        //        }
+        //    }
+
+        //    //           return answer = "Добавление элемента(ов) расписания прошло успешно";
+        //    return answer/* = "Данные корректны!"*/;
+        //}
+
+        public List<Timetable> Add(DateTime Endrepeat, string period, Timetable timetable, ref string answer)
         {
-            string answer = Сheck(this);
+            List<Timetable> listtimetable = new List<Timetable>();
+            answer = Сheck(this);
             if (answer == "Данные корректны!")
             {
-                List<Timetable> listtimetable = new List<Timetable>();
+               
                 List<TimeRange> listtimerange = new List<TimeRange>();
 
                 //Ежедневно
@@ -151,12 +264,13 @@ namespace Add_Type
                     context.SaveChanges();
                     if (listtimetable.Count == 0) // Может быть ситуация, при которой ни один объект не был добавлен в бд, пользователь будет осведомлен
                     {
-                        return answer = "Ни один элемент расписания не был добавлен";
+                         answer = "Ни один элемент расписания не был добавлен";
                     }
                 }
             }
+
             //           return answer = "Добавление элемента(ов) расписания прошло успешно";
-            return answer = "Данные корректны!";
+            return listtimetable/* = "Данные корректны!"*/;
         }
 
         public string Del()

@@ -40,8 +40,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.datet = new System.Windows.Forms.Label();
             this.timet = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btomark = new System.Windows.Forms.Button();
             this.brancht = new System.Windows.Forms.LinkLabel();
             this.cabinett = new System.Windows.Forms.LinkLabel();
             this.courset = new System.Windows.Forms.LinkLabel();
@@ -161,23 +160,15 @@
             this.timet.TabIndex = 104;
             this.timet.Text = "label16";
             // 
-            // button2
+            // btomark
             // 
-            this.button2.Location = new System.Drawing.Point(488, 172);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 42);
-            this.button2.TabIndex = 106;
-            this.button2.Text = "Темы";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(488, 220);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 42);
-            this.button3.TabIndex = 107;
-            this.button3.Text = "Присутствие";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btomark.Location = new System.Drawing.Point(488, 163);
+            this.btomark.Name = "btomark";
+            this.btomark.Size = new System.Drawing.Size(128, 42);
+            this.btomark.TabIndex = 106;
+            this.btomark.Text = "Оценивание";
+            this.btomark.UseVisualStyleBackColor = true;
+            this.btomark.Click += new System.EventHandler(this.btomark_Click);
             // 
             // brancht
             // 
@@ -231,8 +222,7 @@
             this.Controls.Add(this.courset);
             this.Controls.Add(this.cabinett);
             this.Controls.Add(this.brancht);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btomark);
             this.Controls.Add(this.timet);
             this.Controls.Add(this.datet);
             this.Controls.Add(this.label10);
@@ -247,6 +237,7 @@
             this.Controls.Add(this.label9);
             this.Name = "Timetable_view";
             this.Text = "Элемент расписания №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Timetable_view_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -267,8 +258,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label datet;
         private System.Windows.Forms.Label timet;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btomark;
         private System.Windows.Forms.LinkLabel brancht;
         private System.Windows.Forms.LinkLabel cabinett;
         private System.Windows.Forms.LinkLabel courset;

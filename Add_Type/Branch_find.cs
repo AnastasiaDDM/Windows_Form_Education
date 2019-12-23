@@ -383,5 +383,17 @@ namespace Add_Type
                 FillGrid();
             }
         }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+            if (ascflag == true)
+            {
+                ascflag = false;
+            }
+            else
+            {
+                ascflag = true;
+            }
+        }
     }
 }

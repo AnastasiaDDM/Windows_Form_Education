@@ -225,6 +225,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Pay_view";
             this.Text = "Оплата №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pay_view_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

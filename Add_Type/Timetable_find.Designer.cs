@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.D = new System.Windows.Forms.DataGridView();
@@ -91,6 +91,7 @@
             // 
             this.D.AllowUserToAddRows = false;
             this.D.AllowUserToDeleteRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -101,14 +102,14 @@
             this.friday,
             this.satyrday,
             this.sunday});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.D.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.D.DefaultCellStyle = dataGridViewCellStyle1;
             this.D.Location = new System.Drawing.Point(12, 167);
             this.D.Name = "D";
             this.D.ReadOnly = true;
@@ -130,42 +131,36 @@
             this.tuesday.HeaderText = "Вторник";
             this.tuesday.Name = "tuesday";
             this.tuesday.ReadOnly = true;
-            this.tuesday.Width = 92;
             // 
             // wednesday
             // 
             this.wednesday.HeaderText = "Среда";
             this.wednesday.Name = "wednesday";
             this.wednesday.ReadOnly = true;
-            this.wednesday.Width = 78;
             // 
             // thursday
             // 
             this.thursday.HeaderText = "Четверг";
             this.thursday.Name = "thursday";
             this.thursday.ReadOnly = true;
-            this.thursday.Width = 90;
             // 
             // friday
             // 
             this.friday.HeaderText = "Пятница";
             this.friday.Name = "friday";
             this.friday.ReadOnly = true;
-            this.friday.Width = 94;
             // 
             // satyrday
             // 
             this.satyrday.HeaderText = "Суббота";
             this.satyrday.Name = "satyrday";
             this.satyrday.ReadOnly = true;
-            this.satyrday.Width = 92;
             // 
             // sunday
             // 
             this.sunday.HeaderText = "Воскресенье";
             this.sunday.Name = "sunday";
             this.sunday.ReadOnly = true;
-            this.sunday.Width = 122;
             // 
             // mondayt
             // 
@@ -417,6 +412,7 @@
             this.Name = "Timetable_find";
             this.Text = "Расписание занятий ";
             this.Load += new System.EventHandler(this.Timetable_find_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Timetable_find_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

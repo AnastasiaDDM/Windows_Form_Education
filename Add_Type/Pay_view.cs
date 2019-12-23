@@ -56,5 +56,13 @@ namespace Add_Type
             Branch_view f = new Branch_view(Branches.BranchID(pay.BranchID));
             DialogResult result = f.ShowDialog();
         }
+
+        private void Pay_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

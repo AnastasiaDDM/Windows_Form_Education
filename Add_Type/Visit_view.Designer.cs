@@ -200,6 +200,7 @@
             this.Controls.Add(this.D);
             this.Name = "Visit_view";
             this.Text = "Посещаемость";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Visit_view_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

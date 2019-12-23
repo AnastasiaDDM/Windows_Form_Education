@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.bworker = new System.Windows.Forms.Button();
+            this.bstudent = new System.Windows.Forms.Button();
+            this.bcontract = new System.Windows.Forms.Button();
+            this.bpay = new System.Windows.Forms.Button();
+            this.bbranch = new System.Windows.Forms.Button();
+            this.bcabinet = new System.Windows.Forms.Button();
+            this.bcourse = new System.Windows.Forms.Button();
+            this.btype = new System.Windows.Forms.Button();
+            this.btheme = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btimetable = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.bcountcontract = new System.Windows.Forms.Button();
+            this.bprofit = new System.Windows.Forms.Button();
+            this.brevenue = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
+            this.bgrade = new System.Windows.Forms.Button();
+            this.bvisit = new System.Windows.Forms.Button();
+            this.btomark = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -58,92 +58,101 @@
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // bworker
             // 
-            this.button1.Location = new System.Drawing.Point(22, 116);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 47);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Список работников";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bworker.Location = new System.Drawing.Point(22, 116);
+            this.bworker.Name = "bworker";
+            this.bworker.Size = new System.Drawing.Size(203, 47);
+            this.bworker.TabIndex = 0;
+            this.bworker.Text = "Список работников";
+            this.bworker.UseVisualStyleBackColor = true;
+            this.bworker.Click += new System.EventHandler(this.bworker_Click);
             // 
-            // button2
+            // bstudent
             // 
-            this.button2.Location = new System.Drawing.Point(22, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(203, 47);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Список учеников";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bstudent.Location = new System.Drawing.Point(22, 38);
+            this.bstudent.Name = "bstudent";
+            this.bstudent.Size = new System.Drawing.Size(203, 47);
+            this.bstudent.TabIndex = 1;
+            this.bstudent.Text = "Список учеников";
+            this.bstudent.UseVisualStyleBackColor = true;
+            this.bstudent.Click += new System.EventHandler(this.bstudent_Click);
             // 
-            // button3
+            // bcontract
             // 
-            this.button3.Location = new System.Drawing.Point(22, 116);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(203, 47);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Список договоров";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bcontract.Location = new System.Drawing.Point(22, 116);
+            this.bcontract.Name = "bcontract";
+            this.bcontract.Size = new System.Drawing.Size(203, 47);
+            this.bcontract.TabIndex = 2;
+            this.bcontract.Text = "Список договоров";
+            this.bcontract.UseVisualStyleBackColor = true;
+            this.bcontract.Click += new System.EventHandler(this.bcontract_Click);
             // 
-            // button4
+            // bpay
             // 
-            this.button4.Location = new System.Drawing.Point(22, 196);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(203, 47);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Список оплат";
-            this.button4.UseVisualStyleBackColor = true;
+            this.bpay.Location = new System.Drawing.Point(22, 196);
+            this.bpay.Name = "bpay";
+            this.bpay.Size = new System.Drawing.Size(203, 47);
+            this.bpay.TabIndex = 3;
+            this.bpay.Text = "Список оплат";
+            this.bpay.UseVisualStyleBackColor = true;
+            this.bpay.Click += new System.EventHandler(this.bpay_Click);
             // 
-            // button5
+            // bbranch
             // 
-            this.button5.Location = new System.Drawing.Point(22, 196);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(203, 47);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Список филиалов";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bbranch.Location = new System.Drawing.Point(22, 196);
+            this.bbranch.Name = "bbranch";
+            this.bbranch.Size = new System.Drawing.Size(203, 47);
+            this.bbranch.TabIndex = 4;
+            this.bbranch.Text = "Список филиалов";
+            this.bbranch.UseVisualStyleBackColor = true;
+            this.bbranch.Click += new System.EventHandler(this.bbranch_Click);
             // 
-            // button6
+            // bcabinet
             // 
-            this.button6.Location = new System.Drawing.Point(22, 38);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(203, 47);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Список кабинетов";
-            this.button6.UseVisualStyleBackColor = true;
+            this.bcabinet.Location = new System.Drawing.Point(22, 38);
+            this.bcabinet.Name = "bcabinet";
+            this.bcabinet.Size = new System.Drawing.Size(203, 47);
+            this.bcabinet.TabIndex = 5;
+            this.bcabinet.Text = "Список кабинетов";
+            this.bcabinet.UseVisualStyleBackColor = true;
+            this.bcabinet.Click += new System.EventHandler(this.bcabinet_Click);
             // 
-            // button7
+            // bcourse
             // 
-            this.button7.Location = new System.Drawing.Point(22, 116);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(203, 47);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Список курсов";
-            this.button7.UseVisualStyleBackColor = true;
+            this.bcourse.Location = new System.Drawing.Point(22, 116);
+            this.bcourse.Name = "bcourse";
+            this.bcourse.Size = new System.Drawing.Size(203, 47);
+            this.bcourse.TabIndex = 6;
+            this.bcourse.Text = "Список курсов";
+            this.bcourse.UseVisualStyleBackColor = true;
+            this.bcourse.Click += new System.EventHandler(this.bcourse_Click);
             // 
-            // button8
+            // btype
             // 
-            this.button8.Location = new System.Drawing.Point(22, 38);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(203, 47);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Список типов курсов";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btype.Location = new System.Drawing.Point(22, 38);
+            this.btype.Name = "btype";
+            this.btype.Size = new System.Drawing.Size(203, 47);
+            this.btype.TabIndex = 7;
+            this.btype.Text = "Список типов курсов";
+            this.btype.UseVisualStyleBackColor = true;
+            this.btype.Click += new System.EventHandler(this.btype_Click);
             // 
-            // button9
+            // btheme
             // 
-            this.button9.Location = new System.Drawing.Point(22, 196);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(203, 47);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Список тем";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btheme.Location = new System.Drawing.Point(22, 196);
+            this.btheme.Name = "btheme";
+            this.btheme.Size = new System.Drawing.Size(203, 47);
+            this.btheme.TabIndex = 8;
+            this.btheme.Text = "Список тем";
+            this.btheme.UseVisualStyleBackColor = true;
+            this.btheme.Click += new System.EventHandler(this.btheme_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.bworker);
+            this.groupBox1.Controls.Add(this.bbranch);
+            this.groupBox1.Controls.Add(this.bcabinet);
             this.groupBox1.Location = new System.Drawing.Point(12, 20);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 270);
@@ -153,9 +162,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.bstudent);
+            this.groupBox2.Controls.Add(this.bcontract);
+            this.groupBox2.Controls.Add(this.bpay);
             this.groupBox2.Location = new System.Drawing.Point(315, 20);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(250, 270);
@@ -165,9 +174,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button8);
-            this.groupBox3.Controls.Add(this.button7);
-            this.groupBox3.Controls.Add(this.button9);
+            this.groupBox3.Controls.Add(this.btype);
+            this.groupBox3.Controls.Add(this.bcourse);
+            this.groupBox3.Controls.Add(this.btheme);
             this.groupBox3.Location = new System.Drawing.Point(12, 333);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(250, 270);
@@ -177,7 +186,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button10);
+            this.groupBox4.Controls.Add(this.btimetable);
             this.groupBox4.Location = new System.Drawing.Point(315, 333);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(241, 108);
@@ -185,20 +194,21 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Расписание";
             // 
-            // button10
+            // btimetable
             // 
-            this.button10.Location = new System.Drawing.Point(18, 38);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(203, 47);
-            this.button10.TabIndex = 1;
-            this.button10.Text = "Расписание\r\n";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btimetable.Location = new System.Drawing.Point(18, 38);
+            this.btimetable.Name = "btimetable";
+            this.btimetable.Size = new System.Drawing.Size(203, 47);
+            this.btimetable.TabIndex = 1;
+            this.btimetable.Text = "Расписание\r\n";
+            this.btimetable.UseVisualStyleBackColor = true;
+            this.btimetable.Click += new System.EventHandler(this.btimetable_Click);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button11);
-            this.groupBox5.Controls.Add(this.button12);
-            this.groupBox5.Controls.Add(this.button13);
+            this.groupBox5.Controls.Add(this.bcountcontract);
+            this.groupBox5.Controls.Add(this.bprofit);
+            this.groupBox5.Controls.Add(this.brevenue);
             this.groupBox5.Location = new System.Drawing.Point(622, 20);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(250, 270);
@@ -206,38 +216,38 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Статистические данные";
             // 
-            // button11
+            // bcountcontract
             // 
-            this.button11.Location = new System.Drawing.Point(22, 38);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(203, 47);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "Количество договоров";
-            this.button11.UseVisualStyleBackColor = true;
+            this.bcountcontract.Location = new System.Drawing.Point(22, 38);
+            this.bcountcontract.Name = "bcountcontract";
+            this.bcountcontract.Size = new System.Drawing.Size(203, 47);
+            this.bcountcontract.TabIndex = 1;
+            this.bcountcontract.Text = "Количество договоров";
+            this.bcountcontract.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // bprofit
             // 
-            this.button12.Location = new System.Drawing.Point(22, 116);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(203, 47);
-            this.button12.TabIndex = 2;
-            this.button12.Text = "Расчет прибыли филиалов";
-            this.button12.UseVisualStyleBackColor = true;
+            this.bprofit.Location = new System.Drawing.Point(22, 116);
+            this.bprofit.Name = "bprofit";
+            this.bprofit.Size = new System.Drawing.Size(203, 47);
+            this.bprofit.TabIndex = 2;
+            this.bprofit.Text = "Расчет прибыли филиалов";
+            this.bprofit.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // brevenue
             // 
-            this.button13.Location = new System.Drawing.Point(22, 196);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(203, 47);
-            this.button13.TabIndex = 3;
-            this.button13.Text = "Расчет выручки филиалов";
-            this.button13.UseVisualStyleBackColor = true;
+            this.brevenue.Location = new System.Drawing.Point(22, 196);
+            this.brevenue.Name = "brevenue";
+            this.brevenue.Size = new System.Drawing.Size(203, 47);
+            this.brevenue.TabIndex = 3;
+            this.brevenue.Text = "Расчет выручки филиалов";
+            this.brevenue.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.button14);
-            this.groupBox6.Controls.Add(this.button15);
-            this.groupBox6.Controls.Add(this.button16);
+            this.groupBox6.Controls.Add(this.bgrade);
+            this.groupBox6.Controls.Add(this.bvisit);
+            this.groupBox6.Controls.Add(this.btomark);
             this.groupBox6.Location = new System.Drawing.Point(622, 333);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(250, 270);
@@ -245,32 +255,35 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Успеваемость";
             // 
-            // button14
+            // bgrade
             // 
-            this.button14.Location = new System.Drawing.Point(22, 116);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(203, 47);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Список оценок";
-            this.button14.UseVisualStyleBackColor = true;
+            this.bgrade.Location = new System.Drawing.Point(22, 116);
+            this.bgrade.Name = "bgrade";
+            this.bgrade.Size = new System.Drawing.Size(203, 47);
+            this.bgrade.TabIndex = 0;
+            this.bgrade.Text = "Список оценок";
+            this.bgrade.UseVisualStyleBackColor = true;
+            this.bgrade.Click += new System.EventHandler(this.bgrade_Click);
             // 
-            // button15
+            // bvisit
             // 
-            this.button15.Location = new System.Drawing.Point(22, 196);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(203, 47);
-            this.button15.TabIndex = 4;
-            this.button15.Text = "Список посещаемости";
-            this.button15.UseVisualStyleBackColor = true;
+            this.bvisit.Location = new System.Drawing.Point(22, 196);
+            this.bvisit.Name = "bvisit";
+            this.bvisit.Size = new System.Drawing.Size(203, 47);
+            this.bvisit.TabIndex = 4;
+            this.bvisit.Text = "Список посещаемости";
+            this.bvisit.UseVisualStyleBackColor = true;
+            this.bvisit.Click += new System.EventHandler(this.bvisit_Click);
             // 
-            // button16
+            // btomark
             // 
-            this.button16.Location = new System.Drawing.Point(22, 38);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(203, 47);
-            this.button16.TabIndex = 5;
-            this.button16.Text = "Список тем";
-            this.button16.UseVisualStyleBackColor = true;
+            this.btomark.Location = new System.Drawing.Point(22, 38);
+            this.btomark.Name = "btomark";
+            this.btomark.Size = new System.Drawing.Size(203, 47);
+            this.btomark.TabIndex = 5;
+            this.btomark.Text = "Оценивание";
+            this.btomark.UseVisualStyleBackColor = true;
+            this.btomark.Click += new System.EventHandler(this.btomark_Click);
             // 
             // List
             // 
@@ -285,6 +298,8 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "List";
             this.Text = "Главное меню";
+            this.Load += new System.EventHandler(this.List_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -297,27 +312,27 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button bworker;
+        private System.Windows.Forms.Button bstudent;
+        private System.Windows.Forms.Button bcontract;
+        private System.Windows.Forms.Button bpay;
+        private System.Windows.Forms.Button bbranch;
+        private System.Windows.Forms.Button bcabinet;
+        private System.Windows.Forms.Button bcourse;
+        private System.Windows.Forms.Button btype;
+        private System.Windows.Forms.Button btheme;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btimetable;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button bcountcontract;
+        private System.Windows.Forms.Button bprofit;
+        private System.Windows.Forms.Button brevenue;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button bgrade;
+        private System.Windows.Forms.Button bvisit;
+        private System.Windows.Forms.Button btomark;
     }
 }

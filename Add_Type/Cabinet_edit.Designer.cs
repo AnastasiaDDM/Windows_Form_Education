@@ -142,6 +142,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Cabinet_edit";
             this.Text = "Редактирование кабинета №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cabinet_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.capacityf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

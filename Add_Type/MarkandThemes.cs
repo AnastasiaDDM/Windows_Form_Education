@@ -72,7 +72,7 @@ namespace Add_Type
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn idtime = new DataGridViewTextBoxColumn();
             idtime.HeaderText = "Занятие";
 
@@ -182,7 +182,7 @@ namespace Add_Type
 
                     D.Rows.Add(row);
 
-                    D.Rows[nextrow].Cells[0].Value = (page - 1) * count + i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                    D.Rows[nextrow].Cells[0].Value = /*(page - 1) * count +*/ nextrow + 1;   // Отображение счетчика записей и значок редактирования
 
                     D.Rows[nextrow].Cells[1].Value = timetables[i].ID + ". " + timetables[i].Startlesson.ToString(formattotext);
 
@@ -306,6 +306,14 @@ namespace Add_Type
             // Открытие формы для просмотра данных
             Worker_view f = new Worker_view(teacher);
             DialogResult result = f.ShowDialog();
+        }
+
+        private void MarkandThemes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

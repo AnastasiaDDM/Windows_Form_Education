@@ -149,7 +149,7 @@
             // 
             this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
-            this.sortf.Location = new System.Drawing.Point(401, 39);
+            this.sortf.Location = new System.Drawing.Point(397, 39);
             this.sortf.Name = "sortf";
             this.sortf.Size = new System.Drawing.Size(148, 24);
             this.sortf.TabIndex = 56;
@@ -166,12 +166,13 @@
             // 
             // ascf
             // 
-            this.ascf.Location = new System.Drawing.Point(549, 39);
+            this.ascf.Location = new System.Drawing.Point(548, 39);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(50, 23);
             this.ascf.TabIndex = 57;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // reset
             // 
@@ -186,7 +187,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(356, 40);
+            this.label7.Location = new System.Drawing.Point(349, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 17);
             this.label7.TabIndex = 55;
@@ -249,6 +250,7 @@
             this.D.TabIndex = 12;
             this.D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellClick);
             this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
+            this.D.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D_KeyDown);
             // 
             // label3
             // 

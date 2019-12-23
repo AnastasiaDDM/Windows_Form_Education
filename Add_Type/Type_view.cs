@@ -84,5 +84,13 @@ namespace Add_Type
             Course_find f = new Course_find(type); // Передем тип курса
             DialogResult result = f.ShowDialog();
         }
+
+        private void Type_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

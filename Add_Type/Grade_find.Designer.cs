@@ -194,6 +194,7 @@
             this.ascf.TabIndex = 57;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // label7
             // 
@@ -393,6 +394,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Grade_find";
             this.Text = "Список оценок";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Grade_find_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.max)).EndInit();

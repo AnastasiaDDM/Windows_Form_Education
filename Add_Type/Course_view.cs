@@ -259,5 +259,13 @@ namespace Add_Type
         {
             Close();
         }
+
+        private void Course_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

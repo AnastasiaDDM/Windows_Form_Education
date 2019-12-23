@@ -48,5 +48,18 @@ namespace Add_Type
             Timetable_find f = new Timetable_find(cabinet);
             DialogResult result = f.ShowDialog();
         }
+
+        private void Cabinet_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

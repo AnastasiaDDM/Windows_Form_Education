@@ -40,8 +40,8 @@
             this.costt = new System.Windows.Forms.Label();
             this.lessont = new System.Windows.Forms.Label();
             this.montht = new System.Windows.Forms.Label();
-            this.createtemplate = new System.Windows.Forms.Button();
             this.notet = new System.Windows.Forms.TextBox();
+            this.createtemplate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bcour
@@ -154,15 +154,6 @@
             this.montht.TabIndex = 36;
             this.montht.Text = "label9";
             // 
-            // createtemplate
-            // 
-            this.createtemplate.Location = new System.Drawing.Point(399, 275);
-            this.createtemplate.Name = "createtemplate";
-            this.createtemplate.Size = new System.Drawing.Size(131, 55);
-            this.createtemplate.TabIndex = 38;
-            this.createtemplate.Text = "Создать шаблон из файла";
-            this.createtemplate.UseVisualStyleBackColor = true;
-            // 
             // notet
             // 
             this.notet.Location = new System.Drawing.Point(12, 203);
@@ -171,6 +162,15 @@
             this.notet.ReadOnly = true;
             this.notet.Size = new System.Drawing.Size(329, 127);
             this.notet.TabIndex = 39;
+            // 
+            // createtemplate
+            // 
+            this.createtemplate.Location = new System.Drawing.Point(399, 275);
+            this.createtemplate.Name = "createtemplate";
+            this.createtemplate.Size = new System.Drawing.Size(131, 55);
+            this.createtemplate.TabIndex = 38;
+            this.createtemplate.Text = "Создать шаблон из файла";
+            this.createtemplate.UseVisualStyleBackColor = true;
             // 
             // Type_view
             // 
@@ -193,6 +193,7 @@
             this.Controls.Add(this.label2);
             this.Name = "Type_view";
             this.Text = "Тип курса №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Type_view_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,7 +213,7 @@
         private System.Windows.Forms.Label costt;
         private System.Windows.Forms.Label lessont;
         private System.Windows.Forms.Label montht;
-        private System.Windows.Forms.Button createtemplate;
         private System.Windows.Forms.TextBox notet;
+        private System.Windows.Forms.Button createtemplate;
     }
 }

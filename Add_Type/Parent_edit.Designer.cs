@@ -113,6 +113,7 @@
             this.Controls.Add(this.label3);
             this.Name = "Parent_edit";
             this.Text = "Редактирование ответственного лица №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Parent_edit_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

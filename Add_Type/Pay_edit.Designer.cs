@@ -320,7 +320,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(374, 17);
             this.label13.TabIndex = 72;
-            this.label13.Text = "Выбирите этот параметр, если это оплата по договору";
+            this.label13.Text = "Выберите этот параметр, если это оплата по договору";
             // 
             // incomef
             // 

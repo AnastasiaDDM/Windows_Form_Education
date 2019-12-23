@@ -118,5 +118,21 @@ namespace Add_Type
         {
             Close();
         }
+
+        private void Timetable_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void btomark_Click(object sender, EventArgs e)
+        {
+            MarkandThemes f = new MarkandThemes(null, Courses.CourseID(timetable.CourseID), null, (Branches.BranchID(Cabinets.CabinetID(timetable.CabinetID).BranchID)).ID ); // Передаем 
+            DialogResult result = f.ShowDialog();
+            //          chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+            FillGrid();
+        }
     }
 }

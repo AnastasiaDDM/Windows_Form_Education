@@ -257,6 +257,7 @@
             this.Controls.Add(this.D);
             this.Name = "Contract_view";
             this.Text = "Договор №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Contract_view_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -136,5 +136,13 @@ namespace Add_Type
         {
             Close();
         }
+
+        private void Cabinet_edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

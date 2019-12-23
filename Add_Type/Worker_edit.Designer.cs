@@ -234,6 +234,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Worker_edit";
             this.Text = "Работник №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Worker_edit_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

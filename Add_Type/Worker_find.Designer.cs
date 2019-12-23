@@ -84,7 +84,7 @@
             this.branchf.FormattingEnabled = true;
             this.branchf.Location = new System.Drawing.Point(72, 41);
             this.branchf.Name = "branchf";
-            this.branchf.Size = new System.Drawing.Size(180, 24);
+            this.branchf.Size = new System.Drawing.Size(285, 24);
             this.branchf.TabIndex = 45;
             // 
             // typef
@@ -96,9 +96,9 @@
             "Директор",
             "Менеджер",
             "Преподаватель"});
-            this.typef.Location = new System.Drawing.Point(324, 41);
+            this.typef.Location = new System.Drawing.Point(454, 38);
             this.typef.Name = "typef";
-            this.typef.Size = new System.Drawing.Size(185, 24);
+            this.typef.Size = new System.Drawing.Size(169, 24);
             this.typef.TabIndex = 44;
             // 
             // positionf
@@ -114,9 +114,9 @@
             // 
             this.sortf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortf.FormattingEnabled = true;
-            this.sortf.Location = new System.Drawing.Point(679, 41);
+            this.sortf.Location = new System.Drawing.Point(680, 41);
             this.sortf.Name = "sortf";
-            this.sortf.Size = new System.Drawing.Size(180, 24);
+            this.sortf.Size = new System.Drawing.Size(184, 24);
             this.sortf.TabIndex = 24;
             // 
             // label9
@@ -131,7 +131,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(284, 44);
+            this.label4.Location = new System.Drawing.Point(367, 41);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 17);
             this.label4.TabIndex = 22;
@@ -139,21 +139,22 @@
             // 
             // ascf
             // 
-            this.ascf.Location = new System.Drawing.Point(864, 42);
+            this.ascf.Location = new System.Drawing.Point(869, 42);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(42, 23);
             this.ascf.TabIndex = 38;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(565, 44);
+            this.label7.Location = new System.Drawing.Point(631, 44);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(113, 17);
+            this.label7.Size = new System.Drawing.Size(44, 17);
             this.label7.TabIndex = 21;
-            this.label7.Text = "Сортировать по";
+            this.label7.Text = "Сорт.";
             // 
             // reset
             // 
@@ -195,10 +196,10 @@
             // 
             // fiot
             // 
-            this.fiot.Location = new System.Drawing.Point(54, 12);
+            this.fiot.Location = new System.Drawing.Point(72, 12);
             this.fiot.Multiline = true;
             this.fiot.Name = "fiot";
-            this.fiot.Size = new System.Drawing.Size(303, 22);
+            this.fiot.Size = new System.Drawing.Size(285, 22);
             this.fiot.TabIndex = 18;
             // 
             // deldatef

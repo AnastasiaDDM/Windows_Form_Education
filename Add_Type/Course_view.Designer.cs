@@ -286,6 +286,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Course_view";
             this.Text = "Курс №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Course_view_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridteacher)).EndInit();

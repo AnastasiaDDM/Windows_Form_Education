@@ -23,6 +23,10 @@ namespace Add_Type
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         string purpose; // Обозначает что нужно делать с преподавателями - удалять или выбирать 
+        List<Worker> listteachers = new List<Worker>(); // Лист для хранения преподавателей, которые есть на этом занятии
+
+        List<Timetable> timetablelist = new List<Timetable>();
+
 
         // Начальные значения переменных для манипуляций с повторениями
         DateTime Endrepeat = new DateTime();
@@ -35,6 +39,7 @@ namespace Add_Type
             buildDG();
             periodf.Enabled = false;
             finaldatet.Enabled = false;
+            listteachers = timetable.GetTeachers();
         }
         public Timetable_edit(Timetable st, bool indic) // Конструктор для редактирования объекта
         {
@@ -44,6 +49,7 @@ namespace Add_Type
             timetable = st;
             indicator = indic;
             groupBox1.Visible = false; // Нет возможности воспользоваться доп. возможностями ( они только при добавлении )
+            listteachers = timetable.GetTeachers();
 
             buildDG();
             FillForm();
@@ -119,9 +125,26 @@ namespace Add_Type
             purpose = "delete";
             // Заполняем гриды, комбобоксы
             D.Rows.Clear();
-            List<Worker> teachers = new List<Worker>();
-            teachers = timetable.GetTeachers();
-            for (int i = 0; i < teachers.Count; i++)
+            //List<Worker> teachers = new List<Worker>();
+            //teachers = timetable.GetTeachers();
+            //for (int i = 0; i < teachers.Count; i++)
+            //{
+            //    DataGridViewRow row = new DataGridViewRow();
+
+            //    D.Rows.Add(row);
+
+            //    D.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+
+            //    D.Rows[i].Cells[1].Value = teachers[i].ID;
+
+            //    D.Rows[i].Cells[2].Value = teachers[i].FIO;
+
+            //    D.Rows[i].Cells[3].Value = "Удалить";
+            //}
+
+
+            
+            for (int i = 0; i < listteachers.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
@@ -129,9 +152,9 @@ namespace Add_Type
 
                 D.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
-                D.Rows[i].Cells[1].Value = teachers[i].ID;
+                D.Rows[i].Cells[1].Value = listteachers[i].ID;
 
-                D.Rows[i].Cells[2].Value = teachers[i].FIO;
+                D.Rows[i].Cells[2].Value = listteachers[i].FIO;
 
                 D.Rows[i].Cells[3].Value = "Удалить";
             }
@@ -160,6 +183,8 @@ namespace Add_Type
 
         private void save_Click(object sender, EventArgs e)
         {
+            List<Timetable> listtimetables = new List<Timetable>();
+            Timetable newtimetable = new Timetable();
             // Установление начального значения переменнной 
             DateTime Endrepeat = timetable.Endlesson;
             string Answer = "";
@@ -237,16 +262,36 @@ namespace Add_Type
                     Endrepeat = new DateTime(Convert.ToInt32(f[2]), Convert.ToInt32(f[1]), Convert.ToInt32(f[0]), 23, 59, 59);
                 }
 
-                if (timetable.GetTeachers() != null)
+                if /*(timetable.GetTeachers() != null)*/(listteachers != null)
                 {
                     if(repeatf.Checked == true) // Вызов метода добавления с повторениями
                     {
-                        Answer = timetable.Add(Endrepeat, period, timetable);
+                        //Answer = timetable.Add(Endrepeat, period, timetable/*, ref timetablelist*/);
+                        listtimetables = timetable.Add(Endrepeat, period, timetable, ref Answer);
                     }
                     else // Вызов метода без добавления повторений
                     {
-                        Answer = timetable.Add();
+                        newtimetable = timetable.Add(ref Answer);
                     }
+
+                    if(listtimetables != null)
+                    {
+                        foreach (var teacher in listteachers)
+                        {
+                            foreach (var time in listtimetables)
+                            {
+                                String ans = time.addTeacher(teacher);
+                            }
+
+                        }
+                    }
+                    if (newtimetable != null)
+                    {
+                        foreach (var teacher in listteachers)
+                        {   
+                                String ans = newtimetable.addTeacher(teacher);
+                        } 
+                    }                
                 }
                 else
                 {
@@ -259,6 +304,10 @@ namespace Add_Type
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(D, Answer);
+            }
         }
         private void cancel_Click(object sender, EventArgs e)
         {
@@ -267,31 +316,35 @@ namespace Add_Type
 
         private void searchteachers_Click(object sender, EventArgs e)
         {
-            if (repeatf.Checked == true) // Требуется повторение
+            if(startt.Text != "  :" & endt.Text != "  :")
             {
-                period = periodf.SelectedItem.ToString();
-                string final = finaldatet.Value.ToString(formattotext);
-                string[] f = final.Split('.');
-                Endrepeat = new DateTime(Convert.ToInt32(f[2]), Convert.ToInt32(f[1]), Convert.ToInt32(f[0]), 23, 59, 59);
+                if (repeatf.Checked == true) // Требуется повторение
+                {
+                    period = periodf.SelectedItem.ToString();
+                    string final = finaldatet.Value.ToString(formattotext);
+                    string[] f = final.Split('.');
+                    Endrepeat = new DateTime(Convert.ToInt32(f[2]), Convert.ToInt32(f[1]), Convert.ToInt32(f[0]), 23, 59, 59);
+                }
+                else
+                {
+                    String date = datet.Value.ToString(formattotext);
+                    string[] da = date.Split('.');
+
+                    string starttime = startt.Text;
+                    string[] st = (Convert.ToString(starttime)).Split(':');
+
+                    string endtime = endt.Text;
+                    string[] en = (Convert.ToString(endtime)).Split(':');
+                    // Сбор времени вместе
+                    timetable.Startlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(st[0]), Convert.ToInt32(st[1]), 00);
+
+                    timetable.Endlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(en[0]), Convert.ToInt32(en[1]), 00);
+                    Endrepeat = timetable.Endlesson;
+                }
+                List<Worker> freeteachers = timetable.GetFreeteachers(Endrepeat, period);
+                FillGrid(freeteachers);
             }
-            else
-            {
-                String date = datet.Value.ToString(formattotext);
-                string[] da = date.Split('.');
-
-                string starttime = startt.Text;
-                string[] st = (Convert.ToString(starttime)).Split(':');
-
-                string endtime = endt.Text;
-                string[] en = (Convert.ToString(endtime)).Split(':');
-                // Сбор времени вместе
-                timetable.Startlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(st[0]), Convert.ToInt32(st[1]), 00);
-
-                timetable.Endlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(en[0]), Convert.ToInt32(en[1]), 00);
-                Endrepeat = timetable.Endlesson;
-            }
-            List<Worker> freeteachers = timetable.GetFreeteachers(Endrepeat, period);
-            FillGrid(freeteachers);
+           
         }
 
         private void repeatf_CheckedChanged(object sender, EventArgs e)
@@ -307,17 +360,6 @@ namespace Add_Type
                 // Дезактивация элементов формы
                 periodf.Enabled = false;
                 finaldatet.Enabled = false;
-            }
-        }
-
-        private void bstud_Click(object sender, EventArgs e)
-        {
-            Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
-            DialogResult result = f.ShowDialog();
-            if (f.chooseCour != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
-            {
-                chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
-                coursef.Text = chooseCourse.ID + ". " + Courses.CourseID(chooseCourse.ID).nameGroup;
             }
         }
 
@@ -343,7 +385,12 @@ namespace Add_Type
 
                                 Worker o = Workers.WorkerID(k);
 
-                                String ans = timetable.addTeacher(o);
+                                // Добавляем преподавателя в имеющийся лист
+                                if( listteachers.Find(x => x.ID == o.ID) == null )
+                                {
+                                    listteachers.Add(o);
+                                    //       String ans = timetable.addTeacher(o);
+                                }
                             }
                         }
                     }
@@ -384,6 +431,25 @@ namespace Add_Type
         private void existteachers_Click(object sender, EventArgs e)
         {
             FillGrid();
+        }
+
+        private void bcour_Click(object sender, EventArgs e)
+        {
+            Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            if (f.chooseCour != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
+            {
+                chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
+                coursef.Text = chooseCourse.ID + ". " + Courses.CourseID(chooseCourse.ID).nameGroup;
+            }
+        }
+
+        private void Timetable_edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

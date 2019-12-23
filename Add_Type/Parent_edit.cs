@@ -74,5 +74,13 @@ namespace Add_Type
         {
             this.Close();
         }
+
+        private void Parent_edit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

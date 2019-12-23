@@ -76,12 +76,13 @@
             // 
             // ascf
             // 
-            this.ascf.Location = new System.Drawing.Point(638, 46);
+            this.ascf.Location = new System.Drawing.Point(640, 46);
             this.ascf.Name = "ascf";
             this.ascf.Size = new System.Drawing.Size(42, 23);
             this.ascf.TabIndex = 39;
             this.ascf.Text = "А-Я";
             this.ascf.UseVisualStyleBackColor = true;
+            this.ascf.Click += new System.EventHandler(this.ascf_Click);
             // 
             // directorf
             // 

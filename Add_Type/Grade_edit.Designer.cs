@@ -156,6 +156,7 @@
             this.Controls.Add(this.D);
             this.Name = "Grade_edit";
             this.Text = "Редактирование успеваемости";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Grade_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

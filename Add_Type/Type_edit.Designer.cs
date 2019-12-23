@@ -188,6 +188,7 @@
             this.Controls.Add(this.namet);
             this.Name = "Type_edit";
             this.Text = "Тип курса №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Type_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lessont)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.montht)).EndInit();
             this.ResumeLayout(false);

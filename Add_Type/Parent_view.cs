@@ -178,5 +178,13 @@ namespace Add_Type
                 f.Show();
             }
         }
+
+        private void Parent_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

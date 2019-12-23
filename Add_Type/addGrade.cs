@@ -53,5 +53,13 @@ namespace Add_Type
                 //String ans = o.Del();
             }
         }
+
+        private void addGrade_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

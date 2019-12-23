@@ -440,5 +440,13 @@ namespace Add_Type
             chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
+
+        private void Course_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

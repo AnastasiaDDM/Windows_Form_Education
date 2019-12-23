@@ -137,6 +137,7 @@
             this.Controls.Add(this.D);
             this.Name = "MarkandThemes";
             this.Text = "Оценивание по темам";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MarkandThemes_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -56,6 +56,7 @@
             this.close.TabIndex = 16;
             this.close.Text = "Закрыть";
             this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // label3
             // 
@@ -128,6 +129,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Cabinet_view";
             this.Text = "Каибнет №";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cabinet_view_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -247,6 +247,7 @@
     <Compile Include="Pay_view.Designer.cs">
       <DependentUpon>Pay_view.cs</DependentUpon>
     </Compile>
+    <Compile Include="Singleton.cs" />
     <Compile Include="Statistic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -531,6 +532,7 @@
     <EmbeddedResource Include="Worker_view.resx">
       <DependentUpon>Worker_view.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

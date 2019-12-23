@@ -12,6 +12,7 @@ namespace Add_Type
 {
     public partial class Worker_find : Form
     {
+        Worker inputperson = Singleton.getPerson(); // Авторизированный объект
         Boolean deldate; // true - неудален false - все!!!
         int page = 1;
         int count = 100;
@@ -50,8 +51,26 @@ namespace Add_Type
             LoadAll();
         }
 
+        private void Access() // Реализация разделения ролей
+        {
+
+            if (inputperson.Type == 1) // Директор
+            {
+
+            }
+            if (inputperson.Type == 2) // Менеджер
+            {
+
+            }
+            if (inputperson.Type == 3) // Преподаватель
+            {
+                add.Enabled = false;
+            }
+        }
+
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
         }
@@ -380,6 +399,7 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             // Обрабатывается событие нажатия на кнопку "Выбрать"
             if (purpose == "choose")
             {
@@ -398,47 +418,50 @@ namespace Add_Type
                     }
                 }
             }
-            // Обрабатывается событие нажатия на кнопку "Удалить"
-            else
+            if (inputperson.Type != 3) // не Преподаватель
             {
-                if (e.ColumnIndex == 7)
+                // Обрабатывается событие нажатия на кнопку "Удалить"
+                if (purpose != "choose")
                 {
-                    if (e.RowIndex > -1)
+                    if (e.ColumnIndex == 7)
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            const string message = "Вы уверены, что хотите удалить работника?";
-                            const string caption = "Удаление";
-                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.OK)
+                            if (D.RowCount - 1 >= e.RowIndex)
                             {
-                                // Форма не закрывается
-                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                D.Rows.Remove(D.Rows[l]);
-                                Worker o = Workers.WorkerID(k);
-                                String ans = o.Del();
+                                int l = e.RowIndex;
+                                const string message = "Вы уверены, что хотите удалить работника?";
+                                const string caption = "Удаление";
+                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.OK)
+                                {
+                                    // Форма не закрывается
+                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                    D.Rows.Remove(D.Rows[l]);
+                                    Worker o = Workers.WorkerID(k);
+                                    String ans = o.Del();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
-                        }
                     }
-                }
-                // Редактирование
-                if (e.ColumnIndex == 0)
-                {
-                    if (e.RowIndex > -1)
+                    // Редактирование
+                    if (e.ColumnIndex == 0)
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            Worker_edit f = new Worker_edit(Workers.WorkerID(k), false);
-                            DialogResult result = f.ShowDialog();
-                            FillGrid();
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                Worker_edit f = new Worker_edit(Workers.WorkerID(k), false);
+                                DialogResult result = f.ShowDialog();
+                                FillGrid();
+                            }
                         }
                     }
                 }
@@ -450,6 +473,18 @@ namespace Add_Type
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+            if (ascflag == true)
+            {
+                ascflag = false;
+            }
+            else
+            {
+                ascflag = true;
             }
         }
     }

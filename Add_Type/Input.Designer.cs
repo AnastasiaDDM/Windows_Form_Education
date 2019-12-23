@@ -30,9 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.passwordt = new System.Windows.Forms.TextBox();
+            this.binput = new System.Windows.Forms.Button();
+            this.phonet = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -53,42 +54,54 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Пароль";
             // 
-            // textBox2
+            // passwordt
             // 
-            this.textBox2.Location = new System.Drawing.Point(138, 101);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(252, 22);
-            this.textBox2.TabIndex = 3;
+            this.passwordt.Location = new System.Drawing.Point(138, 101);
+            this.passwordt.Name = "passwordt";
+            this.passwordt.Size = new System.Drawing.Size(252, 22);
+            this.passwordt.TabIndex = 3;
+            // 
+            // binput
+            // 
+            this.binput.Location = new System.Drawing.Point(269, 155);
+            this.binput.Name = "binput";
+            this.binput.Size = new System.Drawing.Size(121, 40);
+            this.binput.TabIndex = 4;
+            this.binput.Text = "Войти";
+            this.binput.UseVisualStyleBackColor = true;
+            this.binput.Click += new System.EventHandler(this.binput_Click);
+            // 
+            // phonet
+            // 
+            this.phonet.Location = new System.Drawing.Point(138, 48);
+            this.phonet.Mask = "+7(999) 000-0000";
+            this.phonet.Name = "phonet";
+            this.phonet.Size = new System.Drawing.Size(122, 22);
+            this.phonet.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(133, 155);
+            this.button1.Location = new System.Drawing.Point(12, 155);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 40);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Войти";
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Отменить";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(138, 48);
-            this.maskedTextBox1.Mask = "+7(999) 000-0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(122, 22);
-            this.maskedTextBox1.TabIndex = 5;
             // 
             // Input
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 207);
-            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.phonet);
+            this.Controls.Add(this.binput);
+            this.Controls.Add(this.passwordt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Input";
             this.Text = "Авторизация";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Input_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,8 +111,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox passwordt;
+        private System.Windows.Forms.Button binput;
+        private System.Windows.Forms.MaskedTextBox phonet;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

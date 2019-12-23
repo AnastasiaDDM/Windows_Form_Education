@@ -471,5 +471,25 @@ namespace Add_Type
             chooseManager = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
+
+        private void Contract_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+                        if (ascflag == true)
+            {
+                ascflag = false;
+            }
+            else
+            {
+                ascflag = true;
+            }
+        }
     }
 }

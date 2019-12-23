@@ -12,6 +12,7 @@ namespace Add_Type
 {
     public partial class Cabinet_find : Form
     {
+        Worker inputperson = Singleton.getPerson(); // Авторизированный объект
         Boolean deldate; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
@@ -34,8 +35,16 @@ namespace Add_Type
             purpose = answer;
             LoadAll();
         }
+
+        private void Access() // Реализация разделения ролей
+        {
+
+ 
+    //            add.Enabled = (what_i_can("add_cabinet"));
+        }
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
         }
@@ -214,45 +223,48 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Обрабатывается событие нажатия на кнопку "Удалить"
-            if (e.ColumnIndex == 5)
+            if (inputperson.Type != 3) // не Преподаватель
             {
-                if (e.RowIndex > -1)
+                // Обрабатывается событие нажатия на кнопку "Удалить"
+                if (e.ColumnIndex == 5)
                 {
-                    if (D.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить кабинет?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.OK)
+                        if (D.RowCount - 1 >= e.RowIndex)
                         {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            D.Rows.Remove(D.Rows[l]);
-                            Cabinet o = Cabinets.CabinetID(k);
-                            String ans = o.Del();
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить кабинет?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Cabinet o = Cabinets.CabinetID(k);
+                                String ans = o.Del();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
-                    }
                 }
-            }
-            // Редактирование
-            if (e.ColumnIndex == 0)
-            {
-                if (e.RowIndex > -1)
+                // Редактирование
+                if (e.ColumnIndex == 0)
                 {
-                    if (D.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                        Cabinet_edit f = new Cabinet_edit(Cabinets.CabinetID(k), false);
-                        DialogResult result = f.ShowDialog();
-                        FillGrid();
+                        if (D.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                            Cabinet_edit f = new Cabinet_edit(Cabinets.CabinetID(k), false);
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -373,6 +385,26 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
             FillGrid();
+        }
+
+        private void Cabinet_find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void ascf_Click(object sender, EventArgs e)
+        {
+            if (ascflag == true)
+            {
+                ascflag = false;
+            }
+            else
+            {
+                ascflag = true;
+            }
         }
     }
 }

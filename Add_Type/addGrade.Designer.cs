@@ -113,6 +113,7 @@
             this.Name = "addGrade";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Оценка";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addGrade_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gradet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

@@ -193,5 +193,13 @@ namespace Add_Type
         {
    //         DialogResult result = f.ShowDialog();
         }
+
+        private void Contract_view_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

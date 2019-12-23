@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.opentemlate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -218,11 +219,21 @@
             this.label9.Size = new System.Drawing.Size(0, 17);
             this.label9.TabIndex = 44;
             // 
+            // opentemlate
+            // 
+            this.opentemlate.Location = new System.Drawing.Point(308, 327);
+            this.opentemlate.Name = "opentemlate";
+            this.opentemlate.Size = new System.Drawing.Size(131, 55);
+            this.opentemlate.TabIndex = 45;
+            this.opentemlate.Text = "Открыть шаблон";
+            this.opentemlate.UseVisualStyleBackColor = true;
+            // 
             // Contract_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(682, 400);
+            this.Controls.Add(this.opentemlate);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
@@ -270,5 +281,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button opentemlate;
     }
 }
