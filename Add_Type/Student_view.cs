@@ -228,7 +228,7 @@ namespace Add_Type
                         int k = Convert.ToInt32(gridcontract.Rows[l].Cells[1].Value);
                         Contract contract = Contracts.ContractID(k);
 
-                        Pay_edit f = new Pay_edit(contract);
+                        Pay_edit f = new Pay_edit(contract, contract.getDebt());
                         DialogResult result = f.ShowDialog();
                     }
                 }

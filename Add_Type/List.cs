@@ -128,6 +128,11 @@ namespace Add_Type
             DialogResult result = f.ShowDialog();
         }
 
+        private void bparent_Click(object sender, EventArgs e)
+        {
+            Parent_find f = new Parent_find();
+            DialogResult result = f.ShowDialog();
+        }
         private void List_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -139,25 +144,58 @@ namespace Add_Type
         private void List_Load(object sender, EventArgs e)
         {
             //DialogResult result = DialogResult.Cancel;
-            Input f = new Input();
-            while (Singleton.getPerson().ID == 0)
-            {
-               f.ShowDialog();
-            }
+
+
+
+
+
+
+
+            //////////////////Input f = new Input();
+            //////////////////while (Singleton.getPerson().ID == 0)
+            //////////////////{
+            //////////////////   f.ShowDialog();
+            //////////////////}
+
+
+
+
+
+
+
+
             //while (result != DialogResult.OK)
             //{
             //    result = f.ShowDialog();
 
-                //    if (Singleton.getPerson() ==null && f.isEmpty())
-                //    {
-                //        Environment.Exit(0);
-                //    }
-                //    if (Singleton.getPerson() != null)
-                //    {
-                //        break;
-                //    }
-                //}
+            //    if (Singleton.getPerson() ==null && f.isEmpty())
+            //    {
+            //        Environment.Exit(0);
+            //    }
+            //    if (Singleton.getPerson() != null)
+            //    {
+            //        break;
+            //    }
+            //}
 
+        }
+
+        private void bcountcontract_Click(object sender, EventArgs e)
+        {
+            Statistic f = new Statistic("count");
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void bprofit_Click(object sender, EventArgs e)
+        {
+            Statistic f = new Statistic("profit");
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void brevenue_Click(object sender, EventArgs e)
+        {
+            Statistic f = new Statistic("revenue");
+            DialogResult result = f.ShowDialog();
         }
     }
 }

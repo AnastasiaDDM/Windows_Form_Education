@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,8 @@
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -96,9 +98,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(372, 216);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 17);
+            this.label6.Size = new System.Drawing.Size(79, 17);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Дата конца ";
+            this.label6.Text = "окончание";
             // 
             // namet
             // 
@@ -110,6 +112,7 @@
             // 
             // typef
             // 
+            this.typef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typef.FormattingEnabled = true;
             this.typef.Location = new System.Drawing.Point(176, 101);
             this.typef.Name = "typef";
@@ -127,6 +130,7 @@
             // 
             // branchf
             // 
+            this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchf.FormattingEnabled = true;
             this.branchf.Location = new System.Drawing.Point(380, 156);
             this.branchf.Name = "branchf";
@@ -149,7 +153,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(549, 292);
+            this.save.Location = new System.Drawing.Point(505, 292);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(126, 38);
             this.save.TabIndex = 13;
@@ -159,7 +163,7 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(12, 292);
+            this.cancel.Location = new System.Drawing.Point(44, 292);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(126, 38);
             this.cancel.TabIndex = 14;
@@ -176,20 +180,15 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "руб.";
             // 
-            // label8
+            // errorProvider1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 257);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 17);
-            this.label8.TabIndex = 16;
+            this.errorProvider1.ContainerControl = this;
             // 
             // Course_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 342);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
@@ -208,6 +207,7 @@
             this.Name = "Course_edit";
             this.Text = "Редактирование курса №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Course_edit_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +230,6 @@
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

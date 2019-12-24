@@ -352,23 +352,26 @@ namespace Add_Type
 
             using (SampleContext context = new SampleContext())
             {
-                Timetable v = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == st.CourseID).FirstOrDefault<Timetable>();
-                if (v != null)
-                { return "Этот курс уже занят элементом расписания №" + v.ID + " в промежутке от " + v.Startlesson + " до " + v.Endlesson; }
-
-                Timetable c = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CabinetID == st.CabinetID).FirstOrDefault<Timetable>();
-                if (c != null)
-                { return "Этот кабинет уже занят элементом расписания №" + c.ID + " в промежутке от " + c.Startlesson + " до " + c.Endlesson; }
-
-                List<Student> liststudents = Courses.CourseID(st.CourseID).GetStudents();
-                foreach (Student s in liststudents)
+                if (st.ID == 0)       // если мы добавляем новый филиал 
                 {
-                    List<Course> listcourses = s.GetCourses();
-                    foreach (Course co in listcourses)
+                    Timetable v = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == st.CourseID).FirstOrDefault<Timetable>();
+                    if (v != null)
+                    { return "Этот курс уже занят элементом расписания №" + v.ID + " в промежутке от " + v.Startlesson + " до " + v.Endlesson; }
+
+                    Timetable c = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CabinetID == st.CabinetID).FirstOrDefault<Timetable>();
+                    if (c != null)
+                    { return "Этот кабинет уже занят элементом расписания №" + c.ID + " в промежутке от " + c.Startlesson + " до " + c.Endlesson; }
+
+                    List<Student> liststudents = Courses.CourseID(st.CourseID).GetStudents();
+                    foreach (Student s in liststudents)
                     {
-                        Timetable ts = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>();
-                        if (ts != null)
-                        { return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
+                        List<Course> listcourses = s.GetCourses();
+                        foreach (Course co in listcourses)
+                        {
+                            Timetable ts = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>();
+                            if (ts != null)
+                            { return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
+                        }
                     }
                 }
             }
@@ -522,7 +525,7 @@ namespace Add_Type
             {
 
 
-                StringBuilder s = new StringBuilder("Select Distinct Workers.* from Workers where Workers.Type = 3 and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.Type = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
+                StringBuilder s = new StringBuilder("Select Distinct Workers.* from Workers where Workers.Type = 3  and  Workers.Deldate IS NULL and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.Type = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
 
                 List<string> sql = new List<string>();
                 string format = "yyyy-MM-dd HH:mm:ss";
@@ -548,6 +551,102 @@ namespace Add_Type
             }
             return freeteachers;
         }
+
+
+        public List<Cabinet> GetFreecabinets(DateTime Endrepeat, string period)  // Поиск свободных на это время кабинетов
+        {
+
+            List<TimeRange> listtimerange = new List<TimeRange>();
+
+
+            DateTime newstart = this.Startlesson; // Присваиваем дате начала занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
+            DateTime newend = this.Endlesson; // Присваиваем дате окончания занятия пока что начальное значение переданное извне, далее эта переменная будет изменяться
+
+
+            while (newend <= Endrepeat) // Организуем цикл для перебора всех дат в заданном диапазоне, т.е. до Endrepeat
+            {
+                using (SampleContext context = new SampleContext())
+                {
+
+
+                    // В первом проходе добавляется или не добавляется начальная дата, а дальше уже происходит увеличение дат
+                    if ((period != "Каждый будний день(пн - пт)")) // Добавление для всех вариантов, кроме будних дней, т.к. не нужно учитывать выходные!
+                    {
+                        TimeRange Range = new TimeRange(newstart, newend);
+                        listtimerange.Add(Range);
+
+
+                    }
+
+                    if ((period == "Каждый будний день(пн - пт)") /*& v == null */& (newstart.DayOfWeek != DayOfWeek.Saturday & newstart.DayOfWeek != DayOfWeek.Sunday)) // Добавление для варианта будних дней, т.к. нужно учитывать выходные и не добавлять такие дни в список!
+                    {
+                        TimeRange Range = new TimeRange(newstart, newend);
+                        listtimerange.Add(Range);
+                    }
+                }
+
+                if (period == "Ежедневно" || period == "Не повторять" || period == "Каждый будний день(пн - пт)") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddDays(1);
+
+                    newend = newend.AddDays(1);
+                }
+
+                if (period == "Еженедельно") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddDays(7);
+
+                    newend = newend.AddDays(7);
+                }
+
+                if (period == "Ежемесячно") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddMonths(1);
+
+                    newend = newend.AddMonths(1);
+                }
+
+                if (period == "Каждый год") // Изменение дат исходя из условия
+                {
+                    newstart = newstart.AddYears(1);
+
+                    newend = newend.AddYears(1);
+                }
+            }
+
+            List<Cabinet> freecabinets = new List<Cabinet>(); // Лист свободных кабинетов
+            using (SampleContext context = new SampleContext())
+            {
+
+
+                StringBuilder s = new StringBuilder("Select Distinct Cabinets.* from Cabinets where Cabinets.Deldate IS NULL and Cabinets.ID not in (Select Distinct Cabinets.ID from Cabinets join Timetables on Cabinets.ID = Timetables.CabinetID where ");
+
+                List<string> sql = new List<string>();
+                string format = "yyyy-MM-dd HH:mm:ss";
+
+                foreach (TimeRange t in listtimerange)
+                {
+
+                    sql.Add(String.Format("(Startlesson >= '{0}' and Endlesson <= '{1}' and Startlesson <= '{1}')", t.Start.ToString(format), t.End.ToString(format))); // Внутри
+                    sql.Add(String.Format("(Startlesson <= '{0}' and Endlesson >= '{1}' and Startlesson <= '{1}')", t.Start.ToString(format), t.End.ToString(format))); // Снаружи
+                    sql.Add(String.Format("(Startlesson >= '{0}' and Endlesson >= '{1}' and Startlesson <= '{1}')", t.Start.ToString(format), t.End.ToString(format))); // верхняя граница
+                    sql.Add(String.Format("(Startlesson <= '{0}' and Endlesson <= '{1}' and Endlesson >= '{0}')", t.Start.ToString(format), t.End.ToString(format)));// нижняя граница
+
+                }
+
+                s.Append(String.Join(" or ", sql));
+
+                var query = context.Cabinets.SqlQuery(s.ToString() + " group by Cabinets.ID order by Cabinets.ID)");
+
+                foreach (Cabinet c in query)
+                {
+                    freecabinets.Add(c);
+                }
+            }
+            return freecabinets;
+        }
+
+
 
         public List<Worker> GetTeachers()  // Поиск  всех преподавателей у этого элемента расписания
         {

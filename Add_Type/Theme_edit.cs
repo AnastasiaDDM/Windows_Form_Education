@@ -67,30 +67,59 @@ namespace Add_Type
 
             if (indicator == true) // Значит, что происходит добавление нового
             {
-                newtheme.Tema = namet.Text;
-                newtheme.Homework = homeworkt.Text;
-                newtheme.Deadline = deadlinet.Value;
-                string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
-                newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newtheme.Tema = namet.Text;
+                    newtheme.Homework = homeworkt.Text;
+                    newtheme.Deadline = deadlinet.Value;
+                    string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+                    newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
 
-                Answer = newtheme.Add();
+                    Answer = newtheme.Add();
+                }
             }
 
             if (indicator == false) // Значит, что происходит редактирование
             {
-                newtheme.Tema = namet.Text;
-                newtheme.Homework = homeworkt.Text;
-                newtheme.Deadline = deadlinet.Value;
-                string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
-                newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newtheme.Tema = namet.Text;
+                    newtheme.Homework = homeworkt.Text;
+                    newtheme.Deadline = deadlinet.Value;
+                    string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+                    newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
 
-                Answer = newtheme.Edit();
+                    Answer = newtheme.Edit();
+                }
             }
 
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (namet.Text == "")
+            {
+                errorProvider1.SetError(namet, "Введите название темы. Это поле не может быть пустым.");
+                return false;
+            }
+            if (teacherf.Text == "")
+            {
+                errorProvider1.SetError(label2, "Выберите преподавателя-составителя. Это поле не может быть пустым.");
+                return false;
+            }
+
+            return true;
         }
 
         private void bteach_Click(object sender, EventArgs e)

@@ -92,6 +92,10 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
             this.branchf.SelectedIndex = 0;
+            //if(Singleton.getPerson().BranchID != 0 | Singleton.getPerson().BranchID != null) // выбор филиала. если у авторизированного менеджера есть филиал
+            //{
+            //    this.branchf.SelectedItem = Singleton.getPerson().BranchID + ". " + Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)).Name;
+            //}
         }
         private void FillForm()
         {
@@ -108,7 +112,8 @@ namespace Add_Type
         {
             string Answer = "";
 
-            if (indicator == true) // Значит, что происходит добавление нового
+            bool flag = Check(); // Вызовов функции проверки
+            if (flag)
             {
                 newcontract.Date = datef.Value;
                 string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
@@ -121,36 +126,57 @@ namespace Add_Type
                 newcontract.CourseID = Courses.CourseID(Convert.ToInt32(courseID[0])).ID;
                 newcontract.Cost = Convert.ToDouble(costt.Text);
                 newcontract.PayofMonth = Convert.ToDouble(payt.Text);
-                // еЩЕ нужно добавить менеджера!!!!!!!!!!!!!!!!!!!!1 от из формы авторизации!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //               newcontract.ManagerID = Singleton.getPerson().ID;
 
-                Answer = newcontract.Add();
+                if (indicator == true) // Значит, что происходит добавление нового
+                {
+                    Answer = newcontract.Add();
+                }
+
+                if (indicator == false) // Значит, что происходит редактирование
+                {
+                    Answer = newcontract.Edit();
+                }
             }
-
-            if (indicator == false) // Значит, что происходит редактирование
-            {
- //               newcontract = Contracts.ContractID(idforEdit);
-
-                newcontract.Date = datef.Value;
-                string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                newcontract.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
-
-                string[] studentID = (Convert.ToString(studentt.Text)).Split('.');
-                newcontract.StudentID = Students.StudentID(Convert.ToInt32(studentID[0])).ID;
-
-                string[] courseID = (Convert.ToString(courset.Text)).Split('.');
-                newcontract.CourseID = Courses.CourseID(Convert.ToInt32(courseID[0])).ID;
-                newcontract.Cost = Convert.ToDouble(costt.Text);
-                newcontract.PayofMonth = Convert.ToDouble(payt.Text);
-                // еЩЕ нужно добавить менеджера!!!!!!!!!!!!!!!!!!!! от из формы авторизации!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                Answer = newcontract.Edit();
-            }
-
-            label9.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (studentt.Text == "Клиент не выбран")
+            {
+                errorProvider1.SetError(studentt, "Выберите ученика. Это поле не может быть пустым.");
+                return false;
+            }
+            if (courset.Text == "Курс не выбран")
+            {
+                errorProvider1.SetError(courset, "Выберите курс. Это поле не может быть пустым.");
+                return false;
+            }
+            if (costt.Text == "")
+            {
+                errorProvider1.SetError(costt, "Введите стоимость обучения на курсе. Это поле не может быть пустым.");
+                return false;
+            }
+            if (payt.Text == "")
+            {
+                errorProvider1.SetError(payt, "Введите оплату на месяц обучения. Это поле не может быть пустым.");
+                return false;
+            }
+            if (branchf.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(branchf, "Выберите филиал. Это поле не может быть не определено.");
+                return false;
+            }
+            return true;
         }
 
         private void cancel_Click(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,7 +46,8 @@
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.lrate2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -124,7 +126,7 @@
             this.fiot.Location = new System.Drawing.Point(141, 23);
             this.fiot.Multiline = true;
             this.fiot.Name = "fiot";
-            this.fiot.Size = new System.Drawing.Size(415, 42);
+            this.fiot.Size = new System.Drawing.Size(398, 42);
             this.fiot.TabIndex = 8;
             // 
             // positiont
@@ -132,12 +134,13 @@
             this.positiont.Location = new System.Drawing.Point(141, 88);
             this.positiont.Multiline = true;
             this.positiont.Name = "positiont";
-            this.positiont.Size = new System.Drawing.Size(415, 50);
+            this.positiont.Size = new System.Drawing.Size(398, 50);
             this.positiont.TabIndex = 9;
             this.positiont.TextChanged += new System.EventHandler(this.positiont_TextChanged);
             // 
             // typef
             // 
+            this.typef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typef.FormattingEnabled = true;
             this.typef.Items.AddRange(new object[] {
             "Директор",
@@ -150,17 +153,18 @@
             // 
             // branchf
             // 
+            this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchf.FormattingEnabled = true;
             this.branchf.Location = new System.Drawing.Point(141, 261);
             this.branchf.Name = "branchf";
-            this.branchf.Size = new System.Drawing.Size(415, 24);
+            this.branchf.Size = new System.Drawing.Size(398, 24);
             this.branchf.TabIndex = 11;
             // 
             // passwordt
             // 
             this.passwordt.Location = new System.Drawing.Point(141, 305);
             this.passwordt.Name = "passwordt";
-            this.passwordt.Size = new System.Drawing.Size(415, 22);
+            this.passwordt.Size = new System.Drawing.Size(398, 22);
             this.passwordt.TabIndex = 12;
             // 
             // ratet
@@ -174,7 +178,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(426, 400);
+            this.save.Location = new System.Drawing.Point(409, 400);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(130, 42);
             this.save.TabIndex = 14;
@@ -184,7 +188,7 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(20, 400);
+            this.cancel.Location = new System.Drawing.Point(29, 400);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(130, 42);
             this.cancel.TabIndex = 15;
@@ -201,20 +205,15 @@
             this.lrate2.TabIndex = 16;
             this.lrate2.Text = "руб.";
             // 
-            // label9
+            // errorProvider1
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 365);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 17);
-            this.label9.TabIndex = 17;
+            this.errorProvider1.ContainerControl = this;
             // 
             // Worker_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 454);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.lrate2);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
@@ -235,6 +234,7 @@
             this.Name = "Worker_edit";
             this.Text = "Работник №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Worker_edit_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,6 +259,6 @@
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Label lrate2;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

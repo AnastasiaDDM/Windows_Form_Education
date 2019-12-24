@@ -78,20 +78,18 @@ namespace Add_Type
         {
             if (st.Number == "")
             { return "Введите номер кабинета. Это поле не может быть пустым"; }
-
             if (st.Capacity < 0)
             { return "Вместимость кабинета не может быть отрицательным числом. Введите этот параметр корректно"; }
-
             if (st.BranchID == 0)
             { return "Вероятно вы не выбрали филиал. Это поле не может быть пустым"; }
 
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Student v = new Student();
-            //    v = context.Students.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Student>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
+            using (SampleContext context = new SampleContext())
+            {
+                Cabinet v = new Cabinet();
+                v = context.Cabinets.Where(x => x.Number == st.Number && x.BranchID == st.BranchID && x.Capacity == st.Capacity).FirstOrDefault<Cabinet>();
+                if (v != null)
+                { return "Такой кабинет уже существует в базе под номером " + v.ID; }
+            }
             return "Данные корректны!";
         }
 

@@ -12,7 +12,6 @@ namespace Add_Type
 {
     public partial class Worker_find : Form
     {
-        Worker inputperson = Singleton.getPerson(); // Авторизированный объект
         Boolean deldate; // true - неудален false - все!!!
         int page = 1;
         int count = 100;
@@ -54,15 +53,15 @@ namespace Add_Type
         private void Access() // Реализация разделения ролей
         {
 
-            if (inputperson.Type == 1) // Директор
+            if (Singleton.getPerson().Type == 1) // Директор
             {
 
             }
-            if (inputperson.Type == 2) // Менеджер
+            if (Singleton.getPerson().Type == 2) // Менеджер
             {
 
             }
-            if (inputperson.Type == 3) // Преподаватель
+            if (Singleton.getPerson().Type == 3) // Преподаватель
             {
                 add.Enabled = false;
             }
@@ -418,7 +417,7 @@ namespace Add_Type
                     }
                 }
             }
-            if (inputperson.Type != 3) // не Преподаватель
+            if (Singleton.getPerson().Type != 3) // не Преподаватель
             {
                 // Обрабатывается событие нажатия на кнопку "Удалить"
                 if (purpose != "choose")

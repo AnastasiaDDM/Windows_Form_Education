@@ -37,7 +37,6 @@
             this.capacityf = new System.Windows.Forms.NumericUpDown();
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.capacityf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -96,7 +95,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(428, 213);
+            this.save.Location = new System.Drawing.Point(405, 213);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(115, 39);
             this.save.TabIndex = 6;
@@ -106,21 +105,13 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(12, 213);
+            this.cancel.Location = new System.Drawing.Point(24, 213);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(115, 39);
             this.cancel.TabIndex = 7;
             this.cancel.Text = "Отменить";
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 184);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 17);
-            this.label4.TabIndex = 8;
             // 
             // errorProvider1
             // 
@@ -131,7 +122,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 264);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
             this.Controls.Add(this.capacityf);
@@ -160,7 +150,6 @@
         private System.Windows.Forms.NumericUpDown capacityf;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

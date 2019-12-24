@@ -396,7 +396,19 @@ namespace Add_Type
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+           
+            // Открытие формы для просмотра данных
+            if (e.RowIndex > -1)
+            {
+                if (e.ColumnIndex > -1)
+                {
+                    int l = e.RowIndex;
+                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                    Pay_view f = new Pay_view(Pays.PayID(k)); 
+                    DialogResult result = f.ShowDialog();
+                    FillGrid();
+                }
+            }
         }
 
         private void add_Click(object sender, EventArgs e)

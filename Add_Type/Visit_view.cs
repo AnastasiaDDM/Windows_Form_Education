@@ -38,6 +38,20 @@ namespace Add_Type
             FillGrid();
         }
 
+        public Visit_view(Timetable ti, Course c) // Конструктор для просмотра объекта
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+
+            timetable = ti;
+            this.Text = this.Text + "   " + timetable.ID + ". " + timetable.Startlesson.ToString(formattotext);
+            course = c;
+
+            FillForm();
+            buildDG();
+            FillGrid();
+        }
+
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();

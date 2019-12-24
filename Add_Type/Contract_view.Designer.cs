@@ -47,6 +47,8 @@
             this.brancht = new System.Windows.Forms.LinkLabel();
             this.bcancel = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.debtt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
@@ -231,11 +233,31 @@
             this.cancel.Size = new System.Drawing.Size(0, 17);
             this.cancel.TabIndex = 51;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 214);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 17);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "Задолженность";
+            // 
+            // debtt
+            // 
+            this.debtt.AutoSize = true;
+            this.debtt.Location = new System.Drawing.Point(187, 214);
+            this.debtt.Name = "debtt";
+            this.debtt.Size = new System.Drawing.Size(46, 17);
+            this.debtt.TabIndex = 53;
+            this.debtt.Text = "label9";
+            // 
             // Contract_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 645);
+            this.Controls.Add(this.debtt);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.bcancel);
             this.Controls.Add(this.brancht);
@@ -284,5 +306,7 @@
         private System.Windows.Forms.LinkLabel brancht;
         private System.Windows.Forms.Button bcancel;
         private System.Windows.Forms.Label cancel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label debtt;
     }
 }

@@ -12,8 +12,9 @@ namespace Add_Type
 {
     public partial class Pay_edit : Form
     {
-        public static Contract chooseContract = new Contract(); // Эта переменная для приема значения из вызываемой(дочерней) формы
-        public static Worker chooseTeacher = new Worker(); // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Contract chooseContract; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Timetable chooseTimetable; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract contract;   // Глобальная переменная объявляет договор данной формы
         public Timetable timetable;   // Глобальная переменная объявляет занятие данной формы
         public Worker teacher;   // Глобальная переменная объявляет преподавателя данной формы
@@ -44,10 +45,12 @@ namespace Add_Type
             teacherf.Enabled = false;
             btime.Enabled = false;
             timetablef.Enabled = false;
+            this.indicatorf.SelectedIndex = 0;
+            this.typef.SelectedIndex = 0;
 
             FillForm();
         }
-        public Pay_edit(Contract con) // Конструктор для добавления объекта по договору
+        public Pay_edit(Contract con, double max) // Конструктор для добавления объекта по договору
         {
             InitializeComponent();
             this.KeyPreview = true;
@@ -60,9 +63,19 @@ namespace Add_Type
             teacherf.Enabled = false;
             btime.Enabled = false;
             timetablef.Enabled = false;
+            maxvalue = max;
             incomef.Checked = true;
+            indicatorf.Enabled = false;
+            this.indicatorf.SelectedIndex = 0;
+            this.typef.SelectedIndex = 0;
 
-            FillForm();
+            if (contract.Canceldate != null)
+            {
+                incomef.Checked = false;
+                incomef.Enabled = false;
+            }
+
+                FillForm();
         }
 
         public Pay_edit(Worker teach, Timetable timetab, double max) // Конструктор для добавления объекта по занятию и работнику
@@ -80,6 +93,8 @@ namespace Add_Type
             btime.Enabled = false;
             timetablef.Enabled = false;
             indicatorf.Enabled = false;
+            this.indicatorf.SelectedIndex = 0;
+            this.typef.SelectedIndex = 0;
             maxvalue = max;
             incomef.Checked = false;
             incomef.Enabled = false;
@@ -93,6 +108,8 @@ namespace Add_Type
             this.KeyPreview = true;
             indicator = false;
             pay = p;
+            this.indicatorf.SelectedIndex = 0;
+            this.typef.SelectedIndex = 0;
 
             FillForm();
         }
@@ -106,21 +123,27 @@ namespace Add_Type
             branches = Branches.FindAll(deldate, branch, director, sort, asсdesс, page, count, ref countrecord);
             int pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
+            branchf.Items.Add("Не выбрано");
             foreach (var s in branches)
             {
                 // добавляем один элемент
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
+            this.branchf.SelectedIndex = 0;
+            //if (Singleton.getPerson().ID != 0 | Singleton.getPerson().BranchID != 0 | Singleton.getPerson().BranchID != null) // выбор филиала. если у авторизированного менеджера есть филиал
+            //{
+            //    this.branchf.SelectedItem = Singleton.getPerson().BranchID + ". " + Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)).Name;
+            //}
 
             // Установление общих данных для добавления и редактирования
             if (contract != null | pay.ContractID != null)
             {
-                indicatorf.SelectedIndex = 0;
+                indicatorf.SelectedIndex = 1;
                 pay.Indicator = 1;
             }
             if (teacher != null | pay.WorkerID != null)
             {
-                indicatorf.SelectedIndex = 1;
+                indicatorf.SelectedIndex = 2;
                 pay.Indicator = 2;
             }
 
@@ -150,14 +173,19 @@ namespace Add_Type
                     chooseContract = null;
        //             contract = Contracts.ContractID(chooseContract.ID);
                 }
-                // Это для выбора договора по конпке поиска преподавателя
+                // Это для выбора по конпке поиска преподавателя
                 if (chooseTeacher != null)
                 {
-                    teacherf.Text = "№ " + chooseTeacher.ID + " " + chooseTeacher.FIO;
+                    teacherf.Text = chooseTeacher.ID + ". " + chooseTeacher.FIO;
                     chooseTeacher = null;
         //            contract = Wo.ContractID(chooseTeacher.ID);
                 }
-
+                // Это для выбора по конпке поиска занятия
+                if (chooseTimetable != null)
+                {
+                    timetablef.Text = chooseTimetable.ID + ". " + chooseTimetable.Startlesson.ToString(format) + " - " + chooseTimetable.Endlesson.ToString(format2);
+                    chooseTimetable = null;
+                }
             }
             else // Для редактирования
             {
@@ -205,7 +233,8 @@ namespace Add_Type
         {
             string Answer = "";
 
-            if (indicator == true) // Значит, что происходит добавление нового
+            bool flag = Check(); // Вызовов функции проверки
+            if (flag)
             {
                 string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
                 pay.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
@@ -213,7 +242,7 @@ namespace Add_Type
                 pay.Purpose = purposef.Text;
                 pay.Type = typef.SelectedItem.ToString();
 
-                if(contractf.Text != "")
+                if (contractf.Text != "")
                 {
                     string[] contrID = (Convert.ToString(contractf.Text)).Split(' ');
                     pay.ContractID = Convert.ToInt32(contrID[1]);
@@ -226,7 +255,7 @@ namespace Add_Type
                     {
                         pay.Payment = -Convert.ToDouble(paymentt.Text);
                     }
-                   
+
                 }
                 else
                 {
@@ -239,47 +268,72 @@ namespace Add_Type
                     pay.Payment = -Convert.ToDouble(paymentt.Text);
                 }
 
-
-                Answer = pay.Add();
-            }
-
-            if (indicator == false) // Значит, что происходит редактирование
-            {
-                //              Pay st = Pays.PayID(idforEdit);
-
-                string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                pay.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
-                pay.Date = DateTime.Now;
-                pay.Purpose = purposef.Text;
-                pay.Type = typef.SelectedItem.ToString();
-
-                if (contractf.Text != "")
+                if (indicator == true) // Значит, что происходит добавление нового
                 {
-                    string[] contrID = (Convert.ToString(contractf.Text)).Split(' ');
-                    pay.ContractID = Convert.ToInt32(contrID[1]);
-
-                    pay.Payment = Convert.ToDouble(paymentt.Text);
-                }
-                else
-                {
-                    string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
-                    pay.WorkerID = Convert.ToInt32(teachID[0]);
-
-                    string[] timeID = (Convert.ToString(timetablef.Text)).Split('.');
-                    pay.TimetableID = Convert.ToInt32(timeID[0]);
-
-                    pay.Payment = -Convert.ToDouble(paymentt.Text); //  Отрицательная оплата, тк это не прибыль центра
+                    Answer = pay.Add();
                 }
 
-
-                Answer = pay.Edit();
+                if (indicator == false) // Значит, что происходит редактирование
+                {
+                    Answer = pay.Edit();
+                }
             }
 
-            label6.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (indicatorf.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(indicatorf, "Выберите индикатор оплаты. Это поле не может быть пустым.");
+                return false;
+            }
+            if (indicatorf.SelectedIndex == 1) // оплата по договору
+            {
+                if (contractf.Text == "")
+                {
+                    errorProvider1.SetError(label1, "Выберите договор. Это поле не может быть пустым.");
+                    return false;
+                }
+            }
+            if (indicatorf.SelectedIndex == 2) // оплата зп преподавателю
+            {
+                if (teacherf.Text == "")
+                {
+                    errorProvider1.SetError(label7, "Выберите преподавателя. Это поле не может быть пустым.");
+                    return false;
+                }
+                if (timetablef.Text == "")
+                {
+                    errorProvider1.SetError(label10, "Выберите занятие. Это поле не может быть пустым.");
+                    return false;
+                }
+            }
+            if (branchf.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(branchf, "Выберите филиал. Это поле не может быть не определено.");
+                return false;
+            }
+            if (paymentt.Text == "")
+            {
+                errorProvider1.SetError(paymentt, "Введите размер оплаты. Это поле не может быть пустым.");
+                return false;
+            }
+            if (typef.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(typef, "Выберите способ оплаты. Это поле не может быть пустым.");
+                return false;
+            }
+            return true;
         }
 
         private void bcon_Click(object sender, EventArgs e)
@@ -310,7 +364,12 @@ namespace Add_Type
 
         private void btime_Click(object sender, EventArgs e)
         {
-   //         DialogResult result = f.ShowDialog();
+            string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
+
+            Timetable_find f = new Timetable_find(Workers.WorkerID(Convert.ToInt32(teachID[0])), "choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseTimetable = f.chooseTime; // Передаем ссылку форме родителей на переменную в этой форме
+            FillForm();
         }
 
         private void paymentt_TextChanged(object sender, EventArgs e)
@@ -332,7 +391,7 @@ namespace Add_Type
 
         private void indicatorf_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if(indicatorf.SelectedIndex == 0)
+            if(indicatorf.SelectedIndex == 1)
             {
                 bcon.Enabled = true;
                 contractf.Enabled = true;
@@ -343,14 +402,14 @@ namespace Add_Type
                 incomef.Checked = true;
                 incomef.Enabled = true;
             }
-            else
+            if (indicatorf.SelectedIndex == 2)
             {
                 bcon.Enabled = false;
                 contractf.Enabled = false;
                 bteach.Enabled = true;
                 teacherf.Enabled = true;
-                btime.Enabled = true;
-                timetablef.Enabled = true;
+                //btime.Enabled = true;
+                //timetablef.Enabled = true;
                 incomef.Checked = false;
                 incomef.Enabled = false;
             }
@@ -369,6 +428,20 @@ namespace Add_Type
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void teacherf_TextChanged(object sender, EventArgs e)
+        {
+            if(teacherf.Text == "")
+            {
+                btime.Enabled = false;
+                timetablef.Enabled = false;
+            }
+            else
+            {
+                btime.Enabled = true;
+                timetablef.Enabled = true;
             }
         }
     }

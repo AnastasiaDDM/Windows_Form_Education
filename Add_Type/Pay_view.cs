@@ -35,8 +35,16 @@ namespace Add_Type
             paymentt.Text = pay.Payment.ToString();
             typet.Text = pay.Type;
             purposet.Text = pay.Purpose;
-            contractt.Text = "№" + pay.ContractID;
-
+            
+            if(pay.ContractID != null)
+            {
+                contractt.Text = "№" + pay.ContractID;
+            }
+            else
+            {
+                teachert.Text = "№" + pay.WorkerID + " " + Workers.WorkerID(Convert.ToInt32(pay.WorkerID)).FIO;
+                timetabt.Text = "№" + pay.TimetableID + " " + Timetables.TimetableID(Convert.ToInt32(pay.TimetableID)).Startlesson;
+            }
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -63,6 +71,18 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void teachert_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Worker_view f = new Worker_view(Workers.WorkerID(Convert.ToInt32(pay.WorkerID)));
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void timetabt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Timetable_view f = new Timetable_view(Timetables.TimetableID(Convert.ToInt32(pay.TimetableID)));
+            DialogResult result = f.ShowDialog();
         }
     }
 }

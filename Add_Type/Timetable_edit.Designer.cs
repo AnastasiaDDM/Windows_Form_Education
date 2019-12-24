@@ -55,19 +55,20 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.D = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxteachers = new System.Windows.Forms.GroupBox();
             this.searchteachers = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.existteachers = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxteachers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // bcour
             // 
-            this.bcour.Location = new System.Drawing.Point(602, 104);
+            this.bcour.Location = new System.Drawing.Point(602, 113);
             this.bcour.Name = "bcour";
             this.bcour.Size = new System.Drawing.Size(23, 23);
             this.bcour.TabIndex = 56;
@@ -77,7 +78,7 @@
             // 
             // coursef
             // 
-            this.coursef.Location = new System.Drawing.Point(350, 104);
+            this.coursef.Location = new System.Drawing.Point(350, 113);
             this.coursef.Multiline = true;
             this.coursef.Name = "coursef";
             this.coursef.ReadOnly = true;
@@ -87,7 +88,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(305, 104);
+            this.label9.Location = new System.Drawing.Point(305, 113);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 17);
             this.label9.TabIndex = 54;
@@ -159,6 +160,7 @@
             this.startt.Size = new System.Drawing.Size(41, 22);
             this.startt.TabIndex = 68;
             this.startt.ValidatingType = typeof(System.DateTime);
+            this.startt.TextChanged += new System.EventHandler(this.startt_TextChanged);
             // 
             // endt
             // 
@@ -168,6 +170,7 @@
             this.endt.Size = new System.Drawing.Size(41, 22);
             this.endt.TabIndex = 69;
             this.endt.ValidatingType = typeof(System.DateTime);
+            this.endt.TextChanged += new System.EventHandler(this.endt_TextChanged);
             // 
             // label8
             // 
@@ -270,7 +273,7 @@
             // 
             this.cabinetf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cabinetf.FormattingEnabled = true;
-            this.cabinetf.Location = new System.Drawing.Point(75, 127);
+            this.cabinetf.Location = new System.Drawing.Point(75, 140);
             this.cabinetf.Name = "cabinetf";
             this.cabinetf.Size = new System.Drawing.Size(222, 24);
             this.cabinetf.TabIndex = 75;
@@ -279,15 +282,18 @@
             // 
             this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchf.FormattingEnabled = true;
-            this.branchf.Location = new System.Drawing.Point(75, 100);
+            this.branchf.Location = new System.Drawing.Point(75, 109);
             this.branchf.Name = "branchf";
             this.branchf.Size = new System.Drawing.Size(222, 24);
             this.branchf.TabIndex = 76;
+            this.branchf.SelectionChangeCommitted += new System.EventHandler(this.branchf_SelectionChangeCommitted);
+            this.branchf.MouseEnter += new System.EventHandler(this.branchf_MouseEnter);
+            this.branchf.MouseLeave += new System.EventHandler(this.branchf_MouseLeave);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 131);
+            this.label10.Location = new System.Drawing.Point(14, 144);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 17);
             this.label10.TabIndex = 78;
@@ -296,7 +302,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 104);
+            this.label11.Location = new System.Drawing.Point(14, 113);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 17);
             this.label11.TabIndex = 77;
@@ -315,15 +321,15 @@
             this.D.TabIndex = 79;
             this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
             // 
-            // groupBox2
+            // groupBoxteachers
             // 
-            this.groupBox2.Controls.Add(this.D);
-            this.groupBox2.Location = new System.Drawing.Point(17, 170);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(613, 200);
-            this.groupBox2.TabIndex = 79;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Свободные преподаватели";
+            this.groupBoxteachers.Controls.Add(this.D);
+            this.groupBoxteachers.Location = new System.Drawing.Point(17, 170);
+            this.groupBoxteachers.Name = "groupBoxteachers";
+            this.groupBoxteachers.Size = new System.Drawing.Size(613, 200);
+            this.groupBoxteachers.TabIndex = 79;
+            this.groupBoxteachers.TabStop = false;
+            this.groupBoxteachers.Text = "Свободные преподаватели";
             // 
             // searchteachers
             // 
@@ -341,9 +347,9 @@
             // 
             // existteachers
             // 
-            this.existteachers.Location = new System.Drawing.Point(443, 153);
+            this.existteachers.Location = new System.Drawing.Point(435, 153);
             this.existteachers.Name = "existteachers";
-            this.existteachers.Size = new System.Drawing.Size(96, 23);
+            this.existteachers.Size = new System.Drawing.Size(104, 23);
             this.existteachers.TabIndex = 81;
             this.existteachers.Text = "Имеющиеся";
             this.existteachers.UseVisualStyleBackColor = true;
@@ -353,10 +359,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 642);
+            this.ClientSize = new System.Drawing.Size(658, 644);
             this.Controls.Add(this.existteachers);
             this.Controls.Add(this.searchteachers);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBoxteachers);
             this.Controls.Add(this.cabinetf);
             this.Controls.Add(this.branchf);
             this.Controls.Add(this.label10);
@@ -381,7 +387,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            this.groupBoxteachers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -415,9 +421,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox repeatf;
         private System.Windows.Forms.DataGridView D;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxteachers;
         private System.Windows.Forms.Button searchteachers;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button existteachers;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,7 +38,8 @@
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.adddirector = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -94,7 +96,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(541, 292);
+            this.save.Location = new System.Drawing.Point(521, 292);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(134, 48);
             this.save.TabIndex = 6;
@@ -104,7 +106,7 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(13, 292);
+            this.cancel.Location = new System.Drawing.Point(32, 292);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(134, 48);
             this.cancel.TabIndex = 7;
@@ -122,20 +124,15 @@
             this.adddirector.UseVisualStyleBackColor = true;
             this.adddirector.Click += new System.EventHandler(this.adddirector_Click);
             // 
-            // label4
+            // errorProvider1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 269);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 17);
-            this.label4.TabIndex = 9;
+            this.errorProvider1.ContainerControl = this;
             // 
             // Branch_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 352);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(694, 348);
             this.Controls.Add(this.adddirector);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
@@ -148,6 +145,7 @@
             this.Name = "Branch_edit";
             this.Text = "Редактирование филиала №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Branch_edit_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,6 +162,6 @@
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Button adddirector;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

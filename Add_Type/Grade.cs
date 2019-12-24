@@ -75,8 +75,8 @@ namespace Add_Type
 
         public string Сheck(Grade st)
         {
-            if (st.Mark <=0 || st.Mark >5)
-            { return "Это поле не может быть отрицательным. Это поле принимает значения - 1,2,3,4,5."; }
+            //if (st.Mark <=0 || st.Mark >5)
+            //{ return "Это поле не может быть отрицательным. Это поле принимает значения - 1,2,3,4,5."; }
 
             //using (SampleContext context = new SampleContext())
             //{

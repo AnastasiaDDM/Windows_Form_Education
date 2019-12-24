@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.fiof = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.phonef = new System.Windows.Forms.MaskedTextBox();
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -73,7 +75,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(377, 206);
+            this.save.Location = new System.Drawing.Point(364, 176);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(126, 42);
             this.save.TabIndex = 14;
@@ -83,7 +85,7 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(15, 206);
+            this.cancel.Location = new System.Drawing.Point(24, 176);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(126, 42);
             this.cancel.TabIndex = 15;
@@ -91,20 +93,15 @@
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // label1
+            // errorProvider1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 186);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
-            this.label1.TabIndex = 16;
+            this.errorProvider1.ContainerControl = this;
             // 
             // Parent_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 260);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(516, 229);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
             this.Controls.Add(this.phonef);
@@ -114,6 +111,7 @@
             this.Name = "Parent_edit";
             this.Text = "Редактирование ответственного лица №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Parent_edit_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,6 +125,6 @@
         private System.Windows.Forms.MaskedTextBox phonef;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

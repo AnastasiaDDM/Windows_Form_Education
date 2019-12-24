@@ -116,6 +116,7 @@
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(1009, 516);
             this.D.TabIndex = 4;
+            this.D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellClick);
             this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // monday

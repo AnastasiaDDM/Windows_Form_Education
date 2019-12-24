@@ -12,7 +12,6 @@ namespace Add_Type
 {
     public partial class Cabinet_find : Form
     {
-        Worker inputperson = Singleton.getPerson(); // Авторизированный объект
         Boolean deldate; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
@@ -223,7 +222,7 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (inputperson.Type != 3) // не Преподаватель
+            if (Singleton.getPerson().Type != 3) // не Преподаватель
             {
                 // Обрабатывается событие нажатия на кнопку "Удалить"
                 if (e.ColumnIndex == 5)

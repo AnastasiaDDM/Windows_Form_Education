@@ -35,7 +35,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.addteacher = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.D = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.datet = new System.Windows.Forms.Label();
@@ -45,7 +44,16 @@
             this.cabinett = new System.Windows.Forms.LinkLabel();
             this.courset = new System.Windows.Forms.LinkLabel();
             this.edit = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.addtheme = new System.Windows.Forms.Button();
+            this.gridtheme = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridtheme)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -68,7 +76,7 @@
             // 
             // close
             // 
-            this.close.Location = new System.Drawing.Point(263, 390);
+            this.close.Location = new System.Drawing.Point(260, 473);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(116, 37);
             this.close.TabIndex = 94;
@@ -105,21 +113,12 @@
             // 
             // addteacher
             // 
-            this.addteacher.Location = new System.Drawing.Point(488, 280);
+            this.addteacher.Location = new System.Drawing.Point(6, 156);
             this.addteacher.Name = "addteacher";
             this.addteacher.Size = new System.Drawing.Size(92, 27);
             this.addteacher.TabIndex = 84;
             this.addteacher.Text = "Добавить преподавателя";
             this.addteacher.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 143);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 17);
-            this.label2.TabIndex = 83;
-            this.label2.Text = "Преподаватели";
             // 
             // D
             // 
@@ -127,11 +126,12 @@
             this.D.AllowUserToDeleteRows = false;
             this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.D.Location = new System.Drawing.Point(12, 163);
+            this.D.Location = new System.Drawing.Point(6, 6);
             this.D.Name = "D";
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(470, 144);
             this.D.TabIndex = 82;
+            this.D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellClick);
             // 
             // label9
             // 
@@ -162,7 +162,7 @@
             // 
             // btomark
             // 
-            this.btomark.Location = new System.Drawing.Point(488, 163);
+            this.btomark.Location = new System.Drawing.Point(506, 162);
             this.btomark.Name = "btomark";
             this.btomark.Size = new System.Drawing.Size(128, 42);
             this.btomark.TabIndex = 106;
@@ -205,7 +205,7 @@
             // 
             // edit
             // 
-            this.edit.Location = new System.Drawing.Point(494, 52);
+            this.edit.Location = new System.Drawing.Point(506, 77);
             this.edit.Name = "edit";
             this.edit.Size = new System.Drawing.Size(128, 42);
             this.edit.TabIndex = 111;
@@ -213,11 +213,67 @@
             this.edit.UseVisualStyleBackColor = true;
             this.edit.Click += new System.EventHandler(this.edit_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(14, 137);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(490, 221);
+            this.tabControl1.TabIndex = 112;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.D);
+            this.tabPage1.Controls.Add(this.addteacher);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(482, 192);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Преподаватели";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.addtheme);
+            this.tabPage2.Controls.Add(this.gridtheme);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(482, 192);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Темы";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // addtheme
+            // 
+            this.addtheme.Location = new System.Drawing.Point(6, 156);
+            this.addtheme.Name = "addtheme";
+            this.addtheme.Size = new System.Drawing.Size(92, 27);
+            this.addtheme.TabIndex = 113;
+            this.addtheme.Text = "Добавить преподавателя";
+            this.addtheme.UseVisualStyleBackColor = true;
+            // 
+            // gridtheme
+            // 
+            this.gridtheme.AllowUserToAddRows = false;
+            this.gridtheme.AllowUserToDeleteRows = false;
+            this.gridtheme.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridtheme.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridtheme.Location = new System.Drawing.Point(6, 6);
+            this.gridtheme.Name = "gridtheme";
+            this.gridtheme.RowTemplate.Height = 24;
+            this.gridtheme.Size = new System.Drawing.Size(470, 144);
+            this.gridtheme.TabIndex = 83;
+            // 
             // Timetable_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 435);
+            this.ClientSize = new System.Drawing.Size(652, 522);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.edit);
             this.Controls.Add(this.courset);
             this.Controls.Add(this.cabinett);
@@ -231,14 +287,15 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.addteacher);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.D);
             this.Controls.Add(this.label9);
             this.Name = "Timetable_view";
             this.Text = "Элемент расписания №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Timetable_view_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridtheme)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,7 +310,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button addteacher;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView D;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label datet;
@@ -263,5 +319,10 @@
         private System.Windows.Forms.LinkLabel cabinett;
         private System.Windows.Forms.LinkLabel courset;
         private System.Windows.Forms.Button edit;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button addtheme;
+        private System.Windows.Forms.DataGridView gridtheme;
     }
 }

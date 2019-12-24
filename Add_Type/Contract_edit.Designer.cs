@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,8 +47,9 @@
             this.payt = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.opentemlate = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,11 +73,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(350, 21);
+            this.label3.Location = new System.Drawing.Point(327, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 17);
+            this.label3.Size = new System.Drawing.Size(88, 34);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Филиал ";
+            this.label3.Text = "Филиал\r\nзаключения";
             // 
             // label5
             // 
@@ -113,6 +115,7 @@
             // 
             // branchf
             // 
+            this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchf.FormattingEnabled = true;
             this.branchf.Location = new System.Drawing.Point(421, 18);
             this.branchf.Name = "branchf";
@@ -211,14 +214,6 @@
             this.label8.TabIndex = 43;
             this.label8.Text = "руб.";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 296);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 17);
-            this.label9.TabIndex = 44;
-            // 
             // opentemlate
             // 
             this.opentemlate.Location = new System.Drawing.Point(308, 327);
@@ -228,13 +223,16 @@
             this.opentemlate.Text = "Открыть шаблон";
             this.opentemlate.UseVisualStyleBackColor = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Contract_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(682, 400);
             this.Controls.Add(this.opentemlate);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.payt);
@@ -256,6 +254,7 @@
             this.Name = "Contract_edit";
             this.Text = "Редактирование договора №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Contract_edit_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,7 +279,7 @@
         private System.Windows.Forms.MaskedTextBox payt;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button opentemlate;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

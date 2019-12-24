@@ -72,6 +72,22 @@ namespace Add_Type
             return answer;
         }
 
+        public string Сheck(Parent st)
+        {
+            if (st.FIO == "")
+            { return "Введите ФИО ответственного лица. Это поле не может быть пустым"; }
+            if (st.Phone == "")
+            { return "Введите номер телефона ответственного лица. Это поле не может быть пустым"; }
+            using (SampleContext context = new SampleContext())
+            {
+                Parent v = new Parent();
+                v = context.Parents.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Parent>();
+                if (v != null)
+                { return "Такое ответственное лицо уже существует в базе под номером " + v.ID; }
+            }
+            return "Данные корректны!";
+        }
+
         public List<Student> GetStudents()   // Получение списка учеников этого родителя
         {
             List<Student> liststudents = new List<Student>();
@@ -97,23 +113,6 @@ namespace Add_Type
                 return liststudents;
             }
         }
-
-        public string Сheck(Parent st)
-        {
-            if (st.FIO == "")
-            { return "Введите ФИО ответственного лица. Это поле не может быть пустым"; }
-            if (st.Phone == "")
-            { return "Введите номер телефона ответственного лица. Это поле не может быть пустым"; }
-            using (SampleContext context = new SampleContext())
-            {
-                Student v = new Student();
-                v = context.Students.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Student>();
-                if (v != null)
-                { return "Такое ответственное лицо уже существует в базе под номером " + v.ID; }
-            }
-            return "Данные корректны!";
-        }
-
         public static string СheckSt(StudentsParents stpar)
         {
             using (SampleContext context = new SampleContext())

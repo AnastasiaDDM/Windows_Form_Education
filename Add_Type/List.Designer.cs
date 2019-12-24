@@ -39,6 +39,7 @@
             this.btheme = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bparent = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btimetable = new System.Windows.Forms.Button();
@@ -80,7 +81,7 @@
             // 
             // bcontract
             // 
-            this.bcontract.Location = new System.Drawing.Point(22, 116);
+            this.bcontract.Location = new System.Drawing.Point(22, 196);
             this.bcontract.Name = "bcontract";
             this.bcontract.Size = new System.Drawing.Size(203, 47);
             this.bcontract.TabIndex = 2;
@@ -90,7 +91,7 @@
             // 
             // bpay
             // 
-            this.bpay.Location = new System.Drawing.Point(22, 196);
+            this.bpay.Location = new System.Drawing.Point(22, 274);
             this.bpay.Name = "bpay";
             this.bpay.Size = new System.Drawing.Size(203, 47);
             this.bpay.TabIndex = 3;
@@ -162,15 +163,26 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.bparent);
             this.groupBox2.Controls.Add(this.bstudent);
             this.groupBox2.Controls.Add(this.bcontract);
             this.groupBox2.Controls.Add(this.bpay);
             this.groupBox2.Location = new System.Drawing.Point(315, 20);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 270);
+            this.groupBox2.Size = new System.Drawing.Size(250, 346);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Информация о клиентах";
+            // 
+            // bparent
+            // 
+            this.bparent.Location = new System.Drawing.Point(22, 116);
+            this.bparent.Name = "bparent";
+            this.bparent.Size = new System.Drawing.Size(203, 47);
+            this.bparent.TabIndex = 4;
+            this.bparent.Text = "Список отв. лиц";
+            this.bparent.UseVisualStyleBackColor = true;
+            this.bparent.Click += new System.EventHandler(this.bparent_Click);
             // 
             // groupBox3
             // 
@@ -187,16 +199,16 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btimetable);
-            this.groupBox4.Location = new System.Drawing.Point(315, 333);
+            this.groupBox4.Location = new System.Drawing.Point(315, 406);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(241, 108);
+            this.groupBox4.Size = new System.Drawing.Size(250, 108);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Расписание";
             // 
             // btimetable
             // 
-            this.btimetable.Location = new System.Drawing.Point(18, 38);
+            this.btimetable.Location = new System.Drawing.Point(22, 43);
             this.btimetable.Name = "btimetable";
             this.btimetable.Size = new System.Drawing.Size(203, 47);
             this.btimetable.TabIndex = 1;
@@ -224,6 +236,7 @@
             this.bcountcontract.TabIndex = 1;
             this.bcountcontract.Text = "Количество договоров";
             this.bcountcontract.UseVisualStyleBackColor = true;
+            this.bcountcontract.Click += new System.EventHandler(this.bcountcontract_Click);
             // 
             // bprofit
             // 
@@ -233,6 +246,7 @@
             this.bprofit.TabIndex = 2;
             this.bprofit.Text = "Расчет прибыли филиалов";
             this.bprofit.UseVisualStyleBackColor = true;
+            this.bprofit.Click += new System.EventHandler(this.bprofit_Click);
             // 
             // brevenue
             // 
@@ -242,6 +256,7 @@
             this.brevenue.TabIndex = 3;
             this.brevenue.Text = "Расчет выручки филиалов";
             this.brevenue.UseVisualStyleBackColor = true;
+            this.brevenue.Click += new System.EventHandler(this.brevenue_Click);
             // 
             // groupBox6
             // 
@@ -334,5 +349,6 @@
         private System.Windows.Forms.Button bgrade;
         private System.Windows.Forms.Button bvisit;
         private System.Windows.Forms.Button btomark;
+        private System.Windows.Forms.Button bparent;
     }
 }

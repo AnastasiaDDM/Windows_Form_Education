@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.namet = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,9 +42,10 @@
             this.costt = new System.Windows.Forms.MaskedTextBox();
             this.montht = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lessont)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.montht)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // namet
@@ -51,7 +53,7 @@
             this.namet.Location = new System.Drawing.Point(96, 26);
             this.namet.Multiline = true;
             this.namet.Name = "namet";
-            this.namet.Size = new System.Drawing.Size(487, 54);
+            this.namet.Size = new System.Drawing.Size(469, 54);
             this.namet.TabIndex = 0;
             // 
             // label2
@@ -104,7 +106,7 @@
             this.notet.Location = new System.Drawing.Point(96, 213);
             this.notet.Multiline = true;
             this.notet.Name = "notet";
-            this.notet.Size = new System.Drawing.Size(487, 87);
+            this.notet.Size = new System.Drawing.Size(469, 87);
             this.notet.TabIndex = 9;
             // 
             // lessont
@@ -116,7 +118,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(451, 366);
+            this.save.Location = new System.Drawing.Point(434, 366);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(131, 40);
             this.save.TabIndex = 12;
@@ -126,7 +128,7 @@
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(11, 366);
+            this.cancel.Location = new System.Drawing.Point(22, 366);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(131, 40);
             this.cancel.TabIndex = 13;
@@ -147,7 +149,7 @@
             // 
             this.montht.Location = new System.Drawing.Point(476, 160);
             this.montht.Name = "montht";
-            this.montht.Size = new System.Drawing.Size(107, 22);
+            this.montht.Size = new System.Drawing.Size(89, 22);
             this.montht.TabIndex = 17;
             // 
             // label1
@@ -159,20 +161,15 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "руб.";
             // 
-            // label7
+            // errorProvider1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 378);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 17);
-            this.label7.TabIndex = 20;
+            this.errorProvider1.ContainerControl = this;
             // 
             // Type_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 425);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.montht);
             this.Controls.Add(this.costt);
@@ -191,6 +188,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Type_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lessont)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.montht)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +209,7 @@
         private System.Windows.Forms.MaskedTextBox costt;
         private System.Windows.Forms.NumericUpDown montht;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

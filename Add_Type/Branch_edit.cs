@@ -63,6 +63,7 @@ namespace Add_Type
             List<Worker> workers = new List<Worker>();
             workers = Workers.FindAll(true, wor, branch, sort, asсdesс, page, count, ref countrecord);
 
+            directorf.Items.Add("Не выбрано");
             foreach (var s in workers)
             {
                 // добавляем один элемент
@@ -84,33 +85,64 @@ namespace Add_Type
 
             if (indicator == true) // Значит, что происходит добавление нового
             {
-                newbranch.Name = namet.Text;
-                newbranch.Address = addresst.Text;
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newbranch.Name = namet.Text;
+                    newbranch.Address = addresst.Text;
 
-                string[] dirID = (Convert.ToString(directorf.SelectedItem)).Split('.');
-                newbranch.DirectorBranch = Workers.WorkerID(Convert.ToInt32(dirID[0])).ID;
+                    string[] dirID = (Convert.ToString(directorf.SelectedItem)).Split('.');
+                    newbranch.DirectorBranch = Workers.WorkerID(Convert.ToInt32(dirID[0])).ID;
 
-                Answer = newbranch.Add();
+                    Answer = newbranch.Add();
+                }
             }
 
             if (indicator == false) // Значит, что происходит редактирование
             {
-                newbranch = Branches.BranchID(idforEdit);
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newbranch = Branches.BranchID(idforEdit);
 
-                newbranch.Name = namet.Text;
-                newbranch.Address = addresst.Text;
+                    newbranch.Name = namet.Text;
+                    newbranch.Address = addresst.Text;
 
-                string[] dirID = (Convert.ToString(directorf.SelectedItem)).Split('.');
-                newbranch.DirectorBranch = Workers.WorkerID(Convert.ToInt32(dirID[0])).ID;
+                    string[] dirID = (Convert.ToString(directorf.SelectedItem)).Split('.');
+                    newbranch.DirectorBranch = Workers.WorkerID(Convert.ToInt32(dirID[0])).ID;
 
-                Answer = newbranch.Edit();
+                    Answer = newbranch.Edit();
+                }
             }
-
-            label4.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (namet.Text == "")
+            {
+                errorProvider1.SetError(namet, "Введите наименование филиала. Это поле не может быть пустым.");
+                return false;
+            }
+            if (addresst.Text == "")
+            {
+                errorProvider1.SetError(addresst, "Введите адрес. Это поле не может быть пустым.");
+                return false;
+            }
+            if (directorf.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(directorf, "Выберите директора или добавьте нового. Это поле не может быть пустым.");
+                return false;
+            }
+            return true;
         }
 
         private void cancel_Click(object sender, EventArgs e)

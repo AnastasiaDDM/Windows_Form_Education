@@ -83,15 +83,15 @@ namespace Add_Type
         {
             if (st.Name == "")
             { return "Введите название типа курса. Это поле не может быть пустым"; }
-            if (st.Cost == 0)
-            { return "Введите стоимость обучения по данному типу курса. Это поле не может быть пустым"; }
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Student v = new Student();
-            //    v = context.Students.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Student>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
+            if (st.Cost <= 99)
+            { return "Такое значение не допустимо для стоимости обучения по данному типу курса. Минимально допустимая стоимость обучения - 100 р."; }
+            using (SampleContext context = new SampleContext())
+            {
+                Type v = new Type();
+                v = context.Types.Where(x => x.Name == st.Name && x.Cost == st.Cost && x.Lessons == st.Lessons && x.Month == st.Month && x.Deldate == null).FirstOrDefault<Type>();
+                if (v != null)
+                { return "Такой тип обучения уже существует в базе под номером " + v.ID; }
+            }
             return "Данные корректны!";
         }
 

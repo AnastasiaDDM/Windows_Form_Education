@@ -103,11 +103,13 @@ namespace Add_Type
                     Answer = newcabinet.Edit();
                 }
             }
-
-            label4.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
+            }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
             }
         }
 
@@ -126,7 +128,7 @@ namespace Add_Type
             }
             if (capacityf.Value <= 0)
             {
-                errorProvider1.SetError(capacityf, "Введите номер кабинета. Это поле не может быть пустым.");
+                errorProvider1.SetError(capacityf, "Выберите вместимость кабинета.");
                 return false;
             }
             return true;

@@ -99,17 +99,27 @@ namespace Add_Type
             using (SampleContext context = new SampleContext())
             {
                 Branch v = new Branch();
-                if (st.ID ==0)       // если мы добавляем новый филиал 
+                if (st.ID == 0)       // если мы добавляем новый филиал 
                 {
-                    v = context.Branches.Where(x => x.Name == st.Name && x.Address == st.Address && x.DirectorBranch == st.DirectorBranch || x.Address == st.Address || x.DirectorBranch == st.DirectorBranch).FirstOrDefault<Branch>();
+                    v = context.Branches.Where(x => x.Name == st.Name && x.Address == st.Address && x.DirectorBranch == st.DirectorBranch).FirstOrDefault<Branch>();
                     if (v != null)
-                    { return "Такой филиал уже существует в базе под номером " + v.ID; }   
+                    { return "Такой филиал уже существует в базе под номером " + v.ID; }
+
+                    v = context.Branches.Where(x => x.Address == st.Address).FirstOrDefault<Branch>();
+                    if (v != null)
+                    { return "На этот адрес уже существует филиал под номером " + v.ID; }
+
+                    //v = context.Branches.Where(x => x.DirectorBranch == st.DirectorBranch).FirstOrDefault<Branch>();
+                    //if (v != null)
+                    //{ return "У этого директора уже существует филиал под номером " + v.ID; }
                 }
                 else
                 {
                     v = context.Branches.Where(x => x.Name == st.Name && x.Address == st.Address && x.DirectorBranch == st.DirectorBranch).FirstOrDefault<Branch>();
                     if (v != null && v != st)
-                    { return "Такой филиал уже существует в базе под номером " + v.ID; }
+                    {
+                        return "Такой филиал уже существует в базе под номером " + v.ID;
+                    }
                 }
             }
             return "Данные корректны!";
@@ -167,7 +177,7 @@ namespace Add_Type
                     profit = revenue + (paysbr.Where(p => p.WorkerID != null).Count() == 0 ? 0 : (paysbr.Where(p => p.WorkerID != null).Sum(p => p.Payment))); // Сумма, потому что оплаты зп числятся с - (отрицательные). поэтому + на - равно -
                     //profit = revenue + (paysbr.Where(p => p.WorkerID != null).Sum(p => p.Payment)); // Сумма, потому что оплаты зп числятся с - (отрицательные). поэтому + на - равно -
                 }
-                int v = db.Contracts.Where(x => x.BranchID == this.ID).OrderBy(u => u.ID).Count();
+                int v = db.Contracts.Where(x => x.BranchID == this.ID & x.Date >= start & x.Date <= end).OrderBy(u => u.ID).Count();
                 return v;
             }
 

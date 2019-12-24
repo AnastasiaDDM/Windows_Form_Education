@@ -93,19 +93,17 @@ namespace Add_Type
         {
             if (st.nameGroup == "")
             { return "Введите наименование группы. Это поле не может быть пустым"; }
-
             if (st.Cost == 0)
             { return "Введите стоимость обучения по данному курса. Это поле не может быть пустым"; }
-
-            if (st.Start >= st.End)
-            { return "Дата начала курса не может быть позже или такой же, как дата окончания обучения"; }
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Student v = new Student();
-            //    v = context.Students.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Student>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
+            if (st.Start > st.End)
+            { return "Дата начала курса не может быть позже даты окончания обучения"; }
+            using (SampleContext context = new SampleContext())
+            {
+                Course v = new Course();
+                v = context.Courses.Where(x => x.nameGroup == st.nameGroup && x.Start == st.Start && x.End == st.End && x.Cost == st.Cost && x.TypeID == st.TypeID && x.BranchID == st.BranchID && x.Deldate == null ).FirstOrDefault<Course>();
+                if (v != null)
+                { return "Такой курс уже существует в базе под номером " + v.ID; }
+            }
             return "Данные корректны!";
         }
 

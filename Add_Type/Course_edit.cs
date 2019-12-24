@@ -99,43 +99,90 @@ namespace Add_Type
 
             if (indicator == true) // Значит, что происходит добавление нового
             {
-                newcourse.nameGroup = namet.Text;
-                newcourse.Start = datefrom.Value;
-                newcourse.End = dateto.Value;
-                newcourse.Cost = Convert.ToDouble(costt.Text);
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newcourse.nameGroup = namet.Text;
+                    newcourse.Start = datefrom.Value;
+                    newcourse.End = dateto.Value;
+                    newcourse.Cost = Convert.ToDouble(costt.Text);
 
-                string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                newcourse.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
+                    string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
+                    newcourse.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
 
-                string[] typeID = (Convert.ToString(typef.Text)).Split('.');
-                newcourse.TypeID = Types.TypeID(Convert.ToInt32(typeID[0])).ID;
+                    string[] typeID = (Convert.ToString(typef.Text)).Split('.');
+                    newcourse.TypeID = Types.TypeID(Convert.ToInt32(typeID[0])).ID;
 
-                Answer = newcourse.Add();
+                    Answer = newcourse.Add();
+                }
             }
 
             if (indicator == false) // Значит, что происходит редактирование
             {
-                newcourse = Courses.CourseID(idforEdit);
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newcourse = Courses.CourseID(idforEdit);
 
-                newcourse.nameGroup = namet.Text;
-                newcourse.Start = datefrom.Value;
-                newcourse.End = dateto.Value;
-                newcourse.Cost = Convert.ToDouble(costt.Text);
+                    newcourse.nameGroup = namet.Text;
+                    newcourse.Start = datefrom.Value;
+                    newcourse.End = dateto.Value;
+                    newcourse.Cost = Convert.ToDouble(costt.Text);
 
-                string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                newcourse.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
+                    string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
+                    newcourse.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
 
-                string[] typeID = (Convert.ToString(typef.Text)).Split('.');
-                newcourse.TypeID = Types.TypeID(Convert.ToInt32(typeID[0])).ID;
+                    string[] typeID = (Convert.ToString(typef.Text)).Split('.');
+                    newcourse.TypeID = Types.TypeID(Convert.ToInt32(typeID[0])).ID;
 
-                Answer = newcourse.Edit();
+                    Answer = newcourse.Edit();
+                }
             }
-
-            label8.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (namet.Text == "")
+            {
+                errorProvider1.SetError(namet, "Введите наименование курса. Это поле не может быть пустым.");
+                return false;
+            }
+            if (typef.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(typef, "Выберите тип курса. Это поле не может быть не определено.");
+                return false;
+            }
+            if (costt.Text == "")
+            {
+                errorProvider1.SetError(costt, "Введите стоимость обучения на курсе. Это поле не может быть пустым.");
+                return false;
+            }
+            if (branchf.SelectedIndex == 0)
+            {
+                errorProvider1.SetError(branchf, "Выберите филиал. Это поле не может быть не определено.");
+                return false;
+            }
+            if (datefrom.Value > dateto.Value)
+            {
+                errorProvider1.SetError(datefrom, "Дата начала обучения не может быть позже даты окончания.");
+                return false;
+            }
+            if (dateto.Value < DateTime.Now)
+            {
+                errorProvider1.SetError(datefrom, "Дата окончания обучения не может быть раньше сегодняшней даты.");
+                return false;
+            }
+
+            return true;
         }
         private void cancel_Click(object sender, EventArgs e)
         {

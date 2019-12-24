@@ -49,28 +49,52 @@ namespace Add_Type
 
             if (indicator == true) // Значит, что происходит добавление нового
             {
-                Student st = new Student();
-                st.FIO = fiof.Text;
-                st.Phone = phonef.Text;
-                Answer = st.Add();
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    Student st = new Student();
+                    st.FIO = fiof.Text;
+                    st.Phone = phonef.Text;
+                    Answer = st.Add();
+                }
             }
 
             if (indicator == false) // Значит, что происходит редактирование
             {
-                Student st = Students.StudentID(idforEdit);
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    Student st = Students.StudentID(idforEdit);
 
-                st.FIO = fiof.Text;
-                st.Phone = phonef.Text;
-                Answer = st.Edit();
+                    st.FIO = fiof.Text;
+                    st.Phone = phonef.Text;
+                    Answer = st.Edit();
+                }
             }
-
-            label3.Text = Answer;
             if(Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
         }
-
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (fiof.Text == "")
+            {
+                errorProvider1.SetError(fiof, "Введите ФИО. Это поле не может быть пустым.");
+                return false;
+            }
+            if (phonef.Text == "+7(   )    -")
+            {
+                errorProvider1.SetError(phonef, "Введите номер телефона. Это поле не может быть пустым.");
+                return false;
+            }
+            return true;
+        }
         private void cancel_Click(object sender, EventArgs e)
         {
             this.Close();

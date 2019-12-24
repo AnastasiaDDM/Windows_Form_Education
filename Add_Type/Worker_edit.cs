@@ -130,63 +130,99 @@ namespace Add_Type
         {
             string Answer = "";
 
-            newworker.FIO = fiot.Text;
+            bool flag = Check(); // Вызовов функции проверки
+            if (flag)
+            {
+                newworker.FIO = fiot.Text;
 
-            if(ratet.Text == "")
-            {
-                newworker.Rate = null;
-            }
-            else
-            {
-                newworker.Rate = Convert.ToDouble(ratet.Text);
-            }
-            
-            newworker.Phone = phonet.Text;
-            newworker.Position = positiont.Text;
-            newworker.Password = passwordt.Text;
+                if (ratet.Text == "")
+                {
+                    newworker.Rate = null;
+                }
+                else
+                {
+                    newworker.Rate = Convert.ToDouble(ratet.Text);
+                }
 
-            if (branchf.SelectedIndex == 0)
-            {
-                newworker.BranchID = 0;
-            }
-            else
-            {
-                string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                newworker.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
-            }
+                newworker.Phone = phonet.Text;
+                newworker.Position = positiont.Text;
+                newworker.Password = passwordt.Text;
 
-            if (typef.SelectedIndex == 0)
-            {
-                newworker.Type = 1;
-            }
-            if (typef.SelectedIndex == 1)
-            {
-                newworker.Type = 2;
-            }
-            if (typef.SelectedIndex == 2)
-            {
-                newworker.Type = 3;
-            }
+                if (branchf.SelectedIndex == 0)
+                {
+                    newworker.BranchID = 0;
+                }
+                else
+                {
+                    string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
+                    newworker.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
+                }
 
-            // Проверка действий
-            if (indicator == true) // Значит, что происходит добавление нового
-            {
-                chooseDir = newworker;
-                Answer = newworker.Add();
-            }
+                if (typef.SelectedIndex == 0)
+                {
+                    newworker.Type = 1;
+                }
+                if (typef.SelectedIndex == 1)
+                {
+                    newworker.Type = 2;
+                }
+                if (typef.SelectedIndex == 2)
+                {
+                    newworker.Type = 3;
+                }
 
-            if (indicator == false) // Значит, что происходит редактирование
-            {
-                Answer = newworker.Edit();
-            }
+                // Проверка действий
+                if (indicator == true) // Значит, что происходит добавление нового
+                {
+                    chooseDir = newworker;
+                    Answer = newworker.Add();
+                }
 
-            label9.Text = Answer;
+                if (indicator == false) // Значит, что происходит редактирование
+                {
+                    Answer = newworker.Edit();
+                }
+            }
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
         }
 
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (fiot.Text == "")
+            {
+                errorProvider1.SetError(fiot, "Введите ФИО. Это поле не может быть пустым.");
+                return false;
+            }
+            if (positiont.Text == "")
+            {
+                errorProvider1.SetError(positiont, "Введите должность. Это поле не может быть пустым.");
+                return false;
+            }
+            if (typef.SelectedItem == null)
+            {
+                errorProvider1.SetError(typef, "Выберите тип должности. Это поле не может быть не определено.");
+                return false;
+            }
+            if (phonet.Text == "+7(   )    -")
+            {
+                errorProvider1.SetError(phonet, "Введите номер телефона. Это поле не может быть пустым.");
+                return false;
+            }
+            if (passwordt.Text == "")
+            {
+                errorProvider1.SetError(passwordt, "Введите пароль. Он будет использоваться при входе в систему.");
+                return false;
+            }
+            return true;
+        }
         private void positiont_TextChanged(object sender, EventArgs e)
         { 
             foreach(var o in this.typef.Items)

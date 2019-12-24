@@ -40,11 +40,11 @@
             this.purposet = new System.Windows.Forms.Label();
             this.contractt = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
-            this.teachert = new System.Windows.Forms.LinkLabel();
             this.label11 = new System.Windows.Forms.Label();
-            this.timetabt = new System.Windows.Forms.Label();
             this.brancht = new System.Windows.Forms.LinkLabel();
             this.label13 = new System.Windows.Forms.Label();
+            this.teachert = new System.Windows.Forms.LinkLabel();
+            this.timetabt = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // close
@@ -60,7 +60,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 142);
+            this.label5.Location = new System.Drawing.Point(15, 189);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 17);
             this.label5.TabIndex = 17;
@@ -69,29 +69,29 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(306, 142);
+            this.label4.Location = new System.Drawing.Point(247, 107);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 17);
+            this.label4.Size = new System.Drawing.Size(57, 34);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Способ оплаты";
+            this.label4.Text = "Способ\r\nоплаты";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(306, 102);
+            this.label3.Location = new System.Drawing.Point(15, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 17);
+            this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 15;
-            this.label3.Text = "Дата оплаты";
+            this.label3.Text = "Дата";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 102);
+            this.label2.Location = new System.Drawing.Point(15, 143);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 17);
+            this.label2.Size = new System.Drawing.Size(57, 34);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Размер оплаты";
+            this.label2.Text = "Размер\r\nоплаты";
             // 
             // label1
             // 
@@ -105,7 +105,7 @@
             // datet
             // 
             this.datet.AutoSize = true;
-            this.datet.Location = new System.Drawing.Point(428, 102);
+            this.datet.Location = new System.Drawing.Point(110, 107);
             this.datet.Name = "datet";
             this.datet.Size = new System.Drawing.Size(46, 17);
             this.datet.TabIndex = 25;
@@ -114,7 +114,7 @@
             // paymentt
             // 
             this.paymentt.AutoSize = true;
-            this.paymentt.Location = new System.Drawing.Point(138, 102);
+            this.paymentt.Location = new System.Drawing.Point(111, 143);
             this.paymentt.Name = "paymentt";
             this.paymentt.Size = new System.Drawing.Size(46, 17);
             this.paymentt.TabIndex = 26;
@@ -123,7 +123,7 @@
             // typet
             // 
             this.typet.AutoSize = true;
-            this.typet.Location = new System.Drawing.Point(428, 142);
+            this.typet.Location = new System.Drawing.Point(370, 107);
             this.typet.Name = "typet";
             this.typet.Size = new System.Drawing.Size(46, 17);
             this.typet.TabIndex = 27;
@@ -132,7 +132,7 @@
             // purposet
             // 
             this.purposet.AutoSize = true;
-            this.purposet.Location = new System.Drawing.Point(138, 142);
+            this.purposet.Location = new System.Drawing.Point(111, 189);
             this.purposet.Name = "purposet";
             this.purposet.Size = new System.Drawing.Size(54, 17);
             this.purposet.TabIndex = 28;
@@ -141,7 +141,7 @@
             // contractt
             // 
             this.contractt.AutoSize = true;
-            this.contractt.Location = new System.Drawing.Point(138, 13);
+            this.contractt.Location = new System.Drawing.Point(111, 13);
             this.contractt.Name = "contractt";
             this.contractt.Size = new System.Drawing.Size(0, 17);
             this.contractt.TabIndex = 47;
@@ -150,41 +150,25 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(296, 13);
+            this.label6.Location = new System.Drawing.Point(230, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 17);
             this.label6.TabIndex = 48;
             this.label6.Text = "/ Преподаватель";
             // 
-            // teachert
-            // 
-            this.teachert.AutoSize = true;
-            this.teachert.Location = new System.Drawing.Point(428, 13);
-            this.teachert.Name = "teachert";
-            this.teachert.Size = new System.Drawing.Size(0, 17);
-            this.teachert.TabIndex = 49;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(313, 46);
+            this.label11.Location = new System.Drawing.Point(247, 46);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(85, 34);
             this.label11.TabIndex = 55;
             this.label11.Text = "Занятие \r\nдля оплаты";
             // 
-            // timetabt
-            // 
-            this.timetabt.AutoSize = true;
-            this.timetabt.Location = new System.Drawing.Point(436, 46);
-            this.timetabt.Name = "timetabt";
-            this.timetabt.Size = new System.Drawing.Size(0, 17);
-            this.timetabt.TabIndex = 56;
-            // 
             // brancht
             // 
             this.brancht.AutoSize = true;
-            this.brancht.Location = new System.Drawing.Point(138, 186);
+            this.brancht.Location = new System.Drawing.Point(370, 143);
             this.brancht.Name = "brancht";
             this.brancht.Size = new System.Drawing.Size(72, 17);
             this.brancht.TabIndex = 58;
@@ -195,20 +179,38 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(15, 186);
+            this.label13.Location = new System.Drawing.Point(247, 143);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(61, 17);
             this.label13.TabIndex = 57;
             this.label13.Text = "Филиал";
+            // 
+            // teachert
+            // 
+            this.teachert.AutoSize = true;
+            this.teachert.Location = new System.Drawing.Point(370, 13);
+            this.teachert.Name = "teachert";
+            this.teachert.Size = new System.Drawing.Size(0, 17);
+            this.teachert.TabIndex = 49;
+            this.teachert.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.teachert_LinkClicked);
+            // 
+            // timetabt
+            // 
+            this.timetabt.AutoSize = true;
+            this.timetabt.Location = new System.Drawing.Point(370, 46);
+            this.timetabt.Name = "timetabt";
+            this.timetabt.Size = new System.Drawing.Size(0, 17);
+            this.timetabt.TabIndex = 59;
+            this.timetabt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.timetabt_LinkClicked);
             // 
             // Pay_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(670, 299);
+            this.Controls.Add(this.timetabt);
             this.Controls.Add(this.brancht);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.timetabt);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.teachert);
             this.Controls.Add(this.label6);
@@ -244,10 +246,10 @@
         private System.Windows.Forms.Label purposet;
         private System.Windows.Forms.LinkLabel contractt;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.LinkLabel teachert;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label timetabt;
         private System.Windows.Forms.LinkLabel brancht;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.LinkLabel teachert;
+        private System.Windows.Forms.LinkLabel timetabt;
     }
 }

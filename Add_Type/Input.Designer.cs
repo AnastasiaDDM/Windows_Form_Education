@@ -33,7 +33,7 @@
             this.passwordt = new System.Windows.Forms.TextBox();
             this.binput = new System.Windows.Forms.Button();
             this.phonet = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -79,21 +79,22 @@
             this.phonet.Size = new System.Drawing.Size(122, 22);
             this.phonet.TabIndex = 5;
             // 
-            // button1
+            // close
             // 
-            this.button1.Location = new System.Drawing.Point(12, 155);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 40);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Отменить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.close.Location = new System.Drawing.Point(12, 155);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(121, 40);
+            this.close.TabIndex = 6;
+            this.close.Text = "Закрыть";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // Input
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 207);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.phonet);
             this.Controls.Add(this.binput);
             this.Controls.Add(this.passwordt);
@@ -114,6 +115,6 @@
         private System.Windows.Forms.TextBox passwordt;
         private System.Windows.Forms.Button binput;
         private System.Windows.Forms.MaskedTextBox phonet;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button close;
     }
 }

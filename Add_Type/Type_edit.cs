@@ -76,8 +76,8 @@ namespace Add_Type
         private void save_Click(object sender, EventArgs e)
         {
             string Answer = "";
-
-            if (indicator == true) // Значит, что происходит добавление нового
+            bool flag = Check(); // Вызовов функции проверки
+            if (flag)
             {
                 newtype.Name = namet.Text;
                 newtype.Cost = Convert.ToDouble(costt.Text);
@@ -85,25 +85,50 @@ namespace Add_Type
                 newtype.Lessons = Convert.ToInt32(lessont.Text);
                 newtype.Note = notet.Text;
 
-                Answer = newtype.Add();
+                if (indicator == true) // Значит, что происходит добавление нового
+                {
+                    Answer = newtype.Add();
+                }
+
+                if (indicator == false) // Значит, что происходит редактирование
+                {
+                    Answer = newtype.Edit();
+                }
             }
-
-            if (indicator == false) // Значит, что происходит редактирование
-            {
-                newtype.Name = namet.Text;
-                newtype.Cost = Convert.ToDouble(costt.Text);
-                newtype.Month = Convert.ToInt32(montht.Text);
-                newtype.Lessons = Convert.ToInt32(lessont.Text);
-                newtype.Note = notet.Text;
-
-                Answer = newtype.Edit();
-            }
-
-            label7.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (namet.Text == "")
+            {
+                errorProvider1.SetError(namet, "Введите название типа курса. Это поле не может быть пустым.");
+                return false;
+            }
+            if (costt.Text == "")
+            {
+                errorProvider1.SetError(costt, "Введите стоимость обучения по этому типу курса. Это поле не может быть пустым.");
+                return false;
+            }
+            if (lessont.Value <= 0)
+            {
+                errorProvider1.SetError(lessont, "Введите количество занятий по этому типу курса. Это поле не может быть пустым.");
+                return false;
+            }
+            if (montht.Value <= 0)
+            {
+                errorProvider1.SetError(montht, "Введите количество месяцев обучения по этому типу курса. Это поле не может быть пустым.");
+                return false;
+            }
+            return true;
         }
 
         private void cancel_Click(object sender, EventArgs e)

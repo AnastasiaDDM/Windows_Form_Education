@@ -73,10 +73,11 @@ namespace Add_Type
             courset.Text = contract.CourseID + ". " + Courses.CourseID(contract.CourseID).nameGroup;
             costt.Text = contract.Cost.ToString();
             paymentt.Text = contract.PayofMonth.ToString();
+            debtt.Text = contract.getDebt().ToString();
             if(contract.Canceldate != null)
             {
                 cancel.Text = "Договор расторжен " + contract.Canceldate;
-                addpay.Enabled = false;
+                //addpay.Enabled = false;
                 bcancel.Enabled = false;
             }
         }
@@ -133,8 +134,8 @@ namespace Add_Type
 
         private void addpay_Click(object sender, EventArgs e)
         {   // Добавление оплаты по договору
-            Pay_edit f = new Pay_edit(contract);
-            DialogResult result = f.ShowDialog();
+                Pay_edit f = new Pay_edit(contract, contract.getDebt());
+                DialogResult result = f.ShowDialog();
         }
         private void bcancel_Click(object sender, EventArgs e)
         {

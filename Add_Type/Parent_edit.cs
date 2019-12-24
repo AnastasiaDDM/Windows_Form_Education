@@ -49,25 +49,48 @@ namespace Add_Type
 
             if (indicator == true) // Значит, что происходит добавление нового
             {
-                newparent.FIO = fiof.Text;
-                newparent.Phone = phonef.Text;
-                Answer = newparent.Add();
+                bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newparent.FIO = fiof.Text;
+                    newparent.Phone = phonef.Text;
+                    Answer = newparent.Add();
+                }
             }
 
             if (indicator == false) // Значит, что происходит редактирование
-            {
-                newparent = Parents.ParentID(idforEdit);
-
-                newparent.FIO = fiof.Text;
-                newparent.Phone = phonef.Text;
-                Answer = newparent.Edit();
+            { bool flag = Check(); // Вызовов функции проверки
+                if (flag)
+                {
+                    newparent = Parents.ParentID(idforEdit);
+                    newparent.FIO = fiof.Text;
+                    newparent.Phone = phonef.Text;
+                    Answer = newparent.Edit();
+                }
             }
-
-            label1.Text = Answer;
             if (Answer == "Данные корректны!")
             {
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(save, Answer);
+            }
+        }
+        public bool Check() // Проверка всех введеннных данных 
+        {
+            errorProvider1.Clear();
+            if (fiof.Text == "")
+            {
+                errorProvider1.SetError(fiof, "Введите ФИО. Это поле не может быть пустым.");
+                return false;
+            }
+            if (phonef.Text == "+7(   )    -")
+            {
+                errorProvider1.SetError(phonef, "Введите номер телефона. Это поле не может быть пустым.");
+                return false;
+            }
+            return true;
         }
 
         private void cancel_Click(object sender, EventArgs e)

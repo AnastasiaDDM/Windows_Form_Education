@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,6 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.teacherf = new System.Windows.Forms.TextBox();
             this.bteach = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -148,6 +151,10 @@
             this.bteach.UseVisualStyleBackColor = true;
             this.bteach.Click += new System.EventHandler(this.bteach_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Theme_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -168,6 +175,7 @@
             this.Name = "Theme_edit";
             this.Text = "Тема №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Theme_edit_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +195,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.Button bteach;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

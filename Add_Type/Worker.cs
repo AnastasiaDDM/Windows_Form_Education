@@ -91,9 +91,19 @@ namespace Add_Type
             using (SampleContext context = new SampleContext())
             {
                 Worker v = new Worker();
-                v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
-                if (v != null)
-                { return "Такой работник уже существует в базе под номером " + v.ID; }
+                if (st.ID == 0)       // если мы добавляем нового работника 
+                {
+                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.Type == st.Type && x.Phone == st.Phone && x.Deldate == null).FirstOrDefault<Worker>();
+                    if (v != null)
+                    { return "Такой работник уже существует в базе под номером " + v.ID; }
+                }
+                else
+                {
+                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.Type == st.Type && x.Position == st.Position && x.Rate == st.Rate && x.Password == st.Password && x.Deldate == null).FirstOrDefault<Worker>();
+                    if (v != null)
+                    { return "Такой работник уже существует в базе под номером " + v.ID; }
+                }
+                
             }
             return "Данные корректны!";
         }

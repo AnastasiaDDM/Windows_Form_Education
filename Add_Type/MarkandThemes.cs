@@ -315,5 +315,22 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void bvisit_Click(object sender, EventArgs e)
+        {
+            //// Присутствие
+            //string[] timeID = (Convert.ToString(D.Rows[l].Cells[1].Value)).Split('.');
+            //Timetable time = Timetables.TimetableID(Convert.ToInt32(timeID[0]));
+
+            //string[] themeID = (Convert.ToString(D.Rows[l].Cells[3].Value)).Split('.');
+            //Theme theme = Themes.ThemeID(Convert.ToInt32(themeID[0]));
+
+            //string[] courseID = (Convert.ToString(D.Rows[l].Cells[2].Value)).Split('.');
+            //Course course = Courses.CourseID(Convert.ToInt32(courseID[0]));
+
+            //Visit_view f = new Visit_view(timetable, course);
+            //DialogResult result = f.ShowDialog();
+            //FillGrid();
+        }
     }
 }

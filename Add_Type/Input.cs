@@ -29,21 +29,28 @@ namespace Add_Type
 
         private void binput_Click(object sender, EventArgs e)
         {
-            string phone = phonet.Text;
-            string password = passwordt.Text;
-            Worker inputPerson = Singleton.inputPerson(phone, password);
-            if(inputPerson == null)
-            {
-                var result = MessageBox.Show("Данные для входа введены неверно. Проверьте данные и попробуйте еще раз.", "Внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            }
-            else
-            {
-                //List f = new List();
-                //f.Show();
-                //Show result = f.ShowDialog();
-                this.Close();
 
-            }
+
+            ////////////////string phone = phonet.Text;
+            ////////////////string password = passwordt.Text;
+            ////////////////Worker inputPerson = Singleton.inputPerson(phone, password);
+            ////////////////if(inputPerson == null)
+            ////////////////{
+            ////////////////    var result = MessageBox.Show("Данные для входа введены неверно. Проверьте данные и попробуйте еще раз.", "Внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            ////////////////}
+            ////////////////else
+            ////////////////{
+            ////////////////    //List f = new List();
+            ////////////////    //f.Show();
+            ////////////////    //Show result = f.ShowDialog();
+            ////////////////    this.Close();
+
+            ////////////////}
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

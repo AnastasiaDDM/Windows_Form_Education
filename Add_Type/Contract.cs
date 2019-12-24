@@ -32,7 +32,6 @@ namespace Add_Type
         public Nullable<System.DateTime> Editdate { get; set; }
         public Nullable<System.DateTime> Canceldate { get; set; }
         
-
         public int StudentID { get; set; }
         public Student Student { get; set; }
 
@@ -45,10 +44,8 @@ namespace Add_Type
         public int BranchID { get; set; }
         public Branch Branch { get; set; }
 
-
         public Contract()
-        { }
-       
+        { } 
         public string Add()
         {
             string answer = Сheck(this);
@@ -114,27 +111,29 @@ namespace Add_Type
         }
         public string Сheck(Contract st)
         {
-
             using (SampleContext context = new SampleContext())
             {
-                StudentsCourses v = new StudentsCourses();
-                v = context.StudentsCourses.Where(x => x.StudentID == st.StudentID && x.CourseID == st.CourseID).FirstOrDefault<StudentsCourses>();
-                if (v != null)
-                { return "Этот ученик уже числится на этом курсе"; }
+                if (st.ID == 0)       // если мы добавляем новый 
+                {
+                    StudentsCourses v = new StudentsCourses();
+                    v = context.StudentsCourses.Where(x => x.StudentID == st.StudentID && x.CourseID == st.CourseID).FirstOrDefault<StudentsCourses>();
+                    if (v != null)
+                    { return "Этот ученик уже числится на этом курсе"; }
+                    if (st.Cost <= 99)
+                    { return "Такое значение не допустимо для стоимости курса. Минимально допустимая стоимость обучения - 100 р."; }
+                    if (st.Cost < st.PayofMonth)
+                    { return "Стоимость обучения не можеть быть меньше, чем плата за месяц."; }
+                }
+                else
+                {
+                    if (st.Cost <= 99)
+                    { return "Такое значение не допустимо для стоимости курса. Минимально допустимая стоимость обучения - 100 р."; }
+                    if (st.Cost < st.PayofMonth)
+                    { return "Стоимость обучения не можеть быть меньше, чем плата за месяц."; }
+                }
             }
 
-            //if (st.FIO == "")
-            //{ return "Введите ФИО ученика. Это поле не может быть пустым"; }
-            //if (st.Phone == "")
-            //{ return "Введите номер телефона ученика. Это поле не может быть пустым"; }
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Worker v = new Worker();
-            //    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
-            return "Данные корректны!";
+            return "Данные корректны!";      
         }
 
         public string addPay(Pay p)
@@ -150,6 +149,52 @@ namespace Add_Type
             {
                 var v = context.Pays.Where(x => x.ContractID == this.ID).OrderBy(u => u.ID).ToList<Pay>();
                 return v;
+            }
+        }
+
+        public double getDebt()
+        {
+            using (SampleContext db = new SampleContext())
+            {
+                var pays = db.Pays.Join(db.Contracts, // второй набор
+        p => p.ContractID, // свойство-селектор объекта из первого набора
+        c => c.ID, // свойство-селектор объекта из второго набора
+        (p, c) => new // результат
+        {
+            ID = p.ID,
+            ContractID = p.ContractID,
+            Date = p.Date,
+            BranchID = p.BranchID,
+            Payment = p.Payment,
+            Purpose = p.Purpose,
+            Type = p.Type,
+            Deldate = p.Deldate,
+            StudentID = c.StudentID,
+            Cost = c.Cost
+        });
+                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
+
+                var paysst = pays.Where(p => p.ContractID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                if (paysst.Count() == 0)
+                {// То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
+                    // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
+                    // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
+                    //var c = db.Contracts.Where(p => p.StudentID == this.ID);
+                    //if (c.Count() == 0)
+                    //{
+                    //    return 0;
+                    //}
+                    //else
+                    //{
+                    //    return c.Sum(p => p.Cost);
+                    //}
+                    return this.Cost;
+                }
+                else
+                {
+                    double sumPays = (paysst.Sum(p => p.Payment));
+                    return this.Cost - sumPays;
+                }
             }
         }
     }

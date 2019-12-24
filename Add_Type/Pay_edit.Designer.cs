@@ -52,14 +52,15 @@
             this.teacherf = new System.Windows.Forms.TextBox();
             this.branchf = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.paymentt = new System.Windows.Forms.MaskedTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.erpay = new System.Windows.Forms.ErrorProvider(this.components);
             this.label13 = new System.Windows.Forms.Label();
             this.incomef = new System.Windows.Forms.CheckBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.erpay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -119,6 +120,7 @@
             this.typef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typef.FormattingEnabled = true;
             this.typef.Items.AddRange(new object[] {
+            "Не выбрано",
             "Наличный расчет",
             "Безналичный расчет"});
             this.typef.Location = new System.Drawing.Point(383, 188);
@@ -128,10 +130,10 @@
             // 
             // purposef
             // 
-            this.purposef.Location = new System.Drawing.Point(142, 285);
+            this.purposef.Location = new System.Drawing.Point(128, 285);
             this.purposef.Multiline = true;
             this.purposef.Name = "purposef";
-            this.purposef.Size = new System.Drawing.Size(430, 95);
+            this.purposef.Size = new System.Drawing.Size(440, 95);
             this.purposef.TabIndex = 9;
             // 
             // save
@@ -194,6 +196,7 @@
             this.indicatorf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.indicatorf.FormattingEnabled = true;
             this.indicatorf.Items.AddRange(new object[] {
+            "Не выбрано",
             "Оплата по договору",
             "Зарплата сотрудникам"});
             this.indicatorf.Location = new System.Drawing.Point(138, 6);
@@ -217,6 +220,7 @@
             this.timetablef.Location = new System.Drawing.Point(287, 103);
             this.timetablef.Multiline = true;
             this.timetablef.Name = "timetablef";
+            this.timetablef.ReadOnly = true;
             this.timetablef.Size = new System.Drawing.Size(232, 20);
             this.timetablef.TabIndex = 59;
             // 
@@ -235,6 +239,7 @@
             this.contractf.Location = new System.Drawing.Point(85, 76);
             this.contractf.Multiline = true;
             this.contractf.Name = "contractf";
+            this.contractf.ReadOnly = true;
             this.contractf.Size = new System.Drawing.Size(161, 20);
             this.contractf.TabIndex = 61;
             // 
@@ -253,8 +258,10 @@
             this.teacherf.Location = new System.Drawing.Point(287, 75);
             this.teacherf.Multiline = true;
             this.teacherf.Name = "teacherf";
+            this.teacherf.ReadOnly = true;
             this.teacherf.Size = new System.Drawing.Size(232, 20);
             this.teacherf.TabIndex = 63;
+            this.teacherf.TextChanged += new System.EventHandler(this.teacherf_TextChanged);
             // 
             // branchf
             // 
@@ -273,14 +280,6 @@
             this.label11.Size = new System.Drawing.Size(61, 17);
             this.label11.TabIndex = 65;
             this.label11.Text = "Филиал";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 372);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 17);
-            this.label6.TabIndex = 67;
             // 
             // label8
             // 
@@ -333,6 +332,10 @@
             this.incomef.UseVisualStyleBackColor = true;
             this.incomef.CheckedChanged += new System.EventHandler(this.incomef_CheckedChanged);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Pay_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -343,7 +346,6 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.paymentt);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.branchf);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.bteach);
@@ -372,6 +374,7 @@
             this.Load += new System.EventHandler(this.Pay_edit_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pay_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.erpay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,12 +405,12 @@
         private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.ComboBox branchf;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox paymentt;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ErrorProvider erpay;
         private System.Windows.Forms.CheckBox incomef;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
