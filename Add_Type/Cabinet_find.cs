@@ -21,6 +21,9 @@ namespace Add_Type
         int pageindex;
         int pages;
         string purpose;
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Cabinet_find()
         {
             this.KeyPreview = true;
@@ -35,24 +38,35 @@ namespace Add_Type
             LoadAll();
         }
 
-        private void Access() // Реализация разделения ролей
-        {
-
- 
-    //            add.Enabled = (what_i_can("add_cabinet"));
-        }
         private void LoadAll()
         {
             Access();
             buildDG();
             FillGrid();
         }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_cabinet");
+            add.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_cabinet");
+        }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ кабинета");
@@ -66,8 +80,6 @@ namespace Add_Type
             bran.HeaderText = "Филиал";
             sortf.Items.Add("Филиал");
 
-
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(name);
             D.Columns.Add(capacity);
@@ -84,6 +96,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[5].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -222,10 +235,10 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (Singleton.getPerson().Type != 3) // не Преподаватель
+            // Обрабатывается событие нажатия на кнопку "Удалить"
+            if (e.ColumnIndex == 5)
             {
-                // Обрабатывается событие нажатия на кнопку "Удалить"
-                if (e.ColumnIndex == 5)
+                if (delBan == true) // Запрета нет
                 {
                     if (e.RowIndex > -1)
                     {
@@ -251,8 +264,11 @@ namespace Add_Type
                         }
                     }
                 }
-                // Редактирование
-                if (e.ColumnIndex == 0)
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (editBan == true) // Запрета нет
                 {
                     if (e.RowIndex > -1)
                     {
@@ -268,7 +284,6 @@ namespace Add_Type
                 }
             }
         }
-
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Открытие формы для просмотра данных

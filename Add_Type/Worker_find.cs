@@ -27,6 +27,9 @@ namespace Add_Type
         int typeworker = 0; // Тип должности, для отображения только необходимого типа работников
 
         List<Worker> freeteachers = new List<Worker>(); // Это поле для манипуляции со свободными преподавателями (вызов из формы Timetable_view)
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Worker_find()
         {
             InitializeComponent();
@@ -63,28 +66,19 @@ namespace Add_Type
             FillGridfreeteachers(freeteachers);
         }
 
-        private void Access() // Реализация разделения ролей
-        {
-
-            if (Singleton.getPerson().Type == 1) // Директор
-            {
-
-            }
-            if (Singleton.getPerson().Type == 2) // Менеджер
-            {
-
-            }
-            if (Singleton.getPerson().Type == 3) // Преподаватель
-            {
-                add.Enabled = false;
-            }
-        }
-
         private void LoadAll()
         {
             Access();
             buildDG();
             FillGrid();
+        }
+
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_worker");
+            add.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_worker");
         }
         private void buildDG() //Построение грида 
         {
@@ -92,7 +86,17 @@ namespace Add_Type
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№";
             sortf.Items.Add("№ работника");
@@ -112,7 +116,6 @@ namespace Add_Type
             br.HeaderText = "Филиал";
             sortf.Items.Add("Филиал");
 
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(fio);
             D.Columns.Add(ph);
@@ -131,6 +134,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[7].Visible = delBan;
             }
             D.ReadOnly = true;
 
@@ -473,12 +477,13 @@ namespace Add_Type
                     }
                 }
             }
-            if (Singleton.getPerson().Type != 3) // не Преподаватель
-            {
+
                 // Обрабатывается событие нажатия на кнопку "Удалить"
                 if (purpose != "choose")
                 {
-                    if (e.ColumnIndex == 7)
+                if (e.ColumnIndex == 7)
+                {
+                    if (delBan == true) // Запрета нет
                     {
                         if (e.RowIndex > -1)
                         {
@@ -504,8 +509,11 @@ namespace Add_Type
                             }
                         }
                     }
-                    // Редактирование
-                    if (e.ColumnIndex == 0)
+                }
+                // Редактирование
+                if (e.ColumnIndex == 0)
+                {
+                    if (editBan == true) // Запрета нет
                     {
                         if (e.RowIndex > -1)
                         {

@@ -153,7 +153,7 @@ namespace Add_Type
                               join sp in db.StudentsParents on p.ID equals sp.ParentID
                               select new { PID = p.ID, PPhone = p.Phone, PFIO = p.FIO, PDelDate = p.Deldate, ParID = sp.ParentID, StID = sp.StudentID };
 
-                parents = parents.Where(x => x.StID == this.ID);
+                parents = parents.Where(x => x.StID == this.ID & x.PDelDate == null);
                 parents = parents.Where(x => x.PID == x.ParID);
 
                 foreach (var p in parents)

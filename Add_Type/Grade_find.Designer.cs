@@ -59,6 +59,7 @@
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
@@ -315,6 +316,7 @@
             this.D.Size = new System.Drawing.Size(1184, 529);
             this.D.TabIndex = 10;
             this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // label3
             // 
@@ -379,11 +381,22 @@
             this.pagef.TabIndex = 45;
             this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 603);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(663, 17);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "* Просмотр и изменение оценок происходит через форму оценивания или просмотра рас" +
+    "писания.";
+            // 
             // Grade_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1194, 702);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.countf);
@@ -438,5 +451,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DateTimePicker datefrom;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -18,6 +18,9 @@ namespace Add_Type
 
         public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Theme chooseTheme; // Эта переменная для приема значения из вызываемой(дочерней) формы
+
+        bool WdelBan; // Перменная для хранения доступа к удалению
+        bool ThdelBan; // Перменная для хранения доступа к удалению
         public Timetable_view()
         {
             InitializeComponent();
@@ -30,9 +33,23 @@ namespace Add_Type
 
             timetable = st;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
+        }
+
+        private void Access() // Реализация разделения ролей
+        {
+            // Запрет на добавление и удаление одиннаковый
+            WdelBan = Prohibition.Banned("add_del_worker_to_timetable");
+            addteacher.Visible = WdelBan;
+
+            ThdelBan = Prohibition.Banned("add_del_theme_to_timetable");
+            addtheme.Visible = ThdelBan;
+
+            edit.Visible = Prohibition.Banned("edit_timetable");
+
         }
         private void FillForm()
         {
@@ -50,19 +67,23 @@ namespace Add_Type
             D.Columns.Clear();
             D.Rows.Clear();
 
+
             DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+            D.Columns.Add(edit);
+
             DataGridViewTextBoxColumn idt = new DataGridViewTextBoxColumn();
             idt.HeaderText = "№";
             DataGridViewTextBoxColumn fiot = new DataGridViewTextBoxColumn();
             fiot.HeaderText = "ФИО";
            
-            D.Columns.Add(edit);
             D.Columns.Add(idt);
             D.Columns.Add(fiot);
             
             DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
             remove.HeaderText = "Удалить?";
             D.Columns.Add(remove);
+            D.Columns[3].Visible = WdelBan;
+
             D.ReadOnly = true;
 
 
@@ -70,24 +91,21 @@ namespace Add_Type
             gridtheme.Columns.Clear();
             gridtheme.Rows.Clear();
 
-            DataGridViewTextBoxColumn edit1 = new DataGridViewTextBoxColumn();
 
-            //DataGridViewTextBoxColumn date = new DataGridViewTextBoxColumn();
-            //date.HeaderText = "Дата";
+            DataGridViewTextBoxColumn edit1 = new DataGridViewTextBoxColumn();
+            gridtheme.Columns.Add(edit1);
+
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
             st.HeaderText = "Тема";
             DataGridViewTextBoxColumn hw = new DataGridViewTextBoxColumn();
             hw.HeaderText = "Домашняя работа";
-            //DataGridViewTextBoxColumn deadline = new DataGridViewTextBoxColumn();
-            //deadline.HeaderText = "Срок сдачи дз";
+
             DataGridViewTextBoxColumn teach = new DataGridViewTextBoxColumn();
             teach.HeaderText = "Составитель";
 
-            gridtheme.Columns.Add(edit1);
-            //D.Columns.Add(date);
+
             gridtheme.Columns.Add(st);
             gridtheme.Columns.Add(hw);
-            //gridtheme.Columns.Add(deadline);
             gridtheme.Columns.Add(teach);
 
             //if (purpose == "choose")
@@ -101,6 +119,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove1 = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 gridtheme.Columns.Add(remove1);
+                D.Columns[4].Visible = ThdelBan;
             }
 
             gridtheme.ReadOnly = true;
@@ -202,27 +221,30 @@ namespace Add_Type
         {
             if (e.ColumnIndex == 3)
             {
-                if (e.RowIndex > -1)
+                if (WdelBan == true) // Запрета нет
                 {
-                    if (D.RowCount >1)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить этого преподавателя с этого занятия?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.OK)
+                        if (D.RowCount > 1)
                         {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            D.Rows.Remove(D.Rows[l]);
-                            Worker o = Workers.WorkerID(k);
-                            String ans = timetable.delTeacher(o);
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить этого преподавателя с этого занятия?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Worker o = Workers.WorkerID(k);
+                                String ans = timetable.delTeacher(o);
+                            }
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, так как на занятии должен быть хотя бы один преподаватель. Советуем выбрать другого преподаватлея, а потом уже удалить этого!");
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, так как на занятии должен быть хотя бы один преподаватель. Советуем выбрать другого преподаватлея, а потом уже удалить этого!");
+                        }
                     }
                 }
             }
@@ -259,30 +281,33 @@ namespace Add_Type
         {
             if (e.ColumnIndex == 4)
             {
-                if (e.RowIndex > -1)
+                if (ThdelBan == true) // Запрета нет
                 {
-                    if (gridtheme.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить тему с этого занятия?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.OK)
+                        if (gridtheme.RowCount - 1 >= e.RowIndex)
                         {
-                            // Форма не закрывается
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить тему с этого занятия?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                            string[] themID = (Convert.ToString(gridtheme.Rows[l].Cells[1].Value)).Split('.');
-                            int k = Convert.ToInt32(themID[0]);
+                            if (result == DialogResult.OK)
+                            {
+                                // Форма не закрывается
 
-                            gridtheme.Rows.Remove(gridtheme.Rows[l]);
-                            Theme o = Themes.ThemeID(k);
-                            String ans = timetable.delTheme(o);
+                                string[] themID = (Convert.ToString(gridtheme.Rows[l].Cells[1].Value)).Split('.');
+                                int k = Convert.ToInt32(themID[0]);
+
+                                gridtheme.Rows.Remove(gridtheme.Rows[l]);
+                                Theme o = Themes.ThemeID(k);
+                                String ans = timetable.delTheme(o);
+                            }
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        }
                     }
                 }
             }

@@ -147,7 +147,7 @@ namespace Add_Type
         {
             using (SampleContext context = new SampleContext())
             {
-                var v = context.Pays.Where(x => x.ContractID == this.ID).OrderBy(u => u.ID).ToList<Pay>();
+                var v = context.Pays.Where(x => x.ContractID == this.ID & x.Deldate == null).OrderBy(u => u.ID).ToList<Pay>();
                 return v;
             }
         }
@@ -206,6 +206,15 @@ namespace Add_Type
             using (SampleContext context = new SampleContext())
             {
                 Contract v = context.Contracts.Where(x => x.ID == id).FirstOrDefault<Contract>();
+                return v;
+            }
+        }
+
+        public static Contract ContractID(Student s, Course c)
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                Contract v = context.Contracts.Where(x => x.CourseID == c.ID & x.StudentID == s.ID).FirstOrDefault<Contract>();
                 return v;
             }
         }

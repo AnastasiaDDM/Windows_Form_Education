@@ -26,6 +26,9 @@ namespace Add_Type
         public static Worker chooseManager; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract  chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
         public Worker  manager; // Объект "менеджер" для списка договоров этого менеджера
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Contract_find()
         {
             InitializeComponent();
@@ -53,22 +56,37 @@ namespace Add_Type
 
             LoadAll();
         }
-        private void Contract_find_Load(object sender, EventArgs e)
-        {
-            //LoadAll();
-        }
 
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
+        }
+
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_contract");
+            add.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_contract");
         }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ договора");
@@ -94,7 +112,6 @@ namespace Add_Type
             bran.HeaderText = "Филиал";
             sortf.Items.Add("Филиал");
 
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(date);
             D.Columns.Add(st);
@@ -115,6 +132,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[9].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -323,42 +341,48 @@ namespace Add_Type
             {
                 if (e.ColumnIndex == 9)
                 {
-                    if (e.RowIndex > -1)
+                    if (delBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            const string message = "Вы уверены, что хотите удалить договор?";
-                            const string caption = "Удаление";
-                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.OK)
+                            if (D.RowCount - 1 >= e.RowIndex)
                             {
-                                // Форма не закрывается
-                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                D.Rows.Remove(D.Rows[l]);
-                                Contract o = Contracts.ContractID(k);
-                                String ans = o.Del();
+                                int l = e.RowIndex;
+                                const string message = "Вы уверены, что хотите удалить договор?";
+                                const string caption = "Удаление";
+                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.OK)
+                                {
+                                    // Форма не закрывается
+                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                    D.Rows.Remove(D.Rows[l]);
+                                    Contract o = Contracts.ContractID(k);
+                                    String ans = o.Del();
+                                }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            else
+                            {
+                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            }
                         }
                     }
                 }
                 // Редактирование
                 if (e.ColumnIndex == 0)
                 {
-                    if (e.RowIndex > -1)
+                    if (editBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
-                            DialogResult result = f.ShowDialog();
-                            FillGrid();
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
+                                DialogResult result = f.ShowDialog();
+                                FillGrid();
+                            }
                         }
                     }
                 }

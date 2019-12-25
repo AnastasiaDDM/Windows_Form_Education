@@ -216,9 +216,9 @@
             // 
             // opentemlate
             // 
-            this.opentemlate.Location = new System.Drawing.Point(308, 327);
+            this.opentemlate.Location = new System.Drawing.Point(553, 259);
             this.opentemlate.Name = "opentemlate";
-            this.opentemlate.Size = new System.Drawing.Size(131, 55);
+            this.opentemlate.Size = new System.Drawing.Size(114, 48);
             this.opentemlate.TabIndex = 45;
             this.opentemlate.Text = "Открыть шаблон";
             this.opentemlate.UseVisualStyleBackColor = true;

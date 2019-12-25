@@ -33,6 +33,7 @@ namespace Add_Type
             theme = th;
             course = c;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
@@ -47,9 +48,15 @@ namespace Add_Type
             this.Text = this.Text + "   " + timetable.ID + ". " + timetable.Startlesson.ToString(formattotext);
             course = c;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            update.Visible = Prohibition.Banned("edit_visit");
         }
 
         private void buildDG() //Построение грида 

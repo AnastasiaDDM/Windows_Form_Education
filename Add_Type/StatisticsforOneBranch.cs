@@ -22,7 +22,13 @@ namespace Add_Type
             int countContracts = branch.Statistic(DateTime.MinValue, DateTime.MaxValue, out profit, out revenue);
             revenuet.Text = "Выручка " + revenue;
             profitt.Text = "Прибыль " + profit;
-            countt.Text = "Количество договоров " + countContracts; 
+            countt.Text = "Количество договоров " + countContracts;
+            Access(); 
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            statistic.Enabled = Prohibition.Banned("see_all_statistic");
         }
 
         private void statistic_Click(object sender, EventArgs e)

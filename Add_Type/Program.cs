@@ -37,6 +37,12 @@ namespace Add_Type
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Visit> Visits { get; set; }
 
+
+        //Работа для разделения ролей
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Action> Actions { get; set; }
+        public DbSet<Prohibition> Prohibitions { get; set; }
+
         internal void SubmitChanges()
         {
             throw new NotImplementedException();

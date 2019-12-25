@@ -25,6 +25,9 @@ namespace Add_Type
         public static Type chooseType; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Course chooseCour; // Эта переменная для пересылке своего значения в вызывающую форму
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Course_find()
         {
             InitializeComponent();
@@ -49,15 +52,34 @@ namespace Add_Type
         }
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
+        }
+
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_course");
+            add.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_course");
         }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ курса");
@@ -80,7 +102,6 @@ namespace Add_Type
             end.HeaderText = "Окончание";
             sortf.Items.Add("Окончание занятий");
 
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(group);
             D.Columns.Add(typec);
@@ -100,6 +121,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[8].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -296,42 +318,48 @@ namespace Add_Type
             {
                 if (e.ColumnIndex == 8)
                 {
-                    if (e.RowIndex > -1)
+                    if (delBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            const string message = "Вы уверены, что хотите удалить курс?";
-                            const string caption = "Удаление";
-                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.OK)
+                            if (D.RowCount - 1 >= e.RowIndex)
                             {
-                                // Форма не закрывается
-                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                D.Rows.Remove(D.Rows[l]);
-                                Course o = Courses.CourseID(k);
-                                String ans = o.Del();
+                                int l = e.RowIndex;
+                                const string message = "Вы уверены, что хотите удалить курс?";
+                                const string caption = "Удаление";
+                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.OK)
+                                {
+                                    // Форма не закрывается
+                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                    D.Rows.Remove(D.Rows[l]);
+                                    Course o = Courses.CourseID(k);
+                                    String ans = o.Del();
+                                }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            else
+                            {
+                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            }
                         }
                     }
                 }
                 // Редактирование
                 if (e.ColumnIndex == 0)
                 {
-                    if (e.RowIndex > -1)
+                    if (editBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            Course_edit f = new Course_edit(Courses.CourseID(k), false);      
-                            DialogResult result = f.ShowDialog();
-                            FillGrid();
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                Course_edit f = new Course_edit(Courses.CourseID(k), false);
+                                DialogResult result = f.ShowDialog();
+                                FillGrid();
+                            }
                         }
                     }
                 }

@@ -15,6 +15,8 @@ namespace Add_Type
         public Worker worker;   // Глобальная переменная объявляет ученика данной формы
         public Parent chooseParent; //  Родитель для того, чтобы передать в эту переменную значение из дочерней формы выбора
 
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Worker_view()
         {
             InitializeComponent();
@@ -28,13 +30,14 @@ namespace Add_Type
             worker = st;
             this.Text = this.Text + worker.ID;
 
-            // Эти проверки организованиы для сокрытия тех данных, которые не нужны для катрточек отдельных типов работников
-            if (worker.Type == 1)
+            Access();
+            // Эти проверки организованиы для сокрытия тех данных, которые не нужны для карточек отдельных типов работников
+            if (worker.Type == 1 | worker.Type == 4 | worker.Type == 5)
             {
                 timetable.Visible = false;
                 bcon.Visible = false;
                 payAll.Visible = false;
-                tabcontrol.Visible = false;
+                Allgrid.Visible = false;
                 this.Size = new Size(580, 220);
                 close.Location = new Point(260, 140); 
             }
@@ -42,7 +45,7 @@ namespace Add_Type
             {
                 timetable.Visible = false;
                 payAll.Visible = false;
-                tabcontrol.Visible = false;
+                Allgrid.Visible = false;
                 this.Size = new Size(580, 250);
                 close.Location = new Point(260, 173);
             }
@@ -56,13 +59,52 @@ namespace Add_Type
 
             FillForm();
         }
+
+        private void Access() // Реализация разделения ролей
+        {
+            //// Просмотр статистики
+            //if (Prohibition.Banned("see_one_statistic") == true)
+            //{
+            if (Singleton.getPerson().Type == 3 & Convert.ToInt32(Singleton.getPerson().ID) != worker.ID)
+            { // Условие для просмотра директора филиала статистики только по своему филиалу
+                Allgrid.Visible = false;
+                this.Size = new Size(580, 250);
+                timetable.Location = new Point(425, 120);
+                close.Location = new Point(260, 173);
+            }
+            else
+            {
+                Allgrid.Visible = true;
+            }
+            //}
+            //else
+            //{
+            //    statistic.Visible = false;
+            //}
+
+
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_pay");
+            editBan = Prohibition.Banned("edit_pay");
+        }
+
         private void buildDG() //Построение грида 
         {
             // История оплат
             gridpay.Columns.Clear();
             gridpay.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                gridpay.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                gridpay.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -78,7 +120,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn pur = new DataGridViewTextBoxColumn();
             pur.HeaderText = "Назначение";
 
-            gridpay.Columns.Add(edit);
             gridpay.Columns.Add(id);
             gridpay.Columns.Add(st);
             gridpay.Columns.Add(time);
@@ -87,10 +128,6 @@ namespace Add_Type
             gridpay.Columns.Add(type);
             gridpay.Columns.Add(pur);
 
-
-            //DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
-            //remove.HeaderText = "Удалить?";
-            //gridpay.Columns.Add(remove);
             gridpay.ReadOnly = true;
 
 
@@ -99,30 +136,23 @@ namespace Add_Type
             gridpaid.Columns.Clear();
             gridpaid.Rows.Clear();
 
-            DataGridViewButtonColumn edit1 = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit1 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn id1 = new DataGridViewTextBoxColumn();
             id1.HeaderText = "№";
-            //DataGridViewTextBoxColumn st1 = new DataGridViewTextBoxColumn();
-            //st1.HeaderText = "Дата занятия";
             DataGridViewTextBoxColumn time1 = new DataGridViewTextBoxColumn();
             time1.HeaderText = "Занятие";
             DataGridViewTextBoxColumn ph1 = new DataGridViewTextBoxColumn();
             ph1.HeaderText = "Курс";
             DataGridViewTextBoxColumn br1 = new DataGridViewTextBoxColumn();
             br1.HeaderText = "Филиал";
-            //DataGridViewTextBoxColumn type1 = new DataGridViewTextBoxColumn();
-            //type1.HeaderText = "Способ оплаты";
-            //DataGridViewTextBoxColumn pur1 = new DataGridViewTextBoxColumn();
-            //pur1.HeaderText = "Назначение";
+
 
             gridpaid.Columns.Add(edit1);
             gridpaid.Columns.Add(id1);
-            //gridpaid.Columns.Add(st1);
             gridpaid.Columns.Add(time1);
             gridpaid.Columns.Add(ph1);
             gridpaid.Columns.Add(br1);
-            //gridpaid.Columns.Add(type1);
-            //gridpaid.Columns.Add(pur1);
+
   
 
             
@@ -130,11 +160,9 @@ namespace Add_Type
             gridunpaid.Columns.Clear();
             gridunpaid.Rows.Clear();
 
-            DataGridViewButtonColumn edit2 = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit2 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn id2 = new DataGridViewTextBoxColumn();
             id2.HeaderText = "№";
-            //DataGridViewTextBoxColumn st2 = new DataGridViewTextBoxColumn();
-            //st2.HeaderText = "Дата занятия";
             DataGridViewTextBoxColumn time2 = new DataGridViewTextBoxColumn();
             time2.HeaderText = "Занятие";
             DataGridViewTextBoxColumn ph2 = new DataGridViewTextBoxColumn();
@@ -143,21 +171,18 @@ namespace Add_Type
             br2.HeaderText = "Филиал";
             DataGridViewTextBoxColumn debt = new DataGridViewTextBoxColumn();
             debt.HeaderText = "Долг";
-            //DataGridViewTextBoxColumn pur2 = new DataGridViewTextBoxColumn();
-            //pur2.HeaderText = "Назначение";
 
             gridunpaid.Columns.Add(edit2);
             gridunpaid.Columns.Add(id2);
-            //gridunpaid.Columns.Add(st2);
             gridunpaid.Columns.Add(time2);
             gridunpaid.Columns.Add(ph2);
             gridunpaid.Columns.Add(br2);
             gridunpaid.Columns.Add(debt);
-            //gridunpaid.Columns.Add(pur2);
 
             DataGridViewButtonColumn pay2 = new DataGridViewButtonColumn();
             pay2.HeaderText = "Оплатить?";
             gridunpaid.Columns.Add(pay2);
+            gridunpaid.Columns[6].Visible = delBan;
             gridunpaid.ReadOnly = true;
         }
 
@@ -339,18 +364,21 @@ namespace Add_Type
             //Добавление оплаты
             if (e.ColumnIndex == 6)
             {
-                if (e.RowIndex > -1)
+                if (delBan == true) // Запрета нет
                 {
-                    if (gridunpaid.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridunpaid.Rows[l].Cells[1].Value);
-                        Timetable timetable = Timetables.TimetableID(k); 
+                        if (gridunpaid.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridunpaid.Rows[l].Cells[1].Value);
+                            Timetable timetable = Timetables.TimetableID(k);
 
-                        Pay_edit f = new Pay_edit(worker, timetable, Convert.ToDouble(gridunpaid.Rows[l].Cells[5].Value)); // передаем преподавателя, занятие и долг - чтобы сделать это значение максимальным
-                        DialogResult result = f.ShowDialog();
-                        FillForm();
-                        FillGrid();                   
+                            Pay_edit f = new Pay_edit(worker, timetable, Convert.ToDouble(gridunpaid.Rows[l].Cells[5].Value)); // передаем преподавателя, занятие и долг - чтобы сделать это значение максимальным
+                            DialogResult result = f.ShowDialog();
+                            FillForm();
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -362,15 +390,18 @@ namespace Add_Type
             //Редактирование
             if (e.ColumnIndex == 0)
             {
-                if (e.RowIndex > -1)
+                if (editBan == true) // Запрета нет
                 {
-                    if (gridpay.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridpay.Rows[l].Cells[1].Value);
-                        Pay_edit f = new Pay_edit(Pays.PayID(k));
-                        DialogResult result = f.ShowDialog();
-                        FillGrid();
+                        if (gridpay.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridpay.Rows[l].Cells[1].Value);
+                            Pay_edit f = new Pay_edit(Pays.PayID(k));
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
+                        }
                     }
                 }
             }

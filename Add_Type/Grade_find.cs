@@ -25,6 +25,9 @@ namespace Add_Type
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Theme chooseTheme; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Grade_find()
         {
             InitializeComponent();
@@ -55,18 +58,25 @@ namespace Add_Type
 
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_grade");
+            editBan = Prohibition.Banned("edit_grade");
         }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
-            sortf.Items.Add("№ темы");
+            sortf.Items.Add("№ оценки");
             DataGridViewTextBoxColumn date = new DataGridViewTextBoxColumn();
             date.HeaderText = "Дата";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -97,6 +107,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[6].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -125,7 +136,7 @@ namespace Add_Type
 
             if (this.sortf.SelectedItem != null)
             {
-                if (this.sortf.SelectedItem.ToString() == "№ темы")
+                if (this.sortf.SelectedItem.ToString() == "№ оценки")
                 {
                     sort = "ID";
                 }
@@ -194,7 +205,7 @@ namespace Add_Type
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1;   // Отображение счетчика записей и значок редактирования
 
                 D.Rows[i].Cells[1].Value = grades[i].ID;
 
@@ -250,6 +261,7 @@ namespace Add_Type
         {
             // Сброс всех выбранных значений в значения по умолчанию
             ascflag = true;
+            sortf.SelectedIndex = 0;
             this.countf.SelectedItem = "10";
             pagef.Items.Add(1);
             this.pagef.SelectedItem = 1;
@@ -332,45 +344,48 @@ namespace Add_Type
             //{
             if (e.ColumnIndex == 6)
             {
-                if (e.RowIndex > -1)
+                if (delBan == true) // Запрета нет
                 {
-                    if (D.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить оценку?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.OK)
+                        if (D.RowCount - 1 >= e.RowIndex)
                         {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            D.Rows.Remove(D.Rows[l]);
-                            Grade o = Grades.GradeID(k);
-                            String ans = o.Del();
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить оценку?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Grade o = Grades.GradeID(k);
+                                String ans = o.Del();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
-                    }
                 }
             }
-            // Редактирование
-            if (e.ColumnIndex == 0)
-            {
-                if (e.RowIndex > -1)
-                {
-                    if (D.RowCount - 1 >= e.RowIndex)
-                    {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                        Grade_edit f = new Grade_edit(Grades.GradeID(k), false);
-                        DialogResult result = f.ShowDialog();
-                        FillGrid();
-                    }
-                }
-            }
+            //// Редактирование
+            //if (e.ColumnIndex == 0)
+            //{
+            //    if (e.RowIndex > -1)
+            //    {
+            //        if (D.RowCount - 1 >= e.RowIndex)
+            //        {
+            //            int l = e.RowIndex;
+            //            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+            //            Grade_edit f = new Grade_edit(Grades.GradeID(k), false);
+            //            DialogResult result = f.ShowDialog();
+            //            FillGrid();
+            //        }
+            //    }
+            //}
             //}
         }
 
@@ -394,6 +409,18 @@ namespace Add_Type
                 ascflag = true;
                 ascf.Text = "▲";
             }
+        }
+
+        private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //// Открытие формы для просмотра данных
+            //if (e.RowIndex > -1)
+            //{
+            //    int l = e.RowIndex;
+            //    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+            //    //Grade_view f = new Grade_view(Types.TypeID(k));
+            //    //DialogResult result = f.ShowDialog();
+            //}
         }
     }
 }

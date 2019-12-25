@@ -104,10 +104,16 @@ namespace Add_Type
 
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
         }
 
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            add.Enabled = Prohibition.Banned("add_del_timetable");
+        }
         private void buildDG() //Построение грида 
         {
             // Построение комбобокса филиалов

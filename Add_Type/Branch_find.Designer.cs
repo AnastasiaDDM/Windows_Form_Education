@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ascf = new System.Windows.Forms.Button();
             this.directorf = new System.Windows.Forms.ComboBox();
@@ -49,6 +50,7 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.add = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
@@ -190,7 +192,7 @@
             // 
             this.D.AllowUserToAddRows = false;
             this.D.AllowUserToDeleteRows = false;
-            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Location = new System.Drawing.Point(13, 77);
             this.D.Name = "D";
@@ -321,5 +323,6 @@
         private System.Windows.Forms.Button next;
         private System.Windows.Forms.ComboBox pagef;
         private System.Windows.Forms.Button add;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

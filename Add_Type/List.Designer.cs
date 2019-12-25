@@ -43,7 +43,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btimetable = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupStatistic = new System.Windows.Forms.GroupBox();
             this.bcountcontract = new System.Windows.Forms.Button();
             this.bprofit = new System.Windows.Forms.Button();
             this.brevenue = new System.Windows.Forms.Button();
@@ -55,7 +55,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.groupStatistic.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -216,17 +216,17 @@
             this.btimetable.UseVisualStyleBackColor = true;
             this.btimetable.Click += new System.EventHandler(this.btimetable_Click);
             // 
-            // groupBox5
+            // groupStatistic
             // 
-            this.groupBox5.Controls.Add(this.bcountcontract);
-            this.groupBox5.Controls.Add(this.bprofit);
-            this.groupBox5.Controls.Add(this.brevenue);
-            this.groupBox5.Location = new System.Drawing.Point(622, 20);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(250, 270);
-            this.groupBox5.TabIndex = 13;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Статистические данные";
+            this.groupStatistic.Controls.Add(this.bcountcontract);
+            this.groupStatistic.Controls.Add(this.bprofit);
+            this.groupStatistic.Controls.Add(this.brevenue);
+            this.groupStatistic.Location = new System.Drawing.Point(622, 20);
+            this.groupStatistic.Name = "groupStatistic";
+            this.groupStatistic.Size = new System.Drawing.Size(250, 270);
+            this.groupStatistic.TabIndex = 13;
+            this.groupStatistic.TabStop = false;
+            this.groupStatistic.Text = "Статистические данные";
             // 
             // bcountcontract
             // 
@@ -306,7 +306,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 615);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupStatistic);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -319,7 +319,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.groupStatistic.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -341,7 +341,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btimetable;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupStatistic;
         private System.Windows.Forms.Button bcountcontract;
         private System.Windows.Forms.Button bprofit;
         private System.Windows.Forms.Button brevenue;

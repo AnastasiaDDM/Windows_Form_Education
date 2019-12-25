@@ -22,6 +22,9 @@ namespace Add_Type
         int pages;
         string purpose;
         public Type chooseTyp; // Эта переменная для пересылке своего значения в вызывающую форму
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Type_find()
         {
             InitializeComponent();
@@ -37,8 +40,16 @@ namespace Add_Type
         }
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_type");
+            add.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_type");
         }
         private void buildDG() //Построение грида 
         {
@@ -46,7 +57,17 @@ namespace Add_Type
             D.Rows.Clear();
             D.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ типа курса");
@@ -65,7 +86,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn note = new DataGridViewTextBoxColumn();
             note.HeaderText = "Описание";
 
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(name);
             D.Columns.Add(cost);
@@ -84,6 +104,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[7].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -212,42 +233,48 @@ namespace Add_Type
             {
                 if (e.ColumnIndex == 7)
                 {
-                    if (e.RowIndex > -1)
+                    if (delBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            const string message = "Вы уверены, что хотите удалить тип курса?";
-                            const string caption = "Удаление";
-                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.OK)
+                            if (D.RowCount - 1 >= e.RowIndex)
                             {
-                                // Форма не закрывается
-                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                D.Rows.Remove(D.Rows[l]);
-                                Type o = Types.TypeID(k);
-                                String ans = o.Del();
+                                int l = e.RowIndex;
+                                const string message = "Вы уверены, что хотите удалить тип курса?";
+                                const string caption = "Удаление";
+                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.OK)
+                                {
+                                    // Форма не закрывается
+                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                    D.Rows.Remove(D.Rows[l]);
+                                    Type o = Types.TypeID(k);
+                                    String ans = o.Del();
+                                }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            else
+                            {
+                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            }
                         }
                     }
                 }
                 // Редактирование
                 if (e.ColumnIndex == 0)
                 {
-                    if (e.RowIndex > -1)
+                    if (editBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            Type_edit f = new Type_edit(Types.TypeID(k), false);
-                            DialogResult result = f.ShowDialog();
-                            FillGrid();
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                Type_edit f = new Type_edit(Types.TypeID(k), false);
+                                DialogResult result = f.ShowDialog();
+                                FillGrid();
+                            }
                         }
                     }
                 }
@@ -348,7 +375,7 @@ namespace Add_Type
                 int l = e.RowIndex;
                 int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                 Type_view f = new Type_view(Types.TypeID(k));
-                f.Show();
+                DialogResult result = f.ShowDialog();
             }
         }
 

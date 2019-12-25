@@ -21,6 +21,10 @@ namespace Add_Type
         int pageindex;
         int pages;
         string purpose;
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
+
         //public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         //public static Type chooseType; // Эта переменная для приема значения из вызываемой(дочерней) формы
         //public Course chooseCour; // Эта переменная для пересылке своего значения в вызывающую форму
@@ -39,15 +43,34 @@ namespace Add_Type
         }
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_branch");
+            add.Enabled = delBan; 
+            editBan = Prohibition.Banned("edit_branch");
+
+            //            add.Enabled = (what_i_can("add_cabinet"));
         }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ филиала");
@@ -61,7 +84,7 @@ namespace Add_Type
             dir.HeaderText = "Директор";
             sortf.Items.Add("Директор");
 
-            D.Columns.Add(edit);
+
             D.Columns.Add(id);
             D.Columns.Add(name);
             D.Columns.Add(address);
@@ -78,6 +101,10 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                //if (delBan == false)
+                //{ 
+                D.Columns[5].Visible = delBan;
+                //}
             }
 
             D.ReadOnly = true;
@@ -222,6 +249,8 @@ namespace Add_Type
                 else
                 {
                     D.Rows[i].Cells[5].Value = "Удалить";
+                    //if (delBan == false)
+                    //{ D.Rows[i].Cells[5].ToolTipText = "У вас нет полномочий на выполнение этого действия"; }
                 }
             }
         }
@@ -327,7 +356,9 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Удалить"
             //else
             //{
-                if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 5)
+            {
+                if (delBan == true) // Запрета нет
                 {
                     if (e.RowIndex > -1)
                     {
@@ -353,8 +384,11 @@ namespace Add_Type
                         }
                     }
                 }
-                // Редактирование
-                if (e.ColumnIndex == 0)
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (editBan == true) // Запрета нет
                 {
                     if (e.RowIndex > -1)
                     {
@@ -368,7 +402,7 @@ namespace Add_Type
                         }
                     }
                 }
-            //}
+            }
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

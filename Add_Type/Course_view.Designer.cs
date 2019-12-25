@@ -99,6 +99,7 @@
             this.gridteacher.RowTemplate.Height = 24;
             this.gridteacher.Size = new System.Drawing.Size(639, 267);
             this.gridteacher.TabIndex = 15;
+            this.gridteacher.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridteacher_CellContentClick);
             // 
             // addteacher
             // 

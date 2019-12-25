@@ -13,6 +13,9 @@ namespace Add_Type
     public partial class Contract_view : Form
     {
         public Contract contract;   // Глобальная переменная объявляет объект данной формы
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Contract_view()
         {
             InitializeComponent();
@@ -25,16 +28,36 @@ namespace Add_Type
 
             contract = st;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
+        }
+
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_pay");
+            addpay.Enabled = delBan;
+            bcancel.Visible = Prohibition.Banned("cancellation_contract");
+            editBan = Prohibition.Banned("edit_pay");
         }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -48,7 +71,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn pur = new DataGridViewTextBoxColumn();
             pur.HeaderText = "Назначение";
 
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(st);
             D.Columns.Add(ph);
@@ -60,6 +82,7 @@ namespace Add_Type
             DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
             remove.HeaderText = "Удалить?";
             D.Columns.Add(remove);
+            D.Columns[7].Visible = delBan;
             D.ReadOnly = true;
         }
 
@@ -114,19 +137,51 @@ namespace Add_Type
 
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Просмотр конкретной оплаты по договору
+            // Редактирование конкретной оплаты по договору
             if (e.ColumnIndex == 0)
             {
-                if (e.RowIndex > -1)
+                if (editBan == true) // Запрета нет
                 {
-                    if (D.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                        Pay pay = Pays.PayID(k);
+                        if (D.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                            Pay pay = Pays.PayID(k);
 
-                        Pay_edit f = new Pay_edit(pay);
-                        f.Show();
+                            Pay_edit f = new Pay_edit(pay);
+                            f.Show();
+                        }
+                    }
+                }
+            }
+            if (e.ColumnIndex == 7)
+            {
+                if (delBan == true) // Запрета нет
+                {
+                    if (e.RowIndex > -1)
+                    {
+                        if (D.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить оплату?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Pay o = Pays.PayID(k);
+                                String ans = o.Del();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        }
                     }
                 }
             }

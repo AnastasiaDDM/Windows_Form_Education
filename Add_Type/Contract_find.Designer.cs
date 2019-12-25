@@ -443,7 +443,6 @@
             this.Controls.Add(this.D);
             this.Name = "Contract_find";
             this.Text = "Список договоров";
-            this.Load += new System.EventHandler(this.Contract_find_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Contract_find_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.D)).EndInit();
             this.groupBox1.ResumeLayout(false);

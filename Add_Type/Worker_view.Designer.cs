@@ -46,14 +46,14 @@
             this.passwordt = new System.Windows.Forms.Label();
             this.brancht = new System.Windows.Forms.LinkLabel();
             this.payAll = new System.Windows.Forms.Button();
-            this.tabcontrol = new System.Windows.Forms.TabControl();
+            this.Allgrid = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gridpaid = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gridunpaid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gridpay = new System.Windows.Forms.DataGridView();
-            this.tabcontrol.SuspendLayout();
+            this.Allgrid.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridpaid)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -229,16 +229,16 @@
             this.payAll.Text = "Заплатить за все";
             this.payAll.UseVisualStyleBackColor = true;
             // 
-            // tabcontrol
+            // Allgrid
             // 
-            this.tabcontrol.Controls.Add(this.tabPage1);
-            this.tabcontrol.Controls.Add(this.tabPage2);
-            this.tabcontrol.Controls.Add(this.tabPage3);
-            this.tabcontrol.Location = new System.Drawing.Point(12, 255);
-            this.tabcontrol.Name = "tabcontrol";
-            this.tabcontrol.SelectedIndex = 0;
-            this.tabcontrol.Size = new System.Drawing.Size(789, 411);
-            this.tabcontrol.TabIndex = 51;
+            this.Allgrid.Controls.Add(this.tabPage1);
+            this.Allgrid.Controls.Add(this.tabPage2);
+            this.Allgrid.Controls.Add(this.tabPage3);
+            this.Allgrid.Location = new System.Drawing.Point(12, 255);
+            this.Allgrid.Name = "Allgrid";
+            this.Allgrid.SelectedIndex = 0;
+            this.Allgrid.Size = new System.Drawing.Size(789, 411);
+            this.Allgrid.TabIndex = 51;
             // 
             // tabPage1
             // 
@@ -315,7 +315,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 734);
-            this.Controls.Add(this.tabcontrol);
+            this.Controls.Add(this.Allgrid);
             this.Controls.Add(this.payAll);
             this.Controls.Add(this.brancht);
             this.Controls.Add(this.passwordt);
@@ -337,7 +337,7 @@
             this.Name = "Worker_view";
             this.Text = "Работник №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Worker_view_KeyDown);
-            this.tabcontrol.ResumeLayout(false);
+            this.Allgrid.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridpaid)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -369,7 +369,7 @@
         private System.Windows.Forms.Label passwordt;
         private System.Windows.Forms.LinkLabel brancht;
         private System.Windows.Forms.Button payAll;
-        private System.Windows.Forms.TabControl tabcontrol;
+        private System.Windows.Forms.TabControl Allgrid;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridpaid;
         private System.Windows.Forms.TabPage tabPage2;

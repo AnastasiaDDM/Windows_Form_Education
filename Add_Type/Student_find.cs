@@ -29,7 +29,8 @@ namespace Add_Type
         public Contract chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
 
-
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Student_find()
         {
             InitializeComponent();
@@ -67,28 +68,34 @@ namespace Add_Type
 
         private void LoadAll()
         {
-            //clients = new Clients();
-            //workers = new Persons();
-            //types = new Types();
-            //cars = new Cars();
-            //orders = new Orders(workers, cars, clients, types);
+            Access();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_student");
+            add.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_student");
         }
 
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
-            //nom = D.Columns.Add("ID", typeof(Int32));
-            //DataGridViewTextBoxColumn nom = new DataGridViewTextBoxColumn();
-            //DataGridViewColumn nom = D.Columns.Add("ID", typeof(Int32));
-            //nom.HeaderText = "№";
-            //nom.Aut
-            //nom.AutoIncrementSeed = 1;
-            //nom.AutoIncrementStep = 1;
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
-            //see.HeaderText = "Изменить";
+
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№";
             sortf.Items.Add("№ ученика");
@@ -99,8 +106,6 @@ namespace Add_Type
             ph.HeaderText = "Телефон";
             sortf.Items.Add("Телефон");
 
-            //D.Columns.Add(nom);
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(st);
             D.Columns.Add(ph);
@@ -116,6 +121,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[4].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -349,42 +355,50 @@ namespace Add_Type
             {
                 if (e.ColumnIndex == 4)
                 {
-                    if (e.RowIndex > -1)
+                    if (delBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
-                        {
-                            int l = e.RowIndex;
-                            const string message = "Вы уверены, что хотите удалить ученика?";
-                            const string caption = "Удаление";
-                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                            if (result == DialogResult.OK)
-                            {
-                                // Форма не закрывается
-                                int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
-                                D.Rows.Remove(D.Rows[l]);
-                                Student o = Students.StudentID(k);
-                                String ans = o.Del();
-                            }
-                        }
-                        else
+                        if (e.RowIndex > -1)
                         {
-                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                const string message = "Вы уверены, что хотите удалить ученика?";
+                                const string caption = "Удаление";
+                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.OK)
+                                {
+                                    // Форма не закрывается
+                                    int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
+                                    D.Rows.Remove(D.Rows[l]);
+                                    Student o = Students.StudentID(k);
+                                    String ans = o.Del();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            }
                         }
                     }
                 }
                 // Редактирование
-                if (e.ColumnIndex == 0)  
+                if (e.ColumnIndex == 0)
                 {
-                    if (e.RowIndex > -1)
+                    if (editBan == true) // Запрета нет
                     {
-                        if (D.RowCount - 1 >= e.RowIndex)
+
+                        if (e.RowIndex > -1)
                         {
-                            int l = e.RowIndex;
-                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                            Student_edit f = new Student_edit(Students.StudentID(k), false);
-                            DialogResult result = f.ShowDialog();
-                            FillGrid();
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                Student_edit f = new Student_edit(Students.StudentID(k), false);
+                                DialogResult result = f.ShowDialog();
+                                FillGrid();
+                            }
                         }
                     }
                 }

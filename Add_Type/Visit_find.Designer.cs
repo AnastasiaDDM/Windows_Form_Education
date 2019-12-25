@@ -298,6 +298,8 @@
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(1072, 486);
             this.D.TabIndex = 11;
+            this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
+            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // label1
             // 

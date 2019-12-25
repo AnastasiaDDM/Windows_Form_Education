@@ -13,6 +13,18 @@ namespace Add_Type
     public partial class Branch_view : Form
     {
         public Branch branch;   // Глобальная переменная объявляет объект данной формы
+
+        bool WeditBan; // Перменная для хранения доступа к редактированию
+        bool WdelBan; // Перменная для хранения доступа к удалению
+
+        bool CabeditBan; // Перменная для хранения доступа к редактированию
+        bool CabdelBan; // Перменная для хранения доступа к удалению
+
+        bool ConeditBan; // Перменная для хранения доступа к редактированию
+        bool CondelBan; // Перменная для хранения доступа к удалению
+
+        bool CoueditBan; // Перменная для хранения доступа к редактированию
+        bool CoudelBan; // Перменная для хранения доступа к удалению
         public Branch_view()
         {
             InitializeComponent();
@@ -25,9 +37,46 @@ namespace Add_Type
 
             branch = st;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Просмотр статистики
+            //if(Prohibition.Banned("see_one_statistic") == true & Singleton.getPerson().Type == 4 & Convert.ToInt32(Singleton.getPerson().BranchID) == branch.ID )
+            //{ // Условие для просмотра директора филиала статистики только по своему филиалу
+            //    statistic.Visible = true;
+            //}
+            if(Prohibition.Banned("see_one_statistic") == true)
+            {
+                if (Singleton.getPerson().Type == 4 & Convert.ToInt32(Singleton.getPerson().BranchID) != branch.ID)
+                { // Условие для просмотра директора филиала статистики только по своему филиалу
+                    statistic.Visible = false;
+                }
+                else
+                {
+                    statistic.Visible = true;
+                }
+            }
+            else
+            {
+                statistic.Visible = false;
+            }
+
+            // Заперт на добавление и удаление одиннаковый
+            WdelBan = Prohibition.Banned("add_del_worker");
+            WeditBan = Prohibition.Banned("edit_worker");
+
+            CabdelBan = Prohibition.Banned("add_del_cabinet");
+            CabeditBan = Prohibition.Banned("edit_cabinet");
+
+            CondelBan = Prohibition.Banned("add_del_contract");
+            ConeditBan = Prohibition.Banned("edit_contract");
+
+            CoudelBan = Prohibition.Banned("add_del_course");
+            CoueditBan = Prohibition.Banned("edit_course");
         }
         private void buildDG() //Построение грида 
         {
@@ -35,7 +84,16 @@ namespace Add_Type
             gridworker.Columns.Clear();
             gridworker.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (WeditBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                gridworker.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                gridworker.Columns.Add(edit);
+            }
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№";
             DataGridViewTextBoxColumn fio = new DataGridViewTextBoxColumn();
@@ -47,24 +105,29 @@ namespace Add_Type
             DataGridViewTextBoxColumn rate = new DataGridViewTextBoxColumn();
             rate.HeaderText = "Ставка";
 
-            gridworker.Columns.Add(edit);
             gridworker.Columns.Add(id);
             gridworker.Columns.Add(fio);
             gridworker.Columns.Add(ph);
             gridworker.Columns.Add(pos);
             gridworker.Columns.Add(rate);
 
-
-            DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
-            remove.HeaderText = "Удалить?";
-            gridworker.Columns.Add(remove);
             gridworker.ReadOnly = true;
 
             // Кабинеты
             gridcabinet.Columns.Clear();
             gridcabinet.Rows.Clear();
 
-            DataGridViewButtonColumn edit0 = new DataGridViewButtonColumn();
+            if (CabeditBan == false)
+            {
+                DataGridViewTextBoxColumn edit0 = new DataGridViewTextBoxColumn();
+                gridcabinet.Columns.Add(edit0);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit0 = new DataGridViewButtonColumn();
+                gridcabinet.Columns.Add(edit0);
+            }
+
             DataGridViewTextBoxColumn id0 = new DataGridViewTextBoxColumn();
             id0.HeaderText = "№";
             DataGridViewTextBoxColumn num = new DataGridViewTextBoxColumn();
@@ -72,20 +135,27 @@ namespace Add_Type
             DataGridViewTextBoxColumn cap = new DataGridViewTextBoxColumn();
             cap.HeaderText = "Вместимость";
 
-            gridcabinet.Columns.Add(edit0);
             gridcabinet.Columns.Add(id0);
             gridcabinet.Columns.Add(num);
             gridcabinet.Columns.Add(cap);
 
-            DataGridViewButtonColumn remove1 = new DataGridViewButtonColumn();
-            remove.HeaderText = "Удалить?";
-            gridcabinet.Columns.Add(remove1);
             gridcabinet.ReadOnly = true;
 
             // Курсы
             gridcourse.Columns.Clear();
             gridcourse.Rows.Clear();
-            DataGridViewButtonColumn edit1 = new DataGridViewButtonColumn();
+
+            if (CoueditBan == false)
+            {
+                DataGridViewTextBoxColumn edit1 = new DataGridViewTextBoxColumn();
+                gridcourse.Columns.Add(edit1);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit1 = new DataGridViewButtonColumn();
+                gridcourse.Columns.Add(edit1);
+            }
+
             DataGridViewTextBoxColumn idc = new DataGridViewTextBoxColumn();
             idc.HeaderText = "№";
             DataGridViewTextBoxColumn group = new DataGridViewTextBoxColumn();
@@ -99,7 +169,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn end = new DataGridViewTextBoxColumn();
             end.HeaderText = "Окончание курса";
 
-            gridcourse.Columns.Add(edit1);
             gridcourse.Columns.Add(idc);
             gridcourse.Columns.Add(group);
             gridcourse.Columns.Add(type);
@@ -111,7 +180,18 @@ namespace Add_Type
             // Договоры
             gridcontract.Columns.Clear();
             gridcontract.Rows.Clear();
-            DataGridViewButtonColumn edit2 = new DataGridViewButtonColumn();
+
+            if (ConeditBan == false)
+            {
+                DataGridViewTextBoxColumn edit2 = new DataGridViewTextBoxColumn();
+                gridcontract.Columns.Add(edit2);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit2 = new DataGridViewButtonColumn();
+                gridcontract.Columns.Add(edit2);
+            }
+
             DataGridViewTextBoxColumn idcon = new DataGridViewTextBoxColumn();
             idcon.HeaderText = "№";
             DataGridViewTextBoxColumn date = new DataGridViewTextBoxColumn();
@@ -125,7 +205,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn manager = new DataGridViewTextBoxColumn();
             manager.HeaderText = "Менеджер";
 
-            gridcontract.Columns.Add(edit2);
             gridcontract.Columns.Add(idcon);
             gridcontract.Columns.Add(date);
             gridcontract.Columns.Add(course);
@@ -168,7 +247,6 @@ namespace Add_Type
 
                 gridworker.Rows[i].Cells[5].Value = teachers[i].Rate;
 
-                gridworker.Rows[i].Cells[6].Value = "Удалить";
             }
 
             gridcabinet.Rows.Clear();
@@ -188,7 +266,6 @@ namespace Add_Type
 
                 gridcabinet.Rows[i].Cells[3].Value = cabinets[i].Capacity;
 
-                gridcabinet.Rows[i].Cells[4].Value = "Удалить";
             }
 
 
@@ -239,8 +316,6 @@ namespace Add_Type
                 gridcourse.Rows[i].Cells[5].Value = courses[i].Start;
 
                 gridcourse.Rows[i].Cells[6].Value = courses[i].End;
-
-                //gridcourse.Rows[i].Cells[8].Value = "Удалить";
             }
         }
 
@@ -262,15 +337,18 @@ namespace Add_Type
             // Редактирование
             if (e.ColumnIndex == 0)
             {
-                if (e.RowIndex > -1)
+                if (ConeditBan == true) // Запрета нет
                 {
-                    if (gridcontract.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridcontract.Rows[l].Cells[1].Value);
-                        Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
-                        DialogResult result = f.ShowDialog();
-                        FillGrid();
+                        if (gridcontract.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridcontract.Rows[l].Cells[1].Value);
+                            Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -281,15 +359,18 @@ namespace Add_Type
             // Редактирование
             if (e.ColumnIndex == 0)
             {
-                if (e.RowIndex > -1)
+                if (CoueditBan == true) // Запрета нет
                 {
-                    if (gridcourse.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
-                        Course_edit f = new Course_edit(Courses.CourseID(k), false);
-                        DialogResult result = f.ShowDialog();
-                        FillGrid();
+                        if (gridcourse.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
+                            Course_edit f = new Course_edit(Courses.CourseID(k), false);
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -300,15 +381,18 @@ namespace Add_Type
             // Редактирование
             if (e.ColumnIndex == 0)
             {
-                if (e.RowIndex > -1)
+                if (WeditBan == true) // Запрета нет
                 {
-                    if (gridworker.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridworker.Rows[l].Cells[1].Value);
-                        Worker_edit f = new Worker_edit(Workers.WorkerID(k), false);
-                        DialogResult result = f.ShowDialog();
-                        FillGrid();
+                        if (gridworker.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridworker.Rows[l].Cells[1].Value);
+                            Worker_edit f = new Worker_edit(Workers.WorkerID(k), false);
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -316,7 +400,24 @@ namespace Add_Type
 
         private void gridcabinet_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (CabeditBan == true) // Запрета нет
+                {
+                    if (e.RowIndex > -1)
+                    {
+                        if (gridcabinet.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridcabinet.Rows[l].Cells[1].Value);
+                            Cabinet_edit f = new Cabinet_edit(Cabinets.CabinetID(k), false);
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
+                        }
+                    }
+                }
+            }
         }
 
         private void gridcontract_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -351,8 +452,8 @@ namespace Add_Type
             if (e.RowIndex > -1)
             {
                 int l = e.RowIndex;
-                int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
-                Course_view f = new Course_view(Courses.CourseID(k));
+                int k = Convert.ToInt32(gridcabinet.Rows[l].Cells[1].Value);
+                Cabinet_view f = new Cabinet_view(Cabinets.CabinetID(k));
                 DialogResult result = f.ShowDialog();
                 FillGrid();
             }

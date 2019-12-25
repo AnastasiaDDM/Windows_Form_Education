@@ -34,6 +34,7 @@ namespace Add_Type
             this.KeyPreview = true;
             indicator = true;
 
+            Access();
             buildDG();
         }
         public Branch_edit(Branch branch, bool deldate) // Конструктор для редактирования объекта
@@ -44,11 +45,17 @@ namespace Add_Type
             idforEdit = branch.ID;
 
             newbranch = branch;
+            Access();
             buildDG();
             //FillForm(contract);
             FillForm();
         }
 
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            adddirector.Enabled = Prohibition.Banned("add_del_worker");
+        }
         private void buildDG() //Построение комбобоксов, гридов 
         {
             // Построение комбобокса директоров

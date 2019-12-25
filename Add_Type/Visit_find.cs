@@ -25,6 +25,10 @@ namespace Add_Type
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Theme chooseTheme; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Contract chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
+
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Visit_find()
         {
             InitializeComponent();
@@ -44,15 +48,22 @@ namespace Add_Type
         }
         private void LoadAll()
         {
+            Access();
             buildDG();
             FillGrid();
+        }
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_visit");
+            editBan = Prohibition.Banned("edit_visit");
         }
         private void buildDG() //Построение грида 
         {
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ присутствия");
@@ -87,6 +98,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
+                D.Columns[6].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -197,7 +209,7 @@ namespace Add_Type
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1;   // Отображение счетчика записей и значок редактирования
 
                 D.Rows[i].Cells[1].Value = visits[i].ID;
 
@@ -260,6 +272,7 @@ namespace Add_Type
         {
             // Сброс всех выбранных значений в значения по умолчанию
             ascflag = true;
+            sortf.SelectedIndex = 0;
             this.countf.SelectedItem = "10";
             pagef.Items.Add(1);
             this.pagef.SelectedItem = 1;
@@ -336,6 +349,94 @@ namespace Add_Type
             {
                 ascflag = true;
                 ascf.Text = "▲";
+            }
+        }
+
+        private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Обрабатывается событие нажатия на кнопку "Выбрать"
+            if (purpose == "choose")
+            {
+                //if (e.ColumnIndex == 6)
+                //{
+                //    if (e.RowIndex > -1)
+                //    {
+                //        if (D.RowCount - 1 >= e.RowIndex)
+                //        {
+                //            int l = e.RowIndex;
+                //            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                //            chooseTyp = Types.TypeID(k);
+
+                //            this.Close();
+                //        }
+                //    }
+                //}
+            }
+            // Обрабатывается событие нажатия на кнопку "Удалить"
+            else
+            {
+                if (e.ColumnIndex == 6)
+                {
+                    if (delBan == true) // Запрета нет
+                    {
+                        if (e.RowIndex > -1)
+                        {
+                            if (D.RowCount - 1 >= e.RowIndex)
+                            {
+                                int l = e.RowIndex;
+                                const string message = "Вы уверены, что хотите удалить это присутствие?";
+                                const string caption = "Удаление";
+                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.OK)
+                                {
+                                    // Форма не закрывается
+                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                    D.Rows.Remove(D.Rows[l]);
+                                    Visit o = Visits.VisitID(k);
+                                    String ans = o.Del();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                            }
+                        }
+                    }
+                }
+                //// Редактирование
+                //if (e.ColumnIndex == 0)
+                //{
+                //    if (editBan == true) // Запрета нет
+                //    {
+                //        if (e.RowIndex > -1)
+                //        {
+                //            if (D.RowCount - 1 >= e.RowIndex)
+                //            {
+                //                int l = e.RowIndex;
+                //                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                //                Visit_edit f = new Type_edit(Types.TypeID(k), false);
+                //                DialogResult result = f.ShowDialog();
+                //                FillGrid();
+                //            }
+                //        }
+                //    }
+                //}
+            }
+        }
+
+        private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            if (e.RowIndex > -1)
+            {
+                int l = e.RowIndex;
+                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+
+                string[] timeID = (Convert.ToString(D.Rows[l].Cells[4].Value)).Split('.');
+                
+                Visit_view f = new Visit_view( Timetables.TimetableID(Convert.ToInt32(timeID[0])), Courses.CourseID(Timetables.TimetableID(Convert.ToInt32(timeID[0])).CourseID) );
+                f.Show();
             }
         }
     }

@@ -37,7 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.brant = new System.Windows.Forms.LinkLabel();
             this.studt = new System.Windows.Forms.LinkLabel();
-            this.bvisit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +46,7 @@
             this.D.AllowUserToDeleteRows = false;
             this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.D.Location = new System.Drawing.Point(12, 134);
+            this.D.Location = new System.Drawing.Point(12, 107);
             this.D.Name = "D";
             this.D.RowTemplate.Height = 24;
             this.D.Size = new System.Drawing.Size(860, 518);
@@ -122,22 +121,11 @@
             this.studt.TabIndex = 8;
             this.studt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.studt_LinkClicked);
             // 
-            // bvisit
-            // 
-            this.bvisit.Location = new System.Drawing.Point(730, 90);
-            this.bvisit.Name = "bvisit";
-            this.bvisit.Size = new System.Drawing.Size(142, 38);
-            this.bvisit.TabIndex = 9;
-            this.bvisit.Text = "Присутствие";
-            this.bvisit.UseVisualStyleBackColor = true;
-            this.bvisit.Click += new System.EventHandler(this.bvisit_Click);
-            // 
             // MarkandThemes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 664);
-            this.Controls.Add(this.bvisit);
+            this.ClientSize = new System.Drawing.Size(884, 638);
             this.Controls.Add(this.studt);
             this.Controls.Add(this.brant);
             this.Controls.Add(this.label4);
@@ -167,6 +155,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel brant;
         private System.Windows.Forms.LinkLabel studt;
-        private System.Windows.Forms.Button bvisit;
     }
 }

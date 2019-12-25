@@ -14,10 +14,17 @@ namespace Add_Type
     {
         public Course course;   // Глобальная переменная объявляет объект данной формы
         public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
+
+        bool WeditBan; // Перменная для хранения доступа к редактированию
+        bool WdelBan; // Перменная для хранения доступа к удалению
+
+        bool SeditBan; // Перменная для хранения доступа к редактированию
+        bool SdelBan; // Перменная для хранения доступа к удалению
         public Course_view()
         {
             InitializeComponent();
             this.KeyPreview = true;
+            Access();
         }
         public Course_view(Course st) // Конструктор для просмотра объекта
         {
@@ -26,9 +33,22 @@ namespace Add_Type
 
             course = st;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
+        }
+
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            WdelBan = Prohibition.Banned("add_del_worker");
+            addteacher.Enabled = WdelBan;
+            WeditBan = Prohibition.Banned("edit_worker");
+
+            SdelBan = Prohibition.Banned("add_del_student");
+            addstudent.Enabled = SdelBan;
+            SeditBan = Prohibition.Banned("edit_student");
         }
         private void buildDG() //Построение грида 
         {
@@ -36,7 +56,17 @@ namespace Add_Type
             gridteacher.Columns.Clear();
             gridteacher.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (WeditBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                gridteacher.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                gridteacher.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn idt = new DataGridViewTextBoxColumn();
             idt.HeaderText = "№";
             DataGridViewTextBoxColumn fiot = new DataGridViewTextBoxColumn();
@@ -48,7 +78,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn rate = new DataGridViewTextBoxColumn();
             rate.HeaderText = "Ставка";
 
-            gridteacher.Columns.Add(edit);
             gridteacher.Columns.Add(idt);
             gridteacher.Columns.Add(fiot);
             gridteacher.Columns.Add(pht);
@@ -59,13 +88,25 @@ namespace Add_Type
             DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
             remove.HeaderText = "Удалить?";
             gridteacher.Columns.Add(remove);
+            gridteacher.Columns[6].Visible = WdelBan;
+
             gridteacher.ReadOnly = true;
 
             // Построение грида учеников курса
             gridstudent.Columns.Clear();
             gridstudent.Rows.Clear();
 
-            DataGridViewButtonColumn edit2 = new DataGridViewButtonColumn();
+            if (SeditBan == false)
+            {
+                DataGridViewTextBoxColumn edit1 = new DataGridViewTextBoxColumn();
+                gridstudent.Columns.Add(edit1);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit1 = new DataGridViewButtonColumn();
+                gridstudent.Columns.Add(edit1);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ученика";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -75,11 +116,12 @@ namespace Add_Type
             DataGridViewButtonColumn remove2 = new DataGridViewButtonColumn();
             remove2.HeaderText = "Удалить?";
 
-            gridstudent.Columns.Add(edit2);
             gridstudent.Columns.Add(id);
             gridstudent.Columns.Add(st);
             gridstudent.Columns.Add(ph);
+
             gridstudent.Columns.Add(remove2);
+            gridstudent.Columns[4].Visible = SdelBan;
             gridstudent.ReadOnly = true;
         }
 
@@ -175,45 +217,63 @@ namespace Add_Type
             //{
             if (e.ColumnIndex == 4)
             {
-                if (e.RowIndex > -1)
+                if (SdelBan == true) // Запрета нет
                 {
-                    if (gridstudent.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        const string message = "Вы уверены, что хотите удалить ученика?";
-                        const string caption = "Удаление";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.OK)
+                        if (gridstudent.RowCount - 1 >= e.RowIndex)
                         {
-                            // Форма не закрывается
-                            int k = Convert.ToInt32(gridstudent.Rows[l].Cells[0].Value);
-                            gridstudent.Rows.Remove(gridstudent.Rows[l]);
-                            Student o = Students.StudentID(k);
-                            String ans = o.Del();
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить ученика?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                const string message2 = "Вы собираетесь удалить ученика с курса, нужно ли расторгать договор?";
+                                const string caption2 = "Удаление";
+                                var result2 = MessageBox.Show(message2, caption2, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                                if (result2 == DialogResult.OK)
+                                {
+                                    int k = Convert.ToInt32(gridstudent.Rows[l].Cells[1].Value);
+                                    gridstudent.Rows.Remove(gridstudent.Rows[l]);
+                                    Student o = Students.StudentID(k);
+                                    String ans = course.delStudent(o);
+                                    String answercancel = (Contracts.ContractID(o, course)).Cancellation();
+                                }
+                                else
+                                {
+                                    int k = Convert.ToInt32(gridstudent.Rows[l].Cells[1].Value);
+                                    gridstudent.Rows.Remove(gridstudent.Rows[l]);
+                                    Student o = Students.StudentID(k);
+                                    String ans = course.delStudent(o);
+                                }
+                            }
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        }
                     }
                 }
             }
             // Редактирование
             if (e.ColumnIndex == 0)
             {
-                if (e.RowIndex > -1)
+                if (SeditBan == true) // Запрета нет
                 {
-                    if (gridstudent.RowCount - 1 >= e.RowIndex)
+                    if (e.RowIndex > -1)
                     {
-                        int l = e.RowIndex;
-                        int k = Convert.ToInt32(gridstudent.Rows[l].Cells[1].Value);
-                        Student_edit f = new Student_edit(Students.StudentID(k), false);
-                        f.Show();
+                        if (gridstudent.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridstudent.Rows[l].Cells[1].Value);
+                            Student_edit f = new Student_edit(Students.StudentID(k), false);
+                            f.Show();
+                        }
                     }
                 }
             }
-            //}
         }
 
         private void gridstudent_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -265,6 +325,55 @@ namespace Add_Type
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void gridteacher_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6)
+            {
+                if (WdelBan == true) // Запрета нет
+                {
+                    if (e.RowIndex > -1)
+                    {
+                        if (gridteacher.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить преподавателя с курса?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.OK)
+                            {
+                                int k = Convert.ToInt32(gridteacher.Rows[l].Cells[1].Value);
+                                gridteacher.Rows.Remove(gridteacher.Rows[l]);
+                                Worker o = Workers.WorkerID(k);
+                                String ans = course.delTeacher(o);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                        }
+                    }
+                }
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (WeditBan == true) // Запрета нет
+                {
+                    if (e.RowIndex > -1)
+                    {
+                        if (gridteacher.RowCount - 1 >= e.RowIndex)
+                        {
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(gridteacher.Rows[l].Cells[1].Value);
+                            Worker_edit f = new Worker_edit(Workers.WorkerID(k), false);
+                            f.Show();
+                        }
+                    }
+                }
             }
         }
     }

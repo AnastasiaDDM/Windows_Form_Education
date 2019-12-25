@@ -14,6 +14,9 @@ namespace Add_Type
     {
         public Parent parent;   // Глобальная переменная объявляет родителя данной формы
         public Student chooseStudent;
+
+        bool editBan; // Перменная для хранения доступа к редактированию
+        bool delBan; // Перменная для хранения доступа к удалению
         public Parent_view()
         {
             InitializeComponent();
@@ -26,11 +29,19 @@ namespace Add_Type
 
             parent = par;
 
+            Access();
             FillForm();
             buildDG();
             FillGrid();
         }
 
+        private void Access() // Реализация разделения ролей
+        {
+            // Заперт на добавление и удаление одиннаковый
+            delBan = Prohibition.Banned("add_del_student_to_parent");
+            choosestudent.Enabled = delBan;
+            editBan = Prohibition.Banned("edit_student");
+        }
         private void FillForm()
         {
             this.Text = this.Text + parent.ID;
@@ -43,7 +54,17 @@ namespace Add_Type
             D.Columns.Clear();
             D.Rows.Clear();
 
-            DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+            if (editBan == false)
+            {
+                DataGridViewTextBoxColumn edit = new DataGridViewTextBoxColumn();
+                D.Columns.Add(edit);
+            }
+            else
+            {
+                DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
+                D.Columns.Add(edit);
+            }
+
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ученика";
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
@@ -53,11 +74,11 @@ namespace Add_Type
             DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
             remove.HeaderText = "Удалить?";
 
-            D.Columns.Add(edit);
             D.Columns.Add(id);
             D.Columns.Add(st);
             D.Columns.Add(ph);
             D.Columns.Add(remove);
+            D.Columns[4].Visible = delBan;
             D.ReadOnly = true;
         }
 
@@ -124,14 +145,16 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Удалить"
             //else
             //{
-                if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 4)
+            {
+                if (delBan == true) // Запрета нет
                 {
                     if (e.RowIndex > -1)
                     {
                         if (D.RowCount - 1 >= e.RowIndex)
                         {
                             int l = e.RowIndex;
-                            const string message = "Вы уверены, что хотите удалить ученика?";
+                            const string message = "Вы уверены, что хотите удалить этого ученика от этого родителя?";
                             const string caption = "Удаление";
                             var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -141,7 +164,7 @@ namespace Add_Type
                                 int k = Convert.ToInt32(D.Rows[l].Cells[0].Value);
                                 D.Rows.Remove(D.Rows[l]);
                                 Student o = Students.StudentID(k);
-                                String ans = o.Del();
+                                String ans = parent.delStudent(o);
                             }
                         }
                         else
@@ -150,8 +173,11 @@ namespace Add_Type
                         }
                     }
                 }
-                // Редактирование
-                if (e.ColumnIndex == 0)
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (editBan == true) // Запрета нет
                 {
                     if (e.RowIndex > -1)
                     {
@@ -164,7 +190,7 @@ namespace Add_Type
                         }
                     }
                 }
-            //}
+            }
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
