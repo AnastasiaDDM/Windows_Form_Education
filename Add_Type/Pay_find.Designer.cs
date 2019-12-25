@@ -194,6 +194,7 @@
             this.timef.Location = new System.Drawing.Point(353, 41);
             this.timef.Multiline = true;
             this.timef.Name = "timef";
+            this.timef.ReadOnly = true;
             this.timef.Size = new System.Drawing.Size(161, 20);
             this.timef.TabIndex = 60;
             // 
@@ -292,6 +293,7 @@
             this.teacherf.Location = new System.Drawing.Point(75, 39);
             this.teacherf.Multiline = true;
             this.teacherf.Name = "teacherf";
+            this.teacherf.ReadOnly = true;
             this.teacherf.Size = new System.Drawing.Size(161, 20);
             this.teacherf.TabIndex = 54;
             // 
@@ -379,6 +381,7 @@
             this.contractf.Location = new System.Drawing.Point(74, 14);
             this.contractf.Multiline = true;
             this.contractf.Name = "contractf";
+            this.contractf.ReadOnly = true;
             this.contractf.Size = new System.Drawing.Size(161, 20);
             this.contractf.TabIndex = 34;
             // 

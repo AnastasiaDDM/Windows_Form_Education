@@ -119,6 +119,7 @@
             this.addteacher.TabIndex = 84;
             this.addteacher.Text = "Добавить преподавателя";
             this.addteacher.UseVisualStyleBackColor = true;
+            this.addteacher.Click += new System.EventHandler(this.addteacher_Click);
             // 
             // D
             // 
@@ -255,6 +256,7 @@
             this.addtheme.TabIndex = 113;
             this.addtheme.Text = "Добавить преподавателя";
             this.addtheme.UseVisualStyleBackColor = true;
+            this.addtheme.Click += new System.EventHandler(this.addtheme_Click);
             // 
             // gridtheme
             // 
@@ -267,6 +269,7 @@
             this.gridtheme.RowTemplate.Height = 24;
             this.gridtheme.Size = new System.Drawing.Size(470, 144);
             this.gridtheme.TabIndex = 83;
+            this.gridtheme.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridtheme_CellClick);
             // 
             // Timetable_view
             // 

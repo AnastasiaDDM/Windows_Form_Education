@@ -214,6 +214,7 @@
             // 
             // cabinetf
             // 
+            this.cabinetf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cabinetf.FormattingEnabled = true;
             this.cabinetf.Location = new System.Drawing.Point(64, 37);
             this.cabinetf.Name = "cabinetf";
@@ -223,6 +224,7 @@
             // 
             // branchf
             // 
+            this.branchf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchf.FormattingEnabled = true;
             this.branchf.Location = new System.Drawing.Point(64, 10);
             this.branchf.Name = "branchf";
@@ -273,6 +275,7 @@
             this.coursef.Location = new System.Drawing.Point(361, 43);
             this.coursef.Multiline = true;
             this.coursef.Name = "coursef";
+            this.coursef.ReadOnly = true;
             this.coursef.Size = new System.Drawing.Size(161, 20);
             this.coursef.TabIndex = 44;
             // 
@@ -300,6 +303,7 @@
             this.studentf.Location = new System.Drawing.Point(627, 14);
             this.studentf.Multiline = true;
             this.studentf.Name = "studentf";
+            this.studentf.ReadOnly = true;
             this.studentf.Size = new System.Drawing.Size(161, 20);
             this.studentf.TabIndex = 37;
             // 
@@ -336,6 +340,7 @@
             this.teacherf.Location = new System.Drawing.Point(361, 16);
             this.teacherf.Multiline = true;
             this.teacherf.Name = "teacherf";
+            this.teacherf.ReadOnly = true;
             this.teacherf.Size = new System.Drawing.Size(161, 20);
             this.teacherf.TabIndex = 39;
             // 

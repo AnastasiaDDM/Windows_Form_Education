@@ -254,6 +254,12 @@
     <Compile Include="Statistic.Designer.cs">
       <DependentUpon>Statistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatisticsforOneBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticsforOneBranch.Designer.cs">
+      <DependentUpon>StatisticsforOneBranch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Student.cs" />
     <Compile Include="StudentsCourses.cs" />
     <Compile Include="StudentsParents.cs" />
@@ -462,6 +468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Statistic.resx">
       <DependentUpon>Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticsforOneBranch.resx">
+      <DependentUpon>StatisticsforOneBranch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student_edit.resx">
       <DependentUpon>Student_edit.cs</DependentUpon>

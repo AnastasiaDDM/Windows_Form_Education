@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.statistic = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gridworker = new System.Windows.Forms.DataGridView();
@@ -57,23 +56,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridcourse)).BeginInit();
             this.SuspendLayout();
             // 
-            // button6
+            // statistic
             // 
-            this.button6.Location = new System.Drawing.Point(605, 14);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(164, 50);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "Выручка\r\nфилиала";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(605, 99);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(164, 50);
-            this.button5.TabIndex = 25;
-            this.button5.Text = "Прибыль\r\nфилиала";
-            this.button5.UseVisualStyleBackColor = true;
+            this.statistic.Location = new System.Drawing.Point(613, 131);
+            this.statistic.Name = "statistic";
+            this.statistic.Size = new System.Drawing.Size(164, 50);
+            this.statistic.TabIndex = 26;
+            this.statistic.Text = "Доходы\r\nфилиала";
+            this.statistic.UseVisualStyleBackColor = true;
+            this.statistic.Click += new System.EventHandler(this.statistic_Click);
             // 
             // tabControl1
             // 
@@ -259,8 +250,7 @@
             this.Controls.Add(this.directort);
             this.Controls.Add(this.addresst);
             this.Controls.Add(this.namet);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.statistic);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.close);
             this.Controls.Add(this.label3);
@@ -285,8 +275,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button statistic;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridworker;

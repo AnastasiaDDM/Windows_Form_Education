@@ -192,7 +192,8 @@ namespace Add_Type
 
         private void managert_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-   //         DialogResult result = f.ShowDialog();
+            Worker_view f = new Worker_view(Workers.WorkerID(contract.ManagerID));
+            DialogResult result = f.ShowDialog();
         }
 
         private void Contract_view_KeyDown(object sender, KeyEventArgs e)

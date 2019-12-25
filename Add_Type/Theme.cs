@@ -217,7 +217,7 @@ namespace Add_Type
                     query2 = Utilit.OrderByDynamic(query2, sort, asсdesс);
                 }
 
-        //        countrecord = query2.GroupBy(u => u.ID).Count();
+                countrecord = query2.GroupBy(u => u.ID).Count();
 
                 query2 = query2.Skip((page - 1) * count).Take(count);
                 query2 = query2.Distinct();

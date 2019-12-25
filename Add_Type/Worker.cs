@@ -99,7 +99,7 @@ namespace Add_Type
                 }
                 else
                 {
-                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.Type == st.Type && x.Position == st.Position && x.Rate == st.Rate && x.Password == st.Password && x.Deldate == null).FirstOrDefault<Worker>();
+                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.Type == st.Type && x.Position == st.Position && x.Rate == st.Rate && x.Password == st.Password && x.BranchID == st.BranchID && x.Deldate == null).FirstOrDefault<Worker>();
                     if (v != null)
                     { return "Такой работник уже существует в базе под номером " + v.ID; }
                 }

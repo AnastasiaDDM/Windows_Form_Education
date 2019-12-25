@@ -81,15 +81,15 @@
             this.deadlinet.AutoSize = true;
             this.deadlinet.Location = new System.Drawing.Point(125, 241);
             this.deadlinet.Name = "deadlinet";
-            this.deadlinet.Size = new System.Drawing.Size(54, 17);
+            this.deadlinet.Size = new System.Drawing.Size(0, 17);
             this.deadlinet.TabIndex = 55;
-            this.deadlinet.Text = "label10";
             // 
             // namet
             // 
             this.namet.Location = new System.Drawing.Point(15, 29);
             this.namet.Multiline = true;
             this.namet.Name = "namet";
+            this.namet.ReadOnly = true;
             this.namet.Size = new System.Drawing.Size(418, 69);
             this.namet.TabIndex = 57;
             // 
@@ -98,6 +98,7 @@
             this.homeworkt.Location = new System.Drawing.Point(15, 140);
             this.homeworkt.Multiline = true;
             this.homeworkt.Name = "homeworkt";
+            this.homeworkt.ReadOnly = true;
             this.homeworkt.Size = new System.Drawing.Size(418, 82);
             this.homeworkt.TabIndex = 56;
             // 

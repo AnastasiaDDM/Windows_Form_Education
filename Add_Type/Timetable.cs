@@ -342,6 +342,43 @@ namespace Add_Type
             return answer;
         }
 
+        public string addTheme(Theme w)
+        {
+            TimetablesThemes cw = new TimetablesThemes();
+            cw.TimetableID = this.ID;
+            cw.ThemeID = w.ID;
+            string answer = СheckTheme(cw);
+            if (answer == "Данные корректны!")
+            {
+                using (SampleContext context = new SampleContext())
+                {
+                    context.TimetablesThemes.Add(cw);
+                    context.SaveChanges();
+                    answer = "Добавление темы на это занятие прошло успешно";
+                }
+                return answer;
+            }
+            return answer;
+        }
+
+        public string delTheme(Theme w)
+        {
+            TimetablesThemes cw = new TimetablesThemes();
+            cw.TimetableID = this.ID;
+            cw.ThemeID = w.ID;
+            string answer = "";
+
+            using (SampleContext context = new SampleContext())
+            {
+                TimetablesThemes v = new TimetablesThemes();
+                v = context.TimetablesThemes.Where(x => x.ThemeID == cw.ThemeID && x.TimetableID == cw.TimetableID).FirstOrDefault<TimetablesThemes>();
+                context.TimetablesThemes.Remove(v);
+                context.SaveChanges();
+
+                answer = "Удаление темы с этого занятия прошло успешно";
+            }
+            return answer;
+        }
         public string Сheck(Timetable st)
         {
             if (st.CabinetID == 0)
@@ -391,6 +428,18 @@ namespace Add_Type
                 Worker t = Workers.WorkerID(stpar.TeacherID);
                 if (t.Type != 3)
                 { return " Вам нужно было выбрать преподавателя (тип 3)"; }
+            }
+            return "Данные корректны!";
+        }
+
+        public static string СheckTheme(TimetablesThemes stpar)
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                TimetablesThemes v = new TimetablesThemes();
+                v = context.TimetablesThemes.Where(x => x.ThemeID == stpar.ThemeID && x.TimetableID == stpar.TimetableID).FirstOrDefault<TimetablesThemes>();
+                if (v != null)
+                { return "Эта тема уже есть на этом занятии"; }
             }
             return "Данные корректны!";
         }

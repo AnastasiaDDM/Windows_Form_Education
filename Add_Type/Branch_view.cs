@@ -378,5 +378,12 @@ namespace Add_Type
             DialogResult result = f.ShowDialog();
             FillGrid();
         }
+
+        private void statistic_Click(object sender, EventArgs e)
+        {
+            StatisticsforOneBranch f = new StatisticsforOneBranch(branch);
+            DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
     }
 }

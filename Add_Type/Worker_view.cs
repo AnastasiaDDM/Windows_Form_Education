@@ -26,9 +26,10 @@ namespace Add_Type
             this.KeyPreview = true;
 
             worker = st;
+            this.Text = this.Text + worker.ID;
 
             // Эти проверки организованиы для сокрытия тех данных, которые не нужны для катрточек отдельных типов работников
-            if(worker.Type == 1)
+            if (worker.Type == 1)
             {
                 timetable.Visible = false;
                 bcon.Visible = false;
@@ -162,7 +163,6 @@ namespace Add_Type
 
         private void FillForm()
         {
-            this.Text = this.Text + worker.ID;
             fiot.Text = worker.FIO;
             phonet.Text = worker.Phone;
             positiont.Text = worker.Position;

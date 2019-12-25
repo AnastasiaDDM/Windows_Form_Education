@@ -25,6 +25,8 @@ namespace Add_Type
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
         public Worker chooseWor; // Эта переменная для пересылке своего значения в вызывающую форму
         int typeworker = 0; // Тип должности, для отображения только необходимого типа работников
+
+        List<Worker> freeteachers = new List<Worker>(); // Это поле для манипуляции со свободными преподавателями (вызов из формы Timetable_view)
         public Worker_find()
         {
             InitializeComponent();
@@ -48,6 +50,17 @@ namespace Add_Type
             typeworker = type;
 
             LoadAll();
+        }
+
+        public Worker_find(String answer, List<Worker> free) // type -  тип должности, для отображения только необходимого типа работников
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            purpose = answer;
+            freeteachers = free;
+
+            buildDG();
+            FillGridfreeteachers(freeteachers);
         }
 
         private void Access() // Реализация разделения ролей
@@ -314,6 +327,49 @@ namespace Add_Type
             }
         }
 
+        private void FillGridfreeteachers(List<Worker> free) // Заполняем гриды
+        {
+            D.Rows.Clear();
+            // Заполнение грида данными
+            for (int i = 0; i < free.Count; i++)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+
+                D.Rows.Add(row);
+
+                D.Rows[i].Cells[0].Value = (page - 1) * count + i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+
+                D.Rows[i].Cells[1].Value = free[i].ID;
+
+                D.Rows[i].Cells[2].Value = free[i].FIO;
+
+                D.Rows[i].Cells[3].Value = free[i].Phone;
+
+                D.Rows[i].Cells[4].Value = free[i].Position;
+
+                D.Rows[i].Cells[5].Value = free[i].Rate;
+
+                if (free[i].BranchID == 0)
+                {
+                    D.Rows[i].Cells[6].Value = "Филиал не выбран";
+                }
+                else
+                {
+                    D.Rows[i].Cells[6].Value = free[i].BranchID + ". " + Branches.BranchID(Convert.ToInt32(free[i].BranchID)).Name;
+                }
+
+                if (purpose == "choose")
+                {
+                    D.Rows[i].Cells[7].Value = "Выбрать";
+                }
+                else
+                {
+                    D.Rows[i].Cells[7].Value = "Удалить";
+                }
+            }
+        }
+
+
         private void find_Click(object sender, EventArgs e)
         {
             FillGrid();
@@ -480,10 +536,12 @@ namespace Add_Type
             if (ascflag == true)
             {
                 ascflag = false;
+                ascf.Text = "▼";
             }
             else
             {
                 ascflag = true;
+                ascf.Text = "▲";
             }
         }
     }

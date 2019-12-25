@@ -151,11 +151,11 @@ namespace Add_Type
 
 
 
-            //////////////////Input f = new Input();
-            //////////////////while (Singleton.getPerson().ID == 0)
-            //////////////////{
-            //////////////////   f.ShowDialog();
-            //////////////////}
+            Input f = new Input();
+            while (Singleton.getPerson().ID == 0)
+            {
+                f.ShowDialog();
+            }
 
 
 

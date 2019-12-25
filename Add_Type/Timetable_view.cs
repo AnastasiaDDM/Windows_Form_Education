@@ -15,6 +15,9 @@ namespace Add_Type
         public Timetable timetable;   // Глобальная переменная объявляет занятие данной формы
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         string formathour = "HH:mm"; // Время без даты
+
+        public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
+        public static Theme chooseTheme; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Timetable_view()
         {
             InitializeComponent();
@@ -220,6 +223,66 @@ namespace Add_Type
                     else
                     {
                         MessageBox.Show("Эту строку нельзя удалить, так как на занятии должен быть хотя бы один преподаватель. Советуем выбрать другого преподаватлея, а потом уже удалить этого!");
+                    }
+                }
+            }
+        }
+
+        private void addteacher_Click(object sender, EventArgs e)
+        {
+            // Составление листа свободных преподавателей
+            List<Worker> freeteachers = timetable.GetFreeteachers(timetable.Endlesson, "Не повторять");
+
+            Worker_find f = new Worker_find("choose", freeteachers); // Передем choose - это означает, что нужно добавить кнопку выбора и выбираться будет из списка возможных, которые передаеются из этой формы
+            DialogResult result = f.ShowDialog();
+            chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            if (chooseTeacher != null)
+            {
+                String ans = timetable.addTeacher(chooseTeacher);
+            }
+            FillGrid();
+        }
+
+        private void addtheme_Click(object sender, EventArgs e)
+        {
+            Theme_find f = new Theme_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора и выбираться будет из списка возможных, которые передаеются из этой формы
+            DialogResult result = f.ShowDialog();
+            chooseTheme = f.chooseThem; // Передаем ссылку форме родителей на переменную в этой форме
+            if (chooseTheme != null)
+            {
+                String ans = timetable.addTheme(chooseTheme);
+            }
+            FillGrid();
+        }
+
+        private void gridtheme_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                if (e.RowIndex > -1)
+                {
+                    if (gridtheme.RowCount - 1 >= e.RowIndex)
+                    {
+                        int l = e.RowIndex;
+                        const string message = "Вы уверены, что хотите удалить тему с этого занятия?";
+                        const string caption = "Удаление";
+                        var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.OK)
+                        {
+                            // Форма не закрывается
+
+                            string[] themID = (Convert.ToString(gridtheme.Rows[l].Cells[1].Value)).Split('.');
+                            int k = Convert.ToInt32(themID[0]);
+
+                            gridtheme.Rows.Remove(gridtheme.Rows[l]);
+                            Theme o = Themes.ThemeID(k);
+                            String ans = timetable.delTheme(o);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                     }
                 }
             }

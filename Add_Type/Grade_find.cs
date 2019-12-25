@@ -387,10 +387,12 @@ namespace Add_Type
             if (ascflag == true)
             {
                 ascflag = false;
+                ascf.Text = "▼";
             }
             else
             {
                 ascflag = true;
+                ascf.Text = "▲";
             }
         }
     }

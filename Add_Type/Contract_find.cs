@@ -482,13 +482,15 @@ namespace Add_Type
 
         private void ascf_Click(object sender, EventArgs e)
         {
-                        if (ascflag == true)
+            if (ascflag == true)
             {
                 ascflag = false;
+                ascf.Text = "▼";
             }
             else
             {
                 ascflag = true;
+                ascf.Text = "▲";
             }
         }
     }
