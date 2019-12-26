@@ -276,3 +276,4 @@ C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Xamarin.Forms.Xaml.xml
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.addGrade.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.StatisticsforOneBranch.resources
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.payAll.resources

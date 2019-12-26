@@ -92,5 +92,63 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void createtemplate_Click(object sender, EventArgs e)
+        {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    string filename = openFileDialog.FileName;
+            //    //label11.Text = filename;
+            //    ////Сохранение файла в указанную директорию
+            //    //using (FileStream fileStream = new FileStream(@"Ссылка на папку", FileMode.Create, FileAccess.Write))
+            //    //{
+            //    //    byte[] bytes = File.ReadAllBytes(filename);
+            //    //    fileStream.Write(bytes, 0, bytes.Length);
+            //    //}
+            //}
+
+
+
+
+
+            string a = type.createTemplate();
+            MessageBox.Show(a);
+            //////string newLocation = " ";
+            //////string folderLocation = "..\\..\\..\\Templates";
+            //////var OFD = new System.Windows.Forms.OpenFileDialog();
+            //////if (OFD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //////{
+            //////    string fileToCopy = OFD.FileName;
+            //////    if (System.IO.File.Exists(fileToCopy))
+            //////    {
+            //////        var onlyFileName = System.IO.Path.GetFileName(OFD.FileName);
+            //////        newLocation = folderLocation + "\\" + onlyFileName;
+            //////        System.IO.File.Copy(fileToCopy, newLocation, true);
+
+            //////        // Добавление этого адреса шаблона в  тип курса
+            //////        type.pathTemplate = newLocation;
+            //////        type.Edit();
+            //////        MessageBox.Show("Файл успешно скопирован");
+            //////    }
+            //////    else
+            //////    {
+            //////        MessageBox.Show("Файл не найден");
+            //////    }
+            //////}
+            //////else
+            //////{
+            //////    MessageBox.Show("Путь к папке сохранения не найден");
+            //////}
+        }
+
+        private void opentemlate_Click(object sender, EventArgs e)
+        {
+            string answer = type.openTemplate();
+            if(answer != "Успешно")
+            {
+                MessageBox.Show(answer);
+            }
+        }
     }
 }

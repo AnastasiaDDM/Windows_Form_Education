@@ -119,7 +119,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove1 = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 gridtheme.Columns.Add(remove1);
-                D.Columns[4].Visible = ThdelBan;
+                gridtheme.Columns[4].Visible = ThdelBan;
             }
 
             gridtheme.ReadOnly = true;

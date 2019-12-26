@@ -734,6 +734,50 @@ namespace Add_Type
             }
         }
 
+        public string delOldVisits()
+        {
+            using (SampleContext context = new SampleContext()) // После завершения цикла нужно добавить значения листа в бд
+            {
+                List<Visit> oldvisits = this.GetVisits();
+
+                foreach( var v in oldvisits)
+                {
+                    Visit vis = context.Visits
+    .Where(o => o.ID == v.ID)
+    .FirstOrDefault();
+
+                    context.Visits.Remove(vis);
+                    context.SaveChanges();
+                }
+                //context.Visits.RemoveRange(oldvisits);
+                //context.SaveChanges();
+                //if (listtimetable.Count == 0) // Может быть ситуация, при которой ни один объект не был добавлен в бд, пользователь будет осведомлен
+                //{
+                return "Успешно";
+                //}
+            }
+        }
+
+        public string addNewVisits(List<Visit> newvisits)
+        {
+            using (SampleContext context = new SampleContext()) // После завершения цикла нужно добавить значения листа в бд
+            {
+
+                foreach (var v in newvisits)
+                {
+    //                Visit vis = context.Visits
+    //.Where(o => o.ID == v.ID)
+    //.FirstOrDefault();
+
+                    context.Visits.Add(v);
+                    context.SaveChanges();
+                }
+
+                //context.Visits.AddRange(newvisits);
+                //context.SaveChanges();
+                return "Успешно";
+            }
+        }
         //    private bool Overlap(TimeRange timetablerange, List<TimeRange> listtimerange)
         //    {
         //        foreach (TimeRange date in listtimerange)

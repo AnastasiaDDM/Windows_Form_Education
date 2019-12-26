@@ -122,58 +122,75 @@ namespace Add_Type
         }
 
 
+        //public static List<Cabinet> getFree(ref int countrecord)
+        //{
+        //    List<Cabinet> free = new List<Cabinet>(); // Лист свободных 
+
+        //    using (SampleContext db = new SampleContext())
+        //    {
+        //        var cabinets = db.Cabinets.Join(db.Timetables, // второй набор
+        //p => p.ID, // свойство-селектор объекта из первого набора
+        //c => c.CabinetID, // свойство-селектор объекта из второго набора
+        //(p, c) => new // результат
+        //{
+        //    ID = p.ID,
+        //    Number = p.Number,
+        //    Capacity = p.Capacity,
+        //    BranchID = p.BranchID,
+        //    Editdate = p.Editdate,
+        //    Deldate = p.Deldate,
+        //    Startlesson = c.Startlesson,
+        //    Endlesson = c.Endlesson,
+        //});
+
+        //        var cab = cabinets.Where(p => p.Deldate == null);
+        //        var freecab = cab.Where(p => p.Startlesson > DateTime.Now | p.Endlesson < DateTime.Now).GroupBy(s => new { s.ID, s.Number, s.BranchID, s.Capacity, s.Deldate, s.Editdate }, (key, group) => new
+        //        {
+        //            ID = key.ID,
+        //            Number = key.Number,
+        //            Capacity = key.Capacity,
+        //            BranchID = key.BranchID,
+        //            Editdate = key.Editdate,
+        //            Deldate = key.Deldate
+        //        }).Distinct();
+
+        //        countrecord = freecab.GroupBy(u => u.ID).Count();
+
+        //        foreach (var p in freecab)
+        //        {
+        //            free.Add(new Cabinet { ID = p.ID, Number = p.Number, Capacity = p.Capacity, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
+        //        }
+        //    }
+        //    return free;
+        //}
+
+
+
         public static List<Cabinet> getFree(ref int countrecord)
         {
             List<Cabinet> free = new List<Cabinet>(); // Лист свободных 
-            using (SampleContext context = new SampleContext())
-            {
-
-
-
-                //StringBuilder s = new StringBuilder("Select Distinct Cabinets.* from Cabinets where Workers.Type = 3 and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.Type = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
-
-                //List<string> sql = new List<string>();
-                //string format = "yyyy-MM-dd HH:mm:ss";
-
-                //foreach (TimeRange t in listtimerange)
-                //{
-
-                //    sql.Add(String.Format("(Startlesson >= '{0}' and Endlesson <= '{1}' and Startlesson <= '{1}')", t.Start.ToString(format), t.End.ToString(format))); // Внутри
-                //    sql.Add(String.Format("(Startlesson <= '{0}' and Endlesson >= '{1}' and Startlesson <= '{1}')", t.Start.ToString(format), t.End.ToString(format))); // Снаружи
-                //    sql.Add(String.Format("(Startlesson >= '{0}' and Endlesson >= '{1}' and Startlesson <= '{1}')", t.Start.ToString(format), t.End.ToString(format))); // верхняя граница
-                //    sql.Add(String.Format("(Startlesson <= '{0}' and Endlesson <= '{1}' and Endlesson >= '{0}')", t.Start.ToString(format), t.End.ToString(format)));// нижняя граница
-
-                //}
-
-                //s.Append(String.Join(" or ", sql));
-
-                //var query = context.Workers.SqlQuery(s.ToString() + " group by Workers.ID order by Workers.ID)");
-
-                //foreach (Worker t in query)
-                //{
-                //    free.Add(t);
-                //}
-            }
-
+            DateTime starttoEmpty = DateTime.Now.AddHours(1);
+            DateTime endtoEmpty = DateTime.Now.AddHours(-1);
             using (SampleContext db = new SampleContext())
             {
-                var cabinets = db.Cabinets.Join(db.Timetables, // второй набор
-        p => p.ID, // свойство-селектор объекта из первого набора
-        c => c.CabinetID, // свойство-селектор объекта из второго набора
-        (p, c) => new // результат
-        {
-            ID = p.ID,
-            Number = p.Number,
-            Capacity = p.Capacity,
-            BranchID = p.BranchID,
-            Editdate = p.Editdate,
-            Deldate = p.Deldate,
-            Startlesson = c.Startlesson,
-            Endlesson = c.Endlesson,
-        });
+                var query = from c in db.Cabinets
+                            join t in db.Timetables on c.ID equals t.CabinetID
+                            into cab_tim_temp
+                            from cab_tim in cab_tim_temp.DefaultIfEmpty()
+                            
+                            select new {
+                                ID = c.ID,
+                                Number = c.Number,
+                                Capacity = c.Capacity,
+                                BranchID = c.BranchID,
+                                Editdate = c.Editdate,
+                                Deldate = c.Deldate,
+                                Startlesson = (cab_tim == null ? starttoEmpty : cab_tim.Startlesson),
+                                Endlesson = (cab_tim == null ? endtoEmpty : cab_tim.Endlesson),/* CourseID = (stcour == null ? 0 : stcour.CourseID)*/ };
 
-                var cab = cabinets.Where(p => p.Deldate == null);
-                var freecab = cab.Where(p => p.Startlesson > DateTime.Now | p.Endlesson < DateTime.Now).GroupBy(s => new { s.ID, s.Number, s.BranchID, s.Capacity, s.Deldate, s.Editdate }, (key, group) => new
+                query = query.Where(p => p.Deldate == null);
+
+             var   freecab = query.Where(p => p.Startlesson > DateTime.Now | p.Endlesson < DateTime.Now).GroupBy(s => new { s.ID, s.Number, s.BranchID, s.Capacity, s.Deldate, s.Editdate }, (key, group) => new
                 {
                     ID = key.ID,
                     Number = key.Number,
@@ -182,6 +199,57 @@ namespace Add_Type
                     Editdate = key.Editdate,
                     Deldate = key.Deldate
                 }).Distinct();
+
+
+
+
+
+
+
+        //        //query = query.GroupBy(u => u.SID);
+
+        //        // Последовательно просеиваем наш список
+
+        //        if (deldate != false) // Убираем удаленных, если нужно
+        //        {
+        //            query = query.Where(x => x.Deldate == null);
+        //        }
+
+        //        if (student.FIO != null)
+        //        {
+        //            query = query.Where(x => x.FIO == student.FIO);
+        //        }
+
+
+
+
+
+
+        //        var cabinets = db.Cabinets.Join(db.Timetables, // второй набор
+        //p => p.ID, // свойство-селектор объекта из первого набора
+        //c => c.CabinetID, // свойство-селектор объекта из второго набора
+        //(p, c) => new // результат
+        //{
+        //    ID = p.ID,
+        //    Number = p.Number,
+        //    Capacity = p.Capacity,
+        //    BranchID = p.BranchID,
+        //    Editdate = p.Editdate,
+        //    Deldate = p.Deldate,
+        //    Startlesson = c.Startlesson,
+        //    Endlesson = c.Endlesson,
+        //});
+
+        //        var cab = cabinets.Where(p => p.Deldate == null);
+        //        var freecab = cab.Where(p => p.Startlesson > DateTime.Now | p.Endlesson < DateTime.Now).GroupBy(s => new { s.ID, s.Number, s.BranchID, s.Capacity, s.Deldate, s.Editdate }, (key, group) => new
+        //        {
+        //            ID = key.ID,
+        //            Number = key.Number,
+        //            Capacity = key.Capacity,
+        //            BranchID = key.BranchID,
+        //            Editdate = key.Editdate,
+        //            Deldate = key.Deldate
+        //        }).Distinct();
 
                 countrecord = freecab.GroupBy(u => u.ID).Count();
 
@@ -192,6 +260,8 @@ namespace Add_Type
             }
             return free;
         }
+
+
         //////////////////// ОДИН БОЛЬШОЙ ПОИСК !!! Если не введены никакие параметры, функция должна возвращать все кабинеты //////////////////
         public static List<Cabinet> FindAll(Boolean deldate, Cabinet cabinet, Branch branch, int min, int max, String sort, String asсdesс, int page, int count, ref int countrecord) //deldate =false - все и удал и неудал!
         {

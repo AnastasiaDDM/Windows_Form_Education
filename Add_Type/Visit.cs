@@ -72,7 +72,6 @@ namespace Add_Type
             }
             return answer;
         }
-
         public string Сheck(Visit st)
         {
             //if (st.FIO == "")

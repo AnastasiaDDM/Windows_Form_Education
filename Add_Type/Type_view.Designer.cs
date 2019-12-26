@@ -62,6 +62,7 @@
             this.opentemlate.TabIndex = 30;
             this.opentemlate.Text = "Открыть шаблон";
             this.opentemlate.UseVisualStyleBackColor = true;
+            this.opentemlate.Click += new System.EventHandler(this.opentemlate_Click);
             // 
             // close
             // 
@@ -171,6 +172,7 @@
             this.createtemplate.TabIndex = 38;
             this.createtemplate.Text = "Создать шаблон из файла";
             this.createtemplate.UseVisualStyleBackColor = true;
+            this.createtemplate.Click += new System.EventHandler(this.createtemplate_Click);
             // 
             // Type_view
             // 

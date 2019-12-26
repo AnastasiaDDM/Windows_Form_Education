@@ -24,7 +24,9 @@ namespace Add_Type
         public string FIO { get; set; }
         public string Phone { get; set; }
         public string Position { get; set; }
+
         public int Type { get; set; } // 1 - это директор, 2 - менеджер, 3 -преподаватель
+        //public Role Role { get; set; }
 
         public /*Branch*/ Nullable<int> BranchID { get; set; }
         public string Password { get; set; }
@@ -129,6 +131,20 @@ namespace Add_Type
             return timetables = Timetables.FindAll(deldate, branch, cabinet, this, course, student, date, sort, ascdesc, page, count, ref countrecord);
         }
 
+        public List<Timetable> getTimetables()
+        {
+            List<Timetable> list = new List<Timetable>();
+            using (SampleContext db = new SampleContext())
+            {    
+                var timetableID = db.TimetablesTeachers.Where(p => p.TeacherID == this.ID);
+
+                foreach (var p in timetableID)
+                {
+                    list.Add(Timetables.TimetableID(p.TimetableID));
+                }
+                return list;
+            }
+        }
         public double Salary(Timetable timetable)
         {
             using (SampleContext db = new SampleContext())
@@ -159,6 +175,73 @@ namespace Add_Type
                 {
                     double sumPays = (paysst/*.Where(p => p.ContractID == contract.ID)*/.Sum(p => p.Payment));
                     return Convert.ToDouble(this.Rate) + sumPays;
+                }
+            }
+        }
+
+        public double getDebt()
+        {
+            double costsAll = 0;
+            using (SampleContext db = new SampleContext())
+            {
+                var pays = db.Pays.Join(db.TimetablesTeachers, // второй набор
+        p => p.WorkerID, // свойство-селектор объекта из первого набора
+        w => w.TeacherID,
+        // свойство-селектор объекта из второго набора
+        (p, w) => new // результат
+        {
+            ID = p.ID,
+            WorkerID = p.WorkerID,
+            Date = p.Date,
+            BranchID = p.BranchID,
+            Payment = p.Payment,
+            Purpose = p.Purpose,
+            Type = p.Type,
+            Deldate = p.Deldate,
+            TimetableID = w.TimetableID,
+            TeacherID = w.TeacherID
+        });
+                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
+
+                var c = db.TimetablesTeachers.Where(p => p.TeacherID == this.ID);
+                if (c.Count() == 0)
+                {
+                    costsAll = 0;
+                }
+                else
+                {
+                    costsAll = Convert.ToDouble(c.Count() * this.Rate); // Долг равен всей сумме долга(потому что еще не было ни одной оплаты)
+                }
+
+                var paysst = pays.Where(p => p.WorkerID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                if (paysst.Count() == 0)
+                {
+                    // То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
+                    // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
+                    // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
+                    ////////var c = db.TimetablesTeachers.Where(p => p.TeacherID == this.ID);
+                    ////////if (c.Count() == 0)
+                    ////////{
+                    ////////    return 0;
+                    ////////}
+                    ////////else
+                    ////////{
+                    ////////    return costsAll = Convert.ToDouble(c.Count()* this.Rate); // Долг равен всей сумме долга(потому что еще не было ни одной оплаты)
+                    ////////}
+                    return costsAll;
+                }
+                else
+                {
+                    var paysAll = db.Pays.Where(p => p.WorkerID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                    double sumPays = (paysAll.Sum(p => p.Payment));
+                    //////var query2 = paysst.GroupBy(s => new { s.WorkerID, s.Payment}, (key, group) => new
+                    //////{
+                    //////    WorkerID = key.WorkerID,
+                    //////    Payment = key.Payment
+                    //////});
+                    ////////    costsAll = Convert.ToDouble(c.Count() * this.Rate);
+                    //////double sumPays = (query2.Sum(p => p.Payment));
+                    return costsAll + sumPays;
                 }
             }
         }

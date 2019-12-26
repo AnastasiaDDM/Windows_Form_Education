@@ -341,7 +341,7 @@ namespace Add_Type
         });
                 //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
 
-                var paysst = pays.Where(p => p.StudentID == this.ID )/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                var paysst = pays.Where(p => p.StudentID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
                 {
                     // То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
@@ -364,7 +364,7 @@ namespace Add_Type
                         ContractID = key.ContractID,
                         Cost = key.Cost
                     });
-                    double costsAll = (query2.Sum(p => p.Cost));  
+                    double costsAll = (query2.Sum(p => p.Cost));
                     double sumPays = (paysst.Sum(p => p.Payment));
                     return costsAll - sumPays;
                 }

@@ -37,6 +37,11 @@ namespace Add_Type
 
             student = st;
 
+            if (student.getDebt() <= 0) // Условие для доступности кнопки оплаты всего , если задолженность меньше или равана 0, то кнопка блокируется
+            {
+                payAll.Enabled = false;
+            }
+
             Access();
             FillForm();
             buildDG();
@@ -55,6 +60,7 @@ namespace Add_Type
             ConeditBan = Prohibition.Banned("edit_contract");
             addcontract.Visible = CondelBan;
             PayaddBan = Prohibition.Banned("add_del_pay");
+            payAll.Visible = PayaddBan;
 
 
             CoudelBan = Prohibition.Banned("add_del_course");
@@ -177,7 +183,7 @@ namespace Add_Type
             DataGridViewButtonColumn pay  = new DataGridViewButtonColumn();
             pay.HeaderText = "Оплатить?";
             gridcontract.Columns.Add(pay);
-            gridparent.Columns[7].Visible = PayaddBan;
+            gridcontract.Columns[7].Visible = PayaddBan;
 
             gridcontract.ReadOnly = true;
         }
@@ -485,7 +491,10 @@ namespace Add_Type
 
         private void payAll_Click(object sender, EventArgs e)
         {
- //           DialogResult result = f.ShowDialog();
+            payAll f = new payAll(student);
+            DialogResult result = f.ShowDialog();
+            FillForm();
+            FillGrid();
         }
 
         private void Student_view_KeyDown(object sender, KeyEventArgs e)

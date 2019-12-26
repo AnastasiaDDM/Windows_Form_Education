@@ -85,6 +85,7 @@ namespace Add_Type
 
             // Заперт на добавление и удаление одиннаковый
             delBan = Prohibition.Banned("add_del_pay");
+            payAll.Visible = delBan;
             editBan = Prohibition.Banned("edit_pay");
         }
 
@@ -193,6 +194,11 @@ namespace Add_Type
             positiont.Text = worker.Position;
             ratet.Text = worker.Rate.ToString();
             passwordt.Text = worker.Password.ToString();
+            debtt.Text = worker.getDebt().ToString();
+            if (worker.getDebt() <= 0) // Условие для доступности кнопки оплаты всего , если задолженность меньше или равана 0, то кнопка блокируется
+            {
+                payAll.Enabled = false;
+            }
 
             if (worker.Type == 1)
             {
@@ -426,6 +432,14 @@ namespace Add_Type
             // Открытие формы для просмотра данных
             Branch_view f = new Branch_view(Branches.BranchID(Convert.ToInt32(worker.BranchID)));
             DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
+
+        private void payAll_Click(object sender, EventArgs e)
+        {
+            payAll f = new payAll(worker);
+            DialogResult result = f.ShowDialog();
+            FillForm();
             FillGrid();
         }
     }

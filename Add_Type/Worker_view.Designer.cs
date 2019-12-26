@@ -53,6 +53,8 @@
             this.gridunpaid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gridpay = new System.Windows.Forms.DataGridView();
+            this.debtt = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.Allgrid.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridpaid)).BeginInit();
@@ -228,6 +230,7 @@
             this.payAll.TabIndex = 50;
             this.payAll.Text = "Заплатить за все";
             this.payAll.UseVisualStyleBackColor = true;
+            this.payAll.Click += new System.EventHandler(this.payAll_Click);
             // 
             // Allgrid
             // 
@@ -310,11 +313,31 @@
             this.gridpay.TabIndex = 0;
             this.gridpay.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridpay_CellContentClick);
             // 
+            // debtt
+            // 
+            this.debtt.AutoSize = true;
+            this.debtt.Location = new System.Drawing.Point(139, 169);
+            this.debtt.Name = "debtt";
+            this.debtt.Size = new System.Drawing.Size(46, 17);
+            this.debtt.TabIndex = 52;
+            this.debtt.Text = "label8";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 169);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 17);
+            this.label9.TabIndex = 53;
+            this.label9.Text = "Задолженность";
+            // 
             // Worker_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 734);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.debtt);
             this.Controls.Add(this.Allgrid);
             this.Controls.Add(this.payAll);
             this.Controls.Add(this.brancht);
@@ -376,5 +399,7 @@
         private System.Windows.Forms.DataGridView gridunpaid;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView gridpay;
+        private System.Windows.Forms.Label debtt;
+        private System.Windows.Forms.Label label9;
     }
 }

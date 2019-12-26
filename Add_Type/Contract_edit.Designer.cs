@@ -222,6 +222,7 @@
             this.opentemlate.TabIndex = 45;
             this.opentemlate.Text = "Открыть шаблон";
             this.opentemlate.UseVisualStyleBackColor = true;
+            this.opentemlate.Click += new System.EventHandler(this.opentemlate_Click);
             // 
             // errorProvider1
             // 

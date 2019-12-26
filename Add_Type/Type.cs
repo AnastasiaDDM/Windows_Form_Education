@@ -88,9 +88,18 @@ namespace Add_Type
             using (SampleContext context = new SampleContext())
             {
                 Type v = new Type();
-                v = context.Types.Where(x => x.Name == st.Name && x.Cost == st.Cost && x.Lessons == st.Lessons && x.Month == st.Month && x.Deldate == null).FirstOrDefault<Type>();
-                if (v != null)
-                { return "Такой тип обучения уже существует в базе под номером " + v.ID; }
+                if (st.ID == 0)       // если мы добавляем новый филиал 
+                {
+                    v = context.Types.Where(x => x.Name == st.Name && x.Cost == st.Cost && x.Lessons == st.Lessons && x.Month == st.Month && x.Deldate == null).FirstOrDefault<Type>();
+                    if (v != null)
+                    { return "Такой тип обучения уже существует в базе под номером " + v.ID; }
+                }
+                else
+                {
+                    v = context.Types.Where(x => x.Name == st.Name && x.Cost == st.Cost && x.Lessons == st.Lessons && x.Month == st.Month && x.Note == st.Note && x.pathTemplate == st.pathTemplate && x.Deldate == null).FirstOrDefault<Type>();
+                    if (v != null)
+                    { return "Такой тип обучения уже существует в базе под номером " + v.ID; }
+                }
             }
             return "Данные корректны!";
         }
@@ -104,30 +113,59 @@ namespace Add_Type
             }
         }
 
-        public void openTemplate()
+        public string openTemplate()
         {
-            var application = new Microsoft.Office.Interop.Word.Application();
-            var document = new Microsoft.Office.Interop.Word.Document();
-            document = application.Documents.Add(this.pathTemplate);
-            application.Visible = true;
-            document.SaveAs(@"C:\Users\79016\Desktop\ЛР5.docx");
-            //Process.Start(ref @"d:\Temp\Downloads\some.doc");
+            try
+            {
+                var application = new Microsoft.Office.Interop.Word.Application();
+                var document = new Microsoft.Office.Interop.Word.Document();
+                document = application.Documents.Add(Environment.CurrentDirectory + "\\" + this.pathTemplate);
+                //    var d = Education.Application.StartupPath.ToString();
+                var s = Environment.CurrentDirectory;
+                //C: \Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Templates
+                application.Visible = true;
+                //          document.SaveAs(@"C:\Users\79016\Desktop\ЛР5.docx");
+                //Process.Start(ref @"d:\Temp\Downloads\some.doc");
+
+                return "Успешно";
+            }
+            catch
+            {
+                return "Возможно для данного типа курса не выбран шаблон, попробуйте для начала выбрать шаблон. Если ошибка не исправилась - обратитесь к администратору.";
+            }
+
+
         }
 
-        public void createTemplate()
+        public string createTemplate()
         {
-            //var application = new Microsoft.Office.Interop.Word.Application();
-            //var document = new Microsoft.Office.Interop.Word.Document();
-            //document = application.Documents.Add(@"C:\Users\79016\Desktop");
-            ////document = application.Documents.Creator
-            //application.Visible = true;
-            //document.SaveAs(@"C:\Users\79016\Desktop\22ЛР5.docx");
-            ////Process.Start(ref @"d:\Temp\Downloads\some.doc");
+            string newLocation = " ";
+            string folderLocation = "Templates";
+            var OFD = new System.Windows.Forms.OpenFileDialog();
+            if (OFD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string fileToCopy = OFD.FileName;
+                if (System.IO.File.Exists(fileToCopy))
+                {
+                    var onlyFileName = System.IO.Path.GetFileName(OFD.FileName);
+                    newLocation = folderLocation + "\\" + onlyFileName;
+                    System.IO.File.Copy(fileToCopy, newLocation, true);
 
-            ////Создаем документ Word.
-            ////object missing = Type.Missing;
-            ////Word._Document word_doc = word_app.Documents.Add(
-            ////    ref missing, ref missing, ref missing, ref missing);
+                    // Добавление этого адреса шаблона в  тип курса
+                    this.pathTemplate = newLocation;
+                    this.Edit();
+                    return "Файл успешно скопирован";
+                }
+                else
+                {
+                    return "Файл не найден";
+                }
+            }
+            return "Файл успешно скопирован";
+            //else
+            //{
+            //    return "Путь к папке сохранения не найден";
+            //}
 
         }
     }

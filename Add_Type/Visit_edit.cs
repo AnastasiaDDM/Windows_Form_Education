@@ -133,26 +133,58 @@ namespace Add_Type
 
         private void save_Click(object sender, EventArgs e)
         {
-            if (D.RowCount > 1)
-            {
-                for (int i = 0; i < D.RowCount - 1; i++)
-                {
-                    if( D.Rows[i].Cells[2].Value != null ) // редактирование посещаемости
-                    {
-                        Visit updatevisit = Visits.VisitID(Convert.ToInt32(D.Rows[i].Cells[2].Value));
-                        if((Boolean)D.Rows[i].Cells[3].Value == true)        //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        {
-                            updatevisit.Vis = 2;
-                        }
-                        else
-                        {
-                            updatevisit.Vis = 1;
-                        }
+            ////if (D.RowCount > 1)
+            ////{
+            ////    for (int i = 0; i < D.RowCount - 1; i++)
+            ////    {
+            ////        if( D.Rows[i].Cells[2].Value != null ) // редактирование посещаемости
+            ////        {
+            ////            Visit updatevisit = Visits.VisitID(Convert.ToInt32(D.Rows[i].Cells[2].Value));
+            ////            if((Boolean)D.Rows[i].Cells[3].Value == true)        //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ////            {
+            ////                updatevisit.Vis = 2;
+            ////            }
+            ////            else
+            ////            {
+            ////                updatevisit.Vis = 1;
+            ////            }
 
-                        string answer = updatevisit.Edit();
-                    }
-                    else // Добавление посещения
-                    {
+            ////            string answer = updatevisit.Edit();
+            ////        }
+            ////        else // Добавление посещения
+            ////        {
+            ////            Visit newvisit = new Visit();
+            ////            string[] studID = (Convert.ToString(D.Rows[i].Cells[1].Value)).Split('.');
+            ////            newvisit.StudentID = Convert.ToInt32(studID[0]);
+
+            ////            newvisit.TimetableID = timetable.ID;
+
+            ////            if (D.Rows[i].Cells[3].Selected == true)    //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ////            {
+            ////                newvisit.Vis = 2;
+            ////            }
+            ////            else
+            ////            {
+            ////                newvisit.Vis = 1;
+            ////            }
+
+            ////            string answer = newvisit.Add();
+            ////        }
+            ////    }
+            ////}
+
+            List<Visit> oldvisits = timetable.GetVisits();
+            String answer = timetable.delOldVisits();
+
+            List<Visit> newvisits = new List<Visit>();
+
+            //if (D.RowCount > 1)
+            //{
+                for (int i = 0; i <= D.RowCount - 1; i++)
+                {
+                    //if (D.Rows[i].Cells[2].Value != null) // редактирование посещаемости
+                    //{
+
                         Visit newvisit = new Visit();
                         string[] studID = (Convert.ToString(D.Rows[i].Cells[1].Value)).Split('.');
                         newvisit.StudentID = Convert.ToInt32(studID[0]);
@@ -168,11 +200,16 @@ namespace Add_Type
                             newvisit.Vis = 1;
                         }
 
-                        string answer = newvisit.Add();
-                    }
+                        newvisits.Add(newvisit);
+                    //}
                 }
+            String answertwo = timetable.addNewVisits(newvisits);
+            //}
+
+            if(answertwo == "Успешно")
+            {
+                Close();
             }
-            Close();
         }
 
         private void Visit_edit_KeyDown(object sender, KeyEventArgs e)

@@ -223,5 +223,21 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void opentemlate_Click(object sender, EventArgs e)
+        {
+            if( chooseCourse != null)
+            {
+                string answer = Types.TypeID(chooseCourse.TypeID).openTemplate();
+                if (answer != "Успешно")
+                {
+                    MessageBox.Show(answer);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Для начала вам нужно выбрать курс. Выберите курс и попробуйте заново.");
+            }  
+        }
     }
 }
