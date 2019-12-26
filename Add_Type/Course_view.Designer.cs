@@ -159,6 +159,7 @@
             // 
             // dateto
             // 
+            this.dateto.Enabled = false;
             this.dateto.Location = new System.Drawing.Point(444, 182);
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(174, 22);
@@ -166,6 +167,7 @@
             // 
             // datefrom
             // 
+            this.datefrom.Enabled = false;
             this.datefrom.Location = new System.Drawing.Point(163, 182);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(168, 22);

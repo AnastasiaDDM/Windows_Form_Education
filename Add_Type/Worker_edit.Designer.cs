@@ -142,10 +142,6 @@
             // 
             this.typef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typef.FormattingEnabled = true;
-            this.typef.Items.AddRange(new object[] {
-            "Директор",
-            "Менеджер",
-            "Преподаватель"});
             this.typef.Location = new System.Drawing.Point(141, 175);
             this.typef.Name = "typef";
             this.typef.Size = new System.Drawing.Size(205, 24);
@@ -214,6 +210,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 454);
+            this.Controls.Add(this.phonet);
             this.Controls.Add(this.lrate2);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
@@ -223,7 +220,6 @@
             this.Controls.Add(this.typef);
             this.Controls.Add(this.positiont);
             this.Controls.Add(this.fiot);
-            this.Controls.Add(this.phonet);
             this.Controls.Add(this.lrate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);

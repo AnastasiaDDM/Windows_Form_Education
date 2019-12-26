@@ -196,5 +196,17 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void typef_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (costt.Text.ToString() == "")
+            {
+                if(typef.SelectedIndex != 0)
+                {
+                    string[] typeID = (Convert.ToString(typef.Text)).Split('.');
+                    costt.Text = Types.TypeID(Convert.ToInt32(typeID[0])).Cost.ToString();
+                }
+            }
+        }
     }
 }

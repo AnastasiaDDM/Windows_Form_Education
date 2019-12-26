@@ -50,6 +50,13 @@ namespace Add_Type
 
         private void build_Click(object sender, EventArgs e)
         {
+            // Очищение старых данных
+            chartRevenue.Series[0].Points.Clear();
+            chartProfit.Series[0].Points.Clear();
+            chartCount.Series[0].Points.Clear();
+            chart1.Series[0].Points.Clear();
+
+
             DateTime min = from.Value.Date.AddDays(1);
             DateTime max = to.Value.Date.AddDays(1);
             int count = (max - min).Days + 1;

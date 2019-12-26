@@ -95,6 +95,7 @@
             this.Controls.Add(this.revenuet);
             this.Name = "StatisticsforOneBranch";
             this.Text = "Филиал № ";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StatisticsforOneBranch_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

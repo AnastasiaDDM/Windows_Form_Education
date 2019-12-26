@@ -130,8 +130,9 @@ namespace Add_Type
             if (chooseTeacher != null)
             {
                 newtheme.TeacherID = chooseTeacher.ID;
+                teacherf.Text = newtheme.TeacherID + ". " + Workers.WorkerID(newtheme.TeacherID).FIO;
             }
-            FillForm();
+
         }
 
         private void cancel_Click(object sender, EventArgs e)

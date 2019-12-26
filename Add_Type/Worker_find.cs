@@ -151,7 +151,7 @@ namespace Add_Type
             //}
             //typef.SelectedIndex = 2;
             //this.typef.SelectedIndex = 0;
-            this.typef.SelectedIndex = typeworker;
+            //this.typef.SelectedIndex = typeworker;
 
             // Построение комбобокса филиалов
             Branch branch = new Branch();
@@ -183,6 +183,21 @@ namespace Add_Type
                 }
             }
             this.positionf.SelectedIndex = 0;
+
+            // Построение комбобокса ролей, типов
+            List<Role> roles = Roles.GetRoles();
+
+            typef.Items.Add("Не выбрано");
+            foreach (var s in roles)
+            {
+                // добавляем один элемент
+                typef.Items.Add(s.Name);
+            }
+            this.typef.SelectedIndex = 0;
+            if (typeworker != 0)
+            {
+                this.typef.SelectedIndex = typeworker;
+            }
         }
 
         private void FillGrid() // Заполняем гриды
@@ -259,22 +274,23 @@ namespace Add_Type
             {
                 if (typef.SelectedIndex == 0)
                 {
-                    wor.Type = 0;
+                    wor.RoleID = 0;
                 }
                 else
                 {
-                    if(typef.SelectedItem.ToString() == "Директор")
-                    {
-                        wor.Type = 1;
-                    }
-                    if (typef.SelectedItem.ToString() == "Менеджер")
-                    {
-                        wor.Type = 2;
-                    }
-                    if (typef.SelectedItem.ToString() == "Преподаватель")
-                    {
-                        wor.Type = 3;
-                    }
+                    wor.RoleID = Roles.RoleName(typef.SelectedItem.ToString()).ID;
+                    //if(typef.SelectedItem.ToString() == "Директор")
+                    //{
+                    //    wor.RoleID = 1;
+                    //}
+                    //if (typef.SelectedItem.ToString() == "Менеджер")
+                    //{
+                    //    wor.RoleID = 2;
+                    //}
+                    //if (typef.SelectedItem.ToString() == "Преподаватель")
+                    //{
+                    //    wor.RoleID = 3;
+                    //}
                 }
             }
 
@@ -311,7 +327,7 @@ namespace Add_Type
 
                 D.Rows[i].Cells[5].Value = workers[i].Rate;
 
-                if(workers[i].BranchID == 0)
+                if(workers[i].BranchID == 0 || workers[i].BranchID == null)
                 {
                     D.Rows[i].Cells[6].Value = "Филиал не выбран";
                 }

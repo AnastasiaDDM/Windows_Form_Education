@@ -17,20 +17,44 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            phonet.Select();
         }
 
         private void Input_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Environment.Exit(0);
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                functionInput();
             }
         }
 
         private void binput_Click(object sender, EventArgs e)
         {
 
+            functionInput();
+            //string phone = phonet.Text;
+            //string password = passwordt.Text;
+            //Worker inputPerson = Singleton.inputPerson(phone, password);
+            //if (inputPerson == null)
+            //{
+            //    var result = MessageBox.Show("Данные для входа введены неверно. Проверьте данные и попробуйте еще раз.", "Внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            //}
+            //else
+            //{
+            //    //List f = new List();
+            //    //f.Show();
+            //    //Show result = f.ShowDialog();
+            //    this.Close();
 
+            //}
+        }
+
+        private void functionInput()
+        {
             string phone = phonet.Text;
             string password = passwordt.Text;
             Worker inputPerson = Singleton.inputPerson(phone, password);

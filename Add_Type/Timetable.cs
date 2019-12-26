@@ -426,7 +426,7 @@ namespace Add_Type
                 { return "Этот преподаватель уже числится за этим занятием"; }
 
                 Worker t = Workers.WorkerID(stpar.TeacherID);
-                if (t.Type != 3)
+                if (t.RoleID != 3)
                 { return " Вам нужно было выбрать преподавателя (тип 3)"; }
             }
             return "Данные корректны!";
@@ -574,7 +574,7 @@ namespace Add_Type
             {
 
 
-                StringBuilder s = new StringBuilder("Select Distinct Workers.* from Workers where Workers.Type = 3  and  Workers.Deldate IS NULL and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.Type = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
+                StringBuilder s = new StringBuilder("Select Distinct Workers.* from Workers where Workers.RoleID = 3  and  Workers.Deldate IS NULL and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.RoleID = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
 
                 List<string> sql = new List<string>();
                 string format = "yyyy-MM-dd HH:mm:ss";

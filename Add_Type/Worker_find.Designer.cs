@@ -91,11 +91,6 @@
             // 
             this.typef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typef.FormattingEnabled = true;
-            this.typef.Items.AddRange(new object[] {
-            "Не выбрано ",
-            "Директор",
-            "Менеджер",
-            "Преподаватель"});
             this.typef.Location = new System.Drawing.Point(454, 38);
             this.typef.Name = "typef";
             this.typef.Size = new System.Drawing.Size(169, 24);

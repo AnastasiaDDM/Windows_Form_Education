@@ -25,6 +25,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            numbert.Select();
             indicator = true;
 
             buildDG();
@@ -33,6 +34,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            numbert.Select();
             indicator = false;
             idforEdit = cabinet.ID;
 

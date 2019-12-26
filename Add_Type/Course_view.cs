@@ -305,6 +305,10 @@ namespace Add_Type
             Worker_find f = new Worker_find("choose"); // Передаем choose - это означает, что нужно добавить кнопку выбора 
             DialogResult result = f.ShowDialog();
             chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
+            if(chooseTeacher != null)
+            {
+                string a = course.addTeacher(chooseTeacher);
+            }
             FillGrid();
         }
 

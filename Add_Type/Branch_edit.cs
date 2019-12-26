@@ -32,6 +32,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select();
             indicator = true;
 
             Access();
@@ -41,6 +42,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select();
             indicator = false;
             idforEdit = branch.ID;
 
@@ -65,12 +67,23 @@ namespace Add_Type
 
             Branch branch = new Branch();
             Worker wor = new Worker();
-            wor.Type = 1;             
+            wor.RoleID = Roles.RoleName("Директор").ID ;             
 
             List<Worker> workers = new List<Worker>();
             workers = Workers.FindAll(true, wor, branch, sort, asсdesс, page, count, ref countrecord);
 
             directorf.Items.Add("Не выбрано");
+            foreach (var s in workers)
+            {
+                // добавляем один элемент
+                directorf.Items.Add(s.ID + ". " + s.FIO);
+            }
+
+            // Дополнение комбобокса директорами филиалов
+
+            wor.RoleID = Roles.RoleName("Директор филиала").ID;
+            workers = Workers.FindAll(true, wor, branch, sort, asсdesс, page, count, ref countrecord);
+
             foreach (var s in workers)
             {
                 // добавляем один элемент
@@ -168,7 +181,7 @@ namespace Add_Type
         private void adddirector_Click(object sender, EventArgs e)
         {
             // Добавление
-            Worker_edit f = new Worker_edit(1, newbranch, true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
+            Worker_edit f = new Worker_edit(4, newbranch, true);  // Передаем true, так как это означает, что нам нужно отображать только неудаленные объекты
             DialogResult result = f.ShowDialog();
             chooseDirector = f.chooseDir;
             buildDG();

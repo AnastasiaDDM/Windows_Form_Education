@@ -32,7 +32,7 @@
             this.bcon = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelpassword = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -103,14 +103,14 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "Ставка";
             // 
-            // label6
+            // labelpassword
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(525, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 17);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Пароль";
+            this.labelpassword.AutoSize = true;
+            this.labelpassword.Location = new System.Drawing.Point(525, 85);
+            this.labelpassword.Name = "labelpassword";
+            this.labelpassword.Size = new System.Drawing.Size(57, 17);
+            this.labelpassword.TabIndex = 24;
+            this.labelpassword.Text = "Пароль";
             // 
             // label5
             // 
@@ -351,7 +351,7 @@
             this.Controls.Add(this.bcon);
             this.Controls.Add(this.close);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelpassword);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -378,7 +378,7 @@
         private System.Windows.Forms.Button bcon;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelpassword;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

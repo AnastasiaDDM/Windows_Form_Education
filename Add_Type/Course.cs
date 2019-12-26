@@ -116,7 +116,7 @@ namespace Add_Type
                 if (v != null)
                 { return "Этот преподаватель уже числится за этим курсом"; }
                 Worker t = Workers.WorkerID(stpar.TeacherID);
-                if(t.Type !=3)
+                if(t.RoleID != 3)
                 { return " Вам нужно было выбрать преподавателя (тип 3)"; }
             }
             return "Данные корректны!";

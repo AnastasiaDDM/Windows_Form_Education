@@ -15,6 +15,7 @@ namespace Add_Type
         public StatisticsforOneBranch(Branch branch)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             this.Text = this.Text + branch.ID + ". " + branch.Name;
             double profit;
             double revenue;
@@ -43,6 +44,14 @@ namespace Add_Type
         }
 
         private void close_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void StatisticsforOneBranch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {

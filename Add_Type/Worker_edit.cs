@@ -45,19 +45,18 @@ namespace Add_Type
             this.KeyPreview = true;
             indicator = true;
 
-            if(type == 1)
+            buildDG();
+            if (type == Roles.RoleName("Директор").ID || type == Roles.RoleName("Директор филиала").ID)
             {
-                typef.SelectedIndex = 0;
+                typef.SelectedItem = Roles.RoleID(type).Name;
                 typef.Enabled = false;
                 ratet.Visible = false;
                 lrate.Visible = false;
                 lrate2.Visible = false;
-                positiont.Text = "Директор";
+                positiont.Text = Roles.RoleID(type).Name;
  //               branchf.SelectedItem =   КАК БЫТЬ С ФИЛИАЛОМ Я НЕ ЗНАЮ 
  //  ПУСТЬ БУДЕТ ТАК, ЧТО ДИРЕКТОР ВООБЩЕ МОЖЕТ БЫТЬ ФИЛИАЛА, НО РУКОВОДИТЬ НЕСКОЛЬКИМИ ФИЛИАЛАМИ
             }
-
-            buildDG();
         }
         public Worker_edit(Worker worker, bool deldate) // Конструктор для редактирования объекта
         {
@@ -67,7 +66,7 @@ namespace Add_Type
             idforEdit = worker.ID;
 
             newworker = worker;
-            if( newworker.Type != 3)
+            if( newworker.RoleID != 3)
             {
                 ratet.Visible = false;
                 lrate.Visible = false;
@@ -93,6 +92,17 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
             this.branchf.SelectedIndex = 0;
+
+            // Построение комбобокса ролей, типов
+            List<Role> roles = Roles.GetRoles();
+
+            typef.Items.Add("Не выбрано");
+            foreach (var s in roles)
+            {
+                // добавляем один элемент
+                typef.Items.Add(s.Name);
+            }
+            this.typef.SelectedIndex = 0;
         }
         private void FillForm()
         {
@@ -103,21 +113,23 @@ namespace Add_Type
             ratet.Text = newworker.Rate.ToString();
             passwordt.Text = newworker.Password.ToString();
 
-            if(newworker.Type == 1)
-            {
-                typef.SelectedIndex = 0;
-            }
-            if (newworker.Type == 2)
-            {
-                typef.SelectedIndex = 1;
-            }
-            if (newworker.Type == 3)
-            {
-                typef.SelectedIndex = 2;
-            }
+
+            typef.SelectedItem = Roles.RoleID(newworker.RoleID).Name;
+            //if(newworker.RoleID == 1)
+            //{
+            //    typef.SelectedIndex = 0;
+            //}
+            //if (newworker.RoleID == 2)
+            //{
+            //    typef.SelectedIndex = 1;
+            //}
+            //if (newworker.RoleID == 3)
+            //{
+            //    typef.SelectedIndex = 2;
+            //}
 
 
-            if (newworker.BranchID == 0)
+            if (newworker.BranchID == 0 || newworker.BranchID == null)
             {
                 branchf.SelectedIndex = 0;
             }
@@ -158,18 +170,20 @@ namespace Add_Type
                     newworker.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
                 }
 
-                if (typef.SelectedIndex == 0)
-                {
-                    newworker.Type = 1;
-                }
-                if (typef.SelectedIndex == 1)
-                {
-                    newworker.Type = 2;
-                }
-                if (typef.SelectedIndex == 2)
-                {
-                    newworker.Type = 3;
-                }
+                newworker.RoleID = Roles.RoleName(typef.SelectedItem.ToString()).ID;
+
+                //if (typef.SelectedIndex == 0)
+                //{
+                //    newworker.RoleID = 1;
+                //}
+                //if (typef.SelectedIndex == 1)
+                //{
+                //    newworker.RoleID = 2;
+                //}
+                //if (typef.SelectedIndex == 2)
+                //{
+                //    newworker.RoleID = 3;
+                //}
 
                 // Проверка действий
                 if (indicator == true) // Значит, что происходит добавление нового
@@ -207,6 +221,11 @@ namespace Add_Type
                 return false;
             }
             if (typef.SelectedItem == null)
+            {
+                errorProvider1.SetError(typef, "Выберите тип должности. Это поле не может быть не определено.");
+                return false;
+            }
+            if (typef.SelectedIndex == 0)
             {
                 errorProvider1.SetError(typef, "Выберите тип должности. Это поле не может быть не определено.");
                 return false;

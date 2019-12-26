@@ -32,7 +32,7 @@ namespace Add_Type
 
             Access();
             // Эти проверки организованиы для сокрытия тех данных, которые не нужны для карточек отдельных типов работников
-            if (worker.Type == 1 | worker.Type == 4 | worker.Type == 5)
+            if (worker.RoleID == 1 | worker.RoleID == 4 | worker.RoleID == 5)
             {
                 timetable.Visible = false;
                 bcon.Visible = false;
@@ -41,7 +41,7 @@ namespace Add_Type
                 this.Size = new Size(580, 220);
                 close.Location = new Point(260, 140); 
             }
-            if (worker.Type == 2)
+            if (worker.RoleID == 2)
             {
                 timetable.Visible = false;
                 payAll.Visible = false;
@@ -49,7 +49,7 @@ namespace Add_Type
                 this.Size = new Size(580, 250);
                 close.Location = new Point(260, 173);
             }
-            if (worker.Type == 3)
+            if (worker.RoleID == 3)
             {
                 bcon.Visible = false;
                 //Заполнение таблиц
@@ -65,8 +65,8 @@ namespace Add_Type
             //// Просмотр статистики
             //if (Prohibition.Banned("see_one_statistic") == true)
             //{
-            if (Singleton.getPerson().Type == 3 & Convert.ToInt32(Singleton.getPerson().ID) != worker.ID)
-            { // Условие для просмотра директора филиала статистики только по своему филиалу
+            if (Singleton.getPerson().RoleID == 3 & Convert.ToInt32(Singleton.getPerson().ID) != worker.ID)
+            { // Условие для просмотра работника только своих данных об оплатах
                 Allgrid.Visible = false;
                 this.Size = new Size(580, 250);
                 timetable.Location = new Point(425, 120);
@@ -82,6 +82,18 @@ namespace Add_Type
             //    statistic.Visible = false;
             //}
 
+
+            if (Singleton.getPerson().ID != worker.ID || Roles.RoleID(Singleton.getPerson().RoleID).Name != "Администратор")
+            { // Условие для просмотра работника только своих данных об оплатах
+
+                labelpassword.Visible = false;
+                passwordt.Visible = false;
+            }
+            else
+            {
+                labelpassword.Visible = true;
+                passwordt.Visible = true;
+            }
 
             // Заперт на добавление и удаление одиннаковый
             delBan = Prohibition.Banned("add_del_pay");
@@ -200,21 +212,23 @@ namespace Add_Type
                 payAll.Enabled = false;
             }
 
-            if (worker.Type == 1)
-            {
-                typet.Text = "1. Директор";
-            }
-            if (worker.Type == 2)
-            {
-                typet.Text = "2. Менеджер";
-            }
-            if (worker.Type == 3)
-            {
-                typet.Text = "3. Преподаватель";
-            }
+
+            typet.Text = Roles.RoleID(worker.RoleID).Name;
+            //if (worker.RoleID == 1)
+            //{
+            //    typet.Text = "1. Директор";
+            //}
+            //if (worker.RoleID == 2)
+            //{
+            //    typet.Text = "2. Менеджер";
+            //}
+            //if (worker.RoleID == 3)
+            //{
+            //    typet.Text = "3. Преподаватель";
+            //}
 
 
-            if (worker.BranchID == 0)
+            if (worker.BranchID == 0 || worker.BranchID == null)
             {
                 brancht.Text = "Филиал не выбран";
                 brancht.Enabled = false;

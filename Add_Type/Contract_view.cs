@@ -189,8 +189,10 @@ namespace Add_Type
 
         private void addpay_Click(object sender, EventArgs e)
         {   // Добавление оплаты по договору
-                Pay_edit f = new Pay_edit(contract, contract.getDebt());
-                DialogResult result = f.ShowDialog();
+            Pay_edit f = new Pay_edit(contract, contract.getDebt());
+            DialogResult result = f.ShowDialog();
+            FillForm();
+            FillGrid();
         }
         private void bcancel_Click(object sender, EventArgs e)
         {

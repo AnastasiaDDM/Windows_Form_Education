@@ -89,6 +89,9 @@
             // 
             // D
             // 
+            this.D.AllowUserToResizeColumns = false;
+            this.D.AllowUserToResizeRows = false;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Location = new System.Drawing.Point(12, 115);
             this.D.Name = "D";

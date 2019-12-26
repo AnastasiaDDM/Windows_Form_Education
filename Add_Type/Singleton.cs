@@ -22,6 +22,11 @@ namespace Add_Type
             return person;
         }
 
+        public static Worker delPerson()
+        {
+            person = null;
+            return person;
+        }
         public static Worker inputPerson(string phone, string password)
         {
             using (SampleContext context = new SampleContext())
@@ -37,6 +42,38 @@ namespace Add_Type
     {
         public int ID { get; set; }
         public String Name { get; set; }
+    }
+
+    public class Roles
+    {
+        public static List<Role> GetRoles()
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                // Список ролей у центра, не считая Администратора
+                var roles = context.Roles.Where(x => x.Name != "Администратор").ToList();
+                return roles;
+            }
+        }
+        public static Role RoleID(int id)
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                Role v = context.Roles.Where(x => x.ID == id).FirstOrDefault<Role>();
+
+                return v;
+            }
+        }
+
+        public static Role RoleName(string name)
+        {
+            using (SampleContext context = new SampleContext())
+            {
+                Role v = context.Roles.Where(x => x.Name == name).FirstOrDefault<Role>();
+
+                return v;
+            }
+        }
     }
 
     public class Action
@@ -61,7 +98,7 @@ namespace Add_Type
                 if (action != null)
                 {
                     Prohibition v = new Prohibition();
-                    v = context.Prohibitions.Where(x => x.RoleID == worker.Type && x.ActionID == action.ID).FirstOrDefault<Prohibition>();
+                    v = context.Prohibitions.Where(x => x.RoleID == worker.RoleID && x.ActionID == action.ID).FirstOrDefault<Prohibition>();
                     if (v != null) // Если v - пустое значение, значит запрета нет! возвращаем true
                     {
                         return false;

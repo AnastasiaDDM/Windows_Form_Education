@@ -133,8 +133,13 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
 
-            datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
-            dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
+            //datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
+            //dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
+
+            datefrom.Value = this.datefrom.MinDate;
+            dateto.Value = this.datefrom.MaxDate;
+
+
 
             // Построение комбобокса филиалов
             Branch branch = new Branch();
@@ -246,6 +251,24 @@ namespace Add_Type
                 pagef.Items.Add(p);
             }
             this.pagef.SelectedItem = page; // Выбираем текущую страницу поиска
+
+
+            // Установление минимального и максимального времени курсов для удобства вместо MinValue и MaxValue
+            DateTime newmindate = Convert.ToDateTime(courses.First<Course>().Start);
+            DateTime newmaxdate = Convert.ToDateTime(courses.First<Course>().End);
+            foreach (var c in courses)
+            {
+                if(newmindate > c.Start)
+                {
+                    newmindate = Convert.ToDateTime(c.Start);
+                }
+                if(newmaxdate < c.End)
+                {
+                    newmaxdate = Convert.ToDateTime(c.End);
+                }
+            }
+            datefrom.Value = newmindate;
+            dateto.Value = newmaxdate;
 
             // Заполнение грида данными
             for (int i = 0; i < courses.Count; i++)

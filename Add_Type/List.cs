@@ -142,13 +142,14 @@ namespace Add_Type
         {
             //DialogResult result = DialogResult.Cancel;
 
+            newLoad();
 
-            Input f = new Input();
-            while (Singleton.getPerson().ID == 0)
-            {
-                f.ShowDialog();
-            }
-            Access();
+            //Input f = new Input();
+            //while (Singleton.getPerson().ID == 0)
+            //{
+            //    f.ShowDialog();
+            //}
+            //Access();
 
 
 
@@ -166,6 +167,30 @@ namespace Add_Type
             //    }
             //}
 
+        }
+
+        private void newLoad()
+        {
+            Input f = new Input();
+            while (Singleton.getPerson().ID == 0)
+            {
+                f.ShowDialog();
+            }
+            this.Visible = true;
+            Access();
+        }
+
+        private void личныеДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Worker_edit f = new Worker_edit(Singleton.getPerson(), false);
+            DialogResult result = f.ShowDialog();
+        }
+
+        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Singleton.delPerson();
+            this.Visible = false;
+            newLoad();
         }
     }
 }

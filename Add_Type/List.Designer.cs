@@ -51,12 +51,17 @@
             this.bgrade = new System.Windows.Forms.Button();
             this.bvisit = new System.Windows.Forms.Button();
             this.btomark = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.личныеДанныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupStatistic.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bworker
@@ -154,7 +159,7 @@
             this.groupBox1.Controls.Add(this.bworker);
             this.groupBox1.Controls.Add(this.bbranch);
             this.groupBox1.Controls.Add(this.bcabinet);
-            this.groupBox1.Location = new System.Drawing.Point(12, 20);
+            this.groupBox1.Location = new System.Drawing.Point(12, 44);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 270);
             this.groupBox1.TabIndex = 9;
@@ -167,7 +172,7 @@
             this.groupBox2.Controls.Add(this.bstudent);
             this.groupBox2.Controls.Add(this.bcontract);
             this.groupBox2.Controls.Add(this.bpay);
-            this.groupBox2.Location = new System.Drawing.Point(315, 20);
+            this.groupBox2.Location = new System.Drawing.Point(315, 44);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(250, 346);
             this.groupBox2.TabIndex = 10;
@@ -189,7 +194,7 @@
             this.groupBox3.Controls.Add(this.btype);
             this.groupBox3.Controls.Add(this.bcourse);
             this.groupBox3.Controls.Add(this.btheme);
-            this.groupBox3.Location = new System.Drawing.Point(12, 333);
+            this.groupBox3.Location = new System.Drawing.Point(12, 357);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(250, 270);
             this.groupBox3.TabIndex = 11;
@@ -199,7 +204,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btimetable);
-            this.groupBox4.Location = new System.Drawing.Point(315, 406);
+            this.groupBox4.Location = new System.Drawing.Point(315, 430);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(250, 108);
             this.groupBox4.TabIndex = 12;
@@ -221,7 +226,7 @@
             this.groupStatistic.Controls.Add(this.bcountcontract);
             this.groupStatistic.Controls.Add(this.bprofit);
             this.groupStatistic.Controls.Add(this.brevenue);
-            this.groupStatistic.Location = new System.Drawing.Point(622, 20);
+            this.groupStatistic.Location = new System.Drawing.Point(622, 44);
             this.groupStatistic.Name = "groupStatistic";
             this.groupStatistic.Size = new System.Drawing.Size(250, 270);
             this.groupStatistic.TabIndex = 13;
@@ -263,7 +268,7 @@
             this.groupBox6.Controls.Add(this.bgrade);
             this.groupBox6.Controls.Add(this.bvisit);
             this.groupBox6.Controls.Add(this.btomark);
-            this.groupBox6.Location = new System.Drawing.Point(622, 333);
+            this.groupBox6.Location = new System.Drawing.Point(622, 357);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(250, 270);
             this.groupBox6.TabIndex = 14;
@@ -300,17 +305,53 @@
             this.btomark.UseVisualStyleBackColor = true;
             this.btomark.Click += new System.EventHandler(this.btomark_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.менюToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(883, 28);
+            this.menuStrip1.TabIndex = 15;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // менюToolStripMenuItem
+            // 
+            this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.личныеДанныеToolStripMenuItem,
+            this.выйтиToolStripMenuItem});
+            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.менюToolStripMenuItem.Text = "Меню";
+            // 
+            // личныеДанныеToolStripMenuItem
+            // 
+            this.личныеДанныеToolStripMenuItem.Name = "личныеДанныеToolStripMenuItem";
+            this.личныеДанныеToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.личныеДанныеToolStripMenuItem.Text = "Личные данные";
+            this.личныеДанныеToolStripMenuItem.Click += new System.EventHandler(this.личныеДанныеToolStripMenuItem_Click);
+            // 
+            // выйтиToolStripMenuItem
+            // 
+            this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.выйтиToolStripMenuItem.Text = "Выйти";
+            this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 615);
+            this.ClientSize = new System.Drawing.Size(883, 660);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupStatistic);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "List";
             this.Text = "Главное меню";
             this.Load += new System.EventHandler(this.List_Load);
@@ -321,7 +362,10 @@
             this.groupBox4.ResumeLayout(false);
             this.groupStatistic.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -350,5 +394,9 @@
         private System.Windows.Forms.Button bvisit;
         private System.Windows.Forms.Button btomark;
         private System.Windows.Forms.Button bparent;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem личныеДанныеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выйтиToolStripMenuItem;
     }
 }

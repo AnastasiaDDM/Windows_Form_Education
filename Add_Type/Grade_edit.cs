@@ -192,6 +192,7 @@ namespace Add_Type
                                     newgrade.Mark = f.grade;
                                     string answer = newgrade.Add();
                                     D.Rows[l].Cells[k].Value = f.grade;
+                                    FillGrid();
                                 }
                                 else // Редактирование оценки
                                 {
@@ -211,6 +212,7 @@ namespace Add_Type
                                     updategrade.Mark = f.grade;
                                     string answer = updategrade.Edit();
                                     D.Rows[l].Cells[k].Value = f.grade;
+                                    FillGrid();
                                 }
                             }
                         }
@@ -235,6 +237,7 @@ namespace Add_Type
                                     String ans = o.Del();
                                 }
                                 D.Rows[l].Cells[k].Value = null;
+                                FillGrid();
                             }
                         }
                     }

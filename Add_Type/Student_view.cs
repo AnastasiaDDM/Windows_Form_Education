@@ -295,6 +295,8 @@ namespace Add_Type
 
                             Pay_edit f = new Pay_edit(contract, contract.getDebt());
                             DialogResult result = f.ShowDialog();
+                            FillForm();
+                            FillGrid();
                         }
                     }
                 }

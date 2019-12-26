@@ -25,8 +25,8 @@ namespace Add_Type
         public string Phone { get; set; }
         public string Position { get; set; }
 
-        public int Type { get; set; } // 1 - это директор, 2 - менеджер, 3 -преподаватель
-        //public Role Role { get; set; }
+        public int RoleID { get; set; } // 1 - это директор, 2 - менеджер, 3 -преподаватель
+        public Role Role { get; set; }
 
         public /*Branch*/ Nullable<int> BranchID { get; set; }
         public string Password { get; set; }
@@ -95,13 +95,13 @@ namespace Add_Type
                 Worker v = new Worker();
                 if (st.ID == 0)       // если мы добавляем нового работника 
                 {
-                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.Type == st.Type && x.Phone == st.Phone && x.Deldate == null).FirstOrDefault<Worker>();
+                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.RoleID == st.RoleID && x.Phone == st.Phone && x.Deldate == null).FirstOrDefault<Worker>();
                     if (v != null)
                     { return "Такой работник уже существует в базе под номером " + v.ID; }
                 }
                 else
                 {
-                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.Type == st.Type && x.Position == st.Position && x.Rate == st.Rate && x.Password == st.Password && x.BranchID == st.BranchID && x.Deldate == null).FirstOrDefault<Worker>();
+                    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone && x.RoleID == st.RoleID && x.Position == st.Position && x.Rate == st.Rate && x.Password == st.Password && x.BranchID == st.BranchID && x.Deldate == null).FirstOrDefault<Worker>();
                     if (v != null)
                     { return "Такой работник уже существует в базе под номером " + v.ID; }
                 }
@@ -282,6 +282,10 @@ namespace Add_Type
                 var query = from w in db.Workers
                             select w;
 
+                //Убираем из списка данные об администраторе
+                int admin = Roles.RoleName("Администратор").ID;
+                query = query.Where(x => x.RoleID != admin);
+
                 // Последовательно просеиваем наш список 
 
                 if (deldate != false) // Убираем удаленных, если нужно
@@ -299,9 +303,9 @@ namespace Add_Type
                     query = query.Where(x => x.Position == worker.Position);
                 }
 
-                if (worker.Type != 0)
+                if (worker.RoleID != 0)
                 {
-                    query = query.Where(x => x.Type == worker.Type);
+                    query = query.Where(x => x.RoleID == worker.RoleID);
                 }
 
                 if (branch.ID != 0)
@@ -334,7 +338,7 @@ namespace Add_Type
 
                 foreach (var p in query)
                 {
-                    list.Add(new Worker { ID = p.ID, FIO = p.FIO, Type = p.Type, Rate = p.Rate, Phone = p.Phone, Password = p.Password,  Position = p.Position, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
+                    list.Add(new Worker { ID = p.ID, FIO = p.FIO, RoleID = p.RoleID, Rate = p.Rate, Phone = p.Phone, Password = p.Password,  Position = p.Position, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
                 }
                 return list;
             }
