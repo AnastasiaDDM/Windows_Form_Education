@@ -89,6 +89,8 @@
             // 
             // D
             // 
+            this.D.AllowUserToAddRows = false;
+            this.D.AllowUserToDeleteRows = false;
             this.D.AllowUserToResizeColumns = false;
             this.D.AllowUserToResizeRows = false;
             this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;

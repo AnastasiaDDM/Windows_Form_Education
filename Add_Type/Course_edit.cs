@@ -191,7 +191,7 @@ namespace Add_Type
 
         private void Course_edit_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape) 
             {
                 this.Close();
             }
@@ -199,13 +199,17 @@ namespace Add_Type
 
         private void typef_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            string[] typeID = (Convert.ToString(typef.Text)).Split('.');
             if (costt.Text.ToString() == "")
             {
                 if(typef.SelectedIndex != 0)
-                {
-                    string[] typeID = (Convert.ToString(typef.Text)).Split('.');
+                {                  
                     costt.Text = Types.TypeID(Convert.ToInt32(typeID[0])).Cost.ToString();
                 }
+            }
+            if (typef.SelectedIndex != 0)
+            {
+                countmonth.Text = Types.TypeID(Convert.ToInt32(typeID[0])).Month.ToString();
             }
         }
     }

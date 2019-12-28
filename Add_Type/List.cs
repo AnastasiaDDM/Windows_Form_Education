@@ -171,12 +171,12 @@ namespace Add_Type
 
         private void newLoad()
         {
-            Input f = new Input();
-            while (Singleton.getPerson().ID == 0)
-            {
-                f.ShowDialog();
-            }
-            this.Visible = true;
+            //Input f = new Input();
+            //while (Singleton.getPerson().ID == 0)
+            //{
+            //    f.ShowDialog();
+            //}
+            //this.Visible = true;
             Access();
         }
 

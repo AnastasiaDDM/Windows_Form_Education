@@ -29,6 +29,29 @@ namespace Add_Type
             contract = st;
 
             Access();
+
+            // Блокировка этой кнопки не зависит от ролей, поэтому эта проверка идет после того, как определены роли
+            if (contract.getDebt() <= 0)
+            {
+                addpay.Enabled = false;
+            }
+
+            //Значит, что договор расторжен . 
+            // Здесь необходимо проверить сколько клиент выплатил за договор и сколько ему нужно вернуть, если возвращать ничего не нужно, 
+            // то кнопку добавления оплаты нужно заблокировать .
+            // А еще в форме добавления опаты - необходимо отслеживать, чтобы мы не вернули денег больше, чем должны.
+            if(contract.Canceldate != null)
+            {
+                if(contract.getDebt() == contract.Cost) // Это значит, что клиент еще ни разу не платил и возвращать ему ничего не нужно!
+                {
+                    addpay.Enabled = false;
+                } 
+                else // Значит, что клиент платил и вернуть можно только столько, сколько он заплатил
+                {
+                    addpay.Enabled = true;
+                }
+            }
+
             FillForm();
             buildDG();
             FillGrid();
@@ -204,9 +227,8 @@ namespace Add_Type
             if (result == DialogResult.OK)
             {
                 // Форма не закрывается
-                Contract v = Contracts.ContractID(contract.ID);
-                string a = v.Cancellation();
-                cancel.Text = a + v.Canceldate;
+                string a = contract.Cancellation();
+                cancel.Text = a + contract.Canceldate;
             }
         }
         private void close_Click(object sender, EventArgs e)

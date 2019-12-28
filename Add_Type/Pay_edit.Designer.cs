@@ -371,7 +371,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Pay_edit";
             this.Text = "Редактирование оплаты №";
-            this.Load += new System.EventHandler(this.Pay_edit_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pay_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.erpay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

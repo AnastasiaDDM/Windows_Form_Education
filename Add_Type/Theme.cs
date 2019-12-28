@@ -18,7 +18,6 @@ namespace Add_Type
     public class Theme
     {
         public int ID { get; set; }
-        public DateTime Date { get; set; }
         public string Tema { get; set; }
         public string Homework { get; set; }
         public Nullable<System.DateTime> Deadline { get; set; }
@@ -90,20 +89,23 @@ namespace Add_Type
             return "Данные корректны!";
         }
 
-        public List<Grade> GetGrades()
-        {
-            using (SampleContext context = new SampleContext())
-            {
-                var v = context.Grades.Where(x => x.ThemeID == this.ID).OrderBy(u => u.ID).ToList<Grade>();
-                return v;
-            }
-        }
+        //public List<Grade> GetGrades()
+        //{
+        //    using (SampleContext context = new SampleContext())
+        //    {
+        //        var theme = context.Themes.Where(x => x.ID == this.ID).FirstOrDefault<Theme>();
+        //        var v = context.Grades.Where(x => x.ThemeID == this.ID).OrderBy(u => u.ID).ToList<Grade>();
+        //        return v;
+        //    }
+        //}
 
-        public List<Grade> GetGrades(Course course)
+        public List<Grade> GetGrades(Timetable timetable, Course course)
         {
             List<Grade> listgrades = new List<Grade>();
             using (SampleContext db = new SampleContext())
             {
+                var timetheme = db.TimetablesThemes.Where(x => x.ThemeID == this.ID & x.TimetableID == timetable.ID).FirstOrDefault<TimetablesThemes>();
+
                 var query = from s in db.Students
                             join scour in db.StudentsCourses on s.ID equals scour.StudentID
                             into std_cour_temp
@@ -114,19 +116,19 @@ namespace Add_Type
 
                             select new {
                                 ID = (stgr == null ? 0 : stgr.ID),
-                                ThemeID = (stgr == null ? 0 : stgr.ThemeID),
+                                TimetablesThemesID = (stgr == null ? 0 : stgr.TimetablesThemesID),
                                 StudentID = s.ID, 
                                 Deldate = stgr.Deldate, CourseID = stcour.CourseID,
                                 Mark = (stgr == null ? 0 : stgr.Mark)
                             };      
 
-                query = query.Where(x => x.ThemeID == this.ID);  // выбираем только эту тему
+                query = query.Where(x => x.TimetablesThemesID == timetheme.ID);  // выбираем только эту тему
                 query = query.Where(x => x.Deldate == null);  // выбираем только неудаленные оценки
                 query = query.Where(x => x.CourseID == course.ID); // выбираем только один курс
 
                 foreach (var p in query)
                 {
-                    listgrades.Add(new Grade { ID = p.ID, StudentID = p.StudentID, ThemeID = p.ThemeID, Mark = p.Mark, Deldate = p.Deldate });
+                    listgrades.Add(new Grade { ID = p.ID, StudentID = p.StudentID, TimetablesThemesID = p.TimetablesThemesID, Mark = p.Mark, Deldate = p.Deldate });
                 }
                 return listgrades;
             }
@@ -158,7 +160,7 @@ namespace Add_Type
                             join s in db.Timetables on theme_time.TimetableID equals s.ID
                             into time_temp
                             from time in time_temp.DefaultIfEmpty()
-                            select new { ID = t.ID, Date = t.Date, Tema = t.Tema, TeacherID = t.TeacherID, Homework = t.Homework, Deadline = t.Deadline, Deldate = t.Deldate, Editdate = t.Editdate, Course = (time == null ? 0 : time.CourseID) /*, ThTi = (theme_time == null ? 0 : theme_time.ID) */};
+                            select new { ID = t.ID, Date = time.Startlesson, Tema = t.Tema, TeacherID = t.TeacherID, Homework = t.Homework, Deadline = t.Deadline, Deldate = t.Deldate, Editdate = t.Editdate, Course = (time == null ? 0 : time.CourseID) /*, ThTi = (theme_time == null ? 0 : theme_time.ID) */};
 
                 // Последовательно просеиваем наш список 
 
@@ -194,7 +196,6 @@ namespace Add_Type
 
                 var query2 = query.GroupBy(t => new {
                     t.ID,
-                    t.Date,
                     t.Tema,
                     t.TeacherID,
                     t.Homework,
@@ -203,7 +204,6 @@ namespace Add_Type
                     t.Editdate }, (key, group) => new
                     {
                         ID = key.ID,
-                        Date = key.Date,
                         Tema = key.Tema,
                         TeacherID = key.TeacherID,
                         Homework = key.Homework,
@@ -224,7 +224,7 @@ namespace Add_Type
 
                 foreach (var p in query2)
                 {
-                    list.Add(new Theme { ID = p.ID, Date = p.Date, TeacherID = p.TeacherID, Tema = p.Tema, Homework = p.Homework, Deadline = p.Deadline, Deldate = p.Deldate, Editdate = p.Editdate });
+                    list.Add(new Theme { ID = p.ID, TeacherID = p.TeacherID, Tema = p.Tema, Homework = p.Homework, Deadline = p.Deadline, Deldate = p.Deldate, Editdate = p.Editdate });
                 }
                 return list;
             }

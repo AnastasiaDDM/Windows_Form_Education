@@ -24,8 +24,8 @@ namespace Add_Type
         public int StudentID { get; set; }
         public Student Student { get; set; }
 
-        public int ThemeID { get; set; }
-        public Theme Theme { get; set; }
+        public int TimetablesThemesID { get; set; }
+        public TimetablesThemes TimetablesThemes { get; set; }
 
         public string Add()
         {
@@ -106,15 +106,27 @@ namespace Add_Type
             List<Grade> list = new List<Grade>();
             using (SampleContext db = new SampleContext())
             {
-                var query = from t in db.Themes
-                            join g in db.Grades on t.ID equals g.ThemeID
+                //var query = from t in db.Themes
+                //            join g in db.Grades on t.ID equals g.ThemeID
+                //            join s in db.Students on g.StudentID equals s.ID
+                //            join sc in db.StudentsCourses on s.ID equals sc.StudentID
+                //            join tt in db.TimetablesThemes on t.ID equals tt.ThemeID
+                //            join time in db.Timetables on tt.TimetableID equals time.ID
+
+                //            select new { ID = g.ID, StudentID = g.StudentID, ThemeID = g.ThemeID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = time.Startlesson, Course = sc.CourseID, TimetableCourse =time.CourseID };
+
+
+
+
+                var query = from g in db.Grades 
                             join s in db.Students on g.StudentID equals s.ID
                             join sc in db.StudentsCourses on s.ID equals sc.StudentID
-                            join tt in db.TimetablesThemes on t.ID equals tt.ThemeID
-
-
+                            join tt in db.TimetablesThemes on g.TimetablesThemesID equals tt.ID
                             join time in db.Timetables on tt.TimetableID equals time.ID
-                            select new { ID = g.ID, StudentID = g.StudentID, ThemeID = g.ThemeID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = t.Date, Course = sc.CourseID, TimetableCourse =time.CourseID };
+                            join t in db.Themes on tt.ThemeID equals t.ID
+
+                            select new { ID = g.ID, StudentID = g.StudentID, ThemeID = t.ID, TimetablesThemesID = g.TimetablesThemesID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = time.Startlesson, Course = sc.CourseID, TimetableCourse = time.CourseID };
+
 
 
                 // Left jion для соединения таблиц, чтобы высвечивались все оценки 
@@ -137,7 +149,7 @@ namespace Add_Type
                 //            from time_time_theme in time_time_theme_temp.DefaultIfEmpty()
                 //            select new { ID = g.ID, StudentID = g.StudentID, ThemeID = g.ThemeID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = (theme_grade == null ? DateTime.MinValue : theme_grade.Date), Course = (st_cour_grade == null ? 0 : st_cour_grade.CourseID), TimetableCourse = (time_time_theme == null ? 0 : time_time_theme.CourseID) };
 
-  //              query = g.GroupBy(x => x.ID);
+                //              query = g.GroupBy(x => x.ID);
                 // Последовательно просеиваем наш список 
 
                 if (deldate != false) // Убираем удаленных, если нужно
@@ -184,12 +196,12 @@ namespace Add_Type
                 query = query.Distinct();
 
 
-                var query2 = query.GroupBy(s => new { s.ID, s.StudentID, s.ThemeID, s.Mark, s.Editdate, s.Deldate }, (key, group) => new
+                var query2 = query.GroupBy(s => new { s.ID, s.StudentID, s.TimetablesThemesID, s.Mark, s.Editdate, s.Deldate }, (key, group) => new
                 {
                     ID = key.ID,
                     Mark = key.Mark,
                     StudentID = key.StudentID,
-                    ThemeID = key.ThemeID,
+                    TimetablesThemesID = key.TimetablesThemesID,
                     Editdate = key.Editdate,
                     Deldate = key.Deldate,
                 });
@@ -207,7 +219,7 @@ namespace Add_Type
 
                 foreach (var p in query2)
                 {
-                    list.Add(new Grade { ID = p.ID, StudentID = p.StudentID, ThemeID = p.ThemeID, Mark = p.Mark, Deldate = p.Deldate, Editdate = p.Editdate });
+                    list.Add(new Grade { ID = p.ID, StudentID = p.StudentID, TimetablesThemesID = p.TimetablesThemesID, Mark = p.Mark, Deldate = p.Deldate, Editdate = p.Editdate });
                 }
                 return list;
             }

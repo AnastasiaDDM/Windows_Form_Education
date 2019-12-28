@@ -34,7 +34,7 @@
             this.addcontract = new System.Windows.Forms.Button();
             this.gridcontract = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.finished = new System.Windows.Forms.CheckBox();
             this.gridcourse = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.chooseparent = new System.Windows.Forms.Button();
@@ -115,7 +115,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.checkBox1);
+            this.tabPage2.Controls.Add(this.finished);
             this.tabPage2.Controls.Add(this.gridcourse);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
@@ -125,15 +125,16 @@
             this.tabPage2.Text = "Курсы";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // finished
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 12);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(123, 21);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Завершенные";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.finished.AutoSize = true;
+            this.finished.Location = new System.Drawing.Point(6, 12);
+            this.finished.Name = "finished";
+            this.finished.Size = new System.Drawing.Size(123, 21);
+            this.finished.TabIndex = 9;
+            this.finished.Text = "Завершенные";
+            this.finished.UseVisualStyleBackColor = true;
+            this.finished.CheckedChanged += new System.EventHandler(this.finished_CheckedChanged);
             // 
             // gridcourse
             // 
@@ -306,7 +307,7 @@
         private System.Windows.Forms.Button addcontract;
         private System.Windows.Forms.DataGridView gridcontract;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox finished;
         private System.Windows.Forms.DataGridView gridcourse;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView gridparent;

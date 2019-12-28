@@ -78,9 +78,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
             id.HeaderText = "№ ";
             sortf.Items.Add("№ темы");
-            DataGridViewTextBoxColumn date = new DataGridViewTextBoxColumn();
-            date.HeaderText = "Дата";
-            sortf.Items.Add("Дата");
             DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
             st.HeaderText = "Тема";
             sortf.Items.Add("Тема");
@@ -93,7 +90,6 @@ namespace Add_Type
             teach.HeaderText = "Составитель";
 
             D.Columns.Add(id);
-            D.Columns.Add(date);
             D.Columns.Add(st);
             D.Columns.Add(hw);
             D.Columns.Add(deadline);
@@ -110,7 +106,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
-                D.Columns[7].Visible = delBan;
+                D.Columns[6].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -142,10 +138,6 @@ namespace Add_Type
                 if (this.sortf.SelectedItem.ToString() == "№ темы")
                 {
                     sort = "ID";
-                }
-                if (this.sortf.SelectedItem.ToString() == "Дата")
-                {
-                    sort = "Date";
                 }
                 if (this.sortf.SelectedItem.ToString() == "Тема")
                 {
@@ -203,23 +195,21 @@ namespace Add_Type
 
                 D.Rows[i].Cells[1].Value = themes[i].ID;
 
-                D.Rows[i].Cells[2].Value = themes[i].Date;
+                D.Rows[i].Cells[2].Value = themes[i].Tema;
 
-                D.Rows[i].Cells[3].Value = themes[i].Tema;
+                D.Rows[i].Cells[3].Value = themes[i].Homework;
 
-                D.Rows[i].Cells[4].Value = themes[i].Homework;
+                D.Rows[i].Cells[4].Value = themes[i].Deadline;
 
-                D.Rows[i].Cells[5].Value = themes[i].Deadline;
-
-                D.Rows[i].Cells[6].Value = themes[i].TeacherID + ". " + Workers.WorkerID(Convert.ToInt32(themes[i].TeacherID)).FIO;
+                D.Rows[i].Cells[5].Value = themes[i].TeacherID + ". " + Workers.WorkerID(Convert.ToInt32(themes[i].TeacherID)).FIO;
 
                 if (purpose == "choose")
                 {
-                    D.Rows[i].Cells[7].Value = "Выбрать";
+                    D.Rows[i].Cells[6].Value = "Выбрать";
                 }
                 else
                 {
-                    D.Rows[i].Cells[7].Value = "Удалить";
+                    D.Rows[i].Cells[6].Value = "Удалить";
                 }
             }
         }
@@ -319,7 +309,7 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Выбрать"
             if (purpose == "choose")
             {
-                if (e.ColumnIndex == 7)
+                if (e.ColumnIndex == 6)
                 {
                     if (e.RowIndex > -1)
                     {
@@ -337,7 +327,7 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Удалить"
             else
             {
-                if (e.ColumnIndex == 7)
+                if (e.ColumnIndex == 6)
                 {
                     if (delBan == true) // Запрета нет
                     {

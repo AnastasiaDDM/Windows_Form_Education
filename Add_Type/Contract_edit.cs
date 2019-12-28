@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Itenso.TimePeriod;
 
 namespace Add_Type
 {
@@ -208,10 +209,20 @@ namespace Add_Type
             {
                 chooseCourse = f.chooseCour; // Передаем ссылку форме родителей на переменную в этой форме
                 courset.Text = chooseCourse.ID + ". " + Courses.CourseID(chooseCourse.ID).nameGroup;
-                if(costt.Text == "") // Подстановка стоимости из типа курса, если это поле пустое
+                //if(costt.Text == "") // Подстановка стоимости из типа курса, если это поле пустое
                 {
-                    costt.Text = Types.TypeID(chooseCourse.TypeID).Cost.ToString();
-                }            
+                    //                 costt.Text = Types.TypeID(chooseCourse.TypeID).Cost.ToString();
+
+                    costt.Text = chooseCourse.Cost.ToString();
+                }
+                //if (payt.Text == "") // Подстановка оплаты за месяц из типа курса, если это поле пустое
+                {
+                  //  int i = (Convert.ToDateTime(chooseCourse.End) - Convert.ToDateTime(chooseCourse.Start)).
+                    int i = Math.Abs((Convert.ToDateTime(chooseCourse.End).Month - Convert.ToDateTime(chooseCourse.Start).Month) + 12 * (Convert.ToDateTime(chooseCourse.End).Year - Convert.ToDateTime(chooseCourse.Start).Year));
+                    TimeRange Range = new TimeRange(Convert.ToDateTime(chooseCourse.Start), Convert.ToDateTime(chooseCourse.End));
+                    payt.Text = Convert.ToString(Convert.ToInt32(costt.Text)/i);
+                }
+             //            (datetime2 - datetime1).TotalMonth;
             }
             //FillGrid();
         }

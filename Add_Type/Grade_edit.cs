@@ -128,7 +128,7 @@ namespace Add_Type
             stud = Students.FindAll(true, parent, student, contract, course, "FIO", "asc", page, count, ref countrecord);
 
             List<Grade> grades = new List<Grade>();
-            grades = theme.GetGrades(course);
+            grades = theme.GetGrades(timetable, course);
 
             for (int i = 0; i < stud.Count; i++) 
             {
@@ -159,6 +159,7 @@ namespace Add_Type
 
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            int oldgrade;
             if (e.ColumnIndex >=2)
             {
                 if (e.RowIndex > -1)
@@ -171,26 +172,30 @@ namespace Add_Type
                         if (D.Rows[l].Cells[k].Value == null) // Добавление
                         {
                             addorupdate = true; // ячейка была пуста
+                            oldgrade = 0;
                         }
                         else // Редактирование
                         {
                             addorupdate = false; // ячейка не была пуста
+                            oldgrade = Convert.ToInt32(D.Rows[l].Cells[k].Value);
                         }
-       
-                        addGrade f = new addGrade();
+
+                        addGrade f = new addGrade(oldgrade);
                         DialogResult result = f.ShowDialog();
-                        if(f.indicator == 1) // Добавление и изменение
+
+
+                        if (f.indicator == 1) // Добавление и изменение
                         {
                             if (f.grade != 0)
                             {
                                 if(addorupdate) // Добавление оценки
                                 {
                                     Grade newgrade = new Grade();
-                                    newgrade.ThemeID = theme.ID;
+                                    newgrade.TimetablesThemesID = TimetablesThemes.TimetablesThemesID(timetable, theme).ID;
                                     string[] studID = (Convert.ToString(D.Rows[l].Cells[1].Value)).Split('.');
                                     newgrade.StudentID = Convert.ToInt32(studID[0]);
                                     newgrade.Mark = f.grade;
-                                    string answer = newgrade.Add();
+                                    string answer = newgrade.Add(); // Добавление в бд
                                     D.Rows[l].Cells[k].Value = f.grade;
                                     FillGrid();
                                 }
@@ -210,7 +215,7 @@ namespace Add_Type
 
                                     Grade updategrade = Grades.GradeID(idforupdate);
                                     updategrade.Mark = f.grade;
-                                    string answer = updategrade.Edit();
+                                    string answer = updategrade.Edit();// Изменение в бд
                                     D.Rows[l].Cells[k].Value = f.grade;
                                     FillGrid();
                                 }
@@ -235,9 +240,10 @@ namespace Add_Type
                                     }
                                     Grade o = Grades.GradeID(idfordel);
                                     String ans = o.Del();
+                                    D.Rows[l].Cells[k].Value = null;
+                                    FillGrid();
                                 }
-                                D.Rows[l].Cells[k].Value = null;
-                                FillGrid();
+                               
                             }
                         }
                     }

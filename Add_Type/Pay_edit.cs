@@ -69,10 +69,12 @@ namespace Add_Type
             this.indicatorf.SelectedIndex = 0;
             this.typef.SelectedIndex = 0;
 
-            if (contract.Canceldate != null)
+            if (contract.Canceldate != null) // Договор расторжен, нужно установить максимальную сумму возврата!
             {
                 incomef.Checked = false;
                 incomef.Enabled = false;
+
+                maxvalue = contract.Cost - max; // Максимал. сумма  = сумме выплат клиента
             }
 
                 FillForm();
@@ -224,11 +226,6 @@ namespace Add_Type
             Close();
         }
 
-        private void Pay_edit_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void save_Click(object sender, EventArgs e)
         {
             string Answer = "";
@@ -374,7 +371,6 @@ namespace Add_Type
 
         private void paymentt_TextChanged(object sender, EventArgs e)
         {
-         
             if (paymentt.Text != "" & maxvalue != 0)
             {
                 if (Convert.ToDouble(paymentt.Text) > maxvalue)

@@ -209,11 +209,11 @@ namespace Add_Type
 
                 D.Rows[i].Cells[1].Value = grades[i].ID;
 
-                D.Rows[i].Cells[2].Value = Themes.ThemeID(grades[i].ThemeID).Date;
+                D.Rows[i].Cells[2].Value = Timetables.TimetableID(TimetablesThemes.TimetablesThemesID(grades[i].TimetablesThemesID).TimetableID).Startlesson;
 
                 D.Rows[i].Cells[3].Value = grades[i].StudentID + ". " + Students.StudentID(grades[i].StudentID).FIO;
 
-                D.Rows[i].Cells[4].Value = grades[i].ThemeID + ". " + Themes.ThemeID(grades[i].ThemeID).Tema;
+                D.Rows[i].Cells[4].Value = Themes.ThemeID(TimetablesThemes.TimetablesThemesID(grades[i].TimetablesThemesID).ThemeID).ID + ". " + Themes.ThemeID(TimetablesThemes.TimetablesThemesID(grades[i].TimetablesThemesID).ThemeID).Tema;
 
                 D.Rows[i].Cells[5].Value = grades[i].Mark;
 

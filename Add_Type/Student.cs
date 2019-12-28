@@ -144,6 +144,26 @@ namespace Add_Type
             }
         }
 
+        public List<Course> GetFinishedCourses()    // Получение списка завершенных курсов этого ученика
+        {
+            List<Course> listcourses = new List<Course>();
+            using (SampleContext db = new SampleContext())
+            {
+                var query = from c in db.Courses
+                            join sc in db.StudentsCourses on c.ID equals sc.CourseID
+                            select new { ID = c.ID, nameGroup = c.nameGroup, Cost = c.Cost, TypeID = c.TypeID, BranchID = c.BranchID, Start = c.Start, End = c.End, EditDate = c.Editdate, DelDate = c.Deldate, CourID = sc.CourseID, StID = sc.StudentID };
+
+                query = query.Where(x => x.StID == this.ID);
+                query = query.Where(x => x.ID == x.CourID & x.End < DateTime.Now);
+
+                foreach (var c in query)
+                {
+                    listcourses.Add(new Course { ID = c.ID, nameGroup = c.nameGroup, Cost = c.Cost, TypeID = c.TypeID, BranchID = c.BranchID, Start = c.Start, End = c.End, Editdate = c.EditDate, Deldate = c.DelDate });
+                }
+                return listcourses;
+            }
+        }
+
         public List<Parent> GetParents()    // Получение списка родителей этого ученика
         {
             List<Parent> listparents = new List<Parent>();

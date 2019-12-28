@@ -180,7 +180,7 @@ namespace Add_Type
             gridcontract.Columns.Add(debt);
 
 
-            DataGridViewButtonColumn pay  = new DataGridViewButtonColumn();
+            DataGridViewButtonColumn pay = new DataGridViewButtonColumn();
             pay.HeaderText = "Оплатить?";
             gridcontract.Columns.Add(pay);
             gridcontract.Columns[7].Visible = PayaddBan;
@@ -268,7 +268,36 @@ namespace Add_Type
                 gridcourse.Rows[i].Cells[5].Value = Branches.BranchID(courses[i].BranchID).ID + ". " + Branches.BranchID(courses[i].BranchID).Name;
 
                 gridcourse.Rows[i].Cells[6].Value = courses[i].Start;
-            
+
+                gridcourse.Rows[i].Cells[7].Value = courses[i].End;
+            }
+        }
+
+        private void FillGridCoursesFinished() // Заполняем грид курсов
+        {
+            gridcourse.Rows.Clear();
+            List<Course> courses = new List<Course>();
+            courses = student.GetFinishedCourses();
+            for (int i = 0; i < courses.Count; i++)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+
+                gridcourse.Rows.Add(row);
+
+                gridcourse.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+
+                gridcourse.Rows[i].Cells[1].Value = courses[i].ID;
+
+                gridcourse.Rows[i].Cells[2].Value = courses[i].nameGroup;
+
+                gridcourse.Rows[i].Cells[3].Value = Types.TypeID(courses[i].TypeID).Name;
+
+                gridcourse.Rows[i].Cells[4].Value = courses[i].Cost;
+
+                gridcourse.Rows[i].Cells[5].Value = Branches.BranchID(courses[i].BranchID).ID + ". " + Branches.BranchID(courses[i].BranchID).Name;
+
+                gridcourse.Rows[i].Cells[6].Value = courses[i].Start;
+
                 gridcourse.Rows[i].Cells[7].Value = courses[i].End;
             }
         }
@@ -504,6 +533,18 @@ namespace Add_Type
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void finished_CheckedChanged(object sender, EventArgs e)
+        {
+            if (finished.Checked == true)    
+            {
+                FillGridCoursesFinished();
+            }
+            if (finished.Checked == false)    
+            {
+                FillGrid();
             }
         }
     }
