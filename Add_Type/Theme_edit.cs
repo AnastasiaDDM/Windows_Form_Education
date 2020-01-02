@@ -32,27 +32,29 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
             indicator = true;
         }
         public Theme_edit(Theme theme, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
             indicator = false;
             idforEdit = theme.ID;
 
             newtheme = theme;
+            this.Text = this.Text + newtheme.ID;
 
             FillForm();
         }
         private void FillForm()
         {
-            this.Text = this.Text + newtheme.ID;
             namet.Text = newtheme.Tema;
             homeworkt.Text = newtheme.Homework;
             if(newtheme.Deadline != null)
             {
-                deadlinet.Value = Convert.ToDateTime(newtheme.Deadline);
+                deadlinecountt.Value = Convert.ToInt32(newtheme.Deadline);
             }
             else
             {
@@ -72,7 +74,7 @@ namespace Add_Type
                 {
                     newtheme.Tema = namet.Text;
                     newtheme.Homework = homeworkt.Text;
-                    newtheme.Deadline = deadlinet.Value;
+                    newtheme.Deadline = Convert.ToInt32(deadlinecountt.Value);
                     string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
                     newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
 
@@ -87,7 +89,7 @@ namespace Add_Type
                 {
                     newtheme.Tema = namet.Text;
                     newtheme.Homework = homeworkt.Text;
-                    newtheme.Deadline = deadlinet.Value;
+                    newtheme.Deadline = Convert.ToInt32(deadlinecountt.Value);
                     string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
                     newtheme.TeacherID = Workers.WorkerID(Convert.ToInt32(teachID[0])).ID;
 

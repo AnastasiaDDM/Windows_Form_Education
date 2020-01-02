@@ -19,14 +19,19 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiof.Select(); // Установка курсора
+
             indicator = true;
         }
         public Parent_edit(Parent parent, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiof.Select(); // Установка курсора
+
             indicator = false;
 
+            this.Text = this.Text + parent.ID;
             FillForm(parent);
         }
         public Parent_edit()
@@ -37,7 +42,6 @@ namespace Add_Type
 
         private void FillForm(Parent s)
         {
-            this.Text = this.Text + s.ID;
             idforEdit = s.ID;
             fiof.Text = s.FIO;
             phonef.Text = s.Phone;

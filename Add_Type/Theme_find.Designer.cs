@@ -55,12 +55,14 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.add = new System.Windows.Forms.Button();
+            this.datef = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.datef);
             this.groupBox1.Controls.Add(this.teacherf);
             this.groupBox1.Controls.Add(this.bteach);
             this.groupBox1.Controls.Add(this.label1);
@@ -116,7 +118,7 @@
             // 
             // dateto
             // 
-            this.dateto.Location = new System.Drawing.Point(275, 16);
+            this.dateto.Location = new System.Drawing.Point(311, 19);
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(165, 22);
             this.dateto.TabIndex = 47;
@@ -132,7 +134,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(245, 18);
+            this.label13.Location = new System.Drawing.Point(281, 21);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(28, 17);
             this.label13.TabIndex = 45;
@@ -149,14 +151,14 @@
             // 
             // datefrom
             // 
-            this.datefrom.Location = new System.Drawing.Point(67, 17);
+            this.datefrom.Location = new System.Drawing.Point(103, 20);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(172, 22);
             this.datefrom.TabIndex = 46;
             // 
             // coursef
             // 
-            this.coursef.Location = new System.Drawing.Point(491, 15);
+            this.coursef.Location = new System.Drawing.Point(557, 18);
             this.coursef.Multiline = true;
             this.coursef.Name = "coursef";
             this.coursef.ReadOnly = true;
@@ -165,7 +167,7 @@
             // 
             // bcour
             // 
-            this.bcour.Location = new System.Drawing.Point(653, 14);
+            this.bcour.Location = new System.Drawing.Point(719, 17);
             this.bcour.Name = "bcour";
             this.bcour.Size = new System.Drawing.Size(23, 23);
             this.bcour.TabIndex = 43;
@@ -176,7 +178,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 18);
+            this.label12.Location = new System.Drawing.Point(42, 21);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
             this.label12.TabIndex = 44;
@@ -185,7 +187,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(446, 17);
+            this.label9.Location = new System.Drawing.Point(512, 20);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 17);
             this.label9.TabIndex = 41;
@@ -242,12 +244,13 @@
             // deldatef
             // 
             this.deldatef.AutoSize = true;
-            this.deldatef.Location = new System.Drawing.Point(687, 5);
+            this.deldatef.Location = new System.Drawing.Point(768, 3);
             this.deldatef.Name = "deldatef";
-            this.deldatef.Size = new System.Drawing.Size(251, 21);
+            this.deldatef.Size = new System.Drawing.Size(170, 21);
             this.deldatef.TabIndex = 10;
-            this.deldatef.Text = "Показывать только неудаленные";
+            this.deldatef.Text = "Только неудаленные";
             this.deldatef.UseVisualStyleBackColor = true;
+            this.deldatef.CheckedChanged += new System.EventHandler(this.deldatef_CheckedChanged);
             // 
             // D
             // 
@@ -336,6 +339,16 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(10, 21);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 51;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
+            // 
             // Theme_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -390,5 +403,6 @@
         private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.Button bteach;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox datef;
     }
 }

@@ -66,6 +66,7 @@
             this.deldatef = new System.Windows.Forms.CheckBox();
             this.D = new System.Windows.Forms.DataGridView();
             this.add = new System.Windows.Forms.Button();
+            this.datef = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
@@ -135,6 +136,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.datef);
             this.groupBox1.Controls.Add(this.costto);
             this.groupBox1.Controls.Add(this.btime);
             this.groupBox1.Controls.Add(this.timef);
@@ -173,10 +175,10 @@
             // 
             // costto
             // 
-            this.costto.Location = new System.Drawing.Point(464, 14);
+            this.costto.Location = new System.Drawing.Point(447, 14);
             this.costto.Mask = "00000";
             this.costto.Name = "costto";
-            this.costto.Size = new System.Drawing.Size(71, 22);
+            this.costto.Size = new System.Drawing.Size(67, 22);
             this.costto.TabIndex = 62;
             this.costto.ValidatingType = typeof(int);
             // 
@@ -232,7 +234,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(437, 17);
+            this.label3.Location = new System.Drawing.Point(417, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 17);
             this.label3.TabIndex = 56;
@@ -311,7 +313,7 @@
             this.costfrom.Location = new System.Drawing.Point(354, 13);
             this.costfrom.Mask = "00000";
             this.costfrom.Name = "costfrom";
-            this.costfrom.Size = new System.Drawing.Size(71, 22);
+            this.costfrom.Size = new System.Drawing.Size(57, 22);
             this.costfrom.TabIndex = 46;
             this.costfrom.ValidatingType = typeof(int);
             // 
@@ -326,7 +328,7 @@
             // 
             // dateto
             // 
-            this.dateto.Location = new System.Drawing.Point(747, 13);
+            this.dateto.Location = new System.Drawing.Point(763, 13);
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(147, 22);
             this.dateto.TabIndex = 41;
@@ -344,7 +346,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(722, 17);
+            this.label13.Location = new System.Drawing.Point(738, 17);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(28, 17);
             this.label13.TabIndex = 39;
@@ -362,7 +364,7 @@
             // 
             // datefrom
             // 
-            this.datefrom.Location = new System.Drawing.Point(576, 13);
+            this.datefrom.Location = new System.Drawing.Point(592, 13);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(145, 22);
             this.datefrom.TabIndex = 40;
@@ -370,7 +372,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(549, 13);
+            this.label12.Location = new System.Drawing.Point(565, 13);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(30, 17);
             this.label12.TabIndex = 38;
@@ -466,6 +468,16 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(541, 14);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 63;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
+            // 
             // Pay_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -531,5 +543,6 @@
         private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox costto;
+        private System.Windows.Forms.CheckBox datef;
     }
 }

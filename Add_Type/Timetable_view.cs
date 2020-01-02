@@ -32,6 +32,7 @@ namespace Add_Type
             this.KeyPreview = true;
 
             timetable = st;
+            this.Text = this.Text + timetable.ID;
 
             Access();
             FillForm();
@@ -53,7 +54,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + timetable.ID;
             cabinett.Text = timetable.CabinetID + ". " + Cabinets.CabinetID(timetable.CabinetID).Number;
             brancht.Text = Cabinets.CabinetID(timetable.CabinetID).BranchID + ". " + Branches.BranchID(Cabinets.CabinetID(timetable.CabinetID).BranchID).Name;
             courset.Text = timetable.CourseID + ". " + Courses.CourseID(timetable.CourseID).nameGroup;
@@ -310,6 +310,22 @@ namespace Add_Type
                         }
                     }
                 }
+            }
+        }
+
+        private void gridtheme_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            if (e.RowIndex > -1)
+            {
+                int l = e.RowIndex;
+
+                string[] themID = (Convert.ToString(gridtheme.Rows[l].Cells[1].Value)).Split('.');
+                int k = Convert.ToInt32(themID[0]);
+
+                Theme_view f = new Theme_view(Themes.ThemeID(k), timetable);
+                DialogResult result = f.ShowDialog();
+                FillGrid();
             }
         }
     }

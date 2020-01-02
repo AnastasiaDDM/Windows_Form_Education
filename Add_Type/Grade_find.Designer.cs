@@ -60,6 +60,7 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.datef = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.datef);
             this.groupBox1.Controls.Add(this.dateto);
             this.groupBox1.Controls.Add(this.deldatef);
             this.groupBox1.Controls.Add(this.label13);
@@ -100,7 +102,7 @@
             // 
             // dateto
             // 
-            this.dateto.Location = new System.Drawing.Point(506, 12);
+            this.dateto.Location = new System.Drawing.Point(518, 12);
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(165, 22);
             this.dateto.TabIndex = 55;
@@ -118,7 +120,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(479, 14);
+            this.label13.Location = new System.Drawing.Point(491, 14);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(28, 17);
             this.label13.TabIndex = 53;
@@ -136,7 +138,7 @@
             // 
             // datefrom
             // 
-            this.datefrom.Location = new System.Drawing.Point(300, 12);
+            this.datefrom.Location = new System.Drawing.Point(312, 12);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(172, 22);
             this.datefrom.TabIndex = 54;
@@ -154,7 +156,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(235, 13);
+            this.label12.Location = new System.Drawing.Point(247, 13);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
             this.label12.TabIndex = 52;
@@ -218,22 +220,22 @@
             // 
             // max
             // 
-            this.max.Location = new System.Drawing.Point(174, 12);
+            this.max.Location = new System.Drawing.Point(161, 12);
             this.max.Name = "max";
-            this.max.Size = new System.Drawing.Size(57, 22);
+            this.max.Size = new System.Drawing.Size(48, 22);
             this.max.TabIndex = 11;
             // 
             // min
             // 
             this.min.Location = new System.Drawing.Point(80, 11);
             this.min.Name = "min";
-            this.min.Size = new System.Drawing.Size(57, 22);
+            this.min.Size = new System.Drawing.Size(52, 22);
             this.min.TabIndex = 10;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(142, 14);
+            this.label1.Location = new System.Drawing.Point(136, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 17);
             this.label1.TabIndex = 10;
@@ -391,6 +393,16 @@
             this.label4.Text = "* Просмотр и изменение оценок происходит через форму оценивания или просмотра рас" +
     "писания.";
             // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(226, 13);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 58;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
+            // 
             // Grade_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -452,5 +464,6 @@
         private System.Windows.Forms.DateTimePicker datefrom;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox datef;
     }
 }

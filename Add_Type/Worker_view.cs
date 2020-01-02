@@ -32,7 +32,7 @@ namespace Add_Type
 
             Access();
             // Эти проверки организованиы для сокрытия тех данных, которые не нужны для карточек отдельных типов работников
-            if (worker.RoleID == 1 | worker.RoleID == 4 | worker.RoleID == 5)
+            if (Roles.RoleID(worker.RoleID).Name == "Директор" | Roles.RoleID(worker.RoleID).Name == "Директор филиала" | Roles.RoleID(worker.RoleID).Name == "Заместитель директора")
             {
                 timetable.Visible = false;
                 bcon.Visible = false;
@@ -41,7 +41,7 @@ namespace Add_Type
                 this.Size = new Size(580, 220);
                 close.Location = new Point(260, 140); 
             }
-            if (worker.RoleID == 2)
+            if (Roles.RoleID(worker.RoleID).Name == "Менеджер")
             {
                 timetable.Visible = false;
                 payAll.Visible = false;
@@ -49,7 +49,7 @@ namespace Add_Type
                 this.Size = new Size(580, 250);
                 close.Location = new Point(260, 173);
             }
-            if (worker.RoleID == 3)
+            if (Roles.RoleID(worker.RoleID).Name == "Преподаватель")
             {
                 bcon.Visible = false;
                 //Заполнение таблиц
@@ -65,7 +65,7 @@ namespace Add_Type
             //// Просмотр статистики
             //if (Prohibition.Banned("see_one_statistic") == true)
             //{
-            if (Singleton.getPerson().RoleID == 3 & Convert.ToInt32(Singleton.getPerson().ID) != worker.ID)
+            if (Roles.RoleID(Singleton.getPerson().RoleID).Name == "Преподаватель" & Convert.ToInt32(Singleton.getPerson().ID) != worker.ID)
             { // Условие для просмотра работника только своих данных об оплатах
                 Allgrid.Visible = false;
                 this.Size = new Size(580, 250);
@@ -95,7 +95,7 @@ namespace Add_Type
                 passwordt.Visible = true;
             }
 
-            // Заперт на добавление и удаление одиннаковый
+            // Запрет на добавление и удаление одиннаковый
             delBan = Prohibition.Banned("add_del_pay");
             payAll.Visible = delBan;
             editBan = Prohibition.Banned("edit_pay");

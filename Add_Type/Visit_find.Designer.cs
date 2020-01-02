@@ -57,12 +57,14 @@
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
+            this.datef = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.datef);
             this.groupBox1.Controls.Add(this.deldatef);
             this.groupBox1.Controls.Add(this.visitf);
             this.groupBox1.Controls.Add(this.sortf);
@@ -224,7 +226,7 @@
             // 
             // bcour
             // 
-            this.bcour.Location = new System.Drawing.Point(454, 36);
+            this.bcour.Location = new System.Drawing.Point(425, 36);
             this.bcour.Name = "bcour";
             this.bcour.Size = new System.Drawing.Size(23, 23);
             this.bcour.TabIndex = 46;
@@ -238,7 +240,7 @@
             this.coursef.Multiline = true;
             this.coursef.Name = "coursef";
             this.coursef.ReadOnly = true;
-            this.coursef.Size = new System.Drawing.Size(161, 20);
+            this.coursef.Size = new System.Drawing.Size(133, 20);
             this.coursef.TabIndex = 44;
             // 
             // label9
@@ -252,7 +254,7 @@
             // 
             // bstud
             // 
-            this.bstud.Location = new System.Drawing.Point(453, 10);
+            this.bstud.Location = new System.Drawing.Point(425, 12);
             this.bstud.Name = "bstud";
             this.bstud.Size = new System.Drawing.Size(23, 23);
             this.bstud.TabIndex = 41;
@@ -275,7 +277,7 @@
             this.studentf.Multiline = true;
             this.studentf.Name = "studentf";
             this.studentf.ReadOnly = true;
-            this.studentf.Size = new System.Drawing.Size(161, 20);
+            this.studentf.Size = new System.Drawing.Size(133, 22);
             this.studentf.TabIndex = 39;
             // 
             // label2
@@ -364,6 +366,16 @@
             this.pagef.TabIndex = 13;
             this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
             // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(460, 16);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 59;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
+            // 
             // Visit_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -419,5 +431,6 @@
         private System.Windows.Forms.Button prev;
         private System.Windows.Forms.Button next;
         private System.Windows.Forms.ComboBox pagef;
+        private System.Windows.Forms.CheckBox datef;
     }
 }

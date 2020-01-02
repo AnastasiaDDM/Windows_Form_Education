@@ -28,6 +28,7 @@ namespace Add_Type
             this.KeyPreview = true;
 
             parent = par;
+            this.Text = this.Text + parent.ID;
 
             Access();
             FillForm();
@@ -44,7 +45,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + parent.ID;
             fiot.Text = parent.FIO;
             phonet.Text = parent.Phone;
         }

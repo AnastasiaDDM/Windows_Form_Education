@@ -148,8 +148,20 @@ namespace Add_Type
             }
 
             // Смысловые переменные, отражающие основные параметры поиска
-            DateTime mindate = datefrom.Value;
-            DateTime maxdate = dateto.Value;
+            DateTime mindate;
+            DateTime maxdate;
+            if (datef.Checked == true)
+            {
+                mindate = datefrom.Value;
+                maxdate = dateto.Value;
+            }
+            else
+            {
+                mindate = DateTime.MinValue;
+                maxdate = DateTime.MaxValue;
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
+            }
 
             Visit vis = new Visit();
             if (visitf.SelectedItem != null)
@@ -278,6 +290,7 @@ namespace Add_Type
             this.pagef.SelectedItem = 1;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
+            datef.Checked = false;
             datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
             dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
             visitf.SelectedIndex = 0;
@@ -437,6 +450,20 @@ namespace Add_Type
                 
                 Visit_view f = new Visit_view( Timetables.TimetableID(Convert.ToInt32(timeID[0])), Courses.CourseID(Timetables.TimetableID(Convert.ToInt32(timeID[0])).CourseID) );
                 f.Show();
+            }
+        }
+
+        private void datef_CheckedChanged(object sender, EventArgs e)
+        {
+            if (datef.Checked == true)
+            {
+                datefrom.Enabled = true;
+                dateto.Enabled = true;
+            }
+            else
+            {
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
             }
         }
     }

@@ -18,14 +18,19 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiof.Select(); // Установка курсора
+
             indicator = true;
         }
         public Student_edit(Student  student, bool deldate) // Конструктор для редактирования объекта
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiof.Select(); // Установка курсора
+
             indicator = false;
 
+            this.Text = this.Text + student.ID;
             FillForm(student);
         }
 
@@ -37,7 +42,6 @@ namespace Add_Type
 
         private void FillForm(Student s)
         {
-            this.Text = this.Text + s.ID;
             idforEdit = s.ID;
             fiof.Text = s.FIO;
             phonef.Text = s.Phone;

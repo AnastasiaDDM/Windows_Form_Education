@@ -31,10 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.homeworkt = new System.Windows.Forms.TextBox();
             this.namet = new System.Windows.Forms.TextBox();
-            this.deadlinet = new System.Windows.Forms.DateTimePicker();
             this.save = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.datenull = new System.Windows.Forms.Label();
@@ -42,7 +40,10 @@
             this.teacherf = new System.Windows.Forms.TextBox();
             this.bteach = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.deadlinecountt = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deadlinecountt)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,15 +64,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Домашняя работа";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 233);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 34);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Дата сдачи \r\nдомашней работы";
-            // 
             // homeworkt
             // 
             this.homeworkt.Location = new System.Drawing.Point(149, 101);
@@ -87,13 +79,6 @@
             this.namet.Name = "namet";
             this.namet.Size = new System.Drawing.Size(511, 74);
             this.namet.TabIndex = 7;
-            // 
-            // deadlinet
-            // 
-            this.deadlinet.Location = new System.Drawing.Point(149, 245);
-            this.deadlinet.Name = "deadlinet";
-            this.deadlinet.Size = new System.Drawing.Size(165, 22);
-            this.deadlinet.TabIndex = 8;
             // 
             // save
             // 
@@ -155,27 +140,44 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 233);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(234, 34);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Количество дней \r\nна выполнение домашней работы";
+            // 
+            // deadlinecountt
+            // 
+            this.deadlinecountt.Location = new System.Drawing.Point(264, 245);
+            this.deadlinecountt.Name = "deadlinecountt";
+            this.deadlinecountt.Size = new System.Drawing.Size(120, 22);
+            this.deadlinecountt.TabIndex = 47;
+            // 
             // Theme_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 428);
+            this.Controls.Add(this.deadlinecountt);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.teacherf);
             this.Controls.Add(this.bteach);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.datenull);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
-            this.Controls.Add(this.deadlinet);
             this.Controls.Add(this.namet);
             this.Controls.Add(this.homeworkt);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "Theme_edit";
             this.Text = "Тема №";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Theme_edit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deadlinecountt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,10 +187,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox homeworkt;
         private System.Windows.Forms.TextBox namet;
-        private System.Windows.Forms.DateTimePicker deadlinet;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Label datenull;
@@ -196,5 +196,7 @@
         private System.Windows.Forms.TextBox teacherf;
         private System.Windows.Forms.Button bteach;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.NumericUpDown deadlinecountt;
+        private System.Windows.Forms.Label label5;
     }
 }

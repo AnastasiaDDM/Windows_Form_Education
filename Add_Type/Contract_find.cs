@@ -24,8 +24,8 @@ namespace Add_Type
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Worker chooseManager; // Эта переменная для приема значения из вызываемой(дочерней) формы
-        public Contract  chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
-        public Worker  manager; // Объект "менеджер" для списка договоров этого менеджера
+        public Contract chooseCon; // Эта переменная для пересылке своего значения в вызывающую форму
+        public Worker manager; // Объект "менеджер" для списка договоров этого менеджера
 
         bool editBan; // Перменная для хранения доступа к редактированию
         bool delBan; // Перменная для хранения доступа к удалению
@@ -214,13 +214,26 @@ namespace Add_Type
 
             // Смысловые переменные, отражающие основные параметры поиска
             Contract contract = new Contract();
-            DateTime mindate = datefrom.Value;
-            DateTime maxdate = dateto.Value;
+
+            DateTime mindate;
+            DateTime maxdate;
+            if (datef.Checked == true)
+            {
+                mindate = datefrom.Value;
+                maxdate = dateto.Value;
+            }
+            else
+            {
+                mindate = DateTime.MinValue;
+                maxdate = DateTime.MaxValue;
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
+            }
 
             Branch branch = new Branch();
-            if(branchf.SelectedItem != null)
+            if (branchf.SelectedItem != null)
             {
-                if(branchf.SelectedIndex == 0)
+                if (branchf.SelectedIndex == 0)
                 {
                     branch.ID = 0;
                 }
@@ -242,7 +255,7 @@ namespace Add_Type
                 manag = chooseManager;
                 managerf.Text = manag.ID + ". " + manag.FIO;
             }
-            
+
 
             Student student = new Student();
             if (chooseStudent != null)
@@ -402,6 +415,7 @@ namespace Add_Type
             this.pagef.SelectedItem = 1;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
+            datef.Checked = false;
             datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
             dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
             studentf.Clear();
@@ -515,6 +529,20 @@ namespace Add_Type
             {
                 ascflag = true;
                 ascf.Text = "▲";
+            }
+        }
+
+        private void datef_CheckedChanged(object sender, EventArgs e)
+        {
+            if (datef.Checked == true)
+            {
+                datefrom.Enabled = true;
+                dateto.Enabled = true;
+            }
+            else
+            {
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
             }
         }
     }

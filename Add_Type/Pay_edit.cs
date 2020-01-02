@@ -110,6 +110,8 @@ namespace Add_Type
             this.KeyPreview = true;
             indicator = false;
             pay = p;
+            this.Text = this.Text + pay.ID;
+
             this.indicatorf.SelectedIndex = 0;
             this.typef.SelectedIndex = 0;
 
@@ -191,7 +193,6 @@ namespace Add_Type
             }
             else // Для редактирования
             {
-                this.Text = this.Text + pay.ID;
                 branchf.SelectedItem = pay.BranchID + ". " + Branches.BranchID(pay.BranchID).Name;
                 datef.Value = pay.Date;
                 if (pay.Payment < 0) // Выбор приход это или убыток

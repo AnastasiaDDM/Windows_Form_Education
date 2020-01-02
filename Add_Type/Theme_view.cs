@@ -23,13 +23,31 @@ namespace Add_Type
             idforEdit = theme.ID;
 
             newtheme = theme;
+            this.Text = this.Text + newtheme.ID;
+
+            FillForm();
+        }
+
+        public Theme_view(Theme theme, Timetable timetable)
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+            indicator = false;
+            idforEdit = theme.ID;
+
+            newtheme = theme;
+            this.Text = this.Text + newtheme.ID;
+
+            if (newtheme.Deadline != null)
+            {
+                deadlinedatet.Text = "Предположительная дата \r сдачи дз: " + timetable.Startlesson.AddDays(Convert.ToInt32(newtheme.Deadline)).ToLongDateString().ToString();
+            }
 
             FillForm();
         }
 
         private void FillForm()
         {
-            this.Text = this.Text + newtheme.ID;
             namet.Text = newtheme.Tema;
             homeworkt.Text = newtheme.Homework;
             if (newtheme.Deadline != null)

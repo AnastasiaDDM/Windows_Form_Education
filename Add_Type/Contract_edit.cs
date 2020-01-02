@@ -45,6 +45,8 @@ namespace Add_Type
             idforEdit = contract.ID;
 
             newcontract = contract;
+            this.Text = this.Text + newcontract.ID;
+
             buildDG();
             //FillForm(contract);
             FillForm();
@@ -104,7 +106,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + newcontract.ID;
             datef.Value = newcontract.Date;
             studentt.Text = newcontract.StudentID + ". " + Students.StudentID(newcontract.StudentID).FIO;
             courset.Text = newcontract.CourseID + ". " + Courses.CourseID(newcontract.CourseID).nameGroup;

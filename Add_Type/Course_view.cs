@@ -32,6 +32,7 @@ namespace Add_Type
             this.KeyPreview = true;
 
             course = st;
+            this.Text = this.Text + course.ID;
 
             Access();
             FillForm();
@@ -127,7 +128,6 @@ namespace Add_Type
 
         private void FillForm()
         {   // Заполнение формы известными данными о договоре
-            this.Text = this.Text + course.ID;
             namet.Text = course.nameGroup;
             typet.Text = course.TypeID + ". " + Types.TypeID(course.TypeID).Name;
             brancht.Text = course.BranchID + ". " + Branches.BranchID(course.BranchID).Name;

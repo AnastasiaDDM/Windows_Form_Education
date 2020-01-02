@@ -63,6 +63,7 @@
             this.managerf = new System.Windows.Forms.TextBox();
             this.bstud = new System.Windows.Forms.Button();
             this.add = new System.Windows.Forms.Button();
+            this.datef = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -221,6 +222,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.datef);
             this.groupBox1.Controls.Add(this.costto);
             this.groupBox1.Controls.Add(this.costfrom);
             this.groupBox1.Controls.Add(this.branchf);
@@ -327,15 +329,15 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(786, 23);
+            this.label13.Location = new System.Drawing.Point(817, 24);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 17);
+            this.label13.Size = new System.Drawing.Size(28, 17);
             this.label13.TabIndex = 34;
-            this.label13.Text = "Дата до:";
+            this.label13.Text = "до:";
             // 
             // datefrom
             // 
-            this.datefrom.Location = new System.Drawing.Point(603, 21);
+            this.datefrom.Location = new System.Drawing.Point(639, 21);
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(172, 22);
             this.datefrom.TabIndex = 36;
@@ -345,7 +347,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(538, 22);
+            this.label12.Location = new System.Drawing.Point(574, 22);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
             this.label12.TabIndex = 33;
@@ -427,6 +429,16 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(551, 21);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 49;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
+            // 
             // Contract_find
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -489,5 +501,6 @@
         private System.Windows.Forms.ComboBox branchf;
         private System.Windows.Forms.MaskedTextBox costfrom;
         private System.Windows.Forms.MaskedTextBox costto;
+        private System.Windows.Forms.CheckBox datef;
     }
 }

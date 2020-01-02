@@ -84,6 +84,7 @@
             this.coursef.ReadOnly = true;
             this.coursef.Size = new System.Drawing.Size(251, 23);
             this.coursef.TabIndex = 55;
+            this.coursef.TextChanged += new System.EventHandler(this.coursef_TextChanged);
             // 
             // label9
             // 
@@ -264,10 +265,16 @@
             // 
             this.fixtimef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fixtimef.FormattingEnabled = true;
+            this.fixtimef.Items.AddRange(new object[] {
+            "40 минут",
+            "1 час",
+            "1 час 30 минут",
+            "2 часа"});
             this.fixtimef.Location = new System.Drawing.Point(335, 59);
             this.fixtimef.Name = "fixtimef";
             this.fixtimef.Size = new System.Drawing.Size(119, 24);
             this.fixtimef.TabIndex = 74;
+            this.fixtimef.SelectionChangeCommitted += new System.EventHandler(this.fixtimef_SelectionChangeCommitted);
             // 
             // cabinetf
             // 

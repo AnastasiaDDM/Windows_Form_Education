@@ -212,8 +212,20 @@ namespace Add_Type
             }
 
             // Смысловые переменные, отражающие основные параметры поиска
-            DateTime mindate = datefrom.Value;
-            DateTime maxdate = dateto.Value;
+            DateTime mindate;
+            DateTime maxdate;
+            if (datef.Checked == true)
+            {
+                mindate = datefrom.Value;
+                maxdate = dateto.Value;
+            }
+            else
+            {
+                mindate = DateTime.MinValue;
+                maxdate = DateTime.MaxValue;
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
+            }
 
             Pay pay = new Pay();
 
@@ -461,6 +473,7 @@ namespace Add_Type
             indicatorf.SelectedIndex = 0;
             typef.SelectedIndex = 0;
             branchf.SelectedIndex = 0;
+            datef.Checked = false;
             datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
             dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
             teacherf.Clear();
@@ -536,6 +549,20 @@ namespace Add_Type
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void datef_CheckedChanged(object sender, EventArgs e)
+        {
+            if (datef.Checked == true)
+            {
+                datefrom.Enabled = true;
+                dateto.Enabled = true;
+            }
+            else
+            {
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
             }
         }
     }

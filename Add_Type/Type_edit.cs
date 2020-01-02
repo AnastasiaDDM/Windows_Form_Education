@@ -29,6 +29,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
             indicator = true;
 
             buildDG();
@@ -37,10 +38,13 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
             indicator = false;
             idforEdit = type.ID;
 
             newtype = type;
+            this.Text = this.Text + newtype.ID;
+
             buildDG();
             //FillForm(contract);
             FillForm();
@@ -65,7 +69,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + newtype.ID;
             namet.Text = newtype.Name;
             montht.Text = newtype.Month.ToString();
             lessont.Text = newtype.Lessons.ToString();

@@ -163,7 +163,7 @@ namespace Add_Type
         public List<Timetable> Add(DateTime Endrepeat, string period, Timetable timetable, ref string answer)
         {
             List<Timetable> listtimetable = new List<Timetable>();
-            answer = Сheck(this);
+            answer = Сheck(this); // Здесь происходит проверка лишь одного начального элемента, а не всех.
             if (answer == "Данные корректны!")
             {
                
@@ -260,11 +260,23 @@ namespace Add_Type
 
                 using (SampleContext context = new SampleContext()) // После завершения цикла нужно добавить значения листа в бд
                 {
-                    context.Timetables.AddRange(listtimetable);
-                    context.SaveChanges();
-                    if (listtimetable.Count == 0) // Может быть ситуация, при которой ни один объект не был добавлен в бд, пользователь будет осведомлен
+                    
+                    foreach( var o in listtimetable) // Цикл для проверки каждого добавляемого элемента
                     {
-                         answer = "Ни один элемент расписания не был добавлен";
+                        answer = Сheck(o);
+                        if (answer != "Данные корректны!")
+                        {
+                            break;
+                        }
+                    }
+                    if (answer == "Данные корректны!")
+                    {
+                        context.Timetables.AddRange(listtimetable);
+                        context.SaveChanges();
+                        if (listtimetable.Count == 0) // Может быть ситуация, при которой ни один объект не был добавлен в бд, пользователь будет осведомлен
+                        {
+                            answer = "Ни один элемент расписания не был добавлен";
+                        }
                     }
                 }
             }
@@ -389,7 +401,7 @@ namespace Add_Type
 
             using (SampleContext context = new SampleContext())
             {
-                if (st.ID == 0)       // если мы добавляем новый филиал 
+                if (st.ID == 0)       // если мы добавляем новый элемент 
                 {
                     Timetable v = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == st.CourseID).FirstOrDefault<Timetable>();
                     if (v != null)
@@ -405,11 +417,20 @@ namespace Add_Type
                         List<Course> listcourses = s.GetCourses();
                         foreach (Course co in listcourses)
                         {
-                            Timetable ts = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>();
-                            if (ts != null)
-                            { return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
+                            // Если на этот курс у этого студента есть договор, и он не расторжен ( то есть действует), значит мы должны проверить занятость этого ученика
+                            Contract con = context.Contracts.Where(x => x.CourseID == co.ID & x.StudentID == s.ID & x.Canceldate == null).FirstOrDefault<Contract>();
+                            if(con != null)
+                            {
+                                Timetable ts = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>();
+                                if (ts != null)
+                                { return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
+                            }
                         }
                     }
+
+                    //Проверка даты занятия и дат занятий курса
+                   if(st.Startlesson.Date < Courses.CourseID(st.CourseID).Start.Value.Date | st.Startlesson.Date > Courses.CourseID(st.CourseID).End.Value.Date)
+                    { return "Этот курс не может заниматься " + st.Startlesson.ToLongDateString() + ", потому что эта дата не входит в диапазон дат обучения курса"; }
                 }
             }
             return "Данные корректны!";
@@ -426,7 +447,7 @@ namespace Add_Type
                 { return "Этот преподаватель уже числится за этим занятием"; }
 
                 Worker t = Workers.WorkerID(stpar.TeacherID);
-                if (t.RoleID != 3)
+                if (Roles.RoleID(t.RoleID).Name != "Преподаватель")
                 { return " Вам нужно было выбрать преподавателя (тип 3)"; }
             }
             return "Данные корректны!";

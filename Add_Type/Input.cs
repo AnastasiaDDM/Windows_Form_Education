@@ -17,7 +17,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
-            phonet.Select();
+            phonet.Select(); // Установка курсора
         }
 
         private void Input_KeyDown(object sender, KeyEventArgs e)

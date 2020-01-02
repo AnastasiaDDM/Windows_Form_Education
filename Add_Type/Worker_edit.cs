@@ -33,6 +33,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiot.Select(); // Установка курсора
             indicator = true;
 
             buildDG();
@@ -43,6 +44,7 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiot.Select(); // Установка курсора
             indicator = true;
 
             buildDG();
@@ -62,11 +64,14 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            fiot.Select(); // Установка курсора
             indicator = false;
             idforEdit = worker.ID;
 
             newworker = worker;
-            if( newworker.RoleID != 3)
+            this.Text = this.Text + newworker.ID;
+
+            if ( newworker.RoleID != 3)
             {
                 ratet.Visible = false;
                 lrate.Visible = false;
@@ -106,7 +111,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + newworker.ID;
             fiot.Text = newworker.FIO;
             phonet.Text = newworker.Phone;
             positiont.Text = newworker.Position;

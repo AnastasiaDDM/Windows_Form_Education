@@ -24,6 +24,7 @@ namespace Add_Type
             this.KeyPreview = true;
 
             type = typ;
+            this.Text = this.Text + type.ID;
 
             FillForm();
             //buildDG();
@@ -65,8 +66,6 @@ namespace Add_Type
 
         private void FillForm()
         {   // Заполнение формы известными данными о договоре
-            this.Text = this.Text + type.ID;
-
             namet.Text = type.Name;
             montht.Text = type.Month.ToString();
             lessont.Text = type.Lessons.ToString();

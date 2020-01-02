@@ -23,13 +23,13 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             pay = st;
+            this.Text = this.Text + pay.ID;
+
             FillForm();
         }
 
         private void FillForm()
         {   // Заполнение формы известными данными о договоре
-            this.Text = this.Text + pay.ID;
-
             brancht.Text = pay.BranchID + ". " + Branches.BranchID(pay.BranchID).Name;
             datet.Text = pay.Date.ToString(formattotext);
             paymentt.Text = pay.Payment.ToString();

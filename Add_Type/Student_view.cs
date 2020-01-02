@@ -36,6 +36,7 @@ namespace Add_Type
             this.KeyPreview = true;
 
             student = st;
+            this.Text = this.Text + student.ID;
 
             if (student.getDebt() <= 0) // Условие для доступности кнопки оплаты всего , если задолженность меньше или равана 0, то кнопка блокируется
             {
@@ -190,7 +191,6 @@ namespace Add_Type
 
         private void FillForm()
         {
-            this.Text = this.Text + student.ID;
             fiot.Text = student.FIO;
             debtt.Text = student.getDebt().ToString();
             phonet.Text = student.Phone;

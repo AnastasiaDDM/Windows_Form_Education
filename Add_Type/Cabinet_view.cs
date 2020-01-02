@@ -22,14 +22,15 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            numbert.Select(); // Установка курсора
 
             cabinet = st;
+            this.Text = this.Text + cabinet.ID;
 
             FillForm();
         }
         private void FillForm()
         {   // Заполнение формы известными данными о филиале
-            this.Text = this.Text + cabinet.ID;
             numbert.Text = cabinet.Number;
             capacityt.Text = cabinet.Capacity.ToString();
             brancht.Text = cabinet.BranchID + ". " + Branches.BranchID(cabinet.BranchID).Name;

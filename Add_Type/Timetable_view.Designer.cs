@@ -270,6 +270,7 @@
             this.gridtheme.Size = new System.Drawing.Size(470, 144);
             this.gridtheme.TabIndex = 83;
             this.gridtheme.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridtheme_CellClick);
+            this.gridtheme.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridtheme_CellDoubleClick);
             // 
             // Timetable_view
             // 

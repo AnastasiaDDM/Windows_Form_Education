@@ -32,10 +32,11 @@ namespace Add_Type
         // Начальные значения переменных для манипуляций с повторениями
         DateTime Endrepeat = new DateTime();
         string period = "Не повторять";
-        public Timetable_edit(bool indic)
+        public Timetable_edit(bool indic) // Конструктор для добавления
         {
             InitializeComponent();
             this.KeyPreview = true;
+            startt.Select(); // Установка курсора
             indicator = indic;
             buildDG();
             periodf.Enabled = false;
@@ -46,8 +47,11 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            startt.Select(); // Установка курсора
 
             timetable = st;
+            this.Text = this.Text + timetable.ID;
+
             indicator = indic;
             groupBox1.Visible = false; // Нет возможности воспользоваться доп. возможностями ( они только при добавлении )
             listteachers = timetable.GetTeachers();
@@ -147,7 +151,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + timetable.ID;
             cabinetf.SelectedItem = timetable.CabinetID + ". " + Cabinets.CabinetID(timetable.CabinetID).Number;
             branchf.SelectedItem = Cabinets.CabinetID(timetable.CabinetID).BranchID + ". " + Branches.BranchID(Cabinets.CabinetID(timetable.CabinetID).BranchID).Name;
             coursef.Text = timetable.CourseID + ". " + Courses.CourseID(timetable.CourseID).nameGroup;
@@ -336,7 +339,7 @@ namespace Add_Type
 
                                 }
                             }
-                            if (newtimetable != null)
+                            if (newtimetable.ID != 0)
                             {
                                 foreach (var teacher in listteachers)
                                 {
@@ -442,7 +445,7 @@ namespace Add_Type
         {
             if(startt.Text != "  :" & endt.Text != "  :")
             {
-                if (repeatf.Checked == true) // Требуется повторение
+                if (repeatf.Checked == true & periodf.SelectedItem != null) // Требуется повторение
                 {
                     period = periodf.SelectedItem.ToString();
                     string final = finaldatet.Value.ToString(formattotext);
@@ -673,6 +676,87 @@ namespace Add_Type
         private void branchf_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.Show("!Выбор филиала необязателен, но это поможет вам облегчить поиск кабинета", branchf);
+        }
+
+        private void fixtimef_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Regex r = new Regex(@"\b\d{2}:\d{2}\b");
+
+            if (fixtimef.SelectedItem != null & r.IsMatch(startt.Text) == true)
+            {
+                String date = datet.Value.ToString(formattotext);
+                string[] da = date.Split('.');
+
+                string starttime = startt.Text;
+                string[] st = (Convert.ToString(startt.Text)).Split(':');
+
+                // Сбор времени вместе
+                DateTime start = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(st[0]), Convert.ToInt32(st[1]), 00);
+
+
+                DateTime end;
+                if (fixtimef.SelectedItem.ToString() == "40 минут")
+                {
+                    end = start.AddMinutes(40);
+                    if (end.Minute < 10)
+                    {
+                        endt.Text = end.Hour + ":0" + end.Minute;
+                    }
+                    else
+                    {
+                        endt.Text = end.Hour + ":" + end.Minute;
+                    }
+                }
+                if (fixtimef.SelectedItem.ToString() == "1 час")
+                {
+                    end = start.AddHours(1);
+                    if (end.Minute < 10)
+                    {
+                        endt.Text = end.Hour + ":0" + end.Minute;
+                    }
+                    else
+                    {
+                        endt.Text = end.Hour + ":" + end.Minute;
+                    }
+                }
+                if (fixtimef.SelectedItem.ToString() == "1 час 30 минут")
+                {
+                    end = start.AddHours(1);
+                    end = end.AddMinutes(30);
+                    if (end.Minute < 10)
+                    {
+                        endt.Text = end.Hour + ":0" + end.Minute;
+                    }
+                    else
+                    {
+                        endt.Text = end.Hour + ":" + end.Minute;
+                    }
+                }
+                if (fixtimef.SelectedItem.ToString() == "2 часа")
+                {
+                    end = start.AddHours(2);
+                    if(end.Minute < 10)
+                    {
+                        endt.Text = end.Hour + ":0" + end.Minute;
+                    }
+                    else
+                    {
+                        endt.Text = end.Hour + ":" + end.Minute;
+                    }
+                }
+            }
+        }
+
+        private void coursef_TextChanged(object sender, EventArgs e)
+        {
+            if( coursef.Text != null )
+            {
+                if (branchf.SelectedIndex == 0)
+                {
+                    string[] st = (Convert.ToString(coursef.Text)).Split('.');
+                    branchf.SelectedItem = st[0] + ". " + Branches.BranchID(Convert.ToInt32(st[0])).Name;
+                }
+            }
         }
     }
 }

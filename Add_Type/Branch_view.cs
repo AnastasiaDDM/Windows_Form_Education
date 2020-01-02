@@ -34,8 +34,10 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
 
             branch = st;
+            this.Text = this.Text + branch.ID;
 
             Access();
             FillForm();
@@ -217,7 +219,6 @@ namespace Add_Type
         private void FillForm()
         {   // Заполнение формы известными данными о филиале
 
-            this.Text = this.Text + branch.ID;
             namet.Text = branch.Name;
             addresst.Text = branch.Address;
             directort.Text = branch.DirectorBranch + ". " + Workers.WorkerID(branch.DirectorBranch).FIO;

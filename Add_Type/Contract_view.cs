@@ -27,6 +27,7 @@ namespace Add_Type
             this.KeyPreview = true;
 
             contract = st;
+            this.Text = this.Text + contract.ID;
 
             Access();
 
@@ -111,8 +112,6 @@ namespace Add_Type
 
         private void FillForm()
         {   // Заполнение формы известными данными о договоре
-            this.Text = this.Text + contract.ID;
-
             managert.Text = contract.ManagerID + ". " + Workers.WorkerID(contract.ManagerID).FIO;
             studentt.Text = contract.StudentID + ". " + Students.StudentID(contract.StudentID).FIO;
             brancht.Text = contract.BranchID + ". " + Branches.BranchID(contract.BranchID).Name;

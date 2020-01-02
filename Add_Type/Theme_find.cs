@@ -84,8 +84,8 @@ namespace Add_Type
             DataGridViewTextBoxColumn hw = new DataGridViewTextBoxColumn();
             hw.HeaderText = "Домашняя работа";
             DataGridViewTextBoxColumn deadline = new DataGridViewTextBoxColumn();
-            deadline.HeaderText = "Срок сдачи дз";
-            sortf.Items.Add("Срок сдачи дз");
+            deadline.HeaderText = "Кол-во дней на дз";
+            sortf.Items.Add("Кол-во дней на дз");
             DataGridViewTextBoxColumn teach = new DataGridViewTextBoxColumn();
             teach.HeaderText = "Составитель";
 
@@ -143,7 +143,7 @@ namespace Add_Type
                 {
                     sort = "Tema";
                 }
-                if (this.sortf.SelectedItem.ToString() == "Срок сдачи дз")
+                if (this.sortf.SelectedItem.ToString() == "Кол-во дней на дз")
                 {
                     sort = "Deadline";
                 }
@@ -153,8 +153,21 @@ namespace Add_Type
             Theme theme = new Theme();
             theme.Tema = this.namet.Text == "" ? null : this.namet.Text;
 
-            DateTime mindate = datefrom.Value;
-            DateTime maxdate = dateto.Value;
+            DateTime mindate;
+            DateTime maxdate;
+            if (datef.Checked == true)
+            {
+                mindate = datefrom.Value;
+                maxdate = dateto.Value;
+            }
+            else
+            {
+                mindate = DateTime.MinValue;
+                maxdate = DateTime.MaxValue;
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
+            }
+
 
             Course course = new Course();
             if (chooseCourse != null)
@@ -246,6 +259,7 @@ namespace Add_Type
             this.pagef.SelectedItem = 1;
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
+            datef.Checked = false;
             datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
             dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
             coursef.Clear();
@@ -412,6 +426,25 @@ namespace Add_Type
                 ascflag = true;
                 ascf.Text = "▲";
             }
+        }
+
+        private void datef_CheckedChanged(object sender, EventArgs e)
+        {
+            if(datef.Checked == true)
+            {
+                datefrom.Enabled = true;
+                dateto.Enabled = true;
+            }
+            else
+            {
+                datefrom.Enabled = false;
+                dateto.Enabled = false;
+            }
+        }
+
+        private void deldatef_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

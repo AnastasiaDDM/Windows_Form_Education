@@ -37,6 +37,7 @@
             this.homeworkt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.teachert = new System.Windows.Forms.LinkLabel();
+            this.deadlinedatet = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // close
@@ -54,9 +55,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 241);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 34);
+            this.label4.Size = new System.Drawing.Size(109, 51);
             this.label4.TabIndex = 39;
-            this.label4.Text = "Дата сдачи \r\nдом. задания";
+            this.label4.Text = "Кол-во дней \r\nна выполнение\r\nдом. задания";
             // 
             // label3
             // 
@@ -105,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 301);
+            this.label2.Location = new System.Drawing.Point(11, 310);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 17);
             this.label2.TabIndex = 58;
@@ -114,7 +115,7 @@
             // teachert
             // 
             this.teachert.AutoSize = true;
-            this.teachert.Location = new System.Drawing.Point(125, 301);
+            this.teachert.Location = new System.Drawing.Point(124, 310);
             this.teachert.Name = "teachert";
             this.teachert.Size = new System.Drawing.Size(72, 17);
             this.teachert.TabIndex = 59;
@@ -122,11 +123,20 @@
             this.teachert.Text = "linkLabel1";
             this.teachert.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.teachert_LinkClicked);
             // 
+            // deadlinedatet
+            // 
+            this.deadlinedatet.AutoSize = true;
+            this.deadlinedatet.Location = new System.Drawing.Point(233, 241);
+            this.deadlinedatet.Name = "deadlinedatet";
+            this.deadlinedatet.Size = new System.Drawing.Size(0, 17);
+            this.deadlinedatet.TabIndex = 60;
+            // 
             // Theme_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 401);
+            this.Controls.Add(this.deadlinedatet);
             this.Controls.Add(this.teachert);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.namet);
@@ -154,5 +164,6 @@
         private System.Windows.Forms.TextBox homeworkt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel teachert;
+        private System.Windows.Forms.Label deadlinedatet;
     }
 }

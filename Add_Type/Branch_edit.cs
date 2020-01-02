@@ -47,6 +47,7 @@ namespace Add_Type
             idforEdit = branch.ID;
 
             newbranch = branch;
+            this.Text = this.Text + newbranch.ID;
             Access();
             buildDG();
             //FillForm(contract);
@@ -93,7 +94,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + newbranch.ID;
             namet.Text = newbranch.Name;
             addresst.Text = newbranch.Address;
             directorf.SelectedItem = newbranch.DirectorBranch + ". " + Workers.WorkerID(newbranch.DirectorBranch).FIO;

@@ -39,6 +39,8 @@ namespace Add_Type
             idforEdit = cabinet.ID;
 
             newcabinet = cabinet;
+            this.Text = this.Text + newcabinet.ID;
+
             buildDG();
             //FillForm(contract);
             FillForm();
@@ -64,7 +66,6 @@ namespace Add_Type
         }
         private void FillForm()
         {
-            this.Text = this.Text + newcabinet.ID;
             numbert.Text = newcabinet.Number;
             capacityf.Text = newcabinet.Capacity.ToString();
             branchf.SelectedItem = newcabinet.BranchID + ". " + Branches.BranchID(newcabinet.BranchID).Name;

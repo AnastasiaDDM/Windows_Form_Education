@@ -30,6 +30,8 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
+
             indicator = true;
 
             buildDG();
@@ -38,8 +40,11 @@ namespace Add_Type
         {
             InitializeComponent();
             this.KeyPreview = true;
+            namet.Select(); // Установка курсора
+
             indicator = false;
             idforEdit = cour.ID;
+            this.Text = this.Text + cour.ID;
             //        newcourse = cour;
             buildDG();
             FillForm(cour);
@@ -84,13 +89,13 @@ namespace Add_Type
         }
         private void FillForm(Course s)
         {
-            this.Text = this.Text + s.ID;
             typef.SelectedItem = s.TypeID + ". " + Types.TypeID(s.TypeID).Name; ;
             namet.Text = s.nameGroup;
             costt.Text = s.Cost.ToString();
             branchf.SelectedItem = s.BranchID + ". " + Branches.BranchID(s.BranchID).Name;
             datefrom.Value = Convert.ToDateTime(s.Start);
             dateto.Value = Convert.ToDateTime(s.End);
+            countmonth.Text = Types.TypeID(s.TypeID).Month.ToString();
         }
 
         private void save_Click(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace Add_Type
         public int ID { get; set; }
         public string Tema { get; set; }
         public string Homework { get; set; }
-        public Nullable<System.DateTime> Deadline { get; set; }
+        public Nullable<int> Deadline { get; set; }
         public Nullable<System.DateTime> Deldate { get; set; }
         public Nullable<System.DateTime> Editdate { get; set; }
 
