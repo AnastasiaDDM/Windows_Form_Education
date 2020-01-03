@@ -17,7 +17,6 @@ namespace Add_Type
         Boolean deldate = true; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
-        //        bool ascflag = true;
         int page = 1;
         int count = 100;
         Branch newbranch = new Branch(); // Глобальная перменная этой формы
@@ -50,7 +49,6 @@ namespace Add_Type
             this.Text = this.Text + newbranch.ID;
             Access();
             buildDG();
-            //FillForm(contract);
             FillForm();
         }
 
@@ -189,7 +187,6 @@ namespace Add_Type
             {
                 this.directorf.SelectedItem = chooseDirector.ID + ". " + chooseDirector.FIO;
             }
-            //FillForm();
         }
 
         private void namet_TextChanged(object sender, EventArgs e)

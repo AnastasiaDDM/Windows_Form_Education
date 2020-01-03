@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.D = new System.Windows.Forms.DataGridView();
@@ -107,14 +107,14 @@
             this.friday,
             this.satyrday,
             this.sunday});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.D.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.D.DefaultCellStyle = dataGridViewCellStyle1;
             this.D.Location = new System.Drawing.Point(12, 167);
             this.D.Name = "D";
             this.D.ReadOnly = true;
@@ -226,7 +226,6 @@
             this.cabinetf.Name = "cabinetf";
             this.cabinetf.Size = new System.Drawing.Size(161, 24);
             this.cabinetf.TabIndex = 13;
-            this.cabinetf.SelectionChangeCommitted += new System.EventHandler(this.cabinetf_SelectionChangeCommitted);
             // 
             // branchf
             // 
@@ -411,19 +410,19 @@
             this.themes,
             this.visits});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 52);
             // 
             // themes
             // 
             this.themes.Name = "themes";
-            this.themes.Size = new System.Drawing.Size(175, 24);
+            this.themes.Size = new System.Drawing.Size(165, 24);
             this.themes.Text = "Темы";
             this.themes.Click += new System.EventHandler(this.themes_Click);
             // 
             // visits
             // 
             this.visits.Name = "visits";
-            this.visits.Size = new System.Drawing.Size(175, 24);
+            this.visits.Size = new System.Drawing.Size(165, 24);
             this.visits.Text = "Присутствие";
             this.visits.Click += new System.EventHandler(this.visits_Click);
             // 

@@ -387,7 +387,6 @@ namespace Add_Type
                     D.Rows[i].Cells[5].Value = "Удалить";
                 }
             }
-
         }
 
         private void reset_Click(object sender, EventArgs e)

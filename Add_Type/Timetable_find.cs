@@ -15,8 +15,6 @@ namespace Add_Type
         Boolean deldate = true; // true - неудален false - все!!!
         int count = 20;
         int page = 1;
-        //String sort = "ID";
-        //String asсdesс = "asc";
         int pages;
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
@@ -181,7 +179,6 @@ namespace Add_Type
                 cabinetf.SelectedItem = cab.ID + ". " + cab.Number;
             }
 
-
             if (cabinetf.SelectedItem != null)
             {
                 if (cabinetf.SelectedIndex == 0)
@@ -263,7 +260,6 @@ namespace Add_Type
             int j = 0; //Переменная для отображения расписания занятий на каждый день с первой ячейки!
             for (int i = 0; i < timetables.Count; i++)
             {
-
                 DataGridViewRow row = new DataGridViewRow();
                 D.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 D.RowHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -278,17 +274,12 @@ namespace Add_Type
                     if (timetables[i].Startlesson.DayOfWeek == timetables[i - 1].Startlesson.DayOfWeek)
                     {
                         D.Rows.Add(row);
-                        //j++;
                     }
                     else
                     {
                         j = 0;
                     }
                 }
-
-                //D.Rows.Add(row);
-                //D.Rows[i].Height = 50;
-
 
                 // Понедельник
                 if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Monday)
@@ -301,8 +292,6 @@ namespace Add_Type
                 // Вторник
                 if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Tuesday)
                 {
-
-                    //                   D.Columns[1].HeaderText = "Вторник" + /*"\r" + */" \n " + timetables[i].Startlesson.ToString(formattotext);
                     D.Rows[j].Cells[1].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
                         + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
                     j++;
@@ -311,7 +300,6 @@ namespace Add_Type
                 // Среда
                 if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Wednesday)
                 {
-
                     D.Rows[j].Cells[2].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + timetables[i].Startlesson.ToString(formathour) + " - "
                         + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
                     j++;
@@ -320,7 +308,6 @@ namespace Add_Type
                 // Четверг
                 if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Thursday)
                 {
-
                     D.Rows[j].Cells[3].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
                         + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
                     j++;
@@ -350,131 +337,6 @@ namespace Add_Type
                         + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
                     j++;
                 }
-
-
-
-
-                ////////Понедельник
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Monday)
-                ////////{
-                ////////    j = 0;
-                ////////    D.Columns[0].HeaderText = "Понедельник" + "\r  " + timetables[i].Startlesson.ToString(formattotext);
-                ////////    D.Rows[i].Cells[0].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                ////////}
-
-                ////////Вторник
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Tuesday)
-                ////////{
-                ////////    j++;
-                ////////    D.Columns[1].HeaderText = "Вторник" + /*"\r" + */" \n " + timetables[i].Startlesson.ToString(formattotext);
-                ////////    D.Rows[i].Cells[1].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                ////////}
-
-                ////////Среда
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Wednesday)
-                ////////{
-                ////////    j++;
-                ////////    D.Rows[i].Cells[2].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                ////////}
-
-                ////////Четверг
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Thursday)
-                ////////{
-                ////////    j++;
-                ////////    D.Rows[i].Cells[3].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                ////////}
-
-                ////////Пятница
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Friday)
-                ////////{
-                ////////    j++;
-                ////////    D.Rows[i].Cells[4].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                ////////}
-
-                ////////Суббота
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Saturday)
-                ////////{
-                ////////    j++;
-                ////////    D.Rows[i].Cells[5].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-
-                ////////}
-
-                ////////Воскресенье
-                ////////if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Sunday)
-                ////////{
-                ////////    j++;
-                ////////    D.Rows[i].Cells[6].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                ////////        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                ////////}
-
-                //////                j = 0;
-                //////                D.Rows.Add(row);
-                //////                //D.Rows[i].Height = 50;
-
-                //////                    // Понедельник
-                //////                    if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Monday)
-                //////                {
-                //////                    j = 0;
-                ////////                    D.Columns[0].HeaderText = "Понедельник" + "\r  " + timetables[i].Startlesson.ToString(formattotext);
-                //////                    D.Rows[j].Cells[0].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                //////                }
-
-                //////                // Вторник
-                //////                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Tuesday)
-                //////                {
-                //////                    j++;
-                ////// //                   D.Columns[1].HeaderText = "Вторник" + /*"\r" + */" \n " + timetables[i].Startlesson.ToString(formattotext);
-                //////                    D.Rows[j].Cells[1].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                //////                }
-
-                //////                // Среда
-                //////                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Wednesday)
-                //////                {
-                //////                    j++;
-                //////                    D.Rows[j].Cells[2].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                //////                }
-
-                //////                // Четверг
-                //////                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Thursday)
-                //////                {
-                //////                    j++;
-                //////                    D.Rows[j].Cells[3].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                //////                }
-
-                //////                // Пятница
-                //////                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Friday)
-                //////                {
-                //////                    j++;
-                //////                    D.Rows[j].Cells[4].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                //////                }
-
-                //////                // Суббота
-                //////                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Saturday)
-                //////                {
-                //////                    j++;
-                //////                    D.Rows[j].Cells[5].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-
-                //////                }
-
-                //////                // Воскресенье
-                //////                if (timetables[i].Startlesson.DayOfWeek == DayOfWeek.Sunday)
-                //////                {
-                //////                    j++;
-                //////                    D.Rows[j].Cells[6].Value = timetables[i].ID + ". " + Courses.CourseID(timetables[i].CourseID).nameGroup + "\r  " + "  " + timetables[i].Startlesson.ToString(formathour) + " - "
-                //////                        + timetables[i].Endlesson.ToString(formathour) + "  " + Cabinets.CabinetID(timetables[i].CabinetID).Number;
-                //////                }
             }
         }
 
@@ -533,8 +395,6 @@ namespace Add_Type
                 this.branchf.SelectedIndex = 0;
                 this.cabinetf.SelectedIndex = 0;
                 datef.Value = DateTime.Now;
-                //teacherf.Clear();
-                //chooseTeacher = null;
                 studentf.Clear();
                 chooseStudent = null;
                 coursef.Clear();
@@ -563,30 +423,12 @@ namespace Add_Type
             {
                 MarkandThemes f = new MarkandThemes(chooseTeacher, chooseCourse, chooseStudent, this.branchf.SelectedIndex); // Передаем 
                 DialogResult result = f.ShowDialog();
-                //          chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
                 FillGrid();
             }
             else
             {
                 MessageBox.Show("Для начала вам нужно выбрать какой-либо фильтр из Поиска.");
             }
-        }
-
-        private void cabinetf_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            //if (cabinetf.SelectedItem != null)
-            //{
-            //    if (cabinetf.SelectedIndex == 0)
-            //    {
-            //    }
-            //    else
-            //    {
-            //        string[] cabID = (Convert.ToString(cabinetf.SelectedItem)).Split('.');
-            //        Cabinet cab = Cabinets.CabinetID(Convert.ToInt32(cabID[0]));
-            //        branchf.SelectedItem = cab.ID + ". " + Branches.BranchID(Convert.ToInt32(cab.ID)).Name;
-            //        //cabinetf.SelectedItem = cab.ID + ". " + cab.Number;
-            //    }
-            //}
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -654,20 +496,20 @@ namespace Add_Type
         private void D_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             //Нажатие правой кнопки мыши по ячейке расписания
-            // Ignore if a column or row header is clicked
+            // Игнорируются строки заголовка
             if (e.RowIndex != -1 && e.ColumnIndex != -1)
             {
                 if (e.Button == MouseButtons.Right)
                 {
                     clickedCell = (sender as DataGridView).Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                    // Here you can do whatever you want with the cell
-                    this.D.CurrentCell = clickedCell;  // Select the clicked cell, for instance
+                    // Присваиваем текущей ячейке значение выбраннной ячейки
+                    this.D.CurrentCell = clickedCell; 
 
-                    // Get mouse position relative to the vehicles grid
+                    // Получаем расположение действия(клика кнопкой)
                     var relativeMousePosition = D.PointToClient(Cursor.Position);
 
-                    // Show the context menu
+                    // Отображение контекстного меню
                     this.contextMenuStrip1.Show(D, relativeMousePosition);
                 }
             }

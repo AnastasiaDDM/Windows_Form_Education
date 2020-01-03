@@ -66,9 +66,6 @@ namespace Add_Type
                 // Подписи осей
                 chartRevenue.ChartAreas[0].AxisX.Title = "Филиалы";
                 chartRevenue.ChartAreas[0].AxisY.Title = "Выручка в рублях";
-                ////'' повернуть значения подписи оси X на 90 гр
-                //chartRevenue.ChartAreas[0].AxisX.LabelStyle.Angle = -10;
-
 
                 chartProfit.ChartAreas[0].AxisX.Title = "Филиалы";
                 chartProfit.ChartAreas[0].AxisY.Title = "Прибыль в рублях";
@@ -105,7 +102,7 @@ namespace Add_Type
             {
                 // Вычисляем значение X
                 x[i] = branches[i].Name; // Для всех трех графиков
-                //chart1.Series[0].Label = x[i].ToString(); //подпись значений Y сверху точек диаграммы
+
                 // Вычисляем значение функций в точке X
                 double profit;
                 double revenue;
@@ -140,11 +137,6 @@ namespace Add_Type
                 return false;
             }
             return true;
-        }
-
-        private void Statistic_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void from_ValueChanged(object sender, EventArgs e)

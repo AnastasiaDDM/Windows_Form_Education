@@ -108,19 +108,10 @@ namespace Add_Type
             gridtheme.Columns.Add(hw);
             gridtheme.Columns.Add(teach);
 
-            //if (purpose == "choose")
-            //{
-            //    DataGridViewButtonColumn choose = new DataGridViewButtonColumn();
-            //    choose.HeaderText = "Выбрать";
-            //    gridtheme.Columns.Add(choose);
-            //}
-            //else
-            {
-                DataGridViewButtonColumn remove1 = new DataGridViewButtonColumn();
-                remove.HeaderText = "Удалить?";
-                gridtheme.Columns.Add(remove1);
-                gridtheme.Columns[4].Visible = ThdelBan;
-            }
+            DataGridViewButtonColumn remove1 = new DataGridViewButtonColumn();
+            remove.HeaderText = "Удалить?";
+            gridtheme.Columns.Add(remove1);
+            gridtheme.Columns[4].Visible = ThdelBan;
 
             gridtheme.ReadOnly = true;
         }
@@ -295,7 +286,6 @@ namespace Add_Type
                             if (result == DialogResult.OK)
                             {
                                 // Форма не закрывается
-
                                 string[] themID = (Convert.ToString(gridtheme.Rows[l].Cells[1].Value)).Split('.');
                                 int k = Convert.ToInt32(themID[0]);
 

@@ -28,7 +28,7 @@ namespace Add_Type
         public int RoleID { get; set; } // 1 - это директор, 2 - менеджер, 3 -преподаватель
         public Role Role { get; set; }
 
-        public /*Branch*/ Nullable<int> BranchID { get; set; }
+        public Nullable<int> BranchID { get; set; }
         public string Password { get; set; }
         public Nullable<double> Rate { get; set; }
         public Nullable<System.DateTime> Deldate { get; set; }
@@ -47,7 +47,6 @@ namespace Add_Type
                 {
                     context.Workers.Add(this);
                     context.SaveChanges();
-//                    answer = "Добавление договора прошло успешно";
                 }
                 return answer;
             }
@@ -77,7 +76,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
- //                   answer = "Редактирование договора прошло успешно";
                 }
                 return answer;
             }
@@ -149,23 +147,6 @@ namespace Add_Type
         {
             using (SampleContext db = new SampleContext())
             {
-        //        var pays = db.Pays.Join(db.Contracts, // второй набор
-        //p => p.ContractID, // свойство-селектор объекта из первого набора
-        //c => c.ID, // свойство-селектор объекта из второго набора
-        //(p, c) => new // результат
-        //{
-        //    ID = p.ID,
-        //    ContractID = p.ContractID,
-        //    Date = p.Date,
-        //    BranchID = p.BranchID,
-        //    Payment = p.Payment,
-        //    Purpose = p.Purpose,
-        //    Type = p.Type,
-        //    Deldate = p.Deldate,
-        //    StudentID = c.StudentID
-        //});
-                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
-
                 var paysst = db.Pays.Where(p => p.WorkerID == this.ID & p.TimetableID == timetable.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
                 {
@@ -201,7 +182,6 @@ namespace Add_Type
             TimetableID = w.TimetableID,
             TeacherID = w.TeacherID
         });
-                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
 
                 var c = db.TimetablesTeachers.Where(p => p.TeacherID == this.ID);
                 if (c.Count() == 0)
@@ -213,34 +193,15 @@ namespace Add_Type
                     costsAll = Convert.ToDouble(c.Count() * this.Rate); // Долг равен всей сумме долга(потому что еще не было ни одной оплаты)
                 }
 
-                var paysst = pays.Where(p => p.WorkerID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                var paysst = pays.Where(p => p.WorkerID == this.ID);
                 if (paysst.Count() == 0)
-                {
-                    // То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
-                    // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
-                    // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
-                    ////////var c = db.TimetablesTeachers.Where(p => p.TeacherID == this.ID);
-                    ////////if (c.Count() == 0)
-                    ////////{
-                    ////////    return 0;
-                    ////////}
-                    ////////else
-                    ////////{
-                    ////////    return costsAll = Convert.ToDouble(c.Count()* this.Rate); // Долг равен всей сумме долга(потому что еще не было ни одной оплаты)
-                    ////////}
+                {                  
                     return costsAll;
                 }
                 else
                 {
                     var paysAll = db.Pays.Where(p => p.WorkerID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                     double sumPays = (paysAll.Sum(p => p.Payment));
-                    //////var query2 = paysst.GroupBy(s => new { s.WorkerID, s.Payment}, (key, group) => new
-                    //////{
-                    //////    WorkerID = key.WorkerID,
-                    //////    Payment = key.Payment
-                    //////});
-                    ////////    costsAll = Convert.ToDouble(c.Count() * this.Rate);
-                    //////double sumPays = (query2.Sum(p => p.Payment));
                     return costsAll + sumPays;
                 }
             }
@@ -259,26 +220,12 @@ namespace Add_Type
             }
         }
 
-        //public static List<Worker> GetWo(SampleContext context)
-        //{
-        //    //      var context = new SampleContext();
-
-        //    var workers = context.Workers.ToList();
-        //    return workers;
-        //}
-
-
         //////////////////// ОДИН БОЛЬШОЙ ПОИСК !!! Если не введены никакие параметры, функция должна возвращать все филиалы //////////////////
         public static List<Worker> FindAll(Boolean deldate, Worker worker, Branch branch, String sort, String asсdesс, int page, int count, ref int countrecord) //deldate =false - все и удал и неудал!
         {
             List<Worker> list = new List<Worker>();
             using (SampleContext db = new SampleContext())
             {
-
-                //var query = from w in db.Workers
-                //            join b in db.Branches on w.ID equals  b.DirectorBranch
-                //            select w;
-
                 var query = from w in db.Workers
                             select w;
 
@@ -318,20 +265,6 @@ namespace Add_Type
                     query = Utilit.OrderByDynamic(query, sort, asсdesс);
                 }
 
-
-                //    int countrecord = 0;
-
-                //List<int> stid = new List<int>();
-                //foreach (var p in query)
-                //{
-                //    if (stid.Find(x => x == p.ID) == 0)
-                //    {
-                //        stid.Add(p.ID);
-                //        ++countrecord;
-                //    }
-                //}
-
-                // Я перепроверила все варианты - это должно работать правильно!
                 countrecord = query.GroupBy(u => u.ID).Count();
 
                 query = query.Skip((page - 1) * count).Take(count);

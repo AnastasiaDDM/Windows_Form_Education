@@ -31,7 +31,7 @@ namespace Add_Type
             this.Text = this.Text + worker.ID;
 
             Access();
-            // Эти проверки организованиы для сокрытия тех данных, которые не нужны для карточек отдельных типов работников
+            // Эти проверки организованы для сокрытия тех данных, которые не нужны для карточек отдельных типов работников
             if (Roles.RoleID(worker.RoleID).Name == "Директор" | Roles.RoleID(worker.RoleID).Name == "Директор филиала" | Roles.RoleID(worker.RoleID).Name == "Заместитель директора")
             {
                 timetable.Visible = false;
@@ -56,15 +56,11 @@ namespace Add_Type
                 buildDG();
                 FillGrid();
             }
-
             FillForm();
         }
 
         private void Access() // Реализация разделения ролей
         {
-            //// Просмотр статистики
-            //if (Prohibition.Banned("see_one_statistic") == true)
-            //{
             if (Roles.RoleID(Singleton.getPerson().RoleID).Name == "Преподаватель" & Convert.ToInt32(Singleton.getPerson().ID) != worker.ID)
             { // Условие для просмотра работника только своих данных об оплатах
                 Allgrid.Visible = false;
@@ -76,23 +72,21 @@ namespace Add_Type
             {
                 Allgrid.Visible = true;
             }
-            //}
-            //else
-            //{
-            //    statistic.Visible = false;
-            //}
 
-
-            if (Singleton.getPerson().ID != worker.ID || Roles.RoleID(Singleton.getPerson().RoleID).Name != "Администратор")
-            { // Условие для просмотра работника только своих данных об оплатах
-
-                labelpassword.Visible = false;
-                passwordt.Visible = false;
+            if (Singleton.getPerson().ID == worker.ID )
+            {   // Условие для просмотра работника только своих данных о пароле
+                labelpassword.Visible = true;
+                passwordt.Visible = true;
+            }
+            else if (Roles.RoleID(Singleton.getPerson().RoleID).Name == "Администратор")
+            {   // Администратор может смотреть пароли всех пользователей
+                labelpassword.Visible = true;
+                passwordt.Visible = true;
             }
             else
             {
-                labelpassword.Visible = true;
-                passwordt.Visible = true;
+                labelpassword.Visible = false;
+                passwordt.Visible = false;
             }
 
             // Запрет на добавление и удаление одиннаковый
@@ -212,21 +206,7 @@ namespace Add_Type
                 payAll.Enabled = false;
             }
 
-
-            typet.Text = Roles.RoleID(worker.RoleID).Name;
-            //if (worker.RoleID == 1)
-            //{
-            //    typet.Text = "1. Директор";
-            //}
-            //if (worker.RoleID == 2)
-            //{
-            //    typet.Text = "2. Менеджер";
-            //}
-            //if (worker.RoleID == 3)
-            //{
-            //    typet.Text = "3. Преподаватель";
-            //}
-
+            typet.Text = Roles.RoleID(worker.RoleID).Name;         
 
             if (worker.BranchID == 0 || worker.BranchID == null)
             {
@@ -245,11 +225,8 @@ namespace Add_Type
             Boolean deldate = true; // true - неудален false - все!!!
             String sort = "ID";
             String asсdesс = "asc";
-            //bool ascflag = true;
             int page = 1;
             int count = 100;
-            //int pageindex;
-            //int pages;
             int countrecord = 0;
 
             string format2 = "HH:mm"; // Формат для отображения даты 
@@ -290,7 +267,7 @@ namespace Add_Type
 
                 gridpay.Rows.Add(row);
 
-                gridpay.Rows[i].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                gridpay.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
                 gridpay.Rows[i].Cells[1].Value = pays[i].ID;
 
@@ -308,7 +285,6 @@ namespace Add_Type
                 gridpay.Rows[i].Cells[7].Value = pays[i].Purpose;
             }
 
-
             // Заполняем оплаченные и неоплаченные занятия
 
             double salary; // Переменная для хранения значения оплаты
@@ -321,20 +297,17 @@ namespace Add_Type
             t = Timetables.FindAll(deldate, branch, cabinet, teacher, course, student, date, sort, asсdesс, page, count, ref countrecord);
             for (int i = 0; i < t.Count; i++)
             {
-            //    foreach (Timetable t in Timetables.FindAll(deldate, branch, cabinet, teacher, course, student, date, sort, asсdesс, page, count, ref countrecord))
-            //{;
-
                 if((salary=teacher.Salary(t[i])) == 0) // Оплаченные занятия 
                 {
                     DataGridViewRow row = new DataGridViewRow();
 
                     gridpaid.Rows.Add(row);
 
-                    gridpaid.Rows[nextpaid].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                    gridpaid.Rows[nextpaid].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
                     gridpaid.Rows[nextpaid].Cells[1].Value = t[i].ID;
 
-                    gridpaid.Rows[nextpaid].Cells[2].Value = /*t[i].ID + ". " + */t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
+                    gridpaid.Rows[nextpaid].Cells[2].Value = t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
 
                     gridpaid.Rows[nextpaid].Cells[3].Value = t[i].CourseID + ". " + Courses.CourseID(t[i].CourseID).nameGroup;
 
@@ -347,11 +320,11 @@ namespace Add_Type
 
                     gridunpaid.Rows.Add(row);
 
-                    gridunpaid.Rows[nextunpaid].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                    gridunpaid.Rows[nextunpaid].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
                     gridunpaid.Rows[nextunpaid].Cells[1].Value = t[i].ID;
 
-                    gridunpaid.Rows[nextunpaid].Cells[2].Value = /*t[i].ID + ". " + */t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
+                    gridunpaid.Rows[nextunpaid].Cells[2].Value = t[i].Startlesson.ToString(format) + " - " + t[i].Endlesson.ToString(format2);
 
                     gridunpaid.Rows[nextunpaid].Cells[3].Value = t[i].CourseID + ". " + Courses.CourseID(t[i].CourseID).nameGroup;
 
@@ -401,8 +374,7 @@ namespace Add_Type
                         }
                     }
                 }
-            }
-            
+            }  
         }
 
         private void gridpay_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -431,7 +403,6 @@ namespace Add_Type
         {
             Contract_find f = new Contract_find(worker); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
-            //chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
             FillGrid();
         }
 

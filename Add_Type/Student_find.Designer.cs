@@ -327,9 +327,7 @@
             this.pagef.Name = "pagef";
             this.pagef.Size = new System.Drawing.Size(77, 24);
             this.pagef.TabIndex = 39;
-            this.pagef.SelectedIndexChanged += new System.EventHandler(this.pagef_SelectedIndexChanged);
             this.pagef.SelectionChangeCommitted += new System.EventHandler(this.pagef_SelectionChangeCommitted);
-            this.pagef.TextChanged += new System.EventHandler(this.pagef_TextChanged);
             // 
             // add
             // 

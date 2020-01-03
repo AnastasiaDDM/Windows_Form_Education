@@ -76,7 +76,6 @@ namespace Add_Type
 
                 maxvalue = contract.Cost - max; // Максимал. сумма  = сумме выплат клиента
             }
-
                 FillForm();
         }
 
@@ -178,14 +177,12 @@ namespace Add_Type
                 {
                     contractf.Text = "№ " + chooseContract.ID;
                     chooseContract = null;
-       //             contract = Contracts.ContractID(chooseContract.ID);
                 }
                 // Это для выбора по конпке поиска преподавателя
                 if (chooseTeacher != null)
                 {
                     teacherf.Text = chooseTeacher.ID + ". " + chooseTeacher.FIO;
                     chooseTeacher = null;
-        //            contract = Wo.ContractID(chooseTeacher.ID);
                 }
                 // Это для выбора по конпке поиска занятия
                 if (chooseTimetable != null)
@@ -218,10 +215,6 @@ namespace Add_Type
                     teacherf.Text = pay.WorkerID.ToString() + ". " + Workers.WorkerID(Convert.ToInt32(pay.WorkerID)).FIO;
                     timetablef.Text = pay.TimetableID + ". " + Timetables.TimetableID(Convert.ToInt32(pay.TimetableID)).Startlesson.ToString(format) + " - " + Timetables.TimetableID(Convert.ToInt32(pay.TimetableID)).Endlesson.ToString(format2);
                 }
-
-
-                    ////             pay.ContractID = pay.ContractID;
-                    //contractt.Text = "№" + pay.ContractID;
             }
         }
 
@@ -386,10 +379,6 @@ namespace Add_Type
                     erpay.SetError(paymentt, "Размер оплаты не может быть больше размера долга") ;
                     paymentt.Text = maxvalue.ToString();
                 }
-                //else
-                //{
-                //    erpay.Clear();
-                //}
             }
         }
 
@@ -418,14 +407,6 @@ namespace Add_Type
                 incomef.Checked = false;
                 incomef.Enabled = false;
             }
-        }
-
-        private void incomef_CheckedChanged(object sender, EventArgs e)
-        {
-            //if(incomef.Checked == true)
-            //{
-
-            //}
         }
 
         private void Pay_edit_KeyDown(object sender, KeyEventArgs e)

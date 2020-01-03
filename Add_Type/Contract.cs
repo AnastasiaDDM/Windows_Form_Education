@@ -9,7 +9,6 @@ using System.Data;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 
-
 //+Contract() DONE
 //+Contract(ID: Int) DONE
 //+ add(): String DONE
@@ -18,7 +17,6 @@ using System.ComponentModel.DataAnnotations;
 //+ Cancellation(): String DONE
 //+ addPay(Payment: Double): String DONE
 //+ getPays() DONE
-
 
 namespace Add_Type
 {
@@ -59,8 +57,6 @@ namespace Add_Type
                     context.Contracts.Add(this);
                     context.StudentsCourses.Add(stpar);
                     context.SaveChanges();
-
- //                   answer = "Добавление договора прошло успешно";
                 }
                 return answer;
             }
@@ -90,7 +86,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-//                    answer = "Редактирование договора прошло успешно";
                 }
                 return answer;
             }
@@ -132,7 +127,6 @@ namespace Add_Type
                     { return "Стоимость обучения не можеть быть меньше, чем плата за месяц."; }
                 }
             }
-
             return "Данные корректны!";      
         }
 
@@ -172,22 +166,10 @@ namespace Add_Type
             StudentID = c.StudentID,
             Cost = c.Cost
         });
-                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
-
+              
                 var paysst = pays.Where(p => p.ContractID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
-                {// То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
-                    // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
-                    // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
-                    //var c = db.Contracts.Where(p => p.StudentID == this.ID);
-                    //if (c.Count() == 0)
-                    //{
-                    //    return 0;
-                    //}
-                    //else
-                    //{
-                    //    return c.Sum(p => p.Cost);
-                    //}
+                {
                     return this.Cost;
                 }
                 else
@@ -219,31 +201,16 @@ namespace Add_Type
             }
         }
 
-        //public static List<Contract> GetCo()      // Просто так, для получения нефильтрованного списка
-        //{
-        //    //      var context = new SampleContext();
-        //    using (SampleContext db = new SampleContext())
-        //    {
-        //        var contracts = db.Contracts.ToList();
-        //        return contracts;
-        //    }
-        //}
-
         //////////////////// ОДИН БОЛЬШОЙ ПОИСК !!! Если не введены никакие параметры, функция должна возвращать все договоры //////////////////
         public static List<Contract> FindAll(Boolean deldate, Student student, Worker manager, Branch branch, Course course, DateTime mindate, DateTime maxdate, int min, int max, String sort, String asсdesс, int page, int count, ref int countrecord) //deldate =false - все и удал и неудал!
         {
             List<Contract> list = new List<Contract>();
             using (SampleContext db = new SampleContext())
             {
-
-                //var query = from b in db.Branches
-                //            join w in db.Workers on b.DirectorBranch equals w.ID
-                //            select new { BID = b.ID, BName = b.Name, BAddress = b.Address, BDeldate = b.Deldate, BEditdate = b.Editdate, BDirectorID = b.DirectorBranch, WID = w.ID };
-
                 var query = from c in db.Contracts
                             select c;
 
-                                // Последовательно просеиваем наш список 
+                // Последовательно просеиваем наш список 
 
                 if (deldate != false) // Убираем удаленных, если нужно
                 {
@@ -294,7 +261,6 @@ namespace Add_Type
                     query = Utilit.OrderByDynamic(query, sort, asсdesс);
                 }
 
-                // Я перепроверила все варианты - это должно работать правильно!
                 countrecord = query.GroupBy(u => u.ID).Count();
 
                 query = query.Skip((page - 1) * count).Take(count);

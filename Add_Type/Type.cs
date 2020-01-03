@@ -9,7 +9,6 @@ using Microsoft.Office.Interop.Word;
 using System.Reflection;
 
 
-
 //+ Type() DONE
 //+Type(ID: Int) DONE
 //+ add(): String DONE
@@ -42,7 +41,6 @@ namespace Add_Type
                 {
                     context.Types.Add(this);
                     context.SaveChanges();
-//                    answer = "Добавление типа курса прошло успешно";
                 }
                 return answer;
             }
@@ -72,7 +70,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-//                    answer = "Редактирование типа курса прошло успешно";
                 }
                 return answer;
             }
@@ -120,12 +117,9 @@ namespace Add_Type
                 var application = new Microsoft.Office.Interop.Word.Application();
                 var document = new Microsoft.Office.Interop.Word.Document();
                 document = application.Documents.Add(Environment.CurrentDirectory + "\\" + this.pathTemplate);
-                //    var d = Education.Application.StartupPath.ToString();
                 var s = Environment.CurrentDirectory;
-                //C: \Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Templates
+
                 application.Visible = true;
-                //          document.SaveAs(@"C:\Users\79016\Desktop\ЛР5.docx");
-                //Process.Start(ref @"d:\Temp\Downloads\some.doc");
 
                 return "Успешно";
             }
@@ -133,8 +127,6 @@ namespace Add_Type
             {
                 return "Возможно для данного типа курса не выбран шаблон, попробуйте для начала выбрать шаблон. Если ошибка не исправилась - обратитесь к администратору.";
             }
-
-
         }
 
         public string createTemplate()
@@ -162,10 +154,6 @@ namespace Add_Type
                 }
             }
             return "Файл успешно скопирован";
-            //else
-            //{
-            //    return "Путь к папке сохранения не найден";
-            //}
 
         }
     }

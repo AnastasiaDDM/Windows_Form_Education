@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.datef = new System.Windows.Forms.CheckBox();
             this.dateto = new System.Windows.Forms.DateTimePicker();
             this.deldatef = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.datef = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min)).BeginInit();
@@ -99,6 +99,16 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
+            // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(226, 13);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 58;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
             // 
             // dateto
             // 
@@ -318,7 +328,6 @@
             this.D.Size = new System.Drawing.Size(1184, 529);
             this.D.TabIndex = 10;
             this.D.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellContentClick);
-            this.D.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D_CellDoubleClick);
             // 
             // label3
             // 
@@ -392,16 +401,6 @@
             this.label4.TabIndex = 51;
             this.label4.Text = "* Просмотр и изменение оценок происходит через форму оценивания или просмотра рас" +
     "писания.";
-            // 
-            // datef
-            // 
-            this.datef.AutoSize = true;
-            this.datef.Location = new System.Drawing.Point(226, 13);
-            this.datef.Name = "datef";
-            this.datef.Size = new System.Drawing.Size(18, 17);
-            this.datef.TabIndex = 58;
-            this.datef.UseVisualStyleBackColor = true;
-            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
             // 
             // Grade_find
             // 

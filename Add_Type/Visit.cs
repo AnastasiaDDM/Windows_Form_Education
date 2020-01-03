@@ -73,18 +73,7 @@ namespace Add_Type
             return answer;
         }
         public string Сheck(Visit st)
-        {
-            //if (st.FIO == "")
-            //{ return "Введите ФИО ученика. Это поле не может быть пустым"; }
-            //if (st.Phone == "")
-            //{ return "Введите номер телефона ученика. Это поле не может быть пустым"; }
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Worker v = new Worker();
-            //    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
+        {          
             return "Данные корректны!";
         }
     }

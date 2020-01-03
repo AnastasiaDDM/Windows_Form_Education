@@ -37,7 +37,6 @@ namespace Add_Type
                 {
                     context.Cabinets.Add(this);
                     context.SaveChanges();
- //                   answer = "Добавление кабинета прошло успешно";
                 }
                 return answer;
             }
@@ -67,7 +66,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
- //                   answer = "Редактирование кабинета прошло успешно";
                 }
                 return answer;
             }
@@ -95,7 +93,6 @@ namespace Add_Type
 
         public List<Timetable> getTimetables(DateTime date, bool deldate, int count, int page, string sort, string ascdesc, ref int countrecord)
         {
-
             Branch branch = new Branch();
             Worker teacher = new Worker();
 
@@ -105,66 +102,18 @@ namespace Add_Type
             List<Timetable> timetables = new List<Timetable>();
             return timetables = Timetables.FindAll(deldate, branch, this, teacher, course, student, date, sort, ascdesc, page, count, ref countrecord);
         }
-
     }
 
     public static class Cabinets
     {
-
         public static Cabinet CabinetID(int id)
         {
             using (SampleContext context = new SampleContext())
             {
                 Cabinet v = context.Cabinets.Where(x => x.ID == id).FirstOrDefault<Cabinet>();
-
                 return v;
             }
         }
-
-
-        //public static List<Cabinet> getFree(ref int countrecord)
-        //{
-        //    List<Cabinet> free = new List<Cabinet>(); // Лист свободных 
-
-        //    using (SampleContext db = new SampleContext())
-        //    {
-        //        var cabinets = db.Cabinets.Join(db.Timetables, // второй набор
-        //p => p.ID, // свойство-селектор объекта из первого набора
-        //c => c.CabinetID, // свойство-селектор объекта из второго набора
-        //(p, c) => new // результат
-        //{
-        //    ID = p.ID,
-        //    Number = p.Number,
-        //    Capacity = p.Capacity,
-        //    BranchID = p.BranchID,
-        //    Editdate = p.Editdate,
-        //    Deldate = p.Deldate,
-        //    Startlesson = c.Startlesson,
-        //    Endlesson = c.Endlesson,
-        //});
-
-        //        var cab = cabinets.Where(p => p.Deldate == null);
-        //        var freecab = cab.Where(p => p.Startlesson > DateTime.Now | p.Endlesson < DateTime.Now).GroupBy(s => new { s.ID, s.Number, s.BranchID, s.Capacity, s.Deldate, s.Editdate }, (key, group) => new
-        //        {
-        //            ID = key.ID,
-        //            Number = key.Number,
-        //            Capacity = key.Capacity,
-        //            BranchID = key.BranchID,
-        //            Editdate = key.Editdate,
-        //            Deldate = key.Deldate
-        //        }).Distinct();
-
-        //        countrecord = freecab.GroupBy(u => u.ID).Count();
-
-        //        foreach (var p in freecab)
-        //        {
-        //            free.Add(new Cabinet { ID = p.ID, Number = p.Number, Capacity = p.Capacity, BranchID = p.BranchID, Deldate = p.Deldate, Editdate = p.Editdate });
-        //        }
-        //    }
-        //    return free;
-        //}
-
-
 
         public static List<Cabinet> getFree(ref int countrecord)
         {
@@ -186,7 +135,7 @@ namespace Add_Type
                                 Editdate = c.Editdate,
                                 Deldate = c.Deldate,
                                 Startlesson = (cab_tim == null ? starttoEmpty : cab_tim.Startlesson),
-                                Endlesson = (cab_tim == null ? endtoEmpty : cab_tim.Endlesson),/* CourseID = (stcour == null ? 0 : stcour.CourseID)*/ };
+                                Endlesson = (cab_tim == null ? endtoEmpty : cab_tim.Endlesson)};
 
                 query = query.Where(p => p.Deldate == null);
 
@@ -199,57 +148,6 @@ namespace Add_Type
                     Editdate = key.Editdate,
                     Deldate = key.Deldate
                 }).Distinct();
-
-
-
-
-
-
-
-        //        //query = query.GroupBy(u => u.SID);
-
-        //        // Последовательно просеиваем наш список
-
-        //        if (deldate != false) // Убираем удаленных, если нужно
-        //        {
-        //            query = query.Where(x => x.Deldate == null);
-        //        }
-
-        //        if (student.FIO != null)
-        //        {
-        //            query = query.Where(x => x.FIO == student.FIO);
-        //        }
-
-
-
-
-
-
-        //        var cabinets = db.Cabinets.Join(db.Timetables, // второй набор
-        //p => p.ID, // свойство-селектор объекта из первого набора
-        //c => c.CabinetID, // свойство-селектор объекта из второго набора
-        //(p, c) => new // результат
-        //{
-        //    ID = p.ID,
-        //    Number = p.Number,
-        //    Capacity = p.Capacity,
-        //    BranchID = p.BranchID,
-        //    Editdate = p.Editdate,
-        //    Deldate = p.Deldate,
-        //    Startlesson = c.Startlesson,
-        //    Endlesson = c.Endlesson,
-        //});
-
-        //        var cab = cabinets.Where(p => p.Deldate == null);
-        //        var freecab = cab.Where(p => p.Startlesson > DateTime.Now | p.Endlesson < DateTime.Now).GroupBy(s => new { s.ID, s.Number, s.BranchID, s.Capacity, s.Deldate, s.Editdate }, (key, group) => new
-        //        {
-        //            ID = key.ID,
-        //            Number = key.Number,
-        //            Capacity = key.Capacity,
-        //            BranchID = key.BranchID,
-        //            Editdate = key.Editdate,
-        //            Deldate = key.Deldate
-        //        }).Distinct();
 
                 countrecord = freecab.GroupBy(u => u.ID).Count();
 
@@ -270,8 +168,7 @@ namespace Add_Type
             {
 
                 var query = from b in db.Branches
-                            join c in db.Cabinets on b.ID equals c.BranchID
-                            //select new { BID = b.ID, BName = b.Name, BAddress = b.Address, BDeldate = b.Deldate, BEditdate = b.Editdate, BDirectorID = b.DirectorBranch, WID = w.ID };
+                            join c in db.Cabinets on b.ID equals c.BranchID       
                             select c;
 
                 // Последовательно просеиваем наш список 
@@ -281,7 +178,6 @@ namespace Add_Type
                     query = query.Where(x => x.Deldate == null);
                 }
 
-    //            if (cabinet.Number != "")
                 if (cabinet.Number != null)
                 {
                     query = query.Where(x => x.Number == cabinet.Number);

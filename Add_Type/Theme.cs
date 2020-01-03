@@ -36,7 +36,6 @@ namespace Add_Type
                 {
                     context.Themes.Add(this);
                     context.SaveChanges();
- //                   answer = "Добавление темы прошло успешно";
                 }
                 return answer;
             }
@@ -66,7 +65,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-  //                  answer = "Редактирование темы прошло успешно";
                 }
                 return answer;
             }
@@ -75,29 +73,8 @@ namespace Add_Type
 
         public string Сheck(Theme st)
         {
-            //if (st.FIO == "")
-            //{ return "Введите ФИО ученика. Это поле не может быть пустым"; }
-            //if (st.Phone == "")
-            //{ return "Введите номер телефона ученика. Это поле не может быть пустым"; }
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Worker v = new Worker();
-            //    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
             return "Данные корректны!";
         }
-
-        //public List<Grade> GetGrades()
-        //{
-        //    using (SampleContext context = new SampleContext())
-        //    {
-        //        var theme = context.Themes.Where(x => x.ID == this.ID).FirstOrDefault<Theme>();
-        //        var v = context.Grades.Where(x => x.ThemeID == this.ID).OrderBy(u => u.ID).ToList<Grade>();
-        //        return v;
-        //    }
-        //}
 
         public List<Grade> GetGrades(Timetable timetable, Course course)
         {
@@ -134,7 +111,6 @@ namespace Add_Type
             }
         }
     }
-
 
     public static class Themes
     {

@@ -38,10 +38,6 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             purpose = answer;
-            //if (button == "bstud") // Блокировка поиска по ученикам
-            //{
-            //    bstud.Enabled = false;
-            //}
             LoadAll();
         }
 
@@ -446,11 +442,6 @@ namespace Add_Type
                 datefrom.Enabled = false;
                 dateto.Enabled = false;
             }
-        }
-
-        private void deldatef_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

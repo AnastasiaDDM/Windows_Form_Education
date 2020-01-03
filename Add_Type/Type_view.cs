@@ -27,41 +27,6 @@ namespace Add_Type
             this.Text = this.Text + type.ID;
 
             FillForm();
-            //buildDG();
-            //FillGrid();
-        }
-        private void buildDG() //Построение грида 
-        {
-            //D.Columns.Clear();
-            //D.Rows.Clear();
-
-            //DataGridViewButtonColumn edit = new DataGridViewButtonColumn();
-            //DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
-            //id.HeaderText = "№";
-            //DataGridViewTextBoxColumn st = new DataGridViewTextBoxColumn();
-            //st.HeaderText = "Дата оплаты";
-            //DataGridViewTextBoxColumn ph = new DataGridViewTextBoxColumn();
-            //ph.HeaderText = "Оплата";
-            //DataGridViewTextBoxColumn br = new DataGridViewTextBoxColumn();
-            //br.HeaderText = "Филиал";
-            //DataGridViewTextBoxColumn type = new DataGridViewTextBoxColumn();
-            //type.HeaderText = "Способ оплаты";
-            //DataGridViewTextBoxColumn pur = new DataGridViewTextBoxColumn();
-            //pur.HeaderText = "Назначение";
-
-            //D.Columns.Add(edit);
-            //D.Columns.Add(id);
-            //D.Columns.Add(st);
-            //D.Columns.Add(ph);
-            //D.Columns.Add(br);
-            //D.Columns.Add(type);
-            //D.Columns.Add(pur);
-
-
-            //DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
-            //remove.HeaderText = "Удалить?";
-            //D.Columns.Add(remove);
-            //D.ReadOnly = true;
         }
 
         private void FillForm()
@@ -94,51 +59,8 @@ namespace Add_Type
 
         private void createtemplate_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    string filename = openFileDialog.FileName;
-            //    //label11.Text = filename;
-            //    ////Сохранение файла в указанную директорию
-            //    //using (FileStream fileStream = new FileStream(@"Ссылка на папку", FileMode.Create, FileAccess.Write))
-            //    //{
-            //    //    byte[] bytes = File.ReadAllBytes(filename);
-            //    //    fileStream.Write(bytes, 0, bytes.Length);
-            //    //}
-            //}
-
-
-
-
-
             string a = type.createTemplate();
             MessageBox.Show(a);
-            //////string newLocation = " ";
-            //////string folderLocation = "..\\..\\..\\Templates";
-            //////var OFD = new System.Windows.Forms.OpenFileDialog();
-            //////if (OFD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //////{
-            //////    string fileToCopy = OFD.FileName;
-            //////    if (System.IO.File.Exists(fileToCopy))
-            //////    {
-            //////        var onlyFileName = System.IO.Path.GetFileName(OFD.FileName);
-            //////        newLocation = folderLocation + "\\" + onlyFileName;
-            //////        System.IO.File.Copy(fileToCopy, newLocation, true);
-
-            //////        // Добавление этого адреса шаблона в  тип курса
-            //////        type.pathTemplate = newLocation;
-            //////        type.Edit();
-            //////        MessageBox.Show("Файл успешно скопирован");
-            //////    }
-            //////    else
-            //////    {
-            //////        MessageBox.Show("Файл не найден");
-            //////    }
-            //////}
-            //////else
-            //////{
-            //////    MessageBox.Show("Путь к папке сохранения не найден");
-            //////}
         }
 
         private void opentemlate_Click(object sender, EventArgs e)

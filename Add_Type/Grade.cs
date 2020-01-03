@@ -75,16 +75,6 @@ namespace Add_Type
 
         public string Сheck(Grade st)
         {
-            //if (st.Mark <=0 || st.Mark >5)
-            //{ return "Это поле не может быть отрицательным. Это поле принимает значения - 1,2,3,4,5."; }
-
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Worker v = new Worker();
-            //    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
             return "Данные корректны!";
         }
     }
@@ -106,18 +96,6 @@ namespace Add_Type
             List<Grade> list = new List<Grade>();
             using (SampleContext db = new SampleContext())
             {
-                //var query = from t in db.Themes
-                //            join g in db.Grades on t.ID equals g.ThemeID
-                //            join s in db.Students on g.StudentID equals s.ID
-                //            join sc in db.StudentsCourses on s.ID equals sc.StudentID
-                //            join tt in db.TimetablesThemes on t.ID equals tt.ThemeID
-                //            join time in db.Timetables on tt.TimetableID equals time.ID
-
-                //            select new { ID = g.ID, StudentID = g.StudentID, ThemeID = g.ThemeID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = time.Startlesson, Course = sc.CourseID, TimetableCourse =time.CourseID };
-
-
-
-
                 var query = from g in db.Grades 
                             join s in db.Students on g.StudentID equals s.ID
                             join sc in db.StudentsCourses on s.ID equals sc.StudentID
@@ -127,29 +105,6 @@ namespace Add_Type
 
                             select new { ID = g.ID, StudentID = g.StudentID, ThemeID = t.ID, TimetablesThemesID = g.TimetablesThemesID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = time.Startlesson, Course = sc.CourseID, TimetableCourse = time.CourseID };
 
-
-
-                // Left jion для соединения таблиц, чтобы высвечивались все оценки 
-                //var query = from g in db.Grades
-                //            join t in db.Themes on g.ThemeID equals t.ID
-                //            into theme_grade_temp
-                //            from theme_grade in theme_grade_temp.DefaultIfEmpty()
-                //            join s in db.Students on g.StudentID equals s.ID
-                //            into st_grade_temp
-                //            from st_grade in st_grade_temp.DefaultIfEmpty()
-                //            join sc in db.StudentsCourses on st_grade.ID equals sc.StudentID
-                //            into st_cour_grade_temp
-                //            from st_cour_grade in st_cour_grade_temp.DefaultIfEmpty()
-                //            join tt in db.TimetablesThemes on theme_grade.ID equals tt.ThemeID
-                //            into time_theme_temp
-                //            from time_theme in time_theme_temp.DefaultIfEmpty()
-
-                //            join time in db.Timetables on time_theme.TimetableID equals time.ID
-                //            into time_time_theme_temp
-                //            from time_time_theme in time_time_theme_temp.DefaultIfEmpty()
-                //            select new { ID = g.ID, StudentID = g.StudentID, ThemeID = g.ThemeID, Mark = g.Mark, Deldate = g.Deldate, Editdate = g.Editdate, Date = (theme_grade == null ? DateTime.MinValue : theme_grade.Date), Course = (st_cour_grade == null ? 0 : st_cour_grade.CourseID), TimetableCourse = (time_time_theme == null ? 0 : time_time_theme.CourseID) };
-
-                //              query = g.GroupBy(x => x.ID);
                 // Последовательно просеиваем наш список 
 
                 if (deldate != false) // Убираем удаленных, если нужно
@@ -211,8 +166,6 @@ namespace Add_Type
                     query2 = Utilit.OrderByDynamic(query2, sort, asсdesс);
                 }
 
-
-                // Я перепроверила все варианты - это должно работать правильно!
                 countrecord = query2.GroupBy(u => u.ID).Count();
 
                 query2 = query2.Skip((page - 1) * count).Take(count); // Формирование страниц и кол-во записей на странице

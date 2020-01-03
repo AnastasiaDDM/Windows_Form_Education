@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 //+ Branch() DONE
 //+ Branch(ID: Int) DONE
-//+ add(): String DONE                                   ПРОБЛЕМА С ПРОВЕРКОЙ!
+//+ add(): String DONE                                   
 //+ del(): String DONE
 //+ edit(): String DONE
 //+ getWorkers():List<Worker> DONE
@@ -28,8 +28,7 @@ namespace Add_Type
         public String Address { get; set; }
         public Nullable<System.DateTime> Deldate { get; set; }
         public Nullable<System.DateTime> Editdate { get; set; }
-        //[Required]
-        public /*Worker*/  int DirectorBranch { get; set; }
+        public int DirectorBranch { get; set; }
 
 
         public ICollection<Contract> Contracts { get; set; }
@@ -37,10 +36,7 @@ namespace Add_Type
 
 
         public Branch()
-        {
-            //Contracts = new List<Contract>();
-            //Cabinets = new List<Cabinet>();
-        }
+        { }
 
         public string Add()
         {
@@ -51,7 +47,6 @@ namespace Add_Type
                 {
                     context.Branches.Add(this);
                     context.SaveChanges();
-  //                  answer = "Добавление филиала прошло успешно";
                 }
                 return answer;
             }
@@ -81,14 +76,13 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
- //                   answer = "Редактирование филиала прошло успешно";
                 }
                 return answer;
             }
             return answer;
         }
 
-        public string Сheck(Branch st)           // Перепроверить проверку с уже существующими !
+        public string Сheck(Branch st)          
         {
             if (st.Name == "")
             { return "Введите название филиала. Это поле не может быть пустым"; }
@@ -108,10 +102,6 @@ namespace Add_Type
                     v = context.Branches.Where(x => x.Address == st.Address).FirstOrDefault<Branch>();
                     if (v != null)
                     { return "На этот адрес уже существует филиал под номером " + v.ID; }
-
-                    //v = context.Branches.Where(x => x.DirectorBranch == st.DirectorBranch).FirstOrDefault<Branch>();
-                    //if (v != null)
-                    //{ return "У этого директора уже существует филиал под номером " + v.ID; }
                 }
                 else
                 {
@@ -165,7 +155,7 @@ namespace Add_Type
         {
             using (SampleContext db = new SampleContext())
             {
-                var paysbr = db.Pays.Where(p => p.BranchID == this.ID & p.Date >= start & p.Date <= end)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                var paysbr = db.Pays.Where(p => p.BranchID == this.ID & p.Date >= start & p.Date <= end);
                 if (paysbr.Count() == 0)
                 {
                     profit = 0;
@@ -175,12 +165,10 @@ namespace Add_Type
                 {
                     revenue = ((paysbr.Where(p => p.ContractID != null).Count() == 0 ? 0 : paysbr.Where(p => p.ContractID != null).Sum(p => p.Payment)));
                     profit = revenue + (paysbr.Where(p => p.WorkerID != null).Count() == 0 ? 0 : (paysbr.Where(p => p.WorkerID != null).Sum(p => p.Payment))); // Сумма, потому что оплаты зп числятся с - (отрицательные). поэтому + на - равно -
-                    //profit = revenue + (paysbr.Where(p => p.WorkerID != null).Sum(p => p.Payment)); // Сумма, потому что оплаты зп числятся с - (отрицательные). поэтому + на - равно -
                 }
                 int v = db.Contracts.Where(x => x.BranchID == this.ID & x.Date >= start & x.Date <= end).OrderBy(u => u.ID).Count();
                 return v;
             }
-
         }
     }
 
@@ -191,7 +179,6 @@ namespace Add_Type
             using (SampleContext context = new SampleContext())
             {
                 Branch v = context.Branches.Where(x => x.ID == id).FirstOrDefault<Branch>();
-
                 return v;
             }
         }
@@ -234,7 +221,6 @@ namespace Add_Type
                     query = Utilit.OrderByDynamic(query, sort, asсdesс);
                 }
 
-                // Я перепроверила все варианты - это должно работать правильно!
                 countrecord = query.GroupBy(u => u.ID).Count();
 
                 query = query.Skip((page - 1) * count).Take(count);

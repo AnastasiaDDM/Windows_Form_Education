@@ -40,10 +40,7 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             purpose = answer;
-            //if (button == "bstud") // Блокировка поиска по ученикам
-            //{
-            //    bstud.Enabled = false;
-            //}
+
             LoadAll();
         }
         private void LoadAll()
@@ -373,74 +370,35 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Обрабатывается событие нажатия на кнопку "Выбрать"
-            if (purpose == "choose")
-            {
-                //if (e.ColumnIndex == 6)
-                //{
-                //    if (e.RowIndex > -1)
-                //    {
-                //        if (D.RowCount - 1 >= e.RowIndex)
-                //        {
-                //            int l = e.RowIndex;
-                //            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                //            chooseTyp = Types.TypeID(k);
-
-                //            this.Close();
-                //        }
-                //    }
-                //}
-            }
             // Обрабатывается событие нажатия на кнопку "Удалить"
-            else
+            if (e.ColumnIndex == 6)
             {
-                if (e.ColumnIndex == 6)
+                if (delBan == true) // Запрета нет
                 {
-                    if (delBan == true) // Запрета нет
+                    if (e.RowIndex > -1)
                     {
-                        if (e.RowIndex > -1)
+                        if (D.RowCount - 1 >= e.RowIndex)
                         {
-                            if (D.RowCount - 1 >= e.RowIndex)
-                            {
-                                int l = e.RowIndex;
-                                const string message = "Вы уверены, что хотите удалить это присутствие?";
-                                const string caption = "Удаление";
-                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить это присутствие?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                                if (result == DialogResult.OK)
-                                {
-                                    // Форма не закрывается
-                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                    D.Rows.Remove(D.Rows[l]);
-                                    Visit o = Visits.VisitID(k);
-                                    String ans = o.Del();
-                                }
-                            }
-                            else
+                            if (result == DialogResult.OK)
                             {
-                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Visit o = Visits.VisitID(k);
+                                String ans = o.Del();
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                         }
                     }
                 }
-                //// Редактирование
-                //if (e.ColumnIndex == 0)
-                //{
-                //    if (editBan == true) // Запрета нет
-                //    {
-                //        if (e.RowIndex > -1)
-                //        {
-                //            if (D.RowCount - 1 >= e.RowIndex)
-                //            {
-                //                int l = e.RowIndex;
-                //                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                //                Visit_edit f = new Type_edit(Types.TypeID(k), false);
-                //                DialogResult result = f.ShowDialog();
-                //                FillGrid();
-                //            }
-                //        }
-                //    }
-                //}
             }
         }
 

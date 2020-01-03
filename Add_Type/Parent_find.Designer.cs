@@ -343,7 +343,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Список ответственных лиц";
-            this.Activated += new System.EventHandler(this.Parent_find_Activated);
             this.Load += new System.EventHandler(this.Parent_find_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

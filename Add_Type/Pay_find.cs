@@ -41,10 +41,6 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             purpose = answer;
-            if (button == "bstud") // Блокировка поиска по ученикам
-            {
- //               bstud.Enabled = false;
-            }
             LoadAll();
         }
 
@@ -366,71 +362,50 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Обрабатывается событие нажатия на кнопку "Выбрать"
-            if (purpose == "choose")
-            {
-                //if (e.ColumnIndex == 7)
-                //{
-                //    if (e.RowIndex > -1)
-                //    {
-                //        if (D.RowCount - 1 >= e.RowIndex)
-                //        {
-                //            int l = e.RowIndex;
-                //            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                //            chooseCon = Contracts.ContractID(k);
-
-                //            this.Close();
-                //        }
-                //    }
-                //}
-            }
             // Обрабатывается событие нажатия на кнопку "Удалить"
-            else
+            if (e.ColumnIndex == 9)
             {
-                if (e.ColumnIndex == 9)
+                if (delBan == true) // Запрета нет
                 {
-                    if (delBan == true) // Запрета нет
+                    if (e.RowIndex > -1)
                     {
-                        if (e.RowIndex > -1)
+                        if (D.RowCount - 1 >= e.RowIndex)
                         {
-                            if (D.RowCount - 1 >= e.RowIndex)
-                            {
-                                int l = e.RowIndex;
-                                const string message = "Вы уверены, что хотите удалить оплату?";
-                                const string caption = "Удаление";
-                                var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            int l = e.RowIndex;
+                            const string message = "Вы уверены, что хотите удалить оплату?";
+                            const string caption = "Удаление";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                                if (result == DialogResult.OK)
-                                {
-                                    // Форма не закрывается
-                                    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                    D.Rows.Remove(D.Rows[l]);
-                                    Pay o = Pays.PayID(k);
-                                    String ans = o.Del();
-                                }
-                            }
-                            else
+                            if (result == DialogResult.OK)
                             {
-                                MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
+                                // Форма не закрывается
+                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                                D.Rows.Remove(D.Rows[l]);
+                                Pay o = Pays.PayID(k);
+                                String ans = o.Del();
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
                         }
                     }
                 }
-                // Редактирование
-                if (e.ColumnIndex == 0)
+            }
+            // Редактирование
+            if (e.ColumnIndex == 0)
+            {
+                if (editBan == true) // Запрета нет
                 {
-                    if (editBan == true) // Запрета нет
+                    if (e.RowIndex > -1)
                     {
-                        if (e.RowIndex > -1)
+                        if (D.RowCount - 1 >= e.RowIndex)
                         {
-                            if (D.RowCount - 1 >= e.RowIndex)
-                            {
-                                int l = e.RowIndex;
-                                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-                                Pay_edit f = new Pay_edit(Pays.PayID(k));
-                                DialogResult result = f.ShowDialog();
-                                FillGrid();
-                            }
+                            int l = e.RowIndex;
+                            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
+                            Pay_edit f = new Pay_edit(Pays.PayID(k));
+                            DialogResult result = f.ShowDialog();
+                            FillGrid();
                         }
                     }
                 }
@@ -438,8 +413,7 @@ namespace Add_Type
         }
 
         private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
+        { 
             // Открытие формы для просмотра данных
             if (e.RowIndex > -1)
             {

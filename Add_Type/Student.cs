@@ -20,8 +20,6 @@ using System.Data.Entity;
 //+ delParent() DONE 
 //+ GetPossibleparents() DONE
 
-
-
 namespace Add_Type
 {
     public class Student
@@ -32,12 +30,8 @@ namespace Add_Type
         public Nullable<System.DateTime> Deldate { get; set; }
         public Nullable<System.DateTime> Editdate { get; set; }
 
-        //public ICollection<Contract> Contracts { get; set; }
-
         public Student()
-        {
-            //Contracts = new List<Contract>();
-        }
+        {    }
 
         public string Add()
         {
@@ -48,7 +42,6 @@ namespace Add_Type
                 {
                     context.Students.Add(this);
                     context.SaveChanges();
-  //                  answer = "Добавление ученика прошло успешно";
                 }
                 return answer;
             }
@@ -78,7 +71,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
- //                   answer = "Редактирование ученика прошло успешно";
                 }
                 return answer;
             }
@@ -112,7 +104,6 @@ namespace Add_Type
             }
             return "Данные корректны!";
         }
-
 
         public List<Contract> GetContracts()
         {
@@ -198,7 +189,6 @@ namespace Add_Type
                     context.StudentsParents.Add(stpar);
                     context.SaveChanges();
                     int IDInsert = stpar.ParentID;
-                    //answer = "Добавление отв.лица к ученику прошло успешно";
 
                     //  Вызов метода поиска возможных родителей
                     possibleparents = Students.StudentID(stpar.StudentID).GetPossibleparents();
@@ -263,9 +253,7 @@ namespace Add_Type
                 foreach (var p in selectedParents)
                 {
                     if (this.GetParents().Find(x => x.ID == p.ID) == null)
-                        //if (listparents.Find(x => x.ID == p.ID) == null)
                     {
-
                         listparents.Add(new Parent { ID = p.ID, Phone = p.Phone, Deldate = p.Deldate, Editdate = p.Editdate, FIO = p.FIO });
 
                         StudentsParents stpar = new StudentsParents();
@@ -282,7 +270,6 @@ namespace Add_Type
 
         public List<Timetable> getTimetables(DateTime date, bool deldate, int count, int page, string sort, string ascdesc, ref int countrecord)
         {
-
             Branch branch = new Branch();
 
             Worker teacher = new Worker();
@@ -313,11 +300,10 @@ namespace Add_Type
             Deldate = p.Deldate,
             StudentID = c.StudentID
         });
-                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
 
                 var paysst = pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
                 if (paysst.Count() == 0)
-                {// То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
+                {   // То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
                     // а это значит, что договор точно существует, а оплат на него нет - то есть задолженность = Cost = c.Cost
                     // Но есть и такой случай, когда у ученика вообще неот договоров - тогда задолженность = 0
                     var c = db.Contracts.Where(p => p.StudentID == this.ID);
@@ -329,11 +315,10 @@ namespace Add_Type
                     {
                         return c.Sum(p => p.Cost);
                     }
-                    //return 0;
                 }
                 else
                 {
-                    double sumPays = (paysst/*.Where(p => p.ContractID == contract.ID)*/.Sum(p => p.Payment));
+                    double sumPays = (paysst.Sum(p => p.Payment));
                     return contract.Cost - sumPays;
                 }
             }
@@ -359,9 +344,8 @@ namespace Add_Type
             Deldate = p.Deldate,
             StudentID = c.StudentID
         });
-                //double sumPays = (pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID)).Count() == 0 ? 0 : pays.Where(p => p.StudentID == this.ID & p.ContractID == contract.ID).Sum(p => p.Payment);
 
-                var paysst = pays.Where(p => p.StudentID == this.ID)/* == null ? 0 : pays.Where(p => p.StudentID == this.ID)*/;
+                var paysst = pays.Where(p => p.StudentID == this.ID);
                 if (paysst.Count() == 0)
                 {
                     // То есть если оплат по договору нет, значит, что и paysst - будет пустым, но переход на договор осуществляется из форма,
@@ -394,7 +378,6 @@ namespace Add_Type
 
     public static class Students
     {
-
         public static Student StudentID(int id)
         {
             using (SampleContext context = new SampleContext())
@@ -407,7 +390,6 @@ namespace Add_Type
 
         public static List<Student> GetSt()
         {
-            //      var context = new SampleContext();
             using (SampleContext context = new SampleContext())
             {
                 var students = context.Students.ToList();
@@ -423,57 +405,6 @@ namespace Add_Type
             using (SampleContext db = new SampleContext())
             {
 
-                //////////////////////////////////////////////// НИКАК НЕ МОГУ СДЕЛАТЬ ЛЕВОЕ СОЕДИНЕНИЕ !!!!!!!!!!!!!!!!! //////////////////////////////////
-
-
-                // Соединение необходимых таблиц
-                //var query = from s in db.Students
-                //            join sp in db.StudentsParents on s.ID equals sp.StudentID
-                //            join p in db.Parents on sp.StudentID equals p.ID
-                //            join c in db.Contracts on s.ID equals c.StudentID
-                //            select new { SID = s.ID, SPhone = s.Phone, SFIO = s.FIO, SDelDate = s.Deldate, PID = p.ID, CID = c.ID };
-
-                //IQueryable<Student> query = from s in db.Students
-                //             join sp in db.StudentsParents
-                //                  on s.ID equals sp.StudentID into studentGroup
-                //             from m in studentGroup.DefaultIfEmpty()
-                //             join c in db.Contracts
-                //                  on m.StudentID equals c.StudentID into contractGroup
-                //             from co in contractGroup.DefaultIfEmpty()
-                //             join p in db.Parents
-                //                  on sp.ParentID equals p.ID into contractGroup
-                //             from co in contractGroup.DefaultIfEmpty()
-                //                            select new { SID = s.ID, SPhone = s.Phone, SFIO = s.FIO, SDelDate = s.Deldate, PID = p.ID, CID = c.ID };
-
-
-
-
-
-                //             IQueryable<Student> v = db.Database.SqlQuery
-                //                 ("select * from Contracts Where Contracts.StudentID =" + "'" + id + "'" + "and Contracts.ManagerID =" + "'" + idm + "'");
-
-                //from s in db.Students
-                //join sp in db.StudentsParents
-                //     on s.ID equals sp.StudentID into studentGroup
-                //from m in studentGroup.DefaultIfEmpty()
-                //join c in db.Contracts
-                //     on m.StudentID equals c.StudentID into contractGroup
-                //from p in contractGroup.DefaultIfEmpty()
-
-
-
-
-                //from s in context.dc_tpatient_bookingd
-                //join bookingm in context.dc_tpatient_bookingm
-                //     on d.bookingid equals bookingm.bookingid into bookingmGroup
-                //from m in bookingmGroup.DefaultIfEmpty()
-                //join patient in dc_tpatient
-                //     on m.prid equals patient.prid into patientGroup
-                //from p in patientGroup.DefaultIfEmpty()
-
-
-
-
                 var query = from s in db.Students
                             join sp in db.StudentsParents on s.ID equals sp.StudentID
                             into std_prnt_temp
@@ -487,11 +418,8 @@ namespace Add_Type
                             join scour in db.StudentsCourses on s.ID equals scour.StudentID
                             into std_cour_temp
                             from stcour in std_cour_temp.DefaultIfEmpty()
-                                //group new { s.ID, s.FIO, s.Phone } by s into percentGroup
-                                //orderby percentGroup.Key
-                            select new { ID = s.ID, Phone = s.Phone, FIO = s.FIO, Deldate = s.Deldate, Editdate = s.Editdate, PID = (prnt == null ? 0 : prnt.ID), CID = (cntr == null ? 0 : cntr.ID), CourseID = (stcour == null ? 0 : stcour.CourseID) };
 
-                //query = query.GroupBy(u => u.SID);
+                            select new { ID = s.ID, Phone = s.Phone, FIO = s.FIO, Deldate = s.Deldate, Editdate = s.Editdate, PID = (prnt == null ? 0 : prnt.ID), CID = (cntr == null ? 0 : cntr.ID), CourseID = (stcour == null ? 0 : stcour.CourseID) };
 
                 // Последовательно просеиваем наш список
 
@@ -536,93 +464,20 @@ namespace Add_Type
                     Editdate = key.Editdate
                 });
 
-                // query2 = query2.Distinct();
-
                 if (sort != null) // Сортировка, если нужно
                 {
-                    //if (askdesk == "desc")
-                    //{
-                    //    query2 = query2.OrderByDescending(u => sort);
-                    //}
-                    //else
-                    //{
-                    //    query2 = query2.OrderBy(u => sort);
-                    //}
                     query2 = Utilit.OrderByDynamic(query2, sort, asсdesс);
                 }
 
-                countrecord = query2.Count();
-
-                //int countrecord = query2.GroupBy(u => u.ID).Count();
-
-                // var querycount = from query Select count(*);
-
-                //// int countrecord = 0;
-                // int countrecord =
-
-                // List<int> stid = new List<int>();
-                // foreach (var p in query)
-                // {
-                // if (stid.Find(x => x == p.SID) == 0)
-                // {
-                // stid.Add(p.SID);
-                // ++countrecord;
-                // }
-                // }
+                countrecord = query2.Count();             
 
                 query2 = query2.Skip((page - 1) * count).Take(count); // Формирование страниц и кол-во записей на странице
 
                 foreach (var p in query2)
                 {
-                    // if (stList.Find(x => x.ID == p.SID) == null)
-                    {
-                        stList.Add(new Student { ID = p.ID, Phone = p.Phone, Deldate = p.Deldate, FIO = p.FIO, Editdate = p.Editdate }); // Добавление ученика в лист, если такого еще нет, это для предохранения от дубликатов
-                    }
+                    stList.Add(new Student { ID = p.ID, Phone = p.Phone, Deldate = p.Deldate, FIO = p.FIO, Editdate = p.Editdate }); // Добавление ученика в лист, если такого еще нет, это для предохранения от дубликатов
                 }
                 return stList;
-
-                ////if (sort != null)  // Сортировка, если нужно
-                ////{
-                ////    if (askdesk == "desk")
-                ////    {
-                ////        query = query.OrderByDescending(u => sort);
-                ////    }
-                ////    else
-                ////    {
-                ////        query = query.OrderBy(u => sort);
-                ////    }
-                ////}
-                ////else { query = query.OrderBy(u => u.SID); }
-
-                ////int countrecord1 = query.Count();
-
-                ////int countrecord = query.GroupBy(u => u.SID).Count();
-
-                //////       var querycount = from query Select count(*);
-
-                ////////       int countrecord = 0;
-                //////       int countrecord =
-
-                //////       List<int> stid = new List<int>();
-                //////       foreach (var p in query)
-                //////       {
-                //////           if (stid.Find(x => x == p.SID) == 0)
-                //////           {
-                //////               stid.Add(p.SID);
-                //////               ++countrecord;
-                //////           }
-                //////       }
-
-                ////query = query.Skip((page - 1) * count).Take(count);  // Формирование страниц и кол-во записей на странице
-
-                ////foreach (var p in query)
-                ////{
-                ////    if (stList.Find(x => x.ID == p.SID) == null)
-                ////    {
-                ////        stList.Add(new Student { ID = p.SID, Phone = p.SPhone, Deldate = p.SDelDate, FIO = p.SFIO }); // Добавление ученика в лист, если такого еще нет, это для предохранения от дубликатов
-                ////    }
-                ////}
-                ////return stList;
             }
         }
     }

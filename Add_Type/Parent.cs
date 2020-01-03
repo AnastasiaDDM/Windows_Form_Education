@@ -35,7 +35,6 @@ namespace Add_Type
                 {
                     context.Parents.Add(this);
                     context.SaveChanges();
- //                   answer = "Добавление ответственного лица прошло успешно";
                 }
                 return answer;
             }
@@ -65,7 +64,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-  //                  answer = "Редактирование ответственного лица прошло успешно";
                 }
                 return answer;
             }
@@ -92,12 +90,7 @@ namespace Add_Type
         {
             List<Student> liststudents = new List<Student>();
             using (SampleContext db = new SampleContext())
-            {
-                //var students = from p in db.Parents
-                //               join sp in db.StudentsParents on p.ID equals sp.ParentID
-                //               join s in db.Students on sp.StudentID equals s.ID
-                //               select new { SID = s.ID, SPhone = s.Phone, SFIO = s.FIO, SDelDate = s.Deldate, PID = p.ID, ParID = sp.ParentID, StID = sp.StudentID };
-
+            { 
                 var students = from p in db.Parents
                                join sp in db.StudentsParents on p.ID equals sp.ParentID
                                join s in db.Students on sp.StudentID equals s.ID
@@ -184,13 +177,6 @@ namespace Add_Type
             using (SampleContext db = new SampleContext())
             {
                 // Соединение необходимых таблиц
-                //var parents = from p in db.Parents
-                //              join sp in db.StudentsParents on p.ID equals sp.ParentID
-                //              join s in db.Students on sp.StudentID equals s.ID
-                //              select new { ID = p.ID, Phone = p.Phone, FIO = p.FIO, Deldate = p.Deldate, Editdate = p.Editdate, SPhone = s.Phone, SFIO = s.FIO, SID = s.ID };
-
-
-
                 var parents = from p in db.Parents
                             join sp in db.StudentsParents on p.ID equals sp.ParentID
                             into std_prnt_temp
@@ -199,8 +185,6 @@ namespace Add_Type
                             into stud_temp
                             from stud in stud_temp.DefaultIfEmpty()
                             select new { ID = p.ID, Phone = p.Phone, FIO = p.FIO, Deldate = p.Deldate, Editdate = p.Editdate, SID = (stud == null ? 0 : stud.ID), SFIO = (stud == null ? "" : stud.FIO), SPhone = (stud == null ? "" : stud.Phone) };
-
-
 
                 // Последовательно просеиваем наш список
 
@@ -248,26 +232,14 @@ namespace Add_Type
                     query2 = Utilit.OrderByDynamic(query2, sort, asсdesс);
                 }
 
-
                 countrecord = query2.GroupBy(u => u.ID).Count();
 
                 query2 = query2.Skip((page - 1) * count).Take(count); // Формирование страниц и кол-во записей на странице
 
                 foreach (var p in query2)
-
-                    //if (sort != null)  // Сортировка, если нужно
-                    //{
-                    //    parents = Utilit.OrderByDynamic(parents, sort, askdesk);
-                    //}
-
-                    //parents = parents.Skip((page-1) * count).Take(count);  // Формирование страниц и кол-во записей на странице
-
-                    //foreach (var p in parents) 
-                    //{
-                    //    if (parentList.Find(x => x.ID == p.ID) == null)
-                    //    {
+                {
                     parentList.Add(new Parent { ID = p.ID, Phone = p.Phone, Deldate = p.Deldate, FIO = p.FIO, Editdate = p.Editdate }); // Добавление родителя в лист, если такого еще нет, это для предохранения от дубликатов
-                        //}
+                }       
             }
             return parentList;
         }

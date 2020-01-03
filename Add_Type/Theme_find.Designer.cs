@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.datef = new System.Windows.Forms.CheckBox();
             this.teacherf = new System.Windows.Forms.TextBox();
             this.bteach = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.next = new System.Windows.Forms.Button();
             this.pagef = new System.Windows.Forms.ComboBox();
             this.add = new System.Windows.Forms.Button();
-            this.datef = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.D)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +87,16 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
+            // 
+            // datef
+            // 
+            this.datef.AutoSize = true;
+            this.datef.Location = new System.Drawing.Point(10, 21);
+            this.datef.Name = "datef";
+            this.datef.Size = new System.Drawing.Size(18, 17);
+            this.datef.TabIndex = 51;
+            this.datef.UseVisualStyleBackColor = true;
+            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
             // 
             // teacherf
             // 
@@ -250,7 +260,6 @@
             this.deldatef.TabIndex = 10;
             this.deldatef.Text = "Только неудаленные";
             this.deldatef.UseVisualStyleBackColor = true;
-            this.deldatef.CheckedChanged += new System.EventHandler(this.deldatef_CheckedChanged);
             // 
             // D
             // 
@@ -338,16 +347,6 @@
             this.add.Text = "Добавить тему";
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
-            // 
-            // datef
-            // 
-            this.datef.AutoSize = true;
-            this.datef.Location = new System.Drawing.Point(10, 21);
-            this.datef.Name = "datef";
-            this.datef.Size = new System.Drawing.Size(18, 17);
-            this.datef.TabIndex = 51;
-            this.datef.UseVisualStyleBackColor = true;
-            this.datef.CheckedChanged += new System.EventHandler(this.datef_CheckedChanged);
             // 
             // Theme_find
             // 

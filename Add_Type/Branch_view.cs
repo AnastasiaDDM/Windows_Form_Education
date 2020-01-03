@@ -46,11 +46,6 @@ namespace Add_Type
         }
         private void Access() // Реализация разделения ролей
         {
-            // Просмотр статистики
-            //if(Prohibition.Banned("see_one_statistic") == true & Singleton.getPerson().Type == 4 & Convert.ToInt32(Singleton.getPerson().BranchID) == branch.ID )
-            //{ // Условие для просмотра директора филиала статистики только по своему филиалу
-            //    statistic.Visible = true;
-            //}
             if(Prohibition.Banned("see_one_statistic") == true)
             {
                 if (Singleton.getPerson().RoleID == 4 & Convert.ToInt32(Singleton.getPerson().BranchID) != branch.ID)

@@ -117,7 +117,7 @@ namespace Add_Type
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = /*(page - 1) * count + */i + 1;   // Отображение счетчика записей
+                D.Rows[i].Cells[0].Value = i + 1;   // Отображение счетчика записей
 
                 D.Rows[i].Cells[1].Value = stud[i].ID + ". " + stud[i].FIO;
 
@@ -129,9 +129,6 @@ namespace Add_Type
                     for (int j = 0; j < gradestud.Count; j++)
                     {
                         D.Rows[i].Cells[nextcell].Value = gradestud[j].Mark;
-
-                        //// Лист для сбора информации об оценках: строка, столбец , где эта оценка храниться, и  ID оценки!
-                        //forupdate.Add(i + "." + nextcell + /*"." + gradestud[j].StudentID + */"." + gradestud[j].ID);
                         nextcell++;
                     }
                 }

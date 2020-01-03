@@ -45,7 +45,6 @@ namespace Add_Type
                 {
                     context.Pays.Add(this);
                     context.SaveChanges();
-    //                answer = "Добавление оплаты прошло успешно";
                 }
                 return answer;
             }
@@ -75,7 +74,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-  //                  answer = "Редактирование оплаты прошло успешно";
                 }
                 return answer;
             }
@@ -84,18 +82,6 @@ namespace Add_Type
 
         public string Сheck(Pay st)
         {
-            //if (st.Payment <=0)
-            //{ return "Введите неотрицательную оплату"; }
-
-            //if (st.Phone == "")
-            //{ return "Введите номер телефона ученика. Это поле не может быть пустым"; }
-            //using (SampleContext context = new SampleContext())
-            //{
-            //    Worker v = new Worker();
-            //    v = context.Workers.Where(x => x.FIO == st.FIO && x.Phone == st.Phone).FirstOrDefault<Worker>();
-            //    if (v != null)
-            //    { return "Такой ученик уже существует в базе под номером " + v.ID; }
-            //}
             return "Данные корректны!";
         }
     }
@@ -119,12 +105,6 @@ namespace Add_Type
             List<Pay> list = new List<Pay>();
             using (SampleContext db = new SampleContext())
             {
-
-                //var query = from b in db.Branches
-                //            join w in db.Workers on b.DirectorBranch equals w.ID
-                //            select new { BID = b.ID, BName = b.Name, BAddress = b.Address, BDeldate = b.Deldate, BEditdate = b.Editdate, BDirectorID = b.DirectorBranch, WID = w.ID };
-
-
                 var query = from p in db.Pays
                           
                             select p;

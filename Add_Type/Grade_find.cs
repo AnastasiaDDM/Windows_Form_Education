@@ -39,22 +39,8 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             purpose = answer;
-            //if (button == "bstud") // Блокировка поиска по ученикам
-            //{
-            //    bstud.Enabled = false;
-            //}
             LoadAll();
         }
-
-        //public Grade_find(Worker st) // Конструктор для просмотра объекта
-        //{
-        //    InitializeComponent();
-        //    this.KeyPreview = true;
-
-        //    manager = st;
-
-        //    LoadAll();
-        //}
 
         private void LoadAll()
         {
@@ -340,27 +326,6 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //// Обрабатывается событие нажатия на кнопку "Выбрать"
-            //if (purpose == "choose")
-            //{
-            //    if (e.ColumnIndex == 6)
-            //    {
-            //        if (e.RowIndex > -1)
-            //        {
-            //            if (D.RowCount - 1 >= e.RowIndex)
-            //            {
-            //                int l = e.RowIndex;
-            //                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-            //                chooseGrade = Contracts.ContractID(k);
-
-            //                this.Close();
-            //            }
-            //        }
-            //    }
-            //}
-            // Обрабатывается событие нажатия на кнопку "Удалить"
-            //else
-            //{
             if (e.ColumnIndex == 6)
             {
                 if (delBan == true) // Запрета нет
@@ -390,22 +355,6 @@ namespace Add_Type
                     }
                 }
             }
-            //// Редактирование
-            //if (e.ColumnIndex == 0)
-            //{
-            //    if (e.RowIndex > -1)
-            //    {
-            //        if (D.RowCount - 1 >= e.RowIndex)
-            //        {
-            //            int l = e.RowIndex;
-            //            int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-            //            Grade_edit f = new Grade_edit(Grades.GradeID(k), false);
-            //            DialogResult result = f.ShowDialog();
-            //            FillGrid();
-            //        }
-            //    }
-            //}
-            //}
         }
 
         private void Grade_find_KeyDown(object sender, KeyEventArgs e)
@@ -428,18 +377,6 @@ namespace Add_Type
                 ascflag = true;
                 ascf.Text = "▲";
             }
-        }
-
-        private void D_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //// Открытие формы для просмотра данных
-            //if (e.RowIndex > -1)
-            //{
-            //    int l = e.RowIndex;
-            //    int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-            //    //Grade_view f = new Grade_view(Types.TypeID(k));
-            //    //DialogResult result = f.ShowDialog();
-            //}
         }
 
         private void datef_CheckedChanged(object sender, EventArgs e)

@@ -331,7 +331,6 @@
             this.incomef.TabIndex = 73;
             this.incomef.Text = "Приход";
             this.incomef.UseVisualStyleBackColor = true;
-            this.incomef.CheckedChanged += new System.EventHandler(this.incomef_CheckedChanged);
             // 
             // errorProvider1
             // 

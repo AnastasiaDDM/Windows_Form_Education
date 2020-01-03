@@ -140,13 +140,8 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
 
-            //datefrom.Value = new DateTime(DateTime.Now.Year, 01, 01, 0, 0, 0);
-            //dateto.Value = new DateTime(DateTime.Now.Year, 12, 31, 0, 0, 0);
-
             datefrom.Value = this.datefrom.MinDate;
             dateto.Value = this.datefrom.MaxDate;
-
-
 
             // Построение комбобокса филиалов
             Branch branch = new Branch();

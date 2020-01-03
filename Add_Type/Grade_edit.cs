@@ -34,20 +34,8 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
             indicator = true;
-
-            //buildDG();
         }
-        public Grade_edit(Grade grade, bool deldate) // Конструктор для редактирования объекта
-        {
-            InitializeComponent();
-            this.KeyPreview = true;
-            indicator = false;
-            idforEdit = grade.ID;
 
-            newgrade = grade;
-            //buildDG();
-            //FillForm();
-        }
         public Grade_edit(Timetable ti, Theme th, Course c) // Конструктор для редактирования объекта
         {
             InitializeComponent();
@@ -63,8 +51,6 @@ namespace Add_Type
         }
         private void FillForm()
         {   // Заполнение формы известными данными о договоре
-            //this.Text = this.Text + contract.ID;
-
             datet.Text = timetable.Startlesson.ToString(formattotext);
             themet.Text = theme.ID + ". " + theme.Tema;
             courset.Text = course.ID + ". " + course.nameGroup;
@@ -136,7 +122,7 @@ namespace Add_Type
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = /*(page - 1) * count + */i + 1;   // Отображение счетчика записей
+                D.Rows[i].Cells[0].Value = i + 1;   // Отображение счетчика записей
 
                 D.Rows[i].Cells[1].Value = stud[i].ID + ". " + stud[i].FIO;
 

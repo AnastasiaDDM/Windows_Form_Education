@@ -12,13 +12,10 @@ namespace Add_Type
 {
     public partial class MarkandThemes : Form
     {
-        Boolean deldate; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
-        bool ascflag = true;
         int page = 1;
         int count = 100;
-        int pageindex;
         int pages;
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public Course course; // Объект "ученик" для построения расписания для ученика
@@ -119,19 +116,6 @@ namespace Add_Type
             D.Columns.Add(tomark);
             D.Columns.Add(visit);
 
-            //if (purpose == "choose")
-            //{
-            //    DataGridViewButtonColumn choose = new DataGridViewButtonColumn();
-            //    choose.HeaderText = "Выбрать";
-            //    D.Columns.Add(choose);
-            //}
-            //else
-            //{
-            //    DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
-            //    remove.HeaderText = "Удалить?";
-            //    D.Columns.Add(remove);
-            //}
-
             D.ReadOnly = true;
         }
 
@@ -161,8 +145,6 @@ namespace Add_Type
                 teach = teacher;
                 label1.Text = "Занятия преподавателя ";
                 teacht.Text = teach.ID + ". " + teach.FIO;
-                //label2.Text = "";
-                //court.Text = "";
             }
 
             Course cour = new Course();
@@ -171,8 +153,6 @@ namespace Add_Type
                 cour = course;
                 label2.Text = "Занятия курса ";
                 court.Text = cour.ID + ". " + cour.nameGroup;
-                //label1.Text = "";
-                //teacht.Text = "";
             }
 
             Cabinet cab = new Cabinet();
@@ -182,19 +162,9 @@ namespace Add_Type
             int countrecord = 0;
 
             List<Timetable> timetables = new List<Timetable>();
-            timetables = Timetables.FindAll(deldate, bran, cab, teach, cour, stud, date, sort, asсdesс, page, count, ref countrecord);
+            timetables = Timetables.FindAll(true, bran, cab, teach, cour, stud, date, sort, asсdesс, page, count, ref countrecord);
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
-            //var firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;           // Самая правильная функция!
-            //                                                                                                                                                               //           DateTime firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;
-            //DateTime lastdate = firstdate.AddDays(+6);
-
-
-
-
-            //mondayt.Text = firstdate.ToString(formattotext);
-            //sundayt.Text = lastdate.ToString(formattotext);
-            //countimetables.Text = "Количестов занятий в неделю: " + countrecord;
             int nextrow = 0;
 
             for (int i = 0; i < timetables.Count; i++)
@@ -218,19 +188,6 @@ namespace Add_Type
 
                     D.Rows[nextrow].Cells[5].Value = "Присутствие";
                     nextrow++;
-
-                    //if (purpose == "choose")
-                    //{
-                    //    D.Rows[i].Cells[7].Value = "Выбрать";
-                    //}
-                    //else
-                    //{
-                    //    D.Rows[i].Cells[7].Value = contracts[i].ManagerID + ". " + Workers.WorkerID(contracts[i].ManagerID).FIO;
-
-                    //    D.Rows[i].Cells[8].Value = contracts[i].BranchID + ". " + Branches.BranchID(contracts[i].BranchID).Name;
-
-                    //    D.Rows[i].Cells[9].Value = "Удалить";
-                    //}
                 }
             }
         }

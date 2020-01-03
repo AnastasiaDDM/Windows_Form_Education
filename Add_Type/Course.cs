@@ -37,11 +37,7 @@ namespace Add_Type
         public Nullable<System.DateTime> Editdate { get; set; }
 
         public Course()
-        {
-
-            //DateTime Start = Convert.ToDateTime(this.Start);
-            //DateTime End = Convert.ToDateTime(this.End);
-        }
+        {  }
 
             public string Add()
         {
@@ -52,7 +48,6 @@ namespace Add_Type
                 {
                     context.Courses.Add(this);
                     context.SaveChanges();
-  //                  answer = "Добавление курса прошло успешно";
                 }
                 return answer;
             }
@@ -82,7 +77,6 @@ namespace Add_Type
                     this.Editdate = DateTime.Now;
                     context.Entry(this).State = EntityState.Modified;
                     context.SaveChanges();
-  //                  answer = "Редактирование курса прошло успешно";
                 }
                 return answer;
             }
@@ -132,7 +126,6 @@ namespace Add_Type
             }
             return "Данные корректны!";
         }
-
 
         public List<Student> GetStudents()    // Получение списка  учеников этого курса
         {
@@ -215,7 +208,6 @@ namespace Add_Type
                 v = context.TeachersCourses.Where(x => x.TeacherID == cw.TeacherID && x.CourseID == cw.CourseID).FirstOrDefault<TeachersCourses>();
                 context.TeachersCourses.Remove(v);
                 context.SaveChanges();
-
                 answer = "Удаление преподавателя с курса прошло успешно";
             }
             return answer;
@@ -261,12 +253,8 @@ namespace Add_Type
 
         public List<Timetable> getTimetables(DateTime date, bool deldate, int count, int page, string sort, string ascdesc, ref int countrecord)
         {
-
             Branch branch = new Branch();
-
             Worker teacher = new Worker();
-
-//            Course course = new Course();
             Cabinet cabinet = new Cabinet();
             Student student = new Student();
 
@@ -292,29 +280,10 @@ namespace Add_Type
             List<Course> list = new List<Course>();
             using (SampleContext db = new SampleContext())
             {
-
-                //var query = from s in db.Students
-                //            join sp in db.StudentsParents on s.ID equals sp.StudentID
-                //            into std_prnt_temp
-                //            from std_prnt in std_prnt_temp.DefaultIfEmpty()
-                //            join p in db.Parents on std_prnt.StudentID equals p.ID
-                //            into prnt_temp
-                //            from prnt in prnt_temp.DefaultIfEmpty()
-                //            join c in db.Contracts on s.ID equals c.StudentID
-                //            into cntr_temp
-                //            from cntr in cntr_temp.DefaultIfEmpty()
-                //            join scour in db.StudentsCourses on s.ID equals scour.StudentID
-                //            into std_cour_temp
-                //            from stcour in std_cour_temp.DefaultIfEmpty()
-                //            select new { SID = s.ID, SPhone = s.Phone, SFIO = s.FIO, SDelDate = s.Deldate, PID = (prnt == null ? 0 : prnt.ID), CID = (cntr == null ? 0 : cntr.ID), CourseID = (stcour == null ? 0 : stcour.CourseID) };
-
-
-
                 var query = from c in db.Courses
                             join w in db.TeachersCourses on c.ID equals w.CourseID
                             into c_teach_temp
                             from c_teach in c_teach_temp.DefaultIfEmpty()
-
                             select new { ID = c.ID, nameGroup = c.nameGroup, Cost = c.Cost, Deldate = c.Deldate, Editdate = c.Editdate, TypeID = c.TypeID, BranchID = c.BranchID, Start =c.Start, End = c.End, TeacherID = (c_teach == null ? 0 : c_teach.TeacherID) };
 
 

@@ -17,7 +17,6 @@ namespace Add_Type
         Boolean deldate = true; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
-        //        bool ascflag = true;
         int page = 1;
         int count = 100;
         Worker newworker = new Worker(); // Глобальная перменная этой формы
@@ -56,7 +55,7 @@ namespace Add_Type
                 lrate.Visible = false;
                 lrate2.Visible = false;
                 positiont.Text = Roles.RoleID(type).Name;
- //               branchf.SelectedItem =   КАК БЫТЬ С ФИЛИАЛОМ Я НЕ ЗНАЮ 
+ //             branchf.SelectedItem = ?
  //  ПУСТЬ БУДЕТ ТАК, ЧТО ДИРЕКТОР ВООБЩЕ МОЖЕТ БЫТЬ ФИЛИАЛА, НО РУКОВОДИТЬ НЕСКОЛЬКИМИ ФИЛИАЛАМИ
             }
         }
@@ -117,21 +116,7 @@ namespace Add_Type
             ratet.Text = newworker.Rate.ToString();
             passwordt.Text = newworker.Password.ToString();
 
-
             typef.SelectedItem = Roles.RoleID(newworker.RoleID).Name;
-            //if(newworker.RoleID == 1)
-            //{
-            //    typef.SelectedIndex = 0;
-            //}
-            //if (newworker.RoleID == 2)
-            //{
-            //    typef.SelectedIndex = 1;
-            //}
-            //if (newworker.RoleID == 3)
-            //{
-            //    typef.SelectedIndex = 2;
-            //}
-
 
             if (newworker.BranchID == 0 || newworker.BranchID == null)
             {
@@ -175,19 +160,6 @@ namespace Add_Type
                 }
 
                 newworker.RoleID = Roles.RoleName(typef.SelectedItem.ToString()).ID;
-
-                //if (typef.SelectedIndex == 0)
-                //{
-                //    newworker.RoleID = 1;
-                //}
-                //if (typef.SelectedIndex == 1)
-                //{
-                //    newworker.RoleID = 2;
-                //}
-                //if (typef.SelectedIndex == 2)
-                //{
-                //    newworker.RoleID = 3;
-                //}
 
                 // Проверка действий
                 if (indicator == true) // Значит, что происходит добавление нового

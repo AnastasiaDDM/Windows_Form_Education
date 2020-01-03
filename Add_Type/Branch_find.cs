@@ -24,10 +24,6 @@ namespace Add_Type
 
         bool editBan; // Перменная для хранения доступа к редактированию
         bool delBan; // Перменная для хранения доступа к удалению
-
-        //public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
-        //public static Type chooseType; // Эта переменная для приема значения из вызываемой(дочерней) формы
-        //public Course chooseCour; // Эта переменная для пересылке своего значения в вызывающую форму
         public Branch_find()
         {
             this.KeyPreview = true;
@@ -53,8 +49,6 @@ namespace Add_Type
             delBan = Prohibition.Banned("add_del_branch");
             add.Enabled = delBan; 
             editBan = Prohibition.Banned("edit_branch");
-
-            //            add.Enabled = (what_i_can("add_cabinet"));
         }
         private void buildDG() //Построение грида 
         {
@@ -107,10 +101,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
-                //if (delBan == false)
-                //{ 
                 D.Columns[5].Visible = delBan;
-                //}
             }
 
             D.ReadOnly = true;
@@ -185,8 +176,6 @@ namespace Add_Type
                 }
                 else
                 {
-                    //string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                    //branch.ID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
                     branch.Name = namef.SelectedItem.ToString();
                 }
             }
@@ -255,8 +244,6 @@ namespace Add_Type
                 else
                 {
                     D.Rows[i].Cells[5].Value = "Удалить";
-                    //if (delBan == false)
-                    //{ D.Rows[i].Cells[5].ToolTipText = "У вас нет полномочий на выполнение этого действия"; }
                 }
             }
         }
@@ -341,27 +328,6 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //// Обрабатывается событие нажатия на кнопку "Выбрать"
-            //if (purpose == "choose")
-            //{
-            //    if (e.ColumnIndex == 7)
-            //    {
-            //        if (e.RowIndex > -1)
-            //        {
-            //            if (D.RowCount - 1 >= e.RowIndex)
-            //            {
-            //                int l = e.RowIndex;
-            //                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-            //                chooseCon = Contracts.ContractID(k);
-
-            //                this.Close();
-            //            }
-            //        }
-            //    }
-            //}
-            // Обрабатывается событие нажатия на кнопку "Удалить"
-            //else
-            //{
             if (e.ColumnIndex == 5)
             {
                 if (delBan == true) // Запрета нет

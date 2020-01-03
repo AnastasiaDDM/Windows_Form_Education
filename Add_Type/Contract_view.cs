@@ -122,7 +122,6 @@ namespace Add_Type
             if(contract.Canceldate != null)
             {
                 cancel.Text = "Договор расторжен " + contract.Canceldate;
-                //addpay.Enabled = false;
                 bcancel.Enabled = false;
             }
         }
@@ -139,7 +138,7 @@ namespace Add_Type
 
                 D.Rows.Add(row);
 
-                D.Rows[i].Cells[0].Value = /*(page - 1) * count +*/ i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
+                D.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
 
                 D.Rows[i].Cells[1].Value = pays[i].ID;
 

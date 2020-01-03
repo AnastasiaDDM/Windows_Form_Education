@@ -8,11 +8,7 @@ namespace Add_Type
 {
     class Singleton
     {
-
-        //private static Singleton person;
         private static Worker person;
-
-
         public static Worker getPerson()
         {
             if (person == null)

@@ -12,15 +12,10 @@ namespace Add_Type
 {
     public partial class List : Form
     {
-        //Worker inputperson = Singleton.getPerson(); // Авторизированный объект
-
-        bool seeBan; // Перменная для хранения доступа к просмотру
         public List()
         {
             InitializeComponent();
             this.KeyPreview = true;
-
-
         }
         private void Access() // Реализация разделения ролей
         {
@@ -140,43 +135,17 @@ namespace Add_Type
 
         private void List_Load(object sender, EventArgs e)
         {
-            //DialogResult result = DialogResult.Cancel;
-
             newLoad();
-
-            //Input f = new Input();
-            //while (Singleton.getPerson().ID == 0)
-            //{
-            //    f.ShowDialog();
-            //}
-            //Access();
-
-
-
-            //while (result != DialogResult.OK)
-            //{
-            //    result = f.ShowDialog();
-
-            //    if (Singleton.getPerson() ==null && f.isEmpty())
-            //    {
-            //        Environment.Exit(0);
-            //    }
-            //    if (Singleton.getPerson() != null)
-            //    {
-            //        break;
-            //    }
-            //}
-
         }
 
         private void newLoad()
         {
-            //Input f = new Input();
-            //while (Singleton.getPerson().ID == 0)
-            //{
-            //    f.ShowDialog();
-            //}
-            //this.Visible = true;
+            Input f = new Input();
+            while (Singleton.getPerson().ID == 0)
+            {
+                f.ShowDialog();
+            }
+            this.Visible = true;
             Access();
         }
 

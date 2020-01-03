@@ -14,12 +14,7 @@ namespace Add_Type
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit; // ID для редактируемого объекта
-        //Boolean deldate = true; // true - неудален false - все!!!
-        //String sort = "ID";
-        //String asсdesс = "asc";
-        ////        bool ascflag = true;
-        //int page = 1;
-        //int count = 100;
+
         Type newtype = new Type(); // Глобальная перменная этой формы
         public Type_edit()
         {

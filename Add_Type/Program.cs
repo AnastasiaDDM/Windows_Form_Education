@@ -62,55 +62,7 @@ namespace Add_Type
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-    //        Application.Run(new Input());
             Application.Run(new List());
-            //           Application.Run(new Visit_find());
-            //Application.Run(new Grade_find());
-            //         Application.Run(new Theme_find());
-            //        Application.Run(new Cabinet_find());
-            //Application.Run(new Worker_find());
-            //Application.Run(new Branch_find());
-            //Application.Run(new Course_find());
-            //Application.Run(new Contract_find());
-            //                 Application.Run(new Timetable_find());
-            //Application.Run(new Parent_find());
-            //       Application.Run(new Student_find());
-            //Application.Run(new Pay_find());
-            //Application.Run(new Type_find());
         }
     }
 }
-
-
-//<? xml version="1.0" encoding="utf-8"?>
-//<configuration>
-//  <configSections>
-//    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
-//    <section name = "entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-//    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
-//  </configSections>
-//  <startup>
-//    <supportedRuntime version = "v4.0" sku=".NETFramework,Version=v4.5.2" />
-//  </startup>
-//  <entityFramework>
-//    <providers>
-//      <provider invariantName = "System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
-//      <provider invariantName = "System.Data.SQLite.EF6" type="System.Data.SQLite.EF6.SQLiteProviderServices, System.Data.SQLite.EF6" />
-//    </providers>
-//    <defaultConnectionFactory type = "System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework" >
-//      < parameters >
-//        < parameter value="mssqllocaldb" />
-//      </parameters>
-//    </defaultConnectionFactory>
-//  </entityFramework>
-//  <connectionStrings>
-//    <add name = "EducationDB.db" connectionString="Data Source=..\..\..\EducationDB.db" providerName="System.Data.SQLite" />
-//  </connectionStrings>
-//  <system.data>
-//    <DbProviderFactories>
-//      <remove invariant = "System.Data.SQLite.EF6" />
-//      < add name="SQLite Data Provider (Entity Framework 6)" invariant="System.Data.SQLite.EF6" description=".NET Framework Data Provider for SQLite (Entity Framework 6)" type="System.Data.SQLite.EF6.SQLiteProviderFactory, System.Data.SQLite.EF6" />
-//    </DbProviderFactories>
-//  </system.data>
-//</configuration>

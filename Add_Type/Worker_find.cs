@@ -20,8 +20,6 @@ namespace Add_Type
         bool ascflag = true;
         int pageindex;
         int pages;
-        //       string format = "yyyy-MM-dd HH:mm:ss";
-        string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         string purpose; // Строка предназначения, например, choose - добавить кнопку "Выбрать" т.е. происходит выбор для другой(родительской) формы
         public Worker chooseWor; // Эта переменная для пересылке своего значения в вызывающую форму
         int typeworker = 0; // Тип должности, для отображения только необходимого типа работников
@@ -75,7 +73,7 @@ namespace Add_Type
 
         private void Access() // Реализация разделения ролей
         {
-            // Заперт на добавление и удаление одиннаковый
+            // Запрет на добавление и удаление одиннаковый
             delBan = Prohibition.Banned("add_del_worker");
             add.Enabled = delBan;
             editBan = Prohibition.Banned("edit_worker");
@@ -151,13 +149,6 @@ namespace Add_Type
             pageindex = pagef.SelectedIndex;
             deldatef.Checked = true;
             this.sortf.SelectedIndex = 0;
-            //if(typeworker != 0)
-            //{
-
-            //}
-            //typef.SelectedIndex = 2;
-            //this.typef.SelectedIndex = 0;
-            //this.typef.SelectedIndex = typeworker;
 
             // Построение комбобокса филиалов
             Branch branch = new Branch();
@@ -285,18 +276,6 @@ namespace Add_Type
                 else
                 {
                     wor.RoleID = Roles.RoleName(typef.SelectedItem.ToString()).ID;
-                    //if(typef.SelectedItem.ToString() == "Директор")
-                    //{
-                    //    wor.RoleID = 1;
-                    //}
-                    //if (typef.SelectedItem.ToString() == "Менеджер")
-                    //{
-                    //    wor.RoleID = 2;
-                    //}
-                    //if (typef.SelectedItem.ToString() == "Преподаватель")
-                    //{
-                    //    wor.RoleID = 3;
-                    //}
                 }
             }
 
@@ -493,7 +472,6 @@ namespace Add_Type
                             int l = e.RowIndex;
                             int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                             chooseWor = Workers.WorkerID(k);
-
                             this.Close();
                         }
                     }

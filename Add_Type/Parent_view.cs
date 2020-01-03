@@ -124,27 +124,6 @@ namespace Add_Type
 
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //// Обрабатывается событие нажатия на кнопку "Выбрать"
-            //if (purpose == "choose")
-            //{
-            //    if (e.ColumnIndex == 4)
-            //    {
-            //        if (e.RowIndex > -1)
-            //        {
-            //            if (D.RowCount - 1 >= e.RowIndex)
-            //            {
-            //                int l = e.RowIndex;
-            //                int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-            //                chooseSt = Students.StudentID(k);
-
-            //                this.Close();
-            //            }
-            //        }
-            //    }
-            //}
-            // Обрабатывается событие нажатия на кнопку "Удалить"
-            //else
-            //{
             if (e.ColumnIndex == 4)
             {
                 if (delBan == true) // Запрета нет

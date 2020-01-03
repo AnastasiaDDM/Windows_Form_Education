@@ -262,7 +262,6 @@ namespace Add_Type
                 managerf.Text = manag.ID + ". " + manag.FIO;
             }
 
-
             Student student = new Student();
             if (chooseStudent != null)
             {
@@ -275,7 +274,6 @@ namespace Add_Type
                 coursef.Text = chooseCourse.ID + ". " + chooseCourse.nameGroup;
                 course = Courses.CourseID(chooseCourse.ID);
             }
-
 
             int min = this.costfrom.Text == "" ? 0 : Convert.ToInt32(this.costfrom.Text);
             int max = this.costto.Text == "" ? 0 : Convert.ToInt32(this.costto.Text);

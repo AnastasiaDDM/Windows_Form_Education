@@ -14,12 +14,7 @@ namespace Add_Type
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit; // ID для редактируемого объекта
-        Boolean deldate = true; // true - неудален false - все!!!
-        String sort = "ID";
-        String asсdesс = "asc";
-        //        bool ascflag = true;
-        int page = 1;
-        int count = 100;
+
         Theme newtheme = new Theme(); // Глобальная перменная этой формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
@@ -135,7 +130,6 @@ namespace Add_Type
                 newtheme.TeacherID = chooseTeacher.ID;
                 teacherf.Text = newtheme.TeacherID + ". " + Workers.WorkerID(newtheme.TeacherID).FIO;
             }
-
         }
 
         private void cancel_Click(object sender, EventArgs e)

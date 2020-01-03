@@ -216,12 +216,6 @@
     <Compile Include="Parent_find.Designer.cs">
       <DependentUpon>Parent_find.cs</DependentUpon>
     </Compile>
-    <Compile Include="Parent_possible.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Parent_possible.Designer.cs">
-      <DependentUpon>Parent_possible.cs</DependentUpon>
-    </Compile>
     <Compile Include="Parent_view.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,9 +450,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Parent_find.resx">
       <DependentUpon>Parent_find.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Parent_possible.resx">
-      <DependentUpon>Parent_possible.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Parent_view.resx">
       <DependentUpon>Parent_view.cs</DependentUpon>

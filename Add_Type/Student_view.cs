@@ -63,7 +63,6 @@ namespace Add_Type
             PayaddBan = Prohibition.Banned("add_del_pay");
             payAll.Visible = PayaddBan;
 
-
             CoudelBan = Prohibition.Banned("add_del_course");
             CoueditBan = Prohibition.Banned("edit_course");
         }
@@ -140,9 +139,6 @@ namespace Add_Type
             gridcourse.Columns.Add(start);
             gridcourse.Columns.Add(end);
 
-            //DataGridViewButtonColumn remove2 = new DataGridViewButtonColumn();
-            //remove2.HeaderText = "Завершить?";
-            //gridcourse.Columns.Add(remove2);
             gridcourse.ReadOnly = true;
 
 
@@ -351,33 +347,7 @@ namespace Add_Type
         }
 
         private void gridcourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.ColumnIndex == 8)
-            //{
-            //    if (e.RowIndex > -1)
-            //    {
-            //        if (gridcourse.RowCount - 1 >= e.RowIndex)
-            //        {
-            //            int l = e.RowIndex;
-            //            const string message = "Вы уверены, что хотите удалить ученика с этого курса?";
-            //            const string caption = "Удаление";
-            //            var result = MessageBox.Show(message, caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            //            if (result == DialogResult.OK)
-            //            {
-            //                // Форма не закрывается
-            //                int k = Convert.ToInt32(gridcourse.Rows[l].Cells[1].Value);
-            //                gridcourse.Rows.Remove(gridcourse.Rows[l]);
-            //                Course o = Courses.CourseID(k);
-            //                String ans = o.delStudent(student);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Эту строку нельзя удалить, в ней нет данных!");
-            //        }
-            //    }
-            //}
+        {          
             // Редактирование
             if (e.ColumnIndex == 0)
             {

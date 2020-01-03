@@ -17,7 +17,6 @@ namespace Add_Type
         Boolean deldate = true; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
-        //        bool ascflag = true;
         int page = 1;
         int count = 100;
         Course newcourse = new Course();
@@ -45,7 +44,6 @@ namespace Add_Type
             indicator = false;
             idforEdit = cour.ID;
             this.Text = this.Text + cour.ID;
-            //        newcourse = cour;
             buildDG();
             FillForm(cour);
         }

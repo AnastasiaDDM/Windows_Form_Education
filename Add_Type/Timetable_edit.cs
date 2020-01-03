@@ -15,11 +15,8 @@ namespace Add_Type
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         public Timetable timetable = new Timetable();   // Глобальная переменная объявляет занятие данной формы
-        Boolean deldate = true; // true - неудален false - все!!!
         int count = 20;
         int page = 1;
-        String sort = "ID";
-        String asсdesс = "asc";
         string formathour = "HH:mm"; // Время для ячеек
         string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
@@ -27,7 +24,6 @@ namespace Add_Type
         List<Worker> listteachers = new List<Worker>(); // Лист для хранения преподавателей, которые есть на этом занятии
 
         List<Timetable> timetablelist = new List<Timetable>();
-
 
         // Начальные значения переменных для манипуляций с повторениями
         DateTime Endrepeat = new DateTime();
@@ -125,11 +121,7 @@ namespace Add_Type
                 // добавляем один элемент
                 cabinetf.Items.Add(s.ID + ". " + s.Number);
             }
-            //// Проверка условия, если ранее выбранный кабинет свободен, то он остается выбранным, в противном случае выбранный кабинет сбрасывается
-            //if( freecabinets.FindLast((x => x.ID + ". " + x.Number == cabinetf.SelectedItem.ToString())) != null)
-            //{
-                this.cabinetf.SelectedIndex = 0;
-            //}
+            this.cabinetf.SelectedIndex = 0;
         }
         private void buildDGfreecabinets(Branch branch) //Построение грида свободных кабинетов
         {
@@ -164,25 +156,7 @@ namespace Add_Type
             purpose = "delete";
             // Заполняем гриды, комбобоксы
             D.Rows.Clear();
-            //List<Worker> teachers = new List<Worker>();
-            //teachers = timetable.GetTeachers();
-            //for (int i = 0; i < teachers.Count; i++)
-            //{
-            //    DataGridViewRow row = new DataGridViewRow();
 
-            //    D.Rows.Add(row);
-
-            //    D.Rows[i].Cells[0].Value = i + 1 + "✎";   // Отображение счетчика записей и значок редактирования
-
-            //    D.Rows[i].Cells[1].Value = teachers[i].ID;
-
-            //    D.Rows[i].Cells[2].Value = teachers[i].FIO;
-
-            //    D.Rows[i].Cells[3].Value = "Удалить";
-            //}
-
-
-            
             for (int i = 0; i < listteachers.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
@@ -233,7 +207,7 @@ namespace Add_Type
 
                 if (indicator == false) // Значит, что происходит редактирование
                 {
-                    String date = datet.Value.ToString(formattotext);
+                    string date = datet.Value.ToString(formattotext);
                     string[] da = date.Split('.');
 
                     string starttime = startt.Text;
@@ -245,10 +219,6 @@ namespace Add_Type
                     timetable.Startlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(st[0]), Convert.ToInt32(st[1]), 00);
 
                     timetable.Endlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(en[0]), Convert.ToInt32(en[1]), 00);
-
-
-                    //string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                    //newcourse.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
 
                     string[] cabID = (Convert.ToString(branchf.SelectedItem)).Split('.');
                     timetable.CabinetID = Branches.BranchID(Convert.ToInt32(cabID[0])).ID;
@@ -281,7 +251,7 @@ namespace Add_Type
 
                 if (indicator == true) // Значит, что происходит добавление
                 {
-                    String date = datet.Value.ToString(formattotext);
+                    string date = datet.Value.ToString(formattotext);
                     string[] da = date.Split('.');
 
                     string starttime = startt.Text;
@@ -293,10 +263,6 @@ namespace Add_Type
                     timetable.Startlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(st[0]), Convert.ToInt32(st[1]), 00);
 
                     timetable.Endlesson = new DateTime(Convert.ToInt32(da[2]), Convert.ToInt32(da[1]), Convert.ToInt32(da[0]), Convert.ToInt32(en[0]), Convert.ToInt32(en[1]), 00);
-
-
-                    //string[] branchID = (Convert.ToString(branchf.SelectedItem)).Split('.');
-                    //newcourse.BranchID = Branches.BranchID(Convert.ToInt32(branchID[0])).ID;
 
                     string[] cabID = (Convert.ToString(cabinetf.SelectedItem)).Split('.');
                     timetable.CabinetID = Convert.ToInt32(cabID[0]);
@@ -315,11 +281,10 @@ namespace Add_Type
                         Endrepeat = new DateTime(Convert.ToInt32(f[2]), Convert.ToInt32(f[1]), Convert.ToInt32(f[0]), 23, 59, 59);
                     }
 
-                    if /*(timetable.GetTeachers() != null)*/(listteachers.Count != 0)
+                    if(listteachers.Count != 0)
                     {
                         if (repeatf.Checked == true) // Вызов метода добавления с повторениями
                         {
-                            //Answer = timetable.Add(Endrepeat, period, timetable/*, ref timetablelist*/);
                             listtimetables = timetable.Add(Endrepeat, period, timetable, ref Answer);
                         }
                         else // Вызов метода без добавления повторений
@@ -336,7 +301,6 @@ namespace Add_Type
                                     {
                                         String ans = time.addTeacher(teacher);
                                     }
-
                                 }
                             }
                             if (newtimetable.ID != 0)
@@ -470,8 +434,7 @@ namespace Add_Type
                 }
                 List<Worker> freeteachers = timetable.GetFreeteachers(Endrepeat, period);
                 FillGrid(freeteachers);
-            }
-           
+            }          
         }
 
         private void repeatf_CheckedChanged(object sender, EventArgs e)
@@ -502,7 +465,6 @@ namespace Add_Type
                         if (D.RowCount - 1 >= e.RowIndex)
                         {
                             int l = e.RowIndex;
-                    //        chooseCour = Courses.CourseID(k);
                             var result = MessageBox.Show("Вы уверены, что хотите выбрать этого преподавателя на занятие?", "Подтверждение", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                             if (result == DialogResult.OK)
@@ -516,7 +478,6 @@ namespace Add_Type
                                 if( listteachers.Find(x => x.ID == o.ID) == null )
                                 {
                                     listteachers.Add(o);
-                                    //       String ans = timetable.addTeacher(o);
                                 }
                             }
                         }

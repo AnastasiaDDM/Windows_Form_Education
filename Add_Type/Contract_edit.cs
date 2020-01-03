@@ -18,7 +18,6 @@ namespace Add_Type
         Boolean deldate = true; // true - неудален false - все!!!
         String sort = "ID";
         String asсdesс = "asc";
-//        bool ascflag = true;
         int page = 1;
         int count = 100;
         Contract newcontract = new Contract(); // Глобальная перменная этой формы
@@ -48,7 +47,6 @@ namespace Add_Type
             this.Text = this.Text + newcontract.ID;
 
             buildDG();
-            //FillForm(contract);
             FillForm();
         }
         public Contract_edit(Course course, bool deldate) // Конструктор для добавления договора уже на заданный курс объекта
@@ -71,12 +69,6 @@ namespace Add_Type
             bstud.Enabled = false;
             buildDG();
             studentt.Text = student.ID + ". " + Students.StudentID(student.ID).FIO;
-        }
-        private void LoadAll()
-        {
-
- //           buildDG();
- ////           FillForm(contract);
         }
         private void buildDG() //Построение комбобоксов, гридов 
         {
@@ -196,7 +188,6 @@ namespace Add_Type
                 chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
                 studentt.Text = chooseStudent.ID + ". " + Students.StudentID(chooseStudent.ID).FIO;
             }
-            //FillForm();
         }
 
         private void bcour_Click(object sender, EventArgs e)
@@ -210,20 +201,15 @@ namespace Add_Type
                 courset.Text = chooseCourse.ID + ". " + Courses.CourseID(chooseCourse.ID).nameGroup;
                 //if(costt.Text == "") // Подстановка стоимости из типа курса, если это поле пустое
                 {
-                    //                 costt.Text = Types.TypeID(chooseCourse.TypeID).Cost.ToString();
-
                     costt.Text = chooseCourse.Cost.ToString();
                 }
                 //if (payt.Text == "") // Подстановка оплаты за месяц из типа курса, если это поле пустое
                 {
-                  //  int i = (Convert.ToDateTime(chooseCourse.End) - Convert.ToDateTime(chooseCourse.Start)).
                     int i = Math.Abs((Convert.ToDateTime(chooseCourse.End).Month - Convert.ToDateTime(chooseCourse.Start).Month) + 12 * (Convert.ToDateTime(chooseCourse.End).Year - Convert.ToDateTime(chooseCourse.Start).Year));
                     TimeRange Range = new TimeRange(Convert.ToDateTime(chooseCourse.Start), Convert.ToDateTime(chooseCourse.End));
                     payt.Text = Convert.ToString(Convert.ToInt32(costt.Text)/i);
                 }
-             //            (datetime2 - datetime1).TotalMonth;
             }
-            //FillGrid();
         }
 
         private void Contract_edit_KeyDown(object sender, KeyEventArgs e)

@@ -209,11 +209,6 @@ namespace Add_Type
             FillGrid();
         }
 
-        private void Parent_find_Activated(object sender, EventArgs e)
-        {
-            //FillGrid();
-        }
-
         private void D_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Обрабатывается событие нажатия на кнопку "Выбрать"
