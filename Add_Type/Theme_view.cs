@@ -15,6 +15,7 @@ namespace Add_Type
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit; // ID для редактируемого объекта
         Theme newtheme = new Theme(); // Глобальная перменная этой формы
+        public static Timetable chooseTimetable; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Theme_view(Theme theme)
         {
             InitializeComponent();
@@ -80,6 +81,19 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void addtimetable_Click(object sender, EventArgs e)
+        {
+            Timetable_find f = new Timetable_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
+            DialogResult result = f.ShowDialog();
+            chooseTimetable = f.chooseTime; // Передаем ссылку форме родителей на переменную в этой форме
+            if (chooseTimetable != null)
+            {
+                String ans = chooseTimetable.addTheme(newtheme);
+                MessageBox.Show("Тема успешно добавлена на занятие, посмотреть темы занятия можно через просмотр занятия.");
+            }
+            FillForm();
         }
     }
 }

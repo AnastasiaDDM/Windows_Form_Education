@@ -111,6 +111,7 @@
             this.namet.Name = "namet";
             this.namet.Size = new System.Drawing.Size(455, 49);
             this.namet.TabIndex = 6;
+            this.namet.TextChanged += new System.EventHandler(this.namet_TextChanged);
             // 
             // typef
             // 
@@ -130,6 +131,7 @@
             this.costt.Size = new System.Drawing.Size(57, 22);
             this.costt.TabIndex = 8;
             this.costt.ValidatingType = typeof(int);
+            this.costt.TextChanged += new System.EventHandler(this.costt_TextChanged);
             // 
             // branchf
             // 
@@ -139,6 +141,7 @@
             this.branchf.Name = "branchf";
             this.branchf.Size = new System.Drawing.Size(251, 24);
             this.branchf.TabIndex = 9;
+            this.branchf.SelectionChangeCommitted += new System.EventHandler(this.branchf_SelectionChangeCommitted);
             // 
             // datefrom
             // 
@@ -146,6 +149,7 @@
             this.datefrom.Name = "datefrom";
             this.datefrom.Size = new System.Drawing.Size(168, 22);
             this.datefrom.TabIndex = 11;
+            this.datefrom.ValueChanged += new System.EventHandler(this.datefrom_ValueChanged);
             // 
             // dateto
             // 
@@ -153,6 +157,7 @@
             this.dateto.Name = "dateto";
             this.dateto.Size = new System.Drawing.Size(174, 22);
             this.dateto.TabIndex = 12;
+            this.dateto.ValueChanged += new System.EventHandler(this.dateto_ValueChanged);
             // 
             // save
             // 

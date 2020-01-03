@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.teachert = new System.Windows.Forms.LinkLabel();
             this.deadlinedatet = new System.Windows.Forms.Label();
+            this.addtimetable = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // close
@@ -131,11 +132,22 @@
             this.deadlinedatet.Size = new System.Drawing.Size(0, 17);
             this.deadlinedatet.TabIndex = 60;
             // 
+            // addtimetable
+            // 
+            this.addtimetable.Location = new System.Drawing.Point(324, 265);
+            this.addtimetable.Name = "addtimetable";
+            this.addtimetable.Size = new System.Drawing.Size(109, 44);
+            this.addtimetable.TabIndex = 61;
+            this.addtimetable.Text = "Добавить на\r\nзанятие";
+            this.addtimetable.UseVisualStyleBackColor = true;
+            this.addtimetable.Click += new System.EventHandler(this.addtimetable_Click);
+            // 
             // Theme_view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 401);
+            this.Controls.Add(this.addtimetable);
             this.Controls.Add(this.deadlinedatet);
             this.Controls.Add(this.teachert);
             this.Controls.Add(this.label2);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel teachert;
         private System.Windows.Forms.Label deadlinedatet;
+        private System.Windows.Forms.Button addtimetable;
     }
 }

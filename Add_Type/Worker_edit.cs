@@ -234,6 +234,11 @@ namespace Add_Type
                 errorProvider1.SetError(typef, "Выберите тип должности. Это поле не может быть не определено.");
                 return false;
             }
+            if (typef.SelectedItem.ToString() == "Преподаватель")
+            {
+                errorProvider1.SetError(ratet, "Введите ставку преподавателя. Это поле не может быть не определено.");
+                return false;
+            }
             if (phonet.Text == "+7(   )    -")
             {
                 errorProvider1.SetError(phonet, "Введите номер телефона. Это поле не может быть пустым.");
@@ -247,8 +252,9 @@ namespace Add_Type
             return true;
         }
         private void positiont_TextChanged(object sender, EventArgs e)
-        { 
-            foreach(var o in this.typef.Items)
+        {
+            errorProvider1.Clear();
+            foreach (var o in this.typef.Items)
             {
                 if(positiont.Text.ToLower().Contains(o.ToString().ToLower()))
                 {
@@ -268,6 +274,31 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void fiot_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void typef_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void phonet_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void passwordt_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void ratet_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }

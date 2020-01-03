@@ -55,6 +55,7 @@
             this.namet.Name = "namet";
             this.namet.Size = new System.Drawing.Size(469, 54);
             this.namet.TabIndex = 0;
+            this.namet.TextChanged += new System.EventHandler(this.namet_TextChanged);
             // 
             // label2
             // 
@@ -115,6 +116,7 @@
             this.lessont.Name = "lessont";
             this.lessont.Size = new System.Drawing.Size(107, 22);
             this.lessont.TabIndex = 11;
+            this.lessont.ValueChanged += new System.EventHandler(this.lessont_ValueChanged);
             // 
             // save
             // 
@@ -144,6 +146,7 @@
             this.costt.Size = new System.Drawing.Size(70, 22);
             this.costt.TabIndex = 14;
             this.costt.ValidatingType = typeof(int);
+            this.costt.TextChanged += new System.EventHandler(this.costt_TextChanged);
             // 
             // montht
             // 
@@ -151,6 +154,7 @@
             this.montht.Name = "montht";
             this.montht.Size = new System.Drawing.Size(89, 22);
             this.montht.TabIndex = 17;
+            this.montht.ValueChanged += new System.EventHandler(this.montht_ValueChanged);
             // 
             // label1
             // 

@@ -55,6 +55,7 @@
             this.fiof.Name = "fiof";
             this.fiof.Size = new System.Drawing.Size(361, 36);
             this.fiof.TabIndex = 11;
+            this.fiof.TextChanged += new System.EventHandler(this.fiof_TextChanged);
             // 
             // label4
             // 
@@ -72,6 +73,7 @@
             this.phonef.Name = "phonef";
             this.phonef.Size = new System.Drawing.Size(122, 22);
             this.phonef.TabIndex = 13;
+            this.phonef.TextChanged += new System.EventHandler(this.phonef_TextChanged);
             // 
             // save
             // 

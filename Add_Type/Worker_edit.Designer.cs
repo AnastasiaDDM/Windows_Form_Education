@@ -120,6 +120,7 @@
             this.phonet.Name = "phonet";
             this.phonet.Size = new System.Drawing.Size(125, 22);
             this.phonet.TabIndex = 7;
+            this.phonet.TextChanged += new System.EventHandler(this.phonet_TextChanged);
             // 
             // fiot
             // 
@@ -128,6 +129,7 @@
             this.fiot.Name = "fiot";
             this.fiot.Size = new System.Drawing.Size(398, 42);
             this.fiot.TabIndex = 8;
+            this.fiot.TextChanged += new System.EventHandler(this.fiot_TextChanged);
             // 
             // positiont
             // 
@@ -146,6 +148,7 @@
             this.typef.Name = "typef";
             this.typef.Size = new System.Drawing.Size(205, 24);
             this.typef.TabIndex = 10;
+            this.typef.SelectionChangeCommitted += new System.EventHandler(this.typef_SelectionChangeCommitted);
             // 
             // branchf
             // 
@@ -162,6 +165,7 @@
             this.passwordt.Name = "passwordt";
             this.passwordt.Size = new System.Drawing.Size(398, 22);
             this.passwordt.TabIndex = 12;
+            this.passwordt.TextChanged += new System.EventHandler(this.passwordt_TextChanged);
             // 
             // ratet
             // 
@@ -171,6 +175,7 @@
             this.ratet.Size = new System.Drawing.Size(57, 22);
             this.ratet.TabIndex = 13;
             this.ratet.ValidatingType = typeof(int);
+            this.ratet.TextChanged += new System.EventHandler(this.ratet_TextChanged);
             // 
             // save
             // 

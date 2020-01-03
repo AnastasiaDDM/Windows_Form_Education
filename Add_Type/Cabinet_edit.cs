@@ -149,5 +149,20 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void numbert_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void branchf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void capacityf_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
     }
 }

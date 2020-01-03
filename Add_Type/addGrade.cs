@@ -63,5 +63,10 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void gradet_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
     }
 }

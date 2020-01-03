@@ -231,6 +231,7 @@
             this.periodf.Name = "periodf";
             this.periodf.Size = new System.Drawing.Size(239, 24);
             this.periodf.TabIndex = 1;
+            this.periodf.SelectionChangeCommitted += new System.EventHandler(this.periodf_SelectionChangeCommitted);
             // 
             // label4
             // 
@@ -284,6 +285,7 @@
             this.cabinetf.Name = "cabinetf";
             this.cabinetf.Size = new System.Drawing.Size(222, 24);
             this.cabinetf.TabIndex = 75;
+            this.cabinetf.SelectionChangeCommitted += new System.EventHandler(this.cabinetf_SelectionChangeCommitted);
             // 
             // branchf
             // 

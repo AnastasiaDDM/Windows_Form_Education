@@ -191,5 +191,20 @@ namespace Add_Type
             }
             //FillForm();
         }
+
+        private void namet_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void addresst_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void directorf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
     }
 }

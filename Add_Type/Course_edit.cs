@@ -204,6 +204,7 @@ namespace Add_Type
 
         private void typef_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             string[] typeID = (Convert.ToString(typef.Text)).Split('.');
             if (costt.Text.ToString() == "")
             {
@@ -216,6 +217,31 @@ namespace Add_Type
             {
                 countmonth.Text = Types.TypeID(Convert.ToInt32(typeID[0])).Month.ToString();
             }
+        }
+
+        private void namet_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void costt_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void branchf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void datefrom_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void dateto_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }

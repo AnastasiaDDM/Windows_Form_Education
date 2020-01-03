@@ -127,6 +127,8 @@ namespace Add_Type
             branches = Branches.FindAll(deldate, branch, director, sort, asсdesс, page, count, ref countrecord);
             int pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
+            branchf.Items.Clear();
+            
             branchf.Items.Add("Не выбрано");
             foreach (var s in branches)
             {
@@ -336,6 +338,7 @@ namespace Add_Type
 
         private void bcon_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             Contract_find f = new Contract_find("choose", "b"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseContract = f.chooseCon; // Передаем ссылку форме родителей на переменную в этой форме
@@ -349,6 +352,7 @@ namespace Add_Type
 
         private void bteach_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             Worker_find f = new Worker_find("choose", 3); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
@@ -362,6 +366,7 @@ namespace Add_Type
 
         private void btime_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             string[] teachID = (Convert.ToString(teacherf.Text)).Split('.');
 
             Timetable_find f = new Timetable_find(Workers.WorkerID(Convert.ToInt32(teachID[0])), "choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
@@ -372,6 +377,7 @@ namespace Add_Type
 
         private void paymentt_TextChanged(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             if (paymentt.Text != "" & maxvalue != 0)
             {
                 if (Convert.ToDouble(paymentt.Text) > maxvalue)
@@ -388,7 +394,8 @@ namespace Add_Type
 
         private void indicatorf_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if(indicatorf.SelectedIndex == 1)
+            errorProvider1.Clear();
+            if (indicatorf.SelectedIndex == 1)
             {
                 bcon.Enabled = true;
                 contractf.Enabled = true;
@@ -440,6 +447,11 @@ namespace Add_Type
                 btime.Enabled = true;
                 timetablef.Enabled = true;
             }
+        }
+
+        private void typef_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }

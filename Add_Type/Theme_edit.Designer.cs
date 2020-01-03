@@ -79,6 +79,7 @@
             this.namet.Name = "namet";
             this.namet.Size = new System.Drawing.Size(511, 74);
             this.namet.TabIndex = 7;
+            this.namet.TextChanged += new System.EventHandler(this.namet_TextChanged);
             // 
             // save
             // 

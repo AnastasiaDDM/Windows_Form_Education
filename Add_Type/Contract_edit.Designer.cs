@@ -121,6 +121,7 @@
             this.branchf.Name = "branchf";
             this.branchf.Size = new System.Drawing.Size(239, 24);
             this.branchf.TabIndex = 13;
+            this.branchf.SelectionChangeCommitted += new System.EventHandler(this.branchf_SelectionChangeCommitted);
             // 
             // bstud
             // 
@@ -186,6 +187,7 @@
             this.costt.Size = new System.Drawing.Size(64, 22);
             this.costt.TabIndex = 22;
             this.costt.ValidatingType = typeof(int);
+            this.costt.TextChanged += new System.EventHandler(this.costt_TextChanged);
             // 
             // payt
             // 
@@ -195,6 +197,7 @@
             this.payt.Size = new System.Drawing.Size(56, 22);
             this.payt.TabIndex = 23;
             this.payt.ValidatingType = typeof(int);
+            this.payt.TextChanged += new System.EventHandler(this.payt_TextChanged);
             // 
             // label4
             // 

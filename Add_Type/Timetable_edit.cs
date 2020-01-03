@@ -508,8 +508,8 @@ namespace Add_Type
                             if (result == DialogResult.OK)
                             {
                                 // Форма не закрывается
+                                errorProvider1.Clear();
                                 int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
-
                                 Worker o = Workers.WorkerID(k);
 
                                 // Добавляем преподавателя в имеющийся лист
@@ -566,6 +566,7 @@ namespace Add_Type
 
         private void bcour_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
             DialogResult result = f.ShowDialog();
             if (f.chooseCour != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
@@ -585,6 +586,7 @@ namespace Add_Type
 
         private void startt_TextChanged(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             // Проверка свободных кабинетов на это время и перегрузка комбобокса кабинетов
             Regex r = new Regex(@"\b\d{2}:\d{2}\b");
 
@@ -620,6 +622,7 @@ namespace Add_Type
 
         private void endt_TextChanged(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             // Проверка свободных кабинетов на это время и перегрузка комбобокса кабинетов
             Regex r = new Regex(@"\b\d{2}:\d{2}\b");
 
@@ -757,6 +760,16 @@ namespace Add_Type
                     branchf.SelectedItem = st[0] + ". " + Branches.BranchID(Convert.ToInt32(st[0])).Name;
                 }
             }
+        }
+
+        private void cabinetf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void periodf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }

@@ -127,6 +127,7 @@
             this.typef.Name = "typef";
             this.typef.Size = new System.Drawing.Size(185, 24);
             this.typef.TabIndex = 8;
+            this.typef.SelectionChangeCommitted += new System.EventHandler(this.typef_SelectionChangeCommitted);
             // 
             // purposef
             // 

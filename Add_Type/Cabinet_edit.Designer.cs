@@ -58,6 +58,7 @@
             this.numbert.Name = "numbert";
             this.numbert.Size = new System.Drawing.Size(387, 50);
             this.numbert.TabIndex = 1;
+            this.numbert.TextChanged += new System.EventHandler(this.numbert_TextChanged);
             // 
             // label2
             // 
@@ -76,6 +77,7 @@
             this.branchf.Name = "branchf";
             this.branchf.Size = new System.Drawing.Size(387, 24);
             this.branchf.TabIndex = 3;
+            this.branchf.SelectionChangeCommitted += new System.EventHandler(this.branchf_SelectionChangeCommitted);
             // 
             // label3
             // 
@@ -92,6 +94,7 @@
             this.capacityf.Name = "capacityf";
             this.capacityf.Size = new System.Drawing.Size(82, 22);
             this.capacityf.TabIndex = 5;
+            this.capacityf.ValueChanged += new System.EventHandler(this.capacityf_ValueChanged);
             // 
             // save
             // 

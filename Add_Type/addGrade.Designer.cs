@@ -46,6 +46,7 @@
             this.gradet.Name = "gradet";
             this.gradet.Size = new System.Drawing.Size(88, 22);
             this.gradet.TabIndex = 0;
+            this.gradet.ValueChanged += new System.EventHandler(this.gradet_ValueChanged);
             // 
             // label1
             // 

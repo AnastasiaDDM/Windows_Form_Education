@@ -146,5 +146,15 @@ namespace Add_Type
         {
 
         }
+
+        private void from_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void to_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
     }
 }

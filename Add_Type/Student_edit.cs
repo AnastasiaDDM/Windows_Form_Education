@@ -111,5 +111,15 @@ namespace Add_Type
                 this.Close();
             }
         }
+
+        private void fiof_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void phonef_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
     }
 }

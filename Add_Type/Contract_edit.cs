@@ -192,6 +192,7 @@ namespace Add_Type
 
         private void bstud_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             Student_find f = new Student_find("choose", "bcon"); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             if(f.chooseSt != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
@@ -204,6 +205,7 @@ namespace Add_Type
 
         private void bcour_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             Course_find f = new Course_find("choose"); // Передем choose - это означает, что нужно добавить кнопку выбора 
             DialogResult result = f.ShowDialog();
             if (f.chooseCour != null) // Для того чтобы заполнить текстовое поле на форме, нужно убедиться, что ученик выбран, если не выюран, то изменений на форме не происходит
@@ -257,6 +259,21 @@ namespace Add_Type
                     MessageBox.Show("Шаблон для этого курса не выбран. Его можно выбрать на форме просмотра типа курса.");
                 }
             }  
+        }
+
+        private void costt_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void payt_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void branchf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }

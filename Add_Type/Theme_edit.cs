@@ -126,6 +126,7 @@ namespace Add_Type
 
         private void bteach_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             Worker_find f = new Worker_find("choose", 3); // Передем choose - это означает, что нужно добавить кнопку выбора родителя
             DialogResult result = f.ShowDialog();
             chooseTeacher = f.chooseWor; // Передаем ссылку форме родителей на переменную в этой форме
@@ -148,6 +149,11 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void namet_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }

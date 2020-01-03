@@ -76,6 +76,7 @@
             this.namet.Name = "namet";
             this.namet.Size = new System.Drawing.Size(458, 70);
             this.namet.TabIndex = 3;
+            this.namet.TextChanged += new System.EventHandler(this.namet_TextChanged);
             // 
             // addresst
             // 
@@ -84,6 +85,7 @@
             this.addresst.Name = "addresst";
             this.addresst.Size = new System.Drawing.Size(458, 53);
             this.addresst.TabIndex = 4;
+            this.addresst.TextChanged += new System.EventHandler(this.addresst_TextChanged);
             // 
             // directorf
             // 
@@ -93,6 +95,7 @@
             this.directorf.Name = "directorf";
             this.directorf.Size = new System.Drawing.Size(458, 24);
             this.directorf.TabIndex = 5;
+            this.directorf.SelectionChangeCommitted += new System.EventHandler(this.directorf_SelectionChangeCommitted);
             // 
             // save
             // 

@@ -14,12 +14,12 @@ namespace Add_Type
     {
         bool indicator; // Переменная отвечающая за распределение - или добавляется новый объект, или изменяется существующий
         int idforEdit; // ID для редактируемого объекта
-        Boolean deldate = true; // true - неудален false - все!!!
-        String sort = "ID";
-        String asсdesс = "asc";
-        //        bool ascflag = true;
-        int page = 1;
-        int count = 100;
+        //Boolean deldate = true; // true - неудален false - все!!!
+        //String sort = "ID";
+        //String asсdesс = "asc";
+        ////        bool ascflag = true;
+        //int page = 1;
+        //int count = 100;
         Type newtype = new Type(); // Глобальная перменная этой формы
         public Type_edit()
         {
@@ -31,8 +31,6 @@ namespace Add_Type
             this.KeyPreview = true;
             namet.Select(); // Установка курсора
             indicator = true;
-
-            buildDG();
         }
         public Type_edit(Type type, bool deldate) // Конструктор для редактирования объекта
         {
@@ -45,27 +43,7 @@ namespace Add_Type
             newtype = type;
             this.Text = this.Text + newtype.ID;
 
-            buildDG();
-            //FillForm(contract);
             FillForm();
-        }
-        private void buildDG() //Построение комбобоксов, гридов 
-        {
-            //// Построение комбобокса филиалов
-            //Branch branch = new Branch();
-            //Worker director = new Worker();
-            //int countrecord = 0;
-
-            //List<Branch> branches = new List<Branch>();
-            //branches = Branches.FindAll(deldate, branch, director, sort, asсdesс, page, count, ref countrecord);
-
-            //branchf.Items.Add("Не выбрано");
-            //foreach (var s in branches)
-            //{
-            //    // добавляем один элемент
-            //    branchf.Items.Add(s.ID + ". " + s.Name);
-            //}
-            //this.branchf.SelectedIndex = 0;
         }
         private void FillForm()
         {
@@ -145,6 +123,26 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void namet_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void costt_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void lessont_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
+
+        private void montht_ValueChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
         }
     }
 }
