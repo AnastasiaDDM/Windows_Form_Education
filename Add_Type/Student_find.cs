@@ -110,6 +110,7 @@ namespace Add_Type
             D.Columns.Add(st);
             D.Columns.Add(ph);
 
+
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();

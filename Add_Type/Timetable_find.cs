@@ -32,6 +32,8 @@ namespace Add_Type
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Course chooseCourse; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public Timetable chooseTime; // Эта переменная для пересылке своего значения в вызывающую форму
+
+        DataGridViewCell clickedCell; // Переменная для хранения координат ячейки, в которой была нажата правая кнопка мыши
         public Timetable_find() // Дли просмотра расписания
         {
             InitializeComponent();
@@ -44,13 +46,13 @@ namespace Add_Type
             InitializeComponent();
             this.KeyPreview = true;
 
-            if(tomark == "choose")
+            if (tomark == "choose")
             {
                 purpose = tomark;
             }
 
             LoadAll();
-            if(tomark == "toMark")
+            if (tomark == "toMark")
             {
                 MessageBox.Show("Для оценивания вам нужно выбрать какой-либо фильтр из Поиска и нажать кнопку в правом нижнем углу");
             }
@@ -195,7 +197,7 @@ namespace Add_Type
             }
 
             Student stud = new Student();
-            if(student != null)
+            if (student != null)
             {
                 stud = student;
                 studentf.Text = stud.ID + ". " + stud.FIO;
@@ -241,7 +243,7 @@ namespace Add_Type
             pages = Convert.ToInt32(Math.Ceiling((double)countrecord / count));
 
             var firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;           // Самая правильная функция!
- //           DateTime firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;
+                                                                                                                                                                           //           DateTime firstdate = date.AddDays(-((date.DayOfWeek - System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 7) % 7)).Date;
             DateTime lastdate = firstdate.AddDays(+6);
 
 
@@ -271,7 +273,7 @@ namespace Add_Type
                     D.Rows.Add(row);
                 }
 
-                    if (i > 0)
+                if (i > 0)
                 {
                     if (timetables[i].Startlesson.DayOfWeek == timetables[i - 1].Startlesson.DayOfWeek)
                     {
@@ -557,11 +559,11 @@ namespace Add_Type
 
         private void toMarkandThemes_Click(object sender, EventArgs e)
         {
-            if(chooseTeacher != null | chooseCourse != null | chooseStudent != null | this.branchf.SelectedIndex != 0)
+            if (chooseTeacher != null | chooseCourse != null | chooseStudent != null | this.branchf.SelectedIndex != 0)
             {
                 MarkandThemes f = new MarkandThemes(chooseTeacher, chooseCourse, chooseStudent, this.branchf.SelectedIndex); // Передаем 
                 DialogResult result = f.ShowDialog();
-      //          chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
+                //          chooseStudent = f.chooseSt; // Передаем ссылку форме родителей на переменную в этой форме
                 FillGrid();
             }
             else
@@ -646,6 +648,52 @@ namespace Add_Type
                         }
                     }
                 }
+            }
+        }
+
+        private void D_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //Нажатие правой кнопки мыши по ячейке расписания
+            // Ignore if a column or row header is clicked
+            if (e.RowIndex != -1 && e.ColumnIndex != -1)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    clickedCell = (sender as DataGridView).Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                    // Here you can do whatever you want with the cell
+                    this.D.CurrentCell = clickedCell;  // Select the clicked cell, for instance
+
+                    // Get mouse position relative to the vehicles grid
+                    var relativeMousePosition = D.PointToClient(Cursor.Position);
+
+                    // Show the context menu
+                    this.contextMenuStrip1.Show(D, relativeMousePosition);
+                }
+            }
+        }
+
+        private void themes_Click(object sender, EventArgs e)
+        {
+            Timetable timetable;
+            string[] timeID = (Convert.ToString(Convert.ToString(D.Rows[clickedCell.RowIndex].Cells[clickedCell.ColumnIndex].Value))).Split('.');
+            if (timeID[0] != "")
+            {
+                timetable = Timetables.TimetableID(Convert.ToInt32(timeID[0]));
+                MarkandThemes f = new MarkandThemes(timetable, null, Courses.CourseID(timetable.CourseID), null, (Branches.BranchID(Cabinets.CabinetID(timetable.CabinetID).BranchID)).ID); // Передаем 
+                DialogResult result = f.ShowDialog();
+            }
+        }
+
+        private void visits_Click(object sender, EventArgs e)
+        {
+            Timetable timetable;
+            string[] timeID = (Convert.ToString(Convert.ToString(D.Rows[clickedCell.RowIndex].Cells[clickedCell.ColumnIndex].Value))).Split('.');
+            if (timeID[0] != "")
+            {
+                timetable = Timetables.TimetableID(Convert.ToInt32(timeID[0]));
+                Visit_view f = new Visit_view(timetable, Courses.CourseID(timetable.CourseID));
+                DialogResult result = f.ShowDialog();
             }
         }
     }

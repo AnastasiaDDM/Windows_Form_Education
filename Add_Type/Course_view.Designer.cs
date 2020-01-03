@@ -92,7 +92,7 @@
             // 
             this.gridteacher.AllowUserToAddRows = false;
             this.gridteacher.AllowUserToDeleteRows = false;
-            this.gridteacher.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridteacher.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridteacher.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridteacher.Location = new System.Drawing.Point(6, 44);
             this.gridteacher.Name = "gridteacher";
@@ -137,7 +137,7 @@
             // 
             this.gridstudent.AllowUserToAddRows = false;
             this.gridstudent.AllowUserToDeleteRows = false;
-            this.gridstudent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridstudent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridstudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridstudent.Location = new System.Drawing.Point(10, 39);
             this.gridstudent.Name = "gridstudent";

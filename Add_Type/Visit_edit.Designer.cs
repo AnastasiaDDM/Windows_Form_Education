@@ -84,6 +84,7 @@
             this.allf.TabIndex = 15;
             this.allf.Text = "Присутствуют все";
             this.allf.UseVisualStyleBackColor = true;
+            this.allf.Click += new System.EventHandler(this.allf_Click);
             // 
             // nobodyf
             // 
@@ -93,6 +94,7 @@
             this.nobodyf.TabIndex = 16;
             this.nobodyf.Text = "Никто";
             this.nobodyf.UseVisualStyleBackColor = true;
+            this.nobodyf.Click += new System.EventHandler(this.nobodyf_Click);
             // 
             // cancel
             // 
@@ -130,6 +132,7 @@
             this.cabinett.TabIndex = 58;
             this.cabinett.TabStop = true;
             this.cabinett.Text = "linkLabel4";
+            this.cabinett.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.cabinett_LinkClicked);
             // 
             // courset
             // 
@@ -140,6 +143,7 @@
             this.courset.TabIndex = 57;
             this.courset.TabStop = true;
             this.courset.Text = "linkLabel3";
+            this.courset.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.courset_LinkClicked);
             // 
             // label1
             // 

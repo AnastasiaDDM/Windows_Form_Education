@@ -84,6 +84,7 @@ namespace Add_Type
         {  
             datet.Text = timetable.Startlesson.ToString(formattotext);
             courset.Text = course.ID + ". " + course.nameGroup;
+            cabinett.Text = timetable.CabinetID + ". " + Cabinets.CabinetID(timetable.CabinetID).Number;
 
             // Список преподавателей
             StringBuilder s = new StringBuilder();
@@ -166,6 +167,22 @@ namespace Add_Type
             {
                 this.Close();
             }
+        }
+
+        private void cabinett_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Cabinet_view f = new Cabinet_view(Cabinets.CabinetID(timetable.CabinetID));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
+
+        private void courset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Course_view f = new Course_view(Courses.CourseID(timetable.CourseID));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
         }
     }
 }

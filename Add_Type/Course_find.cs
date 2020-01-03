@@ -21,6 +21,7 @@ namespace Add_Type
         int pageindex;
         int pages;
         string purpose;
+        string formattotext = "dd.MM.yyyy"; // Формат для отображения даты в текстовые поля
         public static Student chooseStudent; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Type chooseType; // Эта переменная для приема значения из вызываемой(дочерней) формы
         public static Worker chooseTeacher; // Эта переменная для приема значения из вызываемой(дочерней) формы
@@ -109,6 +110,12 @@ namespace Add_Type
             D.Columns.Add(br);
             D.Columns.Add(start);
             D.Columns.Add(end);
+
+            D.Columns[0].Width = 60;
+            D.Columns[1].Width = 60;
+            D.Columns[2].Width = 200;
+            D.Columns[3].Width = 140;
+            D.Columns[4].Width = 80;
 
             if (purpose == "choose")
             {
@@ -288,9 +295,9 @@ namespace Add_Type
 
                 D.Rows[i].Cells[5].Value = courses[i].BranchID + ". " + Branches.BranchID(courses[i].BranchID).Name;
 
-                D.Rows[i].Cells[6].Value = courses[i].Start;
+                D.Rows[i].Cells[6].Value = courses[i].Start.ToString(formattotext);
 
-                D.Rows[i].Cells[7].Value = courses[i].End;
+                D.Rows[i].Cells[7].Value = courses[i].End.ToString(formattotext);
 
                 if (purpose == "choose")
                 {

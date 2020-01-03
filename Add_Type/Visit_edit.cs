@@ -43,6 +43,7 @@ namespace Add_Type
         {
             datet.Text = timetable.Startlesson.ToString(formattotext);
             courset.Text = course.ID + ". " + course.nameGroup;
+            cabinett.Text = timetable.CabinetID + ". " + Cabinets.CabinetID(timetable.CabinetID).Number;
 
             // Список преподавателей
             StringBuilder s = new StringBuilder();
@@ -173,25 +174,40 @@ namespace Add_Type
             ////    }
             ////}
 
-            List<Visit> oldvisits = timetable.GetVisits();
-            String answer = timetable.delOldVisits();
 
-            List<Visit> newvisits = new List<Visit>();
 
-            //if (D.RowCount > 1)
-            //{
-                for (int i = 0; i <= D.RowCount - 1; i++)
+
+            // if (D.RowCount > 1) // Что за хрень?
+            if (D.RowCount > 0)
+            {
+                //  for (int i = 0; i < D.RowCount - 1; i++) // Что за хрень?
+                for (int i = 0; i < D.RowCount; i++)
                 {
-                    //if (D.Rows[i].Cells[2].Value != null) // редактирование посещаемости
-                    //{
+                    if (D.Rows[i].Cells[2].Value != null) // редактирование посещаемости
+                    {
+                        Visit updatevisit = Visits.VisitID(Convert.ToInt32(D.Rows[i].Cells[2].Value));
+                        //if ((Boolean)D.Rows[i].Cells[3].Value == true)        //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        if ((Boolean?)D.Rows[i].Cells[3].Value == true)
+                        {
+                            updatevisit.Vis = 2;
+                        }
+                        else
+                        {
+                            updatevisit.Vis = 1;
+                        }
 
+                        updatevisit.Edit();
+                    }
+                    else // Добавление посещения
+                    {
                         Visit newvisit = new Visit();
                         string[] studID = (Convert.ToString(D.Rows[i].Cells[1].Value)).Split('.');
                         newvisit.StudentID = Convert.ToInt32(studID[0]);
 
                         newvisit.TimetableID = timetable.ID;
 
-                        if (D.Rows[i].Cells[3].Selected == true)    //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        //if (D.Rows[i].Cells[3].Selected == true)    //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        if ((Boolean?)D.Rows[i].Cells[3].Value == true)
                         {
                             newvisit.Vis = 2;
                         }
@@ -200,16 +216,53 @@ namespace Add_Type
                             newvisit.Vis = 1;
                         }
 
-                        newvisits.Add(newvisit);
-                    //}
+                        newvisit.Add();
+                    }
                 }
-            String answertwo = timetable.addNewVisits(newvisits);
-            //}
-
-            if(answertwo == "Успешно")
-            {
-                Close();
             }
+            Close();
+
+
+
+
+
+            //List<Visit> oldvisits = timetable.GetVisits();
+            //String answer = timetable.delOldVisits();
+
+            //List<Visit> newvisits = new List<Visit>();
+
+            ////if (D.RowCount > 1)
+            ////{
+            //    for (int i = 0; i <= D.RowCount - 1; i++)
+            //    {
+            //        //if (D.Rows[i].Cells[2].Value != null) // редактирование посещаемости
+            //        //{
+
+            //            Visit newvisit = new Visit();
+            //            string[] studID = (Convert.ToString(D.Rows[i].Cells[1].Value)).Split('.');
+            //            newvisit.StudentID = Convert.ToInt32(studID[0]);
+
+            //            newvisit.TimetableID = timetable.ID;
+
+            //            if (D.Rows[i].Cells[3].Selected == true)    //  НЕ РАБОТАЕТ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //            {
+            //                newvisit.Vis = 2;
+            //            }
+            //            else
+            //            {
+            //                newvisit.Vis = 1;
+            //            }
+
+            //            newvisits.Add(newvisit);
+            //        //}
+            //    }
+            //String answertwo = timetable.addNewVisits(newvisits);
+            ////}
+
+            //if(answertwo == "Успешно")
+            //{
+            //    Close();
+            //}
         }
 
         private void Visit_edit_KeyDown(object sender, KeyEventArgs e)
@@ -217,6 +270,50 @@ namespace Add_Type
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void cabinett_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Cabinet_view f = new Cabinet_view(Cabinets.CabinetID(timetable.CabinetID));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
+
+        private void courset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Открытие формы для просмотра данных
+            Course_view f = new Course_view(Courses.CourseID(timetable.CourseID));
+            DialogResult result = f.ShowDialog();
+            FillGrid();
+        }
+
+        private void allf_Click(object sender, EventArgs e)
+        {
+            if (D.RowCount > 0)
+            {
+                for (int i = 0; i < D.RowCount; i++)
+                {
+                    if ((Boolean?)D.Rows[i].Cells[3].Value == false | (Boolean?)D.Rows[i].Cells[3].Value == null)
+                    {
+                        D.Rows[i].Cells[3].Value = true;
+                    }
+                }
+            }
+        }
+
+        private void nobodyf_Click(object sender, EventArgs e)
+        {
+            if (D.RowCount > 0)
+            {
+                for (int i = 0; i < D.RowCount; i++)
+                {
+                    if ((Boolean?)D.Rows[i].Cells[3].Value == true | (Boolean?)D.Rows[i].Cells[3].Value == null)
+                    {
+                        D.Rows[i].Cells[3].Value = false;
+                    }
+                }
             }
         }
     }

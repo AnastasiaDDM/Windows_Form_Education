@@ -31,8 +31,8 @@ namespace Add_Type
         public int TypeID { get; set; }
         public Type Type { get; set; }
 
-        public Nullable<System.DateTime> Start { get; set; }
-        public Nullable<System.DateTime> End { get; set; }
+        public System.DateTime Start { get; set; }
+        public System.DateTime End { get; set; }
         public Nullable<System.DateTime> Deldate { get; set; }
         public Nullable<System.DateTime> Editdate { get; set; }
 

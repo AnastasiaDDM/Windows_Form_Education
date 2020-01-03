@@ -87,6 +87,12 @@ namespace Add_Type
             D.Columns.Add(time);
             D.Columns.Add(vis);
 
+            D.Columns[0].Width = 60;
+            D.Columns[1].Width = 60;
+            D.Columns[2].Width = 150;
+            D.Columns[3].Width = 180;
+            D.Columns[4].Width = 180;
+
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();

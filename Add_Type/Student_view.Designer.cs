@@ -103,7 +103,7 @@
             // gridcontract
             // 
             this.gridcontract.AllowUserToAddRows = false;
-            this.gridcontract.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridcontract.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridcontract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridcontract.Location = new System.Drawing.Point(6, 56);
             this.gridcontract.Name = "gridcontract";
@@ -139,7 +139,7 @@
             // gridcourse
             // 
             this.gridcourse.AllowUserToAddRows = false;
-            this.gridcourse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridcourse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridcourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridcourse.Location = new System.Drawing.Point(6, 39);
             this.gridcourse.Name = "gridcourse";
@@ -174,7 +174,7 @@
             // gridparent
             // 
             this.gridparent.AllowUserToAddRows = false;
-            this.gridparent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridparent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridparent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridparent.Location = new System.Drawing.Point(4, 35);
             this.gridparent.Name = "gridparent";

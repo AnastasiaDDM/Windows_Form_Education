@@ -411,25 +411,29 @@ namespace Add_Type
                     if (c != null)
                     { return "Этот кабинет уже занят элементом расписания №" + c.ID + " в промежутке от " + c.Startlesson + " до " + c.Endlesson; }
 
-                    List<Student> liststudents = Courses.CourseID(st.CourseID).GetStudents();
-                    foreach (Student s in liststudents)
-                    {
-                        List<Course> listcourses = s.GetCourses();
-                        foreach (Course co in listcourses)
-                        {
-                            // Если на этот курс у этого студента есть договор, и он не расторжен ( то есть действует), значит мы должны проверить занятость этого ученика
-                            Contract con = context.Contracts.Where(x => x.CourseID == co.ID & x.StudentID == s.ID & x.Canceldate == null).FirstOrDefault<Contract>();
-                            if(con != null)
-                            {
-                                Timetable ts = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>();
-                                if (ts != null)
-                                { return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
-                            }
-                        }
-                    }
+                    //Принято решение не проверять занятость учеников вообще - потому что может получиться так, что расписание никогда не сможет быть составлено из - за учеников.
+                    // Здесь уже ученик сам решает или договаривается с преподавателями, под него система не будет подстраиваться.
+                    //А с курсами останется примитивную проверку. Работа с промежутками пока не имеет смысла, в будущем возможно что-то изменить.
+
+                    //List<Student> liststudents = Courses.CourseID(st.CourseID).GetStudents();
+                    //foreach (Student s in liststudents)
+                    //{
+                    //    List<Course> listcourses = s.GetCourses();
+                    //    foreach (Course co in listcourses)
+                    //    {
+                    //        // Если на этот курс у этого студента есть договор, и он не расторжен ( то есть действует), значит мы должны проверить занятость этого ученика
+                    //        Contract con = context.Contracts.Where(x => x.CourseID == co.ID & x.StudentID == s.ID & x.Canceldate == null).FirstOrDefault<Contract>();
+                    //        if(con != null)
+                    //        {
+                    //            Timetable ts = context.Timetables.Where(x => x.Startlesson == st.Startlesson & x.CourseID == co.ID).FirstOrDefault<Timetable>();
+                    //            if (ts != null)
+                    //            { return "Ученик №" + s.ID + " уже занят на курсе №" + co.ID + " элементом расписания №" + ts.ID + " в промежутке от " + ts.Startlesson + " до " + ts.Endlesson; }
+                    //        }
+                    //    }
+                    //}
 
                     //Проверка даты занятия и дат занятий курса
-                   if(st.Startlesson.Date < Courses.CourseID(st.CourseID).Start.Value.Date | st.Startlesson.Date > Courses.CourseID(st.CourseID).End.Value.Date)
+                   if (st.Startlesson.Date < Courses.CourseID(st.CourseID).Start.Date | st.Startlesson.Date > Courses.CourseID(st.CourseID).End.Date)
                     { return "Этот курс не может заниматься " + st.Startlesson.ToLongDateString() + ", потому что эта дата не входит в диапазон дат обучения курса"; }
                 }
             }

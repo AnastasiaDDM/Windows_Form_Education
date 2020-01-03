@@ -86,7 +86,7 @@
             // 
             // stphonef
             // 
-            this.stphonef.Location = new System.Drawing.Point(237, 37);
+            this.stphonef.Location = new System.Drawing.Point(237, 39);
             this.stphonef.Mask = "+7(999) 000-0000";
             this.stphonef.Name = "stphonef";
             this.stphonef.Size = new System.Drawing.Size(100, 22);
@@ -95,7 +95,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(180, 37);
+            this.label8.Location = new System.Drawing.Point(179, 41);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 17);
             this.label8.TabIndex = 62;
@@ -120,7 +120,7 @@
             // 
             // phonef
             // 
-            this.phonef.Location = new System.Drawing.Point(74, 38);
+            this.phonef.Location = new System.Drawing.Point(74, 39);
             this.phonef.Mask = "+7(999) 000-0000";
             this.phonef.Name = "phonef";
             this.phonef.Size = new System.Drawing.Size(100, 22);
@@ -129,7 +129,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 40);
+            this.label1.Location = new System.Drawing.Point(6, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 58;
@@ -241,7 +241,7 @@
             // D
             // 
             this.D.AllowUserToAddRows = false;
-            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.D.Location = new System.Drawing.Point(3, 73);
             this.D.Name = "D";

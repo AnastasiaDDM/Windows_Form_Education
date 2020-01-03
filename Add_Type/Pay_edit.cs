@@ -136,10 +136,11 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
             this.branchf.SelectedIndex = 0;
-            //if (Singleton.getPerson().ID != 0 | Singleton.getPerson().BranchID != 0 | Singleton.getPerson().BranchID != null) // выбор филиала. если у авторизированного менеджера есть филиал
-            //{
-            //    this.branchf.SelectedItem = Singleton.getPerson().BranchID + ". " + Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)).Name;
-            //}
+
+            if ( Singleton.getPerson().BranchID != 0 ) // выбор филиала. если у авторизированного менеджера есть филиал
+            {
+                this.branchf.SelectedItem = Singleton.getPerson().BranchID + ". " + Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)).Name;
+            }
 
             // Установление общих данных для добавления и редактирования
             if (contract != null | pay.ContractID != null)

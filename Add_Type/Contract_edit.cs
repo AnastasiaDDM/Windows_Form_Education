@@ -95,13 +95,9 @@ namespace Add_Type
                 branchf.Items.Add(s.ID + ". " + s.Name);
             }
             this.branchf.SelectedIndex = 0;
-            if (Convert.ToInt32(Singleton.getPerson().BranchID) != 0 | Singleton.getPerson().BranchID != null) // выбор филиала. если у авторизированного менеджера есть филиал
+            if (Convert.ToInt32(Singleton.getPerson().BranchID) != 0) // выбор филиала. если у авторизированного менеджера есть филиал
             {
-              if(  Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)) != null ) // Вот с этой строкой работает . но почему не работает предыдущее условие 
-                {
-                    this.branchf.SelectedItem = Singleton.getPerson().BranchID + ". " + Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)).Name;
-                }
-                
+                this.branchf.SelectedItem = Singleton.getPerson().BranchID + ". " + Branches.BranchID(Convert.ToInt32(Singleton.getPerson().BranchID)).Name;
             }
         }
         private void FillForm()

@@ -96,6 +96,12 @@ namespace Add_Type
             D.Columns.Add(th);
             D.Columns.Add(mark);
 
+            D.Columns[0].Width = 60;
+            D.Columns[1].Width = 60;
+            D.Columns[2].Width = 140;
+            D.Columns[3].Width = 250;
+            D.Columns[4].Width = 230;
+
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();

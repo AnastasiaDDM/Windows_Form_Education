@@ -25,6 +25,8 @@ namespace Add_Type
         public Worker teacher; // Объект "преподаватель" для построения расписания для преподавателя
         public Student student; // Объект "ученик" для построения расписания для ученика
         public Branch branch; // Объект "филиал" для построения расписания для филиала
+
+        public Timetable timetable; // Объект "расписание" для построения списка тем по конкретному занятию
         public MarkandThemes()
         {
             InitializeComponent();
@@ -47,8 +49,6 @@ namespace Add_Type
                 branch = null;
             }
 
-
-
             LoadAll();
         }
         public MarkandThemes(Course st) // Конструктор для просмотра занятий курса
@@ -59,6 +59,30 @@ namespace Add_Type
             course = st;
 
             LoadAll();
+        }
+
+        public MarkandThemes(Timetable tim, Worker te, Course co, Student st, int br) // Конструктор для просмотра тем конкретного занятия
+        {
+            InitializeComponent();
+            this.KeyPreview = true;
+
+            timetable = tim;
+
+            teacher = te;
+            course = co;
+            student = st;
+
+            if (br != 0)
+            {
+                branch = Branches.BranchID(br);
+            }
+            else
+            {
+                branch = null;
+            }
+
+            buildDG();
+            FillGridOneTimetable();
         }
 
         private void LoadAll()
@@ -211,6 +235,67 @@ namespace Add_Type
             }
         }
 
+
+        private void FillGridOneTimetable() // Заполняем гриды
+        {
+            D.Rows.Clear();
+
+            Branch bran = new Branch();
+            if (branch != null)
+            {
+                bran = branch;
+                label4.Text = "Занятия филиала ";
+                brant.Text = bran.ID + ". " + bran.Name;
+            }
+
+            Student stud = new Student();
+            if (student != null)
+            {
+                stud = student;
+                label3.Text = "Занятия ученика ";
+                studt.Text = stud.ID + ". " + stud.FIO;
+            }
+
+            Worker teach = new Worker();
+            if (teacher != null)
+            {
+                teach = teacher;
+                label1.Text = "Занятия преподавателя ";
+                teacht.Text = teach.ID + ". " + teach.FIO;
+            }
+
+            Course cour = new Course();
+            if (course != null)
+            {
+                cour = course;
+                label2.Text = "Занятия курса ";
+                court.Text = cour.ID + ". " + cour.nameGroup;
+            }
+
+            int nextrow = 0;
+
+            List<int> themesthistimetable = timetable.GetThemes();
+            foreach (var theme in themesthistimetable)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+
+                D.Rows.Add(row);
+
+                D.Rows[nextrow].Cells[0].Value = nextrow + 1;   // Отображение счетчика записей и значок редактирования
+
+                D.Rows[nextrow].Cells[1].Value = timetable.ID + ". " + timetable.Startlesson.ToString(formattotext);
+
+                D.Rows[nextrow].Cells[2].Value = timetable.CourseID + ". " + Courses.CourseID(timetable.CourseID).nameGroup;
+
+                D.Rows[nextrow].Cells[3].Value = theme + ". " + Themes.ThemeID(theme).Tema;
+
+                D.Rows[nextrow].Cells[4].Value = "Оценить";
+
+                D.Rows[nextrow].Cells[5].Value = "Присутствие";
+                nextrow++;
+            }
+        }
+
         private void D_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Оценивание
@@ -233,7 +318,16 @@ namespace Add_Type
 
                         Grade_view f = new Grade_view(time, theme, course);
                         DialogResult result = f.ShowDialog();
-                        FillGrid();
+
+                        // Условие для того, чтобы определить какое заполнение грида нужно использовать
+                        if (timetable != null) // Условие для вывода всех тем только одного занятия
+                        {
+                            FillGridOneTimetable();
+                        }
+                        else // Выводятся все темы нескольких занятий
+                        {
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -258,7 +352,16 @@ namespace Add_Type
 
                         Visit_view f = new Visit_view(time, theme, course);
                         DialogResult result = f.ShowDialog();
-                        FillGrid();
+
+                        // Условие для того, чтобы определить какое заполнение грида нужно использовать
+                        if (timetable != null) // Условие для вывода всех тем только одного занятия
+                        {
+                            FillGridOneTimetable();
+                        }
+                        else // Выводятся все темы нескольких занятий
+                        {
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -273,7 +376,16 @@ namespace Add_Type
                         int k = Convert.ToInt32(D.Rows[l].Cells[1].Value);
                         Contract_edit f = new Contract_edit(Contracts.ContractID(k), false);
                         DialogResult result = f.ShowDialog();
-                        FillGrid();
+
+                        // Условие для того, чтобы определить какое заполнение грида нужно использовать
+                        if (timetable != null) // Условие для вывода всех тем только одного занятия
+                        {
+                            FillGridOneTimetable();
+                        }
+                        else // Выводятся все темы нескольких занятий
+                        {
+                            FillGrid();
+                        }
                     }
                 }
             }
@@ -291,7 +403,16 @@ namespace Add_Type
             // Открытие формы для просмотра данных
             Course_view f = new Course_view(course);
             DialogResult result = f.ShowDialog();
-            FillGrid();
+
+            // Условие для того, чтобы определить какое заполнение грида нужно использовать
+            if (timetable != null) // Условие для вывода всех тем только одного занятия
+            {
+                FillGridOneTimetable();
+            }
+            else // Выводятся все темы нескольких занятий
+            {
+                FillGrid();
+            }
         }
 
         private void studt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -314,23 +435,6 @@ namespace Add_Type
             {
                 this.Close();
             }
-        }
-
-        private void bvisit_Click(object sender, EventArgs e)
-        {
-            //// Присутствие
-            //string[] timeID = (Convert.ToString(D.Rows[l].Cells[1].Value)).Split('.');
-            //Timetable time = Timetables.TimetableID(Convert.ToInt32(timeID[0]));
-
-            //string[] themeID = (Convert.ToString(D.Rows[l].Cells[3].Value)).Split('.');
-            //Theme theme = Themes.ThemeID(Convert.ToInt32(themeID[0]));
-
-            //string[] courseID = (Convert.ToString(D.Rows[l].Cells[2].Value)).Split('.');
-            //Course course = Courses.CourseID(Convert.ToInt32(courseID[0]));
-
-            //Visit_view f = new Visit_view(timetable, course);
-            //DialogResult result = f.ShowDialog();
-            //FillGrid();
         }
     }
 }

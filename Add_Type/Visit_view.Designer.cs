@@ -150,6 +150,7 @@
             this.courset.TabIndex = 49;
             this.courset.TabStop = true;
             this.courset.Text = "linkLabel3";
+            this.courset.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.courset_LinkClicked);
             // 
             // cabinett
             // 
@@ -160,6 +161,7 @@
             this.cabinett.TabIndex = 50;
             this.cabinett.TabStop = true;
             this.cabinett.Text = "linkLabel4";
+            this.cabinett.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.cabinett_LinkClicked);
             // 
             // teacherst
             // 

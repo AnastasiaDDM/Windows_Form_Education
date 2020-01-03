@@ -93,6 +93,12 @@ namespace Add_Type
             D.Columns.Add(month);
             D.Columns.Add(note);
 
+            D.Columns[0].Width = 60;
+            D.Columns[1].Width = 60;
+            D.Columns[2].Width = 200;
+            D.Columns[3].Width = 78;
+            D.Columns[4].Width = 70;
+
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();

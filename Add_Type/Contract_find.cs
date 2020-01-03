@@ -119,6 +119,12 @@ namespace Add_Type
             D.Columns.Add(cost2);
             D.Columns.Add(payment);
 
+            D.Columns[0].Width = 65;
+            D.Columns[1].Width = 65;
+            D.Columns[2].Width = 360;
+            D.Columns[3].Width = 330;
+            D.Columns[4].Width = 180;
+
             if (purpose == "choose")
             {
                 DataGridViewButtonColumn choose = new DataGridViewButtonColumn();

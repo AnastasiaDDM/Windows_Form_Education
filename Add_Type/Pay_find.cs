@@ -105,8 +105,6 @@ namespace Add_Type
             DataGridViewTextBoxColumn type = new DataGridViewTextBoxColumn();
             type.HeaderText = "Способ оплаты";
             sortf.Items.Add("Способ оплаты");
-            DataGridViewTextBoxColumn pur = new DataGridViewTextBoxColumn();
-            pur.HeaderText = "Назначение";
 
             D.Columns.Add(id);
             D.Columns.Add(st);
@@ -116,7 +114,14 @@ namespace Add_Type
             D.Columns.Add(ph);
             D.Columns.Add(br);
             D.Columns.Add(type);
-            D.Columns.Add(pur);
+
+            D.Columns[0].Width = 60;
+            D.Columns[1].Width = 60;
+            D.Columns[2].Width = 120;
+            D.Columns[3].Width = 110;
+            D.Columns[4].Width = 110;
+            D.Columns[5].Width = 110;
+            D.Columns[6].Width = 75;
 
             if (purpose == "choose")
             {
@@ -129,7 +134,7 @@ namespace Add_Type
                 DataGridViewButtonColumn remove = new DataGridViewButtonColumn();
                 remove.HeaderText = "Удалить?";
                 D.Columns.Add(remove);
-                D.Columns[10].Visible = delBan;
+                D.Columns[9].Visible = delBan;
             }
 
             D.ReadOnly = true;
@@ -331,15 +336,13 @@ namespace Add_Type
 
                 D.Rows[i].Cells[8].Value = pays[i].Type;
 
-                D.Rows[i].Cells[9].Value = pays[i].Purpose;
-
                 if (purpose == "choose")
                 {
-                    D.Rows[i].Cells[10].Value = "Выбрать";
+                    D.Rows[i].Cells[9].Value = "Выбрать";
                 }
                 else
                 {
-                    D.Rows[i].Cells[10].Value = "Удалить";
+                    D.Rows[i].Cells[9].Value = "Удалить";
                 }
             }
         }
@@ -384,7 +387,7 @@ namespace Add_Type
             // Обрабатывается событие нажатия на кнопку "Удалить"
             else
             {
-                if (e.ColumnIndex == 10)
+                if (e.ColumnIndex == 9)
                 {
                     if (delBan == true) // Запрета нет
                     {
