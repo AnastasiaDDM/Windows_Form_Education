@@ -398,6 +398,7 @@ namespace Add_Type
             List<Worker> freeteachers = new List<Worker>(); // Лист свободных преподавателей
             using (SampleContext context = new SampleContext())
             {
+                // Построение строки запроса к базе данных
                 StringBuilder s = new StringBuilder("Select Distinct Workers.* from Workers where Workers.RoleID = 3  and  Workers.Deldate IS NULL and Workers.ID not in (Select Distinct Workers.ID from Workers join TimetablesTeachers on TimetablesTeachers.TeacherID = Workers.ID and Workers.RoleID = 3 join Timetables on TimetablesTeachers.TimetableID = Timetables.ID where ");
 
                 List<string> sql = new List<string>();
@@ -482,6 +483,7 @@ namespace Add_Type
             List<Cabinet> freecabinets = new List<Cabinet>(); // Лист свободных кабинетов
             using (SampleContext context = new SampleContext())
             {
+                // Построение строки запроса к базе данных
                 StringBuilder s = new StringBuilder("Select Distinct Cabinets.* from Cabinets where Cabinets.Deldate IS NULL and Cabinets.ID not in (Select Distinct Cabinets.ID from Cabinets join Timetables on Cabinets.ID = Timetables.CabinetID where ");
 
                 List<string> sql = new List<string>();

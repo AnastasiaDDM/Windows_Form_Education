@@ -333,12 +333,12 @@ namespace Add_Type
             errorProvider1.Clear();
             if (startt.Text == "  :")
             {
-                errorProvider1.SetError(startt, "Ввведите время начала занятия. Это поле не может быть пустым.");
+                errorProvider1.SetError(startt, "Введите время начала занятия. Это поле не может быть пустым.");
                 return false;
             }
             if (endt.Text == "  :")
             {
-                errorProvider1.SetError(endt, "Ввведите время окончания занятия. Это поле не может быть пустым.");
+                errorProvider1.SetError(endt, "Введите время окончания занятия. Это поле не может быть пустым.");
                 return false;
             }
 
@@ -351,7 +351,7 @@ namespace Add_Type
             {
                 if (minot > mindo)
                 {
-                    errorProvider1.SetError(startt, "Введены неккоректные данные!Время начала занятия должно быть раньше, чем время окончания занятия!");
+                    errorProvider1.SetError(startt, "Введены некорректные данные!Время начала занятия должно быть раньше, чем время окончания занятия!");
                     return false;
                 }
             }

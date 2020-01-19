@@ -203,11 +203,6 @@ C:\Users\79016\Desktop\Windows_Form_Education пробник\Add_Type\bin\Debug\
 C:\Users\79016\Desktop\Windows_Form_Education пробник\Add_Type\bin\Debug\System.Data.SQLite.Linq.dll
 C:\Users\79016\Desktop\Windows_Form_Education пробник\Add_Type\obj\Debug\Add_Type.Timetable_find.resources
 C:\Users\79016\Desktop\Windows_Form_Education пробник\Add_Type\bin\Debug\Itenso.TimePeriod.dll
-C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Add_Type.exe.config
-C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.exe
-C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.pdb
-C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Add_Type.exe
-C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Add_Type.pdb
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\EntityFramework.dll
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Itenso.TimePeriod.dll
@@ -256,7 +251,6 @@ C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Worker_edit.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Input.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.List.resources
-C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Properties.Resources.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Worker_find.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.Worker_view.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.csproj.GenerateResource.Cache
@@ -276,3 +270,9 @@ C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.addGrade.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.StatisticsforOneBranch.resources
 C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Add_Type.payAll.resources
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Education.exe.config
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Education.exe
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\bin\Debug\Education.pdb
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.Properties.Resources.resources
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.exe
+C:\Users\79016\Desktop\Windows_Form_Education_папка\Windows_Form_Education\Add_Type\obj\Debug\Education.pdb
